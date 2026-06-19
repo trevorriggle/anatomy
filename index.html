@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Lower Extremity — Diagnostic Quiz</title>
+<style>
+  :root{
+    --paper:#f4f0e7; --card:#fbfaf5; --ink:#1b1d1f; --muted:#5c6065;
+    --red:#9c1c20; --red-deep:#6f1316; --red-tint:#f6e6e3;
+    --green:#2f6b3f; --green-tint:#e6efe7; --amber:#9a6a12;
+    --rule:#ddd7ca; --line:#e7e1d4;
+    --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.45;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:720px;margin:0 auto;padding:22px 18px 150px;}
+  .eyebrow{color:var(--red);font-weight:800;font-size:12px;letter-spacing:.13em;
+    text-transform:uppercase;}
+  h1{font-family:var(--serif);font-weight:700;font-size:31px;line-height:1.08;
+    margin:8px 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 4px;}
+  .hairline{height:1px;background:var(--rule);margin:16px 0 6px;}
+
+  /* results */
+  #results{display:none;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:18px 16px;margin:14px 0 4px;
+    box-shadow:0 1px 0 rgba(0,0,0,.03);}
+  #results.show{display:block;}
+  .tabs{display:flex;gap:4px;margin:-2px 0 14px;border-bottom:1px solid var(--line);}
+  .tab{font:inherit;font-weight:700;font-size:14px;color:var(--muted);background:none;
+    border:none;border-bottom:3px solid transparent;padding:8px 12px 9px;cursor:pointer;
+    margin-bottom:-1px;}
+  .tab.active{color:var(--red);border-bottom-color:var(--red);}
+  .tab .cnt{font-family:var(--mono);font-size:12px;color:var(--red);}
+  .pane{display:none;}
+  .pane.active{display:block;}
+  .misshdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .misshdr .lbl{font-size:14px;color:var(--muted);flex:1;}
+  #missText{width:100%;height:230px;resize:vertical;font-family:var(--mono);
+    font-size:13px;line-height:1.5;color:var(--ink);background:#fff;
+    border:1.5px solid var(--rule);border-radius:9px;padding:12px;
+    -webkit-text-size-adjust:100%;white-space:pre;overflow:auto;}
+  .copybtn{font:inherit;font-weight:800;font-size:14px;border:none;border-radius:9px;
+    padding:10px 16px;background:var(--red);color:#fff;cursor:pointer;
+    box-shadow:0 2px 0 var(--red-deep);white-space:nowrap;}
+  .copybtn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--red-deep);}
+  .copybtn.done{background:var(--green);box-shadow:0 2px 0 #1f4a2b;}
+  .score{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1;}
+  .score small{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);
+    display:block;margin-top:6px;letter-spacing:.01em;}
+  .bars{margin:16px 0 4px;}
+  .barrow{display:grid;grid-template-columns:118px 1fr 58px;align-items:center;
+    gap:10px;margin:7px 0;font-size:14px;}
+  .barrow .nm{color:var(--ink);font-weight:600;}
+  .track{height:11px;background:#ece6d8;border-radius:6px;overflow:hidden;}
+  .fill{height:100%;width:0;border-radius:6px;transition:width .6s ease;}
+  .barrow .pct{font-family:var(--mono);font-size:13px;text-align:right;color:var(--muted);}
+  .verdict{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);
+    font-size:14.5px;color:var(--ink);}
+  .verdict b{color:var(--red);}
+
+  /* worksheet heading */
+  .ws{font-family:var(--serif);color:var(--red);font-weight:700;font-size:20px;
+    margin:30px 0 2px;}
+  .ws .tag{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--muted);
+    letter-spacing:.08em;text-transform:uppercase;}
+  .wsline{height:2px;background:var(--red);opacity:.85;margin:6px 0 14px;}
+
+  /* question card */
+  .card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);
+    border-radius:10px;padding:14px 14px 12px;margin:12px 0;}
+  .card.correct{border-left-color:var(--green);}
+  .card.wrong{border-left-color:var(--red);}
+  .card.blank{border-left-color:var(--red);border-left-width:6px;
+    background:var(--red-tint);border-color:#e3b9b6;}
+  .card.blank .qtext,.card.blank .qnum{color:var(--red-deep);}
+  .qhead{display:flex;gap:8px;align-items:baseline;}
+  .qnum{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700;min-width:30px;}
+  .qtext{font-weight:650;font-size:16.5px;}
+  .opts{margin-top:11px;display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
+    background:#fff;border:1.5px solid var(--rule);border-radius:9px;
+    padding:12px 13px;font:inherit;font-size:16px;color:var(--ink);cursor:pointer;
+    transition:border-color .12s,background .12s;}
+  .opt:active{transform:scale(.995);}
+  .opt .ltr{font-weight:800;color:var(--muted);min-width:16px;}
+  .opt.sel{border-color:var(--red);background:var(--red-tint);}
+  .opt.sel .ltr{color:var(--red);}
+  .opt.key{border-color:var(--green);background:var(--green-tint);}
+  .opt.key .ltr{color:var(--green);}
+  .opt.badpick{border-color:var(--red);background:var(--red-tint);}
+  .opt.badpick .ltr{color:var(--red);}
+  .mark{display:none;margin-top:10px;font-size:13.5px;font-weight:700;letter-spacing:.01em;}
+  .card.graded .mark{display:block;}
+  .mark.ok{color:var(--green);}
+  .mark.no{color:var(--red);}
+  .mark.bl{color:var(--red);}
+
+  /* sticky bar */
+  .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(244,240,231,.92);
+    backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    border-top:1px solid var(--rule);
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    display:flex;gap:12px;align-items:center;}
+  .count{font-size:14px;color:var(--muted);font-weight:600;flex:1;}
+  .count b{color:var(--ink);}
+  .btn{font:inherit;font-weight:800;font-size:16px;border:none;border-radius:10px;
+    padding:13px 20px;cursor:pointer;letter-spacing:.01em;}
+  .btn.grade{background:var(--red);color:#fff;box-shadow:0 2px 0 var(--red-deep);}
+  .btn.grade:active{transform:translateY(1px);box-shadow:0 1px 0 var(--red-deep);}
+  .btn.clear{background:transparent;color:var(--muted);border:1.5px solid var(--rule);padding:13px 16px;}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+  @media (min-width:600px){ h1{font-size:36px;} .wrap{padding-top:30px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">BIO 2300 · Human Anatomy · Unit 2A</div>
+  <h1>Lower Extremity — Diagnostic</h1>
+  <p class="sub">136 questions, worksheets A–F. Tap one answer each, then hit Grade. It scores you, flags every miss, and tells you which section you're most lost in.</p>
+  <div class="hairline"></div>
+
+  <div id="results" aria-live="polite">
+    <div class="tabs">
+      <button class="tab active" data-pane="pane-results" id="tabResults">Results</button>
+      <button class="tab" data-pane="pane-missed" id="tabMissed">Missed terms <span class="cnt" id="missCount"></span></button>
+    </div>
+    <div class="pane active" id="pane-results">
+      <div class="score" id="scoreLine">—</div>
+      <div class="bars" id="bars"></div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+    <div class="pane" id="pane-missed">
+      <div class="misshdr">
+        <span class="lbl" id="missLbl">Everything you missed or skipped, with the correct answer.</span>
+        <button class="copybtn" id="copyBtn">Copy all</button>
+      </div>
+      <textarea id="missText" readonly spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <div id="quiz"></div>
+</div>
+
+<div class="bar">
+  <div class="count" id="count"><b>0</b> / 136 answered</div>
+  <button class="btn clear" id="clearBtn">Clear</button>
+  <button class="btn grade" id="gradeBtn">Grade my quiz</button>
+</div>
+
+<script>
+const DATA = [{"n": 1, "w": "A", "q": "The knee bone is the:", "opts": [{"l": "A", "t": "talus"}, {"l": "B", "t": "calcaneus"}, {"l": "C", "t": "patella"}, {"l": "D", "t": "navicular"}], "k": "C"}, {"n": 2, "w": "A", "q": "Number of tarsal bones in the foot:", "opts": [{"l": "A", "t": "7"}, {"l": "B", "t": "14"}, {"l": "C", "t": "5"}, {"l": "D", "t": "8"}], "k": "A"}, {"n": 3, "w": "A", "q": "Number of metatarsals:", "opts": [{"l": "A", "t": "14"}, {"l": "B", "t": "12"}, {"l": "C", "t": "5"}, {"l": "D", "t": "7"}], "k": "C"}, {"n": 4, "w": "A", "q": "Number of phalanges in one foot:", "opts": [{"l": "A", "t": "5"}, {"l": "B", "t": "14"}, {"l": "C", "t": "12"}, {"l": "D", "t": "10"}], "k": "B"}, {"n": 5, "w": "A", "q": "The proper anatomical name for the hip bone is:", "opts": [{"l": "A", "t": "sacrum"}, {"l": "B", "t": "os coxae"}, {"l": "C", "t": "ilium"}, {"l": "D", "t": "acetabulum"}], "k": "B"}, {"n": 6, "w": "A", "q": "Anatomically, the ilium is the ___ part of the hip bone:", "opts": [{"l": "A", "t": "posterior"}, {"l": "B", "t": "anterior"}, {"l": "C", "t": "superior"}, {"l": "D", "t": "inferior"}], "k": "C"}, {"n": 7, "w": "A", "q": "The pubis is positioned:", "opts": [{"l": "A", "t": "anterior and medial"}, {"l": "B", "t": "superior"}, {"l": "C", "t": "posterior and inferior"}, {"l": "D", "t": "lateral"}], "k": "A"}, {"n": 8, "w": "A", "q": "The ischium is positioned:", "opts": [{"l": "A", "t": "anterior and medial"}, {"l": "B", "t": "lateral"}, {"l": "C", "t": "posterior and inferior"}, {"l": "D", "t": "superior"}], "k": "C"}, {"n": 9, "w": "A", "q": "The acetabulum faces primarily:", "opts": [{"l": "A", "t": "posteriorly"}, {"l": "B", "t": "laterally"}, {"l": "C", "t": "superiorly"}, {"l": "D", "t": "medially"}], "k": "B"}, {"n": 10, "w": "A", "q": "The pelvis is formed by articulation of:", "opts": [{"l": "A", "t": "two hip bones only"}, {"l": "B", "t": "sacrum and two femurs"}, {"l": "C", "t": "sacrum, coccyx, and two hip bones"}, {"l": "D", "t": "sacrum, coccyx, and two femurs"}], "k": "C"}, {"n": 11, "w": "A", "q": "The greater sciatic notch belongs to the:", "opts": [{"l": "A", "t": "sacrum"}, {"l": "B", "t": "ischium"}, {"l": "C", "t": "ilium"}, {"l": "D", "t": "pubis"}], "k": "C"}, {"n": 12, "w": "A", "q": "The lesser sciatic notch belongs to the:", "opts": [{"l": "A", "t": "sacrum"}, {"l": "B", "t": "ischium"}, {"l": "C", "t": "ilium"}, {"l": "D", "t": "pubis"}], "k": "B"}, {"n": 13, "w": "A", "q": "The iliac crest belongs to the:", "opts": [{"l": "A", "t": "sacrum"}, {"l": "B", "t": "ilium"}, {"l": "C", "t": "ischium"}, {"l": "D", "t": "pubis"}], "k": "B"}, {"n": 14, "w": "A", "q": "The ischial tuberosity belongs to the:", "opts": [{"l": "A", "t": "pubis"}, {"l": "B", "t": "ilium"}, {"l": "C", "t": "sacrum"}, {"l": "D", "t": "ischium"}], "k": "D"}, {"n": 15, "w": "A", "q": "The ischial spine belongs to the:", "opts": [{"l": "A", "t": "ilium"}, {"l": "B", "t": "ischium"}, {"l": "C", "t": "sacrum"}, {"l": "D", "t": "pubis"}], "k": "B"}, {"n": 16, "w": "A", "q": "The pubic tubercle belongs to the:", "opts": [{"l": "A", "t": "sacrum"}, {"l": "B", "t": "ilium"}, {"l": "C", "t": "pubis"}, {"l": "D", "t": "ischium"}], "k": "C"}, {"n": 17, "w": "A", "q": "The iliac fossa belongs to the:", "opts": [{"l": "A", "t": "pubis"}, {"l": "B", "t": "ischium"}, {"l": "C", "t": "sacrum"}, {"l": "D", "t": "ilium"}], "k": "D"}, {"n": 18, "w": "A", "q": "The inguinal ligament attaches to the pubic tubercle and the:", "opts": [{"l": "A", "t": "iliac crest"}, {"l": "B", "t": "ASIS"}, {"l": "C", "t": "greater trochanter"}, {"l": "D", "t": "ischial spine"}], "k": "B"}, {"n": 19, "w": "A", "q": "The superior pubic ramus and ischiopubic ramus together:", "opts": [{"l": "A", "t": "form the greater sciatic foramen"}, {"l": "B", "t": "frame the obturator foramen"}, {"l": "C", "t": "form the acetabulum"}, {"l": "D", "t": "attach the inguinal ligament"}], "k": "B"}, {"n": 20, "w": "A", "q": "The greater sciatic notch is converted into a foramen by the:", "opts": [{"l": "A", "t": "sacrospinous and sacrotuberous ligaments"}, {"l": "B", "t": "interosseous membrane"}, {"l": "C", "t": "iliofemoral ligament"}, {"l": "D", "t": "inguinal ligament"}], "k": "A"}, {"n": 21, "w": "A", "q": "The sacrospinous ligament attaches to which bony landmark?", "opts": [{"l": "A", "t": "ischial tuberosity"}, {"l": "B", "t": "ischial spine"}, {"l": "C", "t": "ASIS"}, {"l": "D", "t": "pubic tubercle"}], "k": "B"}, {"n": 22, "w": "A", "q": "The rough vertical ridge identifying the POSTERIOR femur is the:", "opts": [{"l": "A", "t": "intertrochanteric line"}, {"l": "B", "t": "linea aspera"}, {"l": "C", "t": "anterior crest"}, {"l": "D", "t": "interosseous border"}], "k": "B"}, {"n": 23, "w": "A", "q": "The greater trochanter is on the ___ side of the femur:", "opts": [{"l": "A", "t": "lateral"}, {"l": "B", "t": "posterior"}, {"l": "C", "t": "anterior"}, {"l": "D", "t": "medial"}], "k": "A"}, {"n": 24, "w": "A", "q": "The head of the femur projects:", "opts": [{"l": "A", "t": "superolaterally"}, {"l": "B", "t": "superomedially"}, {"l": "C", "t": "posteriorly"}, {"l": "D", "t": "inferomedially"}], "k": "B"}, {"n": 25, "w": "A", "q": "Which femur feature is on the DISTAL end?", "opts": [{"l": "A", "t": "intercondylar fossa"}, {"l": "B", "t": "lesser trochanter"}, {"l": "C", "t": "neck"}, {"l": "D", "t": "intertrochanteric crest"}], "k": "A"}, {"n": 26, "w": "A", "q": "Which femur feature is on the PROXIMAL end?", "opts": [{"l": "A", "t": "lateral condyle"}, {"l": "B", "t": "medial epicondyle"}, {"l": "C", "t": "greater trochanter"}, {"l": "D", "t": "intercondylar fossa"}], "k": "C"}, {"n": 27, "w": "A", "q": "The hip joint (femur + hip bone) is a:", "opts": [{"l": "A", "t": "ball-and-socket joint"}, {"l": "B", "t": "pivot joint"}, {"l": "C", "t": "saddle joint"}, {"l": "D", "t": "hinge joint"}], "k": "A"}, {"n": 28, "w": "A", "q": "The knee joint (femur + tibia) is a:", "opts": [{"l": "A", "t": "hinge joint"}, {"l": "B", "t": "ball-and-socket joint"}, {"l": "C", "t": "pivot joint"}, {"l": "D", "t": "gliding joint"}], "k": "A"}, {"n": 29, "w": "A", "q": "The tibial tuberosity and sharp anterior crest are on the ___ side of the tibia:", "opts": [{"l": "A", "t": "posterior"}, {"l": "B", "t": "medial"}, {"l": "C", "t": "lateral"}, {"l": "D", "t": "anterior"}], "k": "D"}, {"n": 30, "w": "A", "q": "The medial malleolus is located on the:", "opts": [{"l": "A", "t": "fibula, laterally"}, {"l": "B", "t": "fibula, medially"}, {"l": "C", "t": "tibia, medially"}, {"l": "D", "t": "tibia, laterally"}], "k": "C"}, {"n": 31, "w": "A", "q": "Compared to the fibula, the tibia is:", "opts": [{"l": "A", "t": "larger, medial, weight-bearing"}, {"l": "B", "t": "thin and medial"}, {"l": "C", "t": "thin and lateral"}, {"l": "D", "t": "larger and lateral"}], "k": "A"}, {"n": 32, "w": "A", "q": "The lateral malleolus belongs to the:", "opts": [{"l": "A", "t": "talus"}, {"l": "B", "t": "tibia"}, {"l": "C", "t": "fibula"}, {"l": "D", "t": "calcaneus"}], "k": "C"}, {"n": 33, "w": "A", "q": "The intercondylar eminence belongs to the:", "opts": [{"l": "A", "t": "femur"}, {"l": "B", "t": "talus"}, {"l": "C", "t": "fibula"}, {"l": "D", "t": "tibia"}], "k": "D"}, {"n": 34, "w": "A", "q": "The head (proximal) is a key landmark of which leg bone?", "opts": [{"l": "A", "t": "both equally"}, {"l": "B", "t": "tibia"}, {"l": "C", "t": "fibula"}, {"l": "D", "t": "neither"}], "k": "C"}, {"n": 35, "w": "A", "q": "The tibia articulates with which tarsal bone to form the ankle?", "opts": [{"l": "A", "t": "navicular"}, {"l": "B", "t": "calcaneus"}, {"l": "C", "t": "talus"}, {"l": "D", "t": "cuboid"}], "k": "C"}, {"n": 36, "w": "A", "q": "The talus articulates inferiorly with the:", "opts": [{"l": "A", "t": "tibia"}, {"l": "B", "t": "cuboid"}, {"l": "C", "t": "navicular"}, {"l": "D", "t": "calcaneus"}], "k": "D"}, {"n": 37, "w": "A", "q": "The calcaneus articulates anteriorly with the:", "opts": [{"l": "A", "t": "talus"}, {"l": "B", "t": "cuboid"}, {"l": "C", "t": "navicular"}, {"l": "D", "t": "cuneiforms"}], "k": "B"}, {"n": 38, "w": "A", "q": "The navicular articulates anteriorly with the:", "opts": [{"l": "A", "t": "talus"}, {"l": "B", "t": "three cuneiforms"}, {"l": "C", "t": "calcaneus"}, {"l": "D", "t": "cuboid"}], "k": "B"}, {"n": 39, "w": "A", "q": "The medial cuneiform articulates with which metatarsal?", "opts": [{"l": "A", "t": "3rd"}, {"l": "B", "t": "1st"}, {"l": "C", "t": "2nd"}, {"l": "D", "t": "4th"}], "k": "B"}, {"n": 40, "w": "A", "q": "The cuboid articulates with which metatarsals?", "opts": [{"l": "A", "t": "3rd and 4th"}, {"l": "B", "t": "1st and 2nd"}, {"l": "C", "t": "2nd and 3rd"}, {"l": "D", "t": "4th and 5th"}], "k": "D"}, {"n": 41, "w": "A", "q": "The hallux (big toe) is on the ___ side of the foot:", "opts": [{"l": "A", "t": "posterior"}, {"l": "B", "t": "lateral"}, {"l": "C", "t": "dorsal"}, {"l": "D", "t": "medial"}], "k": "D"}, {"n": 42, "w": "A", "q": "Which digit of the foot has NO middle phalanx?", "opts": [{"l": "A", "t": "digit 5"}, {"l": "B", "t": "the hallux (digit 1)"}, {"l": "C", "t": "digit 3"}, {"l": "D", "t": "digit 2"}], "k": "B"}, {"n": 43, "w": "B", "q": "Action of gluteus maximus:", "opts": [{"l": "A", "t": "extension and lateral rotation"}, {"l": "B", "t": "adduction"}, {"l": "C", "t": "medial rotation only"}, {"l": "D", "t": "abduction and flexion"}], "k": "A"}, {"n": 44, "w": "B", "q": "Primary action of gluteus medius:", "opts": [{"l": "A", "t": "abduction and stabilization"}, {"l": "B", "t": "extension"}, {"l": "C", "t": "lateral rotation"}, {"l": "D", "t": "adduction"}], "k": "A"}, {"n": 45, "w": "B", "q": "Action of piriformis at the hip:", "opts": [{"l": "A", "t": "medial rotation"}, {"l": "B", "t": "lateral rotation"}, {"l": "C", "t": "flexion"}, {"l": "D", "t": "abduction"}], "k": "B"}, {"n": 46, "w": "B", "q": "Tensor fasciae latae (TFL) does all EXCEPT:", "opts": [{"l": "A", "t": "extension"}, {"l": "B", "t": "abduction"}, {"l": "C", "t": "flexion"}, {"l": "D", "t": "medial rotation"}], "k": "A"}, {"n": 47, "w": "B", "q": "Which three muscles share a distal attachment on the greater trochanter?", "opts": [{"l": "A", "t": "maximus, TFL, piriformis"}, {"l": "B", "t": "maximus, medius, minimus"}, {"l": "C", "t": "medius, minimus, piriformis"}, {"l": "D", "t": "medius, minimus, TFL"}], "k": "C"}, {"n": 48, "w": "B", "q": "Gluteus medius and gluteus maximus share which action?", "opts": [{"l": "A", "t": "abduction"}, {"l": "B", "t": "flexion"}, {"l": "C", "t": "medial rotation"}, {"l": "D", "t": "adduction"}], "k": "A"}, {"n": 49, "w": "B", "q": "The sciatic nerve usually passes ___ the piriformis:", "opts": [{"l": "A", "t": "through"}, {"l": "B", "t": "inferior to"}, {"l": "C", "t": "superior to"}, {"l": "D", "t": "medial to"}], "k": "B"}, {"n": 50, "w": "B", "q": "From superficial to deep, the correct order is:", "opts": [{"l": "A", "t": "maximus then minimus then medius"}, {"l": "B", "t": "medius then maximus then minimus"}, {"l": "C", "t": "maximus then medius then minimus"}, {"l": "D", "t": "minimus then medius then maximus"}], "k": "C"}, {"n": 51, "w": "B", "q": "The iliotibial tract is located on the ___ side of the thigh:", "opts": [{"l": "A", "t": "lateral"}, {"l": "B", "t": "posterior"}, {"l": "C", "t": "medial"}, {"l": "D", "t": "anterior"}], "k": "A"}, {"n": 52, "w": "B", "q": "Which two muscles share a distal attachment on the IT tract?", "opts": [{"l": "A", "t": "TFL and gluteus medius"}, {"l": "B", "t": "gluteus maximus and medius"}, {"l": "C", "t": "TFL and gluteus maximus"}, {"l": "D", "t": "sartorius and TFL"}], "k": "C"}, {"n": 53, "w": "B", "q": "The thigh is divided into how many compartments?", "opts": [{"l": "A", "t": "two"}, {"l": "B", "t": "four"}, {"l": "C", "t": "three"}, {"l": "D", "t": "one"}], "k": "C"}, {"n": 54, "w": "B", "q": "The primary hip flexor is the:", "opts": [{"l": "A", "t": "iliopsoas"}, {"l": "B", "t": "rectus femoris"}, {"l": "C", "t": "sartorius"}, {"l": "D", "t": "pectineus"}], "k": "A"}, {"n": 55, "w": "B", "q": "Which muscle flexes BOTH hip and knee and also abducts/laterally rotates the hip?", "opts": [{"l": "A", "t": "iliopsoas"}, {"l": "B", "t": "sartorius"}, {"l": "C", "t": "vastus lateralis"}, {"l": "D", "t": "rectus femoris"}], "k": "B"}, {"n": 56, "w": "B", "q": "Which muscle extends the knee AND assists hip flexion?", "opts": [{"l": "A", "t": "vastus medialis"}, {"l": "B", "t": "rectus femoris"}, {"l": "C", "t": "sartorius"}, {"l": "D", "t": "iliopsoas"}], "k": "B"}, {"n": 57, "w": "B", "q": "Which anterior thigh muscle crosses ONLY the hip joint?", "opts": [{"l": "A", "t": "rectus femoris"}, {"l": "B", "t": "iliopsoas"}, {"l": "C", "t": "vastus intermedius"}, {"l": "D", "t": "sartorius"}], "k": "B"}, {"n": 58, "w": "B", "q": "Which muscles cross ONLY the knee (of the anterior group)?", "opts": [{"l": "A", "t": "the three vasti"}, {"l": "B", "t": "rectus femoris only"}, {"l": "C", "t": "iliopsoas and sartorius"}, {"l": "D", "t": "sartorius and rectus femoris"}], "k": "A"}, {"n": 59, "w": "B", "q": "The quadriceps distal attachment pathway is:", "opts": [{"l": "A", "t": "patellar ligament to patella to quad tendon to tibia"}, {"l": "B", "t": "quad tendon to patella to patellar ligament to tibial tuberosity"}, {"l": "C", "t": "quad tendon to tibial tuberosity directly"}, {"l": "D", "t": "patella to linea aspera"}], "k": "B"}, {"n": 60, "w": "B", "q": "The action shared by ALL medial thigh muscles is:", "opts": [{"l": "A", "t": "flexion"}, {"l": "B", "t": "abduction"}, {"l": "C", "t": "extension"}, {"l": "D", "t": "adduction"}], "k": "D"}, {"n": 61, "w": "B", "q": "Which medial thigh muscle crosses BOTH hip and knee?", "opts": [{"l": "A", "t": "adductor magnus"}, {"l": "B", "t": "pectineus"}, {"l": "C", "t": "gracilis"}, {"l": "D", "t": "adductor longus"}], "k": "C"}, {"n": 62, "w": "B", "q": "At the knee, gracilis produces:", "opts": [{"l": "A", "t": "extension"}, {"l": "B", "t": "abduction"}, {"l": "C", "t": "flexion"}, {"l": "D", "t": "lateral rotation"}], "k": "C"}, {"n": 63, "w": "B", "q": "Layer 1 (superficial) of the medial thigh contains:", "opts": [{"l": "A", "t": "adductor magnus"}, {"l": "B", "t": "gracilis only"}, {"l": "C", "t": "pectineus, adductor longus, gracilis"}, {"l": "D", "t": "adductor brevis"}], "k": "C"}, {"n": 64, "w": "B", "q": "Adductor brevis is in which medial layer?", "opts": [{"l": "A", "t": "it is anterior, not medial"}, {"l": "B", "t": "layer 2 (middle)"}, {"l": "C", "t": "layer 1"}, {"l": "D", "t": "layer 3"}], "k": "B"}, {"n": 65, "w": "B", "q": "Adductor magnus is in which medial layer?", "opts": [{"l": "A", "t": "layer 1"}, {"l": "B", "t": "layer 2"}, {"l": "C", "t": "it is posterior"}, {"l": "D", "t": "layer 3 (deep)"}], "k": "D"}, {"n": 66, "w": "B", "q": "The hamstrings collectively produce:", "opts": [{"l": "A", "t": "knee extension only"}, {"l": "B", "t": "hip extension, knee flexion"}, {"l": "C", "t": "hip abduction"}, {"l": "D", "t": "hip flexion, knee extension"}], "k": "B"}, {"n": 67, "w": "B", "q": "Which posterior thigh muscle does NOT cross the hip?", "opts": [{"l": "A", "t": "long head of biceps femoris"}, {"l": "B", "t": "semimembranosus"}, {"l": "C", "t": "semitendinosus"}, {"l": "D", "t": "short head of biceps femoris"}], "k": "D"}, {"n": 68, "w": "B", "q": "On the MEDIAL side of the posterior thigh, the relationship is:", "opts": [{"l": "A", "t": "semimembranosus superficial to semitendinosus"}, {"l": "B", "t": "biceps femoris is medial"}, {"l": "C", "t": "semitendinosus superficial to semimembranosus"}, {"l": "D", "t": "they are side by side"}], "k": "C"}, {"n": 69, "w": "B", "q": "On the LATERAL side of the posterior thigh:", "opts": [{"l": "A", "t": "long head is deep to short head"}, {"l": "B", "t": "semitendinosus is lateral"}, {"l": "C", "t": "they are equal depth"}, {"l": "D", "t": "short head is deep to long head"}], "k": "D"}, {"n": 70, "w": "B", "q": "The prime mover for hip FLEXION is:", "opts": [{"l": "A", "t": "gluteus maximus"}, {"l": "B", "t": "iliopsoas"}, {"l": "C", "t": "rectus femoris"}, {"l": "D", "t": "sartorius"}], "k": "B"}, {"n": 71, "w": "B", "q": "The prime mover for hip EXTENSION is:", "opts": [{"l": "A", "t": "gluteus medius"}, {"l": "B", "t": "hamstrings"}, {"l": "C", "t": "adductor magnus"}, {"l": "D", "t": "gluteus maximus"}], "k": "D"}, {"n": 72, "w": "C", "q": "The leg is divided into how many compartments?", "opts": [{"l": "A", "t": "four"}, {"l": "B", "t": "five"}, {"l": "C", "t": "three"}, {"l": "D", "t": "two"}], "k": "C"}, {"n": 73, "w": "C", "q": "'Hallucis' refers to:", "opts": [{"l": "A", "t": "digits 2-5"}, {"l": "B", "t": "the big toe (digit 1)"}, {"l": "C", "t": "the ankle"}, {"l": "D", "t": "the heel"}], "k": "B"}, {"n": 74, "w": "C", "q": "'Digitorum' refers to:", "opts": [{"l": "A", "t": "the big toe"}, {"l": "B", "t": "digits 2-5"}, {"l": "C", "t": "the fibula"}, {"l": "D", "t": "the tibia"}], "k": "B"}, {"n": 75, "w": "C", "q": "The primary dorsiflexor at the ankle is:", "opts": [{"l": "A", "t": "gastrocnemius"}, {"l": "B", "t": "fibularis longus"}, {"l": "C", "t": "tibialis anterior"}, {"l": "D", "t": "tibialis posterior"}], "k": "C"}, {"n": 76, "w": "C", "q": "Tibialis anterior produces:", "opts": [{"l": "A", "t": "dorsiflexion and inversion"}, {"l": "B", "t": "plantarflexion and eversion"}, {"l": "C", "t": "plantarflexion and inversion"}, {"l": "D", "t": "dorsiflexion and eversion"}], "k": "A"}, {"n": 77, "w": "C", "q": "All anterior leg muscles share dorsiflexion because they cross:", "opts": [{"l": "A", "t": "the knee joint"}, {"l": "B", "t": "anterior to the ankle axis"}, {"l": "C", "t": "medial to the ankle"}, {"l": "D", "t": "posterior to the ankle axis"}], "k": "B"}, {"n": 78, "w": "C", "q": "The extensor retinaculum functions to:", "opts": [{"l": "A", "t": "plantarflex the foot"}, {"l": "B", "t": "hold extensor tendons down (prevent bowstringing)"}, {"l": "C", "t": "support the arch"}, {"l": "D", "t": "form the tarsal tunnel"}], "k": "B"}, {"n": 79, "w": "C", "q": "Which muscle plantarflexes AND flexes the knee?", "opts": [{"l": "A", "t": "soleus"}, {"l": "B", "t": "gastrocnemius"}, {"l": "C", "t": "tibialis posterior"}, {"l": "D", "t": "popliteus"}], "k": "B"}, {"n": 80, "w": "C", "q": "The muscle whose job is to 'unlock the knee' is:", "opts": [{"l": "A", "t": "soleus"}, {"l": "B", "t": "popliteus"}, {"l": "C", "t": "gastrocnemius"}, {"l": "D", "t": "plantaris"}], "k": "B"}, {"n": 81, "w": "C", "q": "All posterior leg muscles share plantarflexion because they cross:", "opts": [{"l": "A", "t": "anterior to the ankle axis"}, {"l": "B", "t": "posterior to the ankle axis"}, {"l": "C", "t": "lateral to the ankle"}, {"l": "D", "t": "the knee"}], "k": "B"}, {"n": 82, "w": "C", "q": "The flexor retinaculum forms the:", "opts": [{"l": "A", "t": "extensor compartment"}, {"l": "B", "t": "tarsal tunnel"}, {"l": "C", "t": "popliteal fossa"}, {"l": "D", "t": "femoral triangle"}], "k": "B"}, {"n": 83, "w": "C", "q": "The two lateral leg muscles are:", "opts": [{"l": "A", "t": "gastrocnemius and soleus"}, {"l": "B", "t": "EDL and EHL"}, {"l": "C", "t": "tibialis anterior and posterior"}, {"l": "D", "t": "fibularis longus and brevis"}], "k": "D"}, {"n": 84, "w": "C", "q": "Lateral leg muscles (fibularis longus/brevis) produce:", "opts": [{"l": "A", "t": "inversion and plantarflexion"}, {"l": "B", "t": "eversion and dorsiflexion"}, {"l": "C", "t": "inversion and dorsiflexion"}, {"l": "D", "t": "eversion and plantarflexion"}], "k": "D"}, {"n": 85, "w": "C", "q": "Inversion at the ankle is produced by:", "opts": [{"l": "A", "t": "EDL and EHL"}, {"l": "B", "t": "fibularis longus and brevis"}, {"l": "C", "t": "gastrocnemius and soleus"}, {"l": "D", "t": "tibialis anterior and posterior"}], "k": "D"}, {"n": 86, "w": "C", "q": "Eversion at the ankle is produced by:", "opts": [{"l": "A", "t": "fibularis longus, brevis, and tertius"}, {"l": "B", "t": "tibialis posterior only"}, {"l": "C", "t": "tibialis anterior and posterior"}, {"l": "D", "t": "gastrocnemius"}], "k": "A"}, {"n": 87, "w": "C", "q": "The plantar aponeurosis:", "opts": [{"l": "A", "t": "prevents extensor bowstringing"}, {"l": "B", "t": "everts the foot"}, {"l": "C", "t": "supports the longitudinal arch and protects the sole"}, {"l": "D", "t": "holds flexor tendons in the tarsal tunnel"}], "k": "C"}, {"n": 88, "w": "D", "q": "The hip joint is specifically the articulation between:", "opts": [{"l": "A", "t": "femoral head and tibial plateau"}, {"l": "B", "t": "femoral neck and pubis"}, {"l": "C", "t": "greater trochanter and ilium"}, {"l": "D", "t": "femoral head and acetabulum"}], "k": "D"}, {"n": 89, "w": "D", "q": "Which hip ligament is strongest and prevents hyperextension (the 'Y' ligament)?", "opts": [{"l": "A", "t": "iliofemoral"}, {"l": "B", "t": "pubofemoral"}, {"l": "C", "t": "sacrotuberous"}, {"l": "D", "t": "ischiofemoral"}], "k": "A"}, {"n": 90, "w": "D", "q": "The pubofemoral ligament primarily limits:", "opts": [{"l": "A", "t": "adduction"}, {"l": "B", "t": "medial rotation"}, {"l": "C", "t": "flexion"}, {"l": "D", "t": "abduction and extension"}], "k": "D"}, {"n": 91, "w": "D", "q": "The ischiofemoral ligament is ___ and limits hyperextension and medial rotation:", "opts": [{"l": "A", "t": "posterior"}, {"l": "B", "t": "medial"}, {"l": "C", "t": "superior"}, {"l": "D", "t": "anterior"}], "k": "A"}, {"n": 92, "w": "D", "q": "Which knee structures ARE thickenings of the synovial capsule?", "opts": [{"l": "A", "t": "ACL and PCL"}, {"l": "B", "t": "the patellar ligament"}, {"l": "C", "t": "the collateral ligaments"}, {"l": "D", "t": "the menisci"}], "k": "C"}, {"n": 93, "w": "D", "q": "Which two ligaments are NOT thickenings of the joint capsule?", "opts": [{"l": "A", "t": "patellar and quadriceps"}, {"l": "B", "t": "iliofemoral and pubofemoral"}, {"l": "C", "t": "tibial and fibular collaterals"}, {"l": "D", "t": "ACL and PCL"}], "k": "D"}, {"n": 94, "w": "D", "q": "The ACL resists:", "opts": [{"l": "A", "t": "posterior tibial slide"}, {"l": "B", "t": "medial rotation"}, {"l": "C", "t": "anterior tibial slide"}, {"l": "D", "t": "abduction"}], "k": "C"}, {"n": 95, "w": "D", "q": "The PCL resists:", "opts": [{"l": "A", "t": "hyperextension"}, {"l": "B", "t": "anterior tibial slide"}, {"l": "C", "t": "posterior tibial slide"}, {"l": "D", "t": "eversion"}], "k": "C"}, {"n": 96, "w": "D", "q": "Which meniscus is firmly attached to its collateral ligament (so they injure together)?", "opts": [{"l": "A", "t": "neither"}, {"l": "B", "t": "both"}, {"l": "C", "t": "lateral meniscus"}, {"l": "D", "t": "medial meniscus"}], "k": "D"}, {"n": 97, "w": "D", "q": "At the knee, the bone that does NOT articulate with the femur is the:", "opts": [{"l": "A", "t": "fibula"}, {"l": "B", "t": "patella"}, {"l": "C", "t": "talus"}, {"l": "D", "t": "tibia"}], "k": "A"}, {"n": 98, "w": "D", "q": "The cruciate ligaments are named for their:", "opts": [{"l": "A", "t": "shape only"}, {"l": "B", "t": "the side they are on"}, {"l": "C", "t": "femoral attachment"}, {"l": "D", "t": "tibial attachment"}], "k": "D"}, {"n": 99, "w": "D", "q": "The ankle (talocrural) joint is formed by a mortise gripping the:", "opts": [{"l": "A", "t": "navicular"}, {"l": "B", "t": "head of the fibula"}, {"l": "C", "t": "trochlea of the talus"}, {"l": "D", "t": "calcaneus"}], "k": "C"}, {"n": 100, "w": "D", "q": "Inversion and eversion occur primarily at which joint(s)?", "opts": [{"l": "A", "t": "talocrural"}, {"l": "B", "t": "knee"}, {"l": "C", "t": "subtalar/intertarsal"}, {"l": "D", "t": "hip"}], "k": "C"}, {"n": 101, "w": "E", "q": "The lumbosacral plexus is formed by the anterior rami of:", "opts": [{"l": "A", "t": "T12-L4"}, {"l": "B", "t": "L4-S5"}, {"l": "C", "t": "C1-C8"}, {"l": "D", "t": "L1-S4"}], "k": "D"}, {"n": 102, "w": "E", "q": "'Efferent' fibers are:", "opts": [{"l": "A", "t": "afferent"}, {"l": "B", "t": "autonomic only"}, {"l": "C", "t": "sensory (toward CNS)"}, {"l": "D", "t": "motor (away from CNS)"}], "k": "D"}, {"n": 103, "w": "E", "q": "A spinal nerve branches into the:", "opts": [{"l": "A", "t": "plexus and trunk"}, {"l": "B", "t": "anterior and lateral rami"}, {"l": "C", "t": "dorsal root and ventral root"}, {"l": "D", "t": "anterior and posterior rami"}], "k": "D"}, {"n": 104, "w": "E", "q": "The lumbar plexus is formed by:", "opts": [{"l": "A", "t": "L4-S3"}, {"l": "B", "t": "S1-S4"}, {"l": "C", "t": "L1-L4 (minor T12)"}, {"l": "D", "t": "L2-S2"}], "k": "C"}, {"n": 105, "w": "E", "q": "The two major nerves of the lumbar plexus are:", "opts": [{"l": "A", "t": "femoral and sciatic"}, {"l": "B", "t": "common fibular and tibial"}, {"l": "C", "t": "femoral and obturator"}, {"l": "D", "t": "sciatic and tibial"}], "k": "C"}, {"n": 106, "w": "E", "q": "The sacral plexus is formed by:", "opts": [{"l": "A", "t": "L4-S4"}, {"l": "B", "t": "T12-L3"}, {"l": "C", "t": "L1-L4"}, {"l": "D", "t": "S2-S5"}], "k": "A"}, {"n": 107, "w": "E", "q": "The primary nerve from the sacral plexus is the:", "opts": [{"l": "A", "t": "obturator"}, {"l": "B", "t": "saphenous"}, {"l": "C", "t": "femoral"}, {"l": "D", "t": "sciatic"}], "k": "D"}, {"n": 108, "w": "E", "q": "The femoral nerve passes under the inguinal ligament ___ to the femoral artery:", "opts": [{"l": "A", "t": "medial"}, {"l": "B", "t": "posterior"}, {"l": "C", "t": "lateral"}, {"l": "D", "t": "deep"}], "k": "C"}, {"n": 109, "w": "E", "q": "The femoral nerve's motor supply (quadriceps, etc.) produces:", "opts": [{"l": "A", "t": "adduction"}, {"l": "B", "t": "eversion"}, {"l": "C", "t": "plantarflexion"}, {"l": "D", "t": "hip flexion and knee extension"}], "k": "D"}, {"n": 110, "w": "E", "q": "The obturator nerve passes through the obturator canal to supply the:", "opts": [{"l": "A", "t": "medial (adductor) thigh"}, {"l": "B", "t": "anterior thigh"}, {"l": "C", "t": "lateral leg"}, {"l": "D", "t": "posterior thigh"}], "k": "A"}, {"n": 111, "w": "E", "q": "The sciatic nerve splits into which two nerves near the popliteal fossa?", "opts": [{"l": "A", "t": "tibial and common fibular"}, {"l": "B", "t": "deep and superficial fibular"}, {"l": "C", "t": "femoral and obturator"}, {"l": "D", "t": "saphenous and sural"}], "k": "A"}, {"n": 112, "w": "E", "q": "The tibial nerve passes behind the ___ malleolus:", "opts": [{"l": "A", "t": "lateral"}, {"l": "B", "t": "medial"}, {"l": "C", "t": "neither"}, {"l": "D", "t": "both"}], "k": "B"}, {"n": 113, "w": "E", "q": "The tibial nerve's motor supply produces:", "opts": [{"l": "A", "t": "inversion only"}, {"l": "B", "t": "plantarflexion and toe flexion"}, {"l": "C", "t": "eversion"}, {"l": "D", "t": "dorsiflexion"}], "k": "B"}, {"n": 114, "w": "E", "q": "The common fibular nerve is vulnerable because it wraps around the:", "opts": [{"l": "A", "t": "head of the femur"}, {"l": "B", "t": "adductor hiatus"}, {"l": "C", "t": "neck of the fibula"}, {"l": "D", "t": "medial malleolus"}], "k": "C"}, {"n": 115, "w": "E", "q": "The deep fibular nerve supplies the anterior leg, producing:", "opts": [{"l": "A", "t": "inversion"}, {"l": "B", "t": "plantarflexion"}, {"l": "C", "t": "eversion"}, {"l": "D", "t": "dorsiflexion"}], "k": "D"}, {"n": 116, "w": "E", "q": "The superficial fibular nerve supplies fibularis longus and brevis, producing:", "opts": [{"l": "A", "t": "eversion"}, {"l": "B", "t": "dorsiflexion"}, {"l": "C", "t": "plantarflexion"}, {"l": "D", "t": "inversion"}], "k": "A"}, {"n": 117, "w": "E", "q": "The deep fibular nerve provides cutaneous sensation to the:", "opts": [{"l": "A", "t": "web between toes 1-2"}, {"l": "B", "t": "sole"}, {"l": "C", "t": "dorsum of the foot"}, {"l": "D", "t": "lateral leg"}], "k": "A"}, {"n": 118, "w": "F", "q": "The external iliac artery branches from the:", "opts": [{"l": "A", "t": "femoral artery"}, {"l": "B", "t": "common iliac artery"}, {"l": "C", "t": "abdominal aorta directly"}, {"l": "D", "t": "internal iliac artery"}], "k": "B"}, {"n": 119, "w": "F", "q": "The external iliac artery runs along the medial border of which muscle?", "opts": [{"l": "A", "t": "psoas major"}, {"l": "B", "t": "pectineus"}, {"l": "C", "t": "iliacus"}, {"l": "D", "t": "sartorius"}], "k": "A"}, {"n": 120, "w": "F", "q": "The external iliac becomes the femoral artery when it passes:", "opts": [{"l": "A", "t": "through the obturator canal"}, {"l": "B", "t": "under the inguinal ligament"}, {"l": "C", "t": "into the popliteal fossa"}, {"l": "D", "t": "through the adductor hiatus"}], "k": "B"}, {"n": 121, "w": "F", "q": "The femoral artery becomes the popliteal artery after passing through the:", "opts": [{"l": "A", "t": "interosseous membrane"}, {"l": "B", "t": "adductor hiatus"}, {"l": "C", "t": "tarsal tunnel"}, {"l": "D", "t": "inguinal ligament"}], "k": "B"}, {"n": 122, "w": "F", "q": "The adductor hiatus is a gap in which muscle?", "opts": [{"l": "A", "t": "adductor magnus"}, {"l": "B", "t": "adductor longus"}, {"l": "C", "t": "pectineus"}, {"l": "D", "t": "adductor brevis"}], "k": "A"}, {"n": 123, "w": "F", "q": "The popliteal artery branches into the:", "opts": [{"l": "A", "t": "anterior and posterior tibial arteries"}, {"l": "B", "t": "dorsalis pedis and plantar"}, {"l": "C", "t": "femoral and obturator arteries"}, {"l": "D", "t": "external and internal iliac"}], "k": "A"}, {"n": 124, "w": "F", "q": "The posterior tibial artery passes behind the medial malleolus and becomes the:", "opts": [{"l": "A", "t": "medial and lateral plantar arteries"}, {"l": "B", "t": "anterior tibial artery"}, {"l": "C", "t": "dorsalis pedis"}, {"l": "D", "t": "fibular artery"}], "k": "A"}, {"n": 125, "w": "F", "q": "The anterior tibial artery becomes the ___ on the dorsum of the foot:", "opts": [{"l": "A", "t": "fibular artery"}, {"l": "B", "t": "plantar arteries"}, {"l": "C", "t": "saphenous vein"}, {"l": "D", "t": "dorsalis pedis"}], "k": "D"}, {"n": 126, "w": "F", "q": "Superficial venous return begins at the:", "opts": [{"l": "A", "t": "great saphenous vein"}, {"l": "B", "t": "femoral vein"}, {"l": "C", "t": "popliteal vein"}, {"l": "D", "t": "dorsal venous arch"}], "k": "D"}, {"n": 127, "w": "F", "q": "The great saphenous vein passes ___ the medial malleolus and drains into the:", "opts": [{"l": "A", "t": "posterior; popliteal vein"}, {"l": "B", "t": "anterior; popliteal vein"}, {"l": "C", "t": "posterior; femoral vein"}, {"l": "D", "t": "anterior; femoral vein"}], "k": "D"}, {"n": 128, "w": "F", "q": "The small saphenous vein passes ___ the lateral malleolus and drains into the:", "opts": [{"l": "A", "t": "posterior; popliteal vein"}, {"l": "B", "t": "anterior; femoral vein"}, {"l": "C", "t": "anterior; popliteal vein"}, {"l": "D", "t": "posterior; femoral vein"}], "k": "A"}, {"n": 129, "w": "F", "q": "Deep veins are named after:", "opts": [{"l": "A", "t": "their depth"}, {"l": "B", "t": "the nerve nearby"}, {"l": "C", "t": "the artery they accompany"}, {"l": "D", "t": "the bone they run along"}], "k": "C"}, {"n": 130, "w": "F", "q": "The Latin term for a same-named vein accompanying an artery is:", "opts": [{"l": "A", "t": "vasa vasorum"}, {"l": "B", "t": "anastomosis"}, {"l": "C", "t": "saphenous"}, {"l": "D", "t": "venae comitantes"}], "k": "D"}, {"n": 131, "w": "F", "q": "In 'Tom, Dick, and nervous Harry' at the medial malleolus, anterior to posterior is:", "opts": [{"l": "A", "t": "Nerve, Artery, Vein, then tendons"}, {"l": "B", "t": "Artery, Vein, Nerve, Tibialis, Digitorum, Hallucis"}, {"l": "C", "t": "flexor Hallucis longus, Nerve, Vein, Artery, Digitorum, Tibialis"}, {"l": "D", "t": "Tibialis posterior, flexor Digitorum longus, Artery, Vein, Nerve, flexor Hallucis longus"}], "k": "D"}, {"n": 132, "w": "F", "q": "The LATERAL border of the femoral triangle is the:", "opts": [{"l": "A", "t": "inguinal ligament"}, {"l": "B", "t": "medial border of sartorius"}, {"l": "C", "t": "adductor longus"}, {"l": "D", "t": "iliopsoas"}], "k": "B"}, {"n": 133, "w": "F", "q": "The contents of the femoral triangle, lateral to medial ('NAVEL'), are:", "opts": [{"l": "A", "t": "Nerve, Vein, Artery, Lymphatics, Empty"}, {"l": "B", "t": "Nerve, Artery, Vein, Empty space, Lymphatics"}, {"l": "C", "t": "Vein, Artery, Nerve, Empty, Lymphatics"}, {"l": "D", "t": "Lymphatics, Empty, Vein, Artery, Nerve"}], "k": "B"}, {"n": 134, "w": "F", "q": "The floor of the femoral triangle is formed by:", "opts": [{"l": "A", "t": "gracilis and adductor magnus"}, {"l": "B", "t": "iliopsoas and pectineus"}, {"l": "C", "t": "sartorius and adductor longus"}, {"l": "D", "t": "inguinal ligament"}], "k": "B"}, {"n": 135, "w": "F", "q": "The superolateral border of the popliteal fossa is the:", "opts": [{"l": "A", "t": "medial gastrocnemius"}, {"l": "B", "t": "biceps femoris"}, {"l": "C", "t": "lateral gastrocnemius"}, {"l": "D", "t": "semimembranosus"}], "k": "B"}, {"n": 136, "w": "F", "q": "The popliteal fossa contents from deep to superficial are:", "opts": [{"l": "A", "t": "popliteal artery, vein, tibial nerve, common fibular nerve"}, {"l": "B", "t": "vein, artery, nerve"}, {"l": "C", "t": "common fibular nerve, artery, vein"}, {"l": "D", "t": "tibial nerve, vein, artery"}], "k": "A"}];
+const WSN = {"A": "Bones", "B": "Gluteus & Thigh", "C": "Leg", "D": "Joints", "E": "Nerves", "F": "Vessels"};
+const ORDER = ["A","B","C","D","E","F"];
+const answers = {};
+let graded = false;
+
+const quiz = document.getElementById('quiz');
+const countEl = document.getElementById('count');
+
+// build
+let curWs = null;
+DATA.forEach(q=>{
+  if(q.w!==curWs){
+    curWs=q.w;
+    const h=document.createElement('div');
+    h.className='ws';
+    h.innerHTML=`<span class="tag">Worksheet ${q.w}</span><br>${WSN[q.w]}<div class="wsline"></div>`;
+    quiz.appendChild(h);
+  }
+  const card=document.createElement('div');
+  card.className='card'; card.id='card'+q.n;
+  const head=document.createElement('div');
+  head.className='qhead';
+  head.innerHTML=`<span class="qnum">${q.n}.</span><span class="qtext"></span>`;
+  head.querySelector('.qtext').textContent=q.q;
+  card.appendChild(head);
+  const opts=document.createElement('div');
+  opts.className='opts';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.dataset.q=q.n; b.dataset.l=o.l;
+    const ltr=document.createElement('span'); ltr.className='ltr'; ltr.textContent=o.l;
+    const tx=document.createElement('span'); tx.textContent=o.t;
+    b.appendChild(ltr); b.appendChild(tx);
+    b.addEventListener('click',()=>pick(q.n,o.l));
+    opts.appendChild(b);
+  });
+  card.appendChild(opts);
+  const mk=document.createElement('div'); mk.className='mark'; card.appendChild(mk);
+  quiz.appendChild(card);
+});
+
+function pick(n,l){
+  answers[n]=l;
+  const card=document.getElementById('card'+n);
+  card.querySelectorAll('.opt').forEach(o=>{
+    o.classList.toggle('sel', o.dataset.l===l && !graded);
+    if(graded){o.classList.toggle('sel', o.dataset.l===l);}
+  });
+  updateCount();
+}
+
+function updateCount(){
+  const a=Object.keys(answers).length;
+  countEl.innerHTML=`<b>${a}</b> / 136 answered`;
+}
+
+document.getElementById('gradeBtn').addEventListener('click',grade);
+document.getElementById('clearBtn').addEventListener('click',clearAll);
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById(t.dataset.pane).classList.add('active');
+}));
+
+document.getElementById('copyBtn').addEventListener('click',async function(){
+  const ta=document.getElementById('missText');
+  const btn=this;
+  let ok=false;
+  try{ await navigator.clipboard.writeText(ta.value); ok=true; }
+  catch(e){
+    ta.removeAttribute('readonly'); ta.focus();
+    ta.setSelectionRange(0, ta.value.length);
+    try{ ok=document.execCommand('copy'); }catch(_){}
+    ta.setAttribute('readonly','');
+  }
+  btn.textContent= ok ? 'Copied!' : 'Select all + copy';
+  btn.classList.toggle('done', ok);
+  setTimeout(()=>{ btn.textContent='Copy all'; btn.classList.remove('done'); }, 1800);
+});
+
+function grade(){
+  graded=true;
+  let correct=0, answered=0;
+  const wc={}, wt={};
+  const missed=[];
+  DATA.forEach(q=>{
+    wt[q.w]=(wt[q.w]||0)+1;
+    const card=document.getElementById('card'+q.n);
+    const mk=card.querySelector('.mark');
+    const u=answers[q.n];
+    const kt=q.opts.find(o=>o.l===q.k).t;
+    card.classList.add('graded');
+    card.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+    const keyBtn=card.querySelector(`.opt[data-l="${q.k}"]`);
+    if(keyBtn) keyBtn.classList.add('key');
+    if(!u){
+      card.classList.add('blank');
+      mk.className='mark bl'; mk.textContent=`Not answered — correct answer: ${q.k}`;
+      missed.push({n:q.n,w:q.w,q:q.q,kt});
+    } else {
+      answered++;
+      if(u===q.k){
+        correct++; wc[q.w]=(wc[q.w]||0)+1;
+        card.classList.add('correct');
+        mk.className='mark ok'; mk.textContent='Correct';
+      } else {
+        const bad=card.querySelector(`.opt[data-l="${u}"]`);
+        if(bad) bad.classList.add('badpick');
+        card.classList.add('wrong');
+        mk.className='mark no'; mk.textContent=`You chose ${u} — correct answer: ${q.k}`;
+        missed.push({n:q.n,w:q.w,q:q.q,kt});
+      }
+    }
+  });
+  buildMissed(missed);
+  showResults(correct, answered, wc, wt);
+}
+
+function buildMissed(missed){
+  const ta=document.getElementById('missText');
+  const cnt=document.getElementById('missCount');
+  const lbl=document.getElementById('missLbl');
+  cnt.textContent='('+missed.length+')';
+  if(missed.length===0){
+    ta.value='Nothing missed — clean sweep.';
+    lbl.textContent='Nothing missed.';
+    return;
+  }
+  lbl.textContent=missed.length+' missed or skipped, with the correct answer.';
+  ta.value=missed.map(m=>`${m.n}. [${m.w}] ${m.q} — ${m.kt}`).join('\n');
+}
+
+function colorFor(p){ return p>=80?'var(--green)':(p>=60?'var(--amber)':'var(--red)'); }
+
+function showResults(correct, answered, wc, wt){
+  const total=DATA.length;
+  const pct=Math.round(correct/total*100);
+  document.getElementById('scoreLine').innerHTML=
+    `${correct} / ${total} <small>${pct}% overall · ${answered} answered · ${total-answered} blank</small>`;
+  const bars=document.getElementById('bars'); bars.innerHTML='';
+  let worst=null, worstP=999;
+  ORDER.forEach(w=>{
+    const cc=wc[w]||0, tt=wt[w]||0, p=tt?Math.round(cc/tt*100):0;
+    if(tt && p<worstP){worstP=p; worst=w;}
+    const row=document.createElement('div'); row.className='barrow';
+    row.innerHTML=`<span class="nm">${w} · ${WSN[w]}</span>
+      <span class="track"><span class="fill"></span></span>
+      <span class="pct">${cc}/${tt}</span>`;
+    bars.appendChild(row);
+    requestAnimationFrame(()=>{
+      const f=row.querySelector('.fill');
+      f.style.width=p+'%'; f.style.background=colorFor(p);
+    });
+  });
+  document.getElementById('verdict').innerHTML = worst
+    ? `Most lost: <b>${worst} · ${WSN[worst]}</b> (${worstP}%). Scroll down — every miss is flagged in red with the right answer.`
+    : `Pick some answers first, then tap Grade.`;
+  const r=document.getElementById('results'); r.classList.add('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function clearAll(){
+  graded=false;
+  for(const k in answers) delete answers[k];
+  document.querySelectorAll('.card').forEach(c=>{
+    c.classList.remove('graded','correct','wrong','blank');
+    c.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel','key','badpick'));
+    c.querySelector('.mark').textContent='';
+  });
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('missText').value='';
+  document.getElementById('missCount').textContent='';
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('active'));
+  document.getElementById('tabResults').classList.add('active');
+  document.getElementById('pane-results').classList.add('active');
+  updateCount();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
