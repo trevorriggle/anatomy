@@ -1,59 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Worksheet picker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lower Extremity Drill Hub</title>
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1d1d1b; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 24px 20px 40px; }
-  .lede { font-size: 15px; color: #b8b8b2; margin: 0 0 20px; }
-  .list { display: flex; flex-direction: column; gap: 16px; }
-  .card { display: flex; align-items: center; gap: 18px; background: #2e2e2c; border-radius: 18px; padding: 22px 24px; }
-  .badge { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 11px; background: #1d1d1b; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 500; font-size: 17px; }
-  .body { flex: 1 1 auto; min-width: 0; }
-  .title { margin: 0; color: #fff; font-weight: 500; font-size: 18px; }
-  .sub { margin: 4px 0 0; color: #9a9a93; font-size: 15px; }
-  .right { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-  .status { color: #9a9a93; font-size: 15px; }
-  .start { background: transparent; border: 0.5px solid rgba(255,255,255,0.35); color: #fff; border-radius: 8px; padding: 7px 22px; font-size: 15px; cursor: pointer; }
-  .footer { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 24px; padding-top: 20px; }
-  .scored { font-size: 15px; color: #b8b8b2; line-height: 1.4; }
-  .reset { background: transparent; border: 0.5px solid #e2e2dc; color: #cfcfc8; border-radius: 8px; padding: 8px 18px; font-size: 14px; cursor: pointer; }
+  :root{
+    --bg:#1a1a18;
+    --color-background-primary:#242422;
+    --color-background-secondary:#2e2e2b;
+    --color-background-success:#16321f;
+    --color-background-danger:#3a1c1c;
+    --color-text-primary:#f2f0ea;
+    --color-text-secondary:#a8a59c;
+    --color-text-tertiary:#76736b;
+    --color-text-success:#6cc28a;
+    --color-text-danger:#e08585;
+    --color-text-info:#7aa7d4;
+    --color-border-tertiary:#3a3a37;
+    --color-border-success:#3f7d54;
+    --color-border-danger:#8a4242;
+    --border-radius-lg:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--color-text-primary);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px;}
+  button{
+    font-family:inherit;
+    background:var(--color-background-secondary);
+    color:var(--color-text-primary);
+    border:0.5px solid var(--color-border-tertiary);
+    border-radius:8px;
+    padding:8px 16px;
+    font-size:14px;
+    cursor:pointer;
+    min-height:34px;
+    transition:background 0.12s,border-color 0.12s;
+  }
+  button:hover:not(:disabled){background:#383834;}
+  button:disabled{cursor:default;opacity:0.9;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <p class="lede">Six worksheets · pick a section, drill to 100%</p>
-  <div class="list" id="list"></div>
-  <div class="footer">
-    <span class="scored">0 of 6 sections<br>scored</span>
-    <button class="reset">Reset all scores</button>
+  <h1 class="sr-only">Lower extremity anatomy drill hub</h1>
+  <div id="hub"></div>
+
+  <div id="quiz" style="display:none;">
+    <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--color-text-secondary); margin-bottom:6px;">
+      <button id="toHub" style="padding:2px 10px; font-size:12px; min-height:0;">&larr; Hub</button>
+      <span style="display:flex; gap:12px; align-items:center;">
+        <span id="prog">1 / 1</span><span id="sc">0 correct</span>
+        <button id="restartTop" style="padding:2px 10px; font-size:12px; min-height:0;">Restart</button>
+      </span>
+    </div>
+    <div id="qhead" style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin-bottom:10px;"></div>
+    <div id="card" style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1.1rem 1.25rem;">
+      <p id="q" style="font-size:16px; font-weight:500; margin:0 0 14px; line-height:1.5;"></p>
+      <div id="opts" style="display:flex; flex-direction:column; gap:8px;"></div>
+      <p id="fb" style="font-size:14px; margin:14px 0 0; display:none; line-height:1.5;"></p>
+    </div>
+    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+      <button id="next" style="display:none;">Next</button>
+    </div>
+    <div id="done" style="display:none; text-align:center; padding:1.5rem 0;"></div>
   </div>
 </div>
 <script>
-const sections = [
-  ["A", "Bones of Lower Extremity", "34 questions"],
-  ["B", "Muscles of Gluteus & Thigh", "34 questions"],
-  ["C", "Muscles of Leg", "15 questions · partial"],
-  ["D", "Study of Lower Limb Joints", "15 questions"],
-  ["E", "Lumbosacral Plexus of Nerves", "19 questions"],
-  ["F", "Blood Vessels of Lower Limb", "19 questions"],
-];
-document.getElementById("list").innerHTML = sections.map(([letter, title, sub]) => `
-  <div class="card">
-    <div class="badge">${letter}</div>
-    <div class="body">
-      <p class="title">${title}</p>
-      <p class="sub">${sub}</p>
-    </div>
-    <div class="right">
-      <span class="status">Not started</span>
-      <button class="start">Start</button>
-    </div>
-  </div>
-`).join("");
+(function(){
+  var DATA={
+  A:{title:"Bones of Lower Extremity",qs:[
+   ["Which bones make up the leg (between knee and ankle)?",["Tibia and fibula","Femur and patella","Tarsals and metatarsals","Femur and tibia"]],
+   ["How many phalanges are in one foot?",["14","12","7","5"]],
+   ["How many tarsal bones are in the foot?",["7","5","8","14"]],
+   ["How many metatarsals are in one foot?",["5","7","14","3"]],
+   ["How is a hip bone described as positioned in correct anatomical position?",["Tilted anteriorly, with ASIS and pubic tubercle in the same vertical plane","Tilted posteriorly, with the iliac crest most anterior","Vertical, with the acetabulum facing forward","Horizontal, with the obturator foramen facing down"]],
+   ["Which bones articulate to form the pelvis?",["Two hip bones, sacrum, and coccyx","Two hip bones and sacrum only","Sacrum, coccyx, and one hip bone","Ilium, ischium, and pubis"]],
+   ["The lesser sciatic notch is a feature of which part of the hip bone?",["Ischium","Ilium","Pubis","Sacrum"]],
+   ["The greater sciatic notch is located primarily on which part of the hip bone?",["Ilium","Ischium","Pubis","Acetabulum"]],
+   ["The iliac crest, iliac fossa, and gluteal surface are features of which bone?",["Ilium","Ischium","Pubis","Femur"]],
+   ["The ischial spine and ischial tuberosity belong to which part of the hip bone?",["Ischium","Ilium","Pubis","Sacrum"]],
+   ["The pubic tubercle is a feature of which part of the hip bone?",["Pubis","Ischium","Ilium","Sacrum"]],
+   ["The inguinal ligament attaches to which two bony landmarks?",["ASIS and pubic tubercle","Iliac crest and ischial spine","ASIS and ischial tuberosity","Pubic symphysis and ischial spine"]],
+   ["How are the superior pubic ramus and ischiopubic ramus positioned relative to the obturator foramen?",["They form its borders","They pass through it","They lie entirely superior to it","They form the floor of the acetabulum"]],
+   ["The greater sciatic foramen is formed by the greater sciatic notch plus which structures?",["The sacrospinous and sacrotuberous ligaments","The inguinal and sacrospinous ligaments","The iliolumbar and sacrotuberous ligaments","The pubofemoral and iliofemoral ligaments"]],
+   ["Which ligament separates the greater sciatic foramen from the lesser sciatic foramen?",["Sacrospinous ligament","Sacrotuberous ligament","Inguinal ligament","Iliofemoral ligament"]],
+   ["Which feature on the POSTERIOR femur distinguishes it from the anterior surface?",["Linea aspera","Patellar surface","Tibial tuberosity","Intercondylar eminence"]],
+   ["With the femur held anteriorly, the head points toward which side?",["Medial","Lateral","Posterior","Superior only"]],
+   ["Which femur feature is on the DISTAL end?",["Intercondylar fossa","Greater trochanter","Head","Intertrochanteric crest"]],
+   ["Which group of femur features is entirely PROXIMAL?",["Head, neck, greater and lesser trochanters","Medial and lateral condyles","Medial and lateral epicondyles","Intercondylar fossa"]],
+   ["The hip joint: head of femur articulates with what, and is what joint type?",["Acetabulum; ball-and-socket","Acetabulum; hinge","Tibial plateau; ball-and-socket","Obturator foramen; pivot"]],
+   ["The knee joint (femur-tibia) is what type, with what primary motion?",["Hinge; flexion and extension","Ball-and-socket; rotation","Pivot; rotation","Saddle; abduction and adduction"]],
+   ["Which feature distinguishes the ANTERIOR surface of the tibia?",["Tibial tuberosity and sharp anterior border","Medial malleolus","Linea aspera","Lateral malleolus"]],
+   ["On the tibia, the medial malleolus is on the medial side; what is found on the lateral side?",["The articulation/notch where the fibula attaches","The tibial tuberosity","The intercondylar eminence","The lateral malleolus"]],
+   ["How are the tibia and fibula positioned, and which bears most weight?",["Parallel; tibia is the medial weight-bearing bone","Parallel; fibula is the lateral weight-bearing bone","Crossed; tibia bears the weight","Parallel; both share weight equally"]],
+   ["What two features sit at the distal ends of both the tibia and fibula?",["Medial malleolus (tibia) and lateral malleolus (fibula)","Two condyles","Two tuberosities","Head and neck"]],
+   ["The head and lateral malleolus are features of which leg bone?",["Fibula","Tibia","Femur","Talus"]],
+   ["At the ankle, the tibia articulates with which tarsal bone?",["Talus","Calcaneus","Navicular","Cuboid"]],
+   ["The talus articulates with all of the following EXCEPT:",["Cuboid","Tibia and fibula","Calcaneus","Navicular"]],
+   ["The calcaneus articulates with which two bones?",["Talus (above) and cuboid (in front)","Navicular and cuboid","Talus and navicular","Tibia and talus"]],
+   ["The navicular articulates with the talus behind and what in front?",["The three cuneiforms","The cuboid","The metatarsals","The calcaneus"]],
+   ["The medial cuneiform articulates with which metatarsal?",["1st","2nd","3rd","4th"]],
+   ["The cuboid articulates with which metatarsals?",["4th and 5th","1st and 2nd","3rd only","2nd and 3rd"]],
+   ["How do you differentiate the medial and lateral sides of the foot?",["Medial has the big toe; lateral has the little toe","Lateral has the big toe; medial has the little toe","Medial has the heel; lateral has the arch","They are identical"]],
+   ["Which digit of the foot lacks a middle phalanx?",["The big toe (1st digit)","The 5th toe","The 2nd toe","The 3rd toe"]]
+  ]},
+  B:{title:"Muscles of Gluteus & Thigh",qs:[
+   ["The primary action of gluteus maximus at the hip is:",["Extension and lateral rotation","Abduction and medial rotation","Flexion and adduction","Adduction and lateral rotation"]],
+   ["The primary action of gluteus medius (and minimus) is:",["Abduction at the hip and stabilizing the pelvis","Extension at the hip","Lateral rotation at the hip","Flexion at the knee"]],
+   ["The primary action of the piriformis is:",["Lateral rotation at the hip","Medial rotation at the hip","Abduction at the hip","Extension at the knee"]],
+   ["Which muscle abducts and flexes the hip, stabilizes when standing, and tenses the fascia lata?",["Tensor fasciae latae","Gluteus maximus","Piriformis","Sartorius"]],
+   ["Which three muscles share a distal attachment on the greater trochanter of the femur?",["Gluteus medius, gluteus minimus, piriformis","Gluteus maximus, gluteus medius, piriformis","Gluteus minimus, TFL, piriformis","Gluteus maximus, gluteus minimus, TFL"]],
+   ["What action do gluteus medius and gluteus maximus share?",["Abduction at the hip","Flexion at the hip","Medial rotation at the hip","Flexion at the knee"]],
+   ["What is the relationship between the piriformis and the sciatic nerve?",["The sciatic nerve passes inferior to the piriformis as it exits the greater sciatic foramen","The sciatic nerve passes superior to the piriformis","The sciatic nerve exits through the lesser sciatic foramen","The piriformis passes through the obturator foramen deep to the nerve"]],
+   ["Ordered superficial to deep, the three gluteal muscles are:",["Maximus, medius, minimus","Minimus, medius, maximus","Medius, maximus, minimus","Maximus, minimus, medius"]],
+   ["The iliotibial tract is located on which side of the thigh?",["Lateral","Medial","Anterior","Posterior"]],
+   ["Which two muscles share a distal attachment on the iliotibial tract?",["TFL and gluteus maximus","TFL and gluteus medius","Gluteus maximus and piriformis","Sartorius and TFL"]],
+   ["TFL and gluteus maximus both attach to the IT tract. What do they share and how do they differ?",["Both abduct/stabilize the hip; TFL flexes while gluteus maximus extends","Both extend the hip; TFL adducts while maximus abducts","Both flex the knee; they do not differ","Both medially rotate; TFL extends, maximus flexes"]],
+   ["The thigh muscles are compartmentalized by fascia into which three compartments?",["Anterior, medial, posterior","Anterior, lateral, posterior","Superior, middle, inferior","Medial, lateral, deep"]],
+   ["The primary flexor at the hip (anterior thigh) is:",["Iliopsoas","Rectus femoris","Sartorius","Vastus lateralis"]],
+   ["What are the actions of the sartorius?",["Flexion at the hip and flexion at the knee","Extension at the hip and the knee","Adduction at the hip only","Extension at the knee only"]],
+   ["What are the actions of the rectus femoris?",["Assists flexion at the hip and extends the knee","Flexes the hip and flexes the knee","Extends the hip and the knee","Adducts the hip"]],
+   ["The three vastus muscles (lateralis, medialis, intermedius) act to:",["Extend the knee","Flex the knee","Flex the hip","Adduct the hip"]],
+   ["Which anterior thigh muscles cross BOTH the hip and the knee?",["Sartorius and rectus femoris","Iliopsoas and rectus femoris","Vastus medialis and vastus lateralis","Sartorius and iliopsoas"]],
+   ["Which anterior thigh muscle crosses ONLY the hip joint?",["Iliopsoas","Rectus femoris","Sartorius","Vastus intermedius"]],
+   ["Which anterior thigh muscles cross ONLY the knee joint?",["Vastus lateralis, medialis, and intermedius","Rectus femoris and sartorius","Iliopsoas and the vastii","Sartorius and the vastii"]],
+   ["The distal attachment path of the quadriceps group at the knee is:",["Quadriceps tendon then patella then patellar ligament then tibial tuberosity","Patellar ligament then patella then quadriceps tendon then femur","Quadriceps tendon then tibial tuberosity directly","IT tract then patella then tibial tuberosity"]],
+   ["The action produced by the quadriceps femoris group at the knee is:",["Extension","Flexion","Adduction","Lateral rotation"]],
+   ["Which action do ALL medial thigh muscles share?",["Adduction","Abduction","Extension at the knee","Flexion at the hip"]],
+   ["Which is the only medial thigh muscle to cross both hip and knee, and its action at the knee?",["Gracilis; flexion at the knee","Pectineus; extension at the knee","Adductor longus; flexion at the knee","Adductor magnus; extension at the knee"]],
+   ["In the three-layer medial thigh, which muscles form the superficial (first) layer?",["Gracilis, adductor longus, pectineus","Adductor brevis alone","Adductor magnus alone","Gracilis and adductor magnus"]],
+   ["Which muscle forms the middle (second) layer of the medial thigh?",["Adductor brevis","Adductor magnus","Gracilis","Pectineus"]],
+   ["Which muscle makes up the deepest (third) layer of the medial thigh?",["Adductor magnus","Adductor brevis","Gracilis","Pectineus"]],
+   ["Besides adduction, the adductor magnus assists in which action via its hamstring part?",["Extension at the hip","Flexion at the knee","Abduction at the hip","Medial rotation"]],
+   ["The three hamstring muscles are:",["Biceps femoris, semitendinosus, semimembranosus","Biceps femoris, sartorius, gracilis","Semitendinosus, semimembranosus, adductor magnus","Biceps femoris, semitendinosus, rectus femoris"]],
+   ["Collectively, the hamstrings produce which actions?",["Extension at the hip and flexion at the knee","Flexion at the hip and extension at the knee","Abduction at the hip and flexion at the knee","Extension at the hip and extension at the knee"]],
+   ["Which two posterior thigh muscles lie on the MEDIAL side, and their relationship?",["Semitendinosus and semimembranosus; semitendinosus is superficial","Long and short head of biceps femoris; long is superficial","Semitendinosus and biceps femoris; semitendinosus is deep","Semimembranosus and gracilis; semimembranosus is superficial"]],
+   ["Which two heads lie on the LATERAL side of the posterior thigh, and their relationship?",["Long and short heads of biceps femoris; short head is deep to long","Semitendinosus and semimembranosus; short is deep","Long head of biceps and semitendinosus","Long and short heads of semimembranosus"]],
+   ["The only posterior thigh muscle that does NOT cross the hip joint is:",["The short head of biceps femoris","Semitendinosus","Semimembranosus","The long head of biceps femoris"]],
+   ["For flexion at the hip, the muscle crosses the hip on which side, and which is the prime mover?",["Anterior side; iliopsoas","Posterior side; gluteus maximus","Anterior side; rectus femoris","Lateral side; TFL"]],
+   ["For extension at the hip, the muscle crosses the hip on which side, and which is the prime mover?",["Posterior side; gluteus maximus","Anterior side; iliopsoas","Posterior side; the hamstrings","Lateral side; gluteus medius"]]
+  ]},
+  C:{title:"Muscles of Leg",note:"Q1-8 reconstructed from standard curriculum (p.72-73 not photographed). Q9-15 are from your sheet.",qs:[
+   ["[Supp.] The anterior leg compartment muscles primarily produce which action at the ankle?",["Dorsiflexion","Plantarflexion","Eversion","Inversion"]],
+   ["[Supp.] Which muscle is the main dorsiflexor and also inverts the foot?",["Tibialis anterior","Fibularis longus","Gastrocnemius","Soleus"]],
+   ["[Supp.] The superficial posterior leg muscles (gastrocnemius, soleus) primarily produce:",["Plantarflexion","Dorsiflexion","Eversion","Toe extension"]],
+   ["[Supp.] Which superficial posterior muscle also flexes the knee (crosses two joints)?",["Gastrocnemius","Soleus","Tibialis posterior","Plantaris only"]],
+   ["[Supp.] The gastrocnemius and soleus share a distal attachment via which tendon?",["Calcaneal (Achilles) tendon","Patellar tendon","Plantar aponeurosis","Flexor retinaculum"]],
+   ["[Supp.] Which deep posterior muscle inverts the foot and assists plantarflexion?",["Tibialis posterior","Fibularis brevis","Extensor hallucis longus","Gastrocnemius"]],
+   ["[Supp.] Which small deep posterior muscle 'unlocks' the flexed knee?",["Popliteus","Plantaris","Soleus","Tibialis posterior"]],
+   ["[Supp.] The extensor (superior/inferior) retinaculum holds tendons on which aspect of the ankle?",["Anterior","Medial","Posterior","Lateral"]],
+   ["Describe the flexor retinaculum.",["A deep fascia band on the medial side of the ankle that holds tendons passing to the sole","A band on the lateral ankle holding the fibularis tendons","The aponeurosis covering the sole of the foot","The tendon connecting gastrocnemius to the calcaneus"]],
+   ["The lateral leg muscles (fibularis longus and brevis) produce which actions?",["Eversion and plantarflexion","Inversion and dorsiflexion","Dorsiflexion only","Toe flexion"]],
+   ["Which muscles produce INVERSION at the ankle?",["Tibialis anterior and tibialis posterior","Fibularis longus and brevis","Gastrocnemius and soleus","Extensor digitorum and hallucis"]],
+   ["Which muscles produce EVERSION at the ankle?",["Fibularis longus and brevis","Tibialis anterior and posterior","Gastrocnemius and soleus","Flexor digitorum and hallucis longus"]],
+   ["The dorsal foot muscles (extensor digitorum brevis, extensor hallucis brevis) act to:",["Extend the toes","Flex the toes","Evert the foot","Invert the foot"]],
+   ["The intrinsic plantar muscles (in four layers) primarily act to:",["Flex, abduct, and adduct the toes and support the arch","Dorsiflex the ankle","Evert the foot","Extend the knee"]],
+   ["Describe the plantar aponeurosis.",["A thick deep fascia on the sole that supports the arch","A band on the medial ankle holding flexor tendons","The tendon of the gastrocnemius and soleus","The retinaculum over the dorsum of the foot"]]
+  ]},
+  D:{title:"Study of Lower Limb Joints",qs:[
+   ["The hip joint is the specific articulation between:",["The head of the femur and the acetabulum of the hip bone","The femoral condyles and the tibial plateau","The talus and the tibia","The patella and the femur"]],
+   ["The joint capsule of the hip attaches from the rim of the acetabulum to where on the femur?",["The intertrochanteric line/crest of the femur neck","The linea aspera","The femoral head only","The lesser trochanter tip"]],
+   ["Which three ligaments support the joint capsule of the hip?",["Iliofemoral, pubofemoral, ischiofemoral","Cruciate, collateral, patellar","Sacrospinous, sacrotuberous, inguinal","Deltoid, spring, plantar"]],
+   ["Which hip ligament is the strong one that prevents hyperextension (resists 'the splits')?",["Iliofemoral ligament","Pubofemoral ligament","Ischiofemoral ligament","Ligamentum teres"]],
+   ["The pubofemoral ligament primarily resists which motion at the hip?",["Hyperabduction","Hyperflexion","Medial rotation","Extension"]],
+   ["What structural feature lets the hip joint perform all linear and rotational movements?",["It is a ball-and-socket joint","It is a hinge joint","It is a pivot joint","It is a saddle joint"]],
+   ["The knee joint involves how many articulations, and which nearby bone does NOT articulate with the femur?",["Three articulations (two femorotibial, one patellofemoral); the fibula does not articulate with the femur","Two articulations; the patella does not touch the femur","One articulation; the tibia does not touch the femur","Four articulations; the talus is nearby"]],
+   ["What factors most influence the stability of the knee joint?",["The strength of surrounding muscles and the ligaments connecting to the femur","The depth of its socket","The shape of the patella alone","Air pressure within the capsule"]],
+   ["Which knee ligaments ARE thickenings of the synovial joint capsule, named for their location?",["The medial and lateral collateral ligaments","The anterior and posterior cruciate ligaments","The patellar and quadriceps tendons","The meniscofemoral ligaments"]],
+   ["Which two knee ligaments are NOT thickenings of the joint capsule?",["The anterior and posterior cruciate ligaments","The medial and lateral collateral ligaments","The patellar and iliotibial bands","The coronary ligaments"]],
+   ["How does each meniscus relate to its collateral ligament?",["The medial meniscus is attached to the medial collateral ligament; the lateral meniscus is NOT attached to the lateral collateral","Both menisci are attached to their collateral ligaments","Neither meniscus attaches to a collateral ligament","The lateral meniscus attaches to the MCL"]],
+   ["In the knee model, the anterior cruciate ligament corresponds to which letter?",["E","F","C","H"]],
+   ["In the knee model, the quadriceps tendon and patellar ligament correspond to which letters?",["G and H","A and B","C and D","E and F"]],
+   ["Describe the articulations at the ankle (talocrural) joint.",["The tibia and fibula form a mortise around the talus (hinge joint)","The talus articulates with the calcaneus and navicular only","The tibia articulates with the navicular","The fibula articulates with the calcaneus"]],
+   ["Which muscle actions are listed for the ankle joint?",["Dorsiflexion, plantarflexion, inversion, eversion","Flexion, extension, abduction, adduction","Rotation only","Pronation and supination of the forearm"]]
+  ]},
+  E:{title:"Lumbosacral Plexus of Nerves",qs:[
+   ["The lumbosacral plexus is a network formed by the anterior rami of which spinal nerves?",["L1 through S4","T12 through L2","S2 through Co1","C5 through T1"]],
+   ["What is the difference between efferent and afferent fibers?",["Efferent carry motor signals away from the CNS; afferent carry sensory signals toward the CNS","Efferent carry sensory in; afferent carry motor out","Both carry only motor signals","Both carry only sensory signals"]],
+   ["A spinal nerve branches into which two structures?",["An anterior (ventral) ramus and a posterior (dorsal) ramus","A sensory root and a motor root","A plexus and a ganglion","An efferent and an afferent root only"]],
+   ["What do the anterior rami collectively create?",["Nerve plexuses","Dorsal root ganglia","The spinal cord","Posterior rami"]],
+   ["Which anterior rami contribute to the LUMBAR plexus?",["L1-L4","L4-S3","S1-S4","T12-L1"]],
+   ["The two major nerves of the lumbar plexus, and their rami, are:",["Femoral nerve (L2-L4) and obturator nerve (L2-L4)","Sciatic nerve (L4-S3) and tibial nerve","Pudendal nerve and superior gluteal nerve","Common fibular and deep fibular nerves"]],
+   ["Which anterior rami contribute to the SACRAL plexus?",["L4-S4","L1-L4","T12-L2","S3-Co1"]],
+   ["The primary nerve created by the sacral plexus, and its rami, is:",["The sciatic nerve (L4-S3)","The femoral nerve (L2-L4)","The obturator nerve (L2-L4)","The pudendal nerve (S2-S4)"]],
+   ["The femoral nerve provides MOTOR innervation chiefly to which muscles?",["The anterior thigh (quadriceps, sartorius, pectineus)","The medial thigh adductors","The posterior thigh hamstrings","The lateral leg evertors"]],
+   ["The femoral nerve passes under the inguinal ligament in what position relative to the femoral artery?",["Lateral to the femoral artery","Medial to the femoral artery","Posterior to the femoral vein","Inside the femoral canal"]],
+   ["The obturator nerve provides motor innervation to which muscle group, passing through what?",["The medial thigh adductors; via the obturator foramen/canal","The quadriceps; via the femoral triangle","The hamstrings; via the greater sciatic foramen","The leg flexors; behind the medial malleolus"]],
+   ["The sciatic nerve exits the pelvis where, relative to the piriformis?",["Through the greater sciatic foramen, inferior to the piriformis","Through the lesser sciatic foramen, superior to piriformis","Through the obturator foramen","Through the femoral triangle"]],
+   ["The sciatic nerve splits into which two nerves, and typically where?",["The tibial and common fibular nerves, at the popliteal fossa","The femoral and obturator nerves, in the thigh","The deep and superficial fibular nerves, at the knee","The pudendal and gluteal nerves, in the pelvis"]],
+   ["The tibial nerve runs through the popliteal fossa and supplies which region?",["The posterior leg and the plantar foot","The anterior leg dorsiflexors","The lateral leg evertors","The medial thigh adductors"]],
+   ["The common fibular nerve is most vulnerable as it wraps around what landmark?",["The neck of the fibula","The medial malleolus","The greater trochanter","The popliteal fossa floor"]],
+   ["The deep fibular nerve provides motor innervation to which compartment?",["The anterior leg dorsiflexors (tibialis anterior, EDL, EHL)","The lateral leg evertors","The posterior leg plantarflexors","The medial thigh"]],
+   ["The deep fibular nerve gives cutaneous sensation to which small area?",["The web space between the 1st and 2nd toes","The entire sole","The lateral thigh","The medial leg"]],
+   ["The superficial fibular nerve provides motor innervation to which muscles?",["Fibularis longus and brevis (the evertors)","The dorsiflexors","The plantarflexors","The adductors"]],
+   ["In the sciatic flowchart, the sciatic nerve passes near which muscle and through which space before dividing?",["The piriformis muscle, then the popliteal fossa","The gastrocnemius, then the tarsal tunnel","The adductor longus, then the femoral triangle","The sartorius, then the adductor hiatus"]]
+  ]},
+  F:{title:"Blood Vessels of Lower Limb",qs:[
+   ["The external iliac artery branches from which vessel?",["The common iliac artery","The abdominal aorta directly","The internal iliac artery","The femoral artery"]],
+   ["Describe the path of the external iliac artery.",["It runs along the pelvic brim and passes deep to the inguinal ligament into the thigh","It descends through the obturator foramen","It runs posterior to the sacrum","It passes through the greater sciatic foramen"]],
+   ["The external iliac artery becomes the femoral artery when it does what?",["Passes posterior to (under) the inguinal ligament, entering the thigh","Passes through the adductor hiatus","Enters the popliteal fossa","Crosses the pelvic brim"]],
+   ["The femoral artery becomes the popliteal artery when it does what?",["Passes through the adductor hiatus, entering the popliteal fossa","Passes under the inguinal ligament","Branches in the femoral triangle","Crosses the knee anteriorly"]],
+   ["The adductor hiatus is an opening in which muscle, and what is its significance?",["An opening in the adductor magnus; it passes the femoral vessels from anterior thigh to the posterior knee","An opening in the sartorius; it carries the saphenous vein","A gap in the inguinal ligament; it carries lymphatics","An opening in the gracilis; it carries the obturator nerve"]],
+   ["After the popliteal fossa, the popliteal artery branches into which two vessels?",["The anterior tibial and posterior tibial arteries","The femoral and obturator arteries","The dorsalis pedis and saphenous arteries","The medial and lateral plantar arteries"]],
+   ["Describe the path of the posterior tibial artery and what it becomes.",["It descends the deep posterior leg, passes behind the medial malleolus, and becomes the medial and lateral plantar arteries","It runs the anterior compartment and becomes the dorsalis pedis","It ascends to become the popliteal artery","It becomes the great saphenous vein"]],
+   ["Describe the path of the anterior tibial artery and what it becomes.",["It enters the anterior compartment, descends, and becomes the dorsalis pedis on the dorsum of the foot","It runs behind the medial malleolus to the sole","It becomes the small saphenous vein","It becomes the posterior tibial artery"]],
+   ["Where does the superficial venous return begin?",["At the dorsal venous arch of the foot","At the popliteal vein","At the femoral vein","At the inferior vena cava"]],
+   ["Describe the path of the great (greater) saphenous vein.",["From the dorsal venous arch, up the MEDIAL leg and thigh (anterior to the medial malleolus), draining into the femoral vein","Up the posterior leg into the popliteal vein","Down the lateral leg into the fibular vein","Through the adductor hiatus into the popliteal vein"]],
+   ["Describe the path of the small (lesser) saphenous vein.",["From the dorsal venous arch, up the POSTERIOR leg (behind the lateral malleolus), draining into the popliteal vein","Up the medial thigh into the femoral vein","Anterior to the medial malleolus into the femoral vein","Into the dorsalis pedis artery"]],
+   ["How are deep veins named, and are superficial veins named the same way?",["Deep veins are named after the artery they accompany; superficial veins are NOT (they have their own names)","Deep and superficial veins are both named after arteries","Superficial veins are named after arteries; deep veins are not","Neither is named after arteries"]],
+   ["What is the Latin term for the paired veins that accompany a named artery?",["Venae comitantes","Vasa vasorum","Vena cava","Arteriae rectae"]],
+   ["In the 'Tom, Dick, and nervous Harry' mnemonic behind the medial malleolus, the structures (front to back) are:",["Tibialis posterior, flexor Digitorum longus, posterior tibial Artery & Vein, tibial Nerve, flexor Hallucis longus","Tibialis anterior, EDL, anterior tibial artery, deep fibular nerve, EHL","Tibialis posterior, fibularis longus, popliteal artery, sciatic nerve, soleus","Gastrocnemius, soleus, popliteal vessels, tibial nerve, plantaris"]],
+   ["The borders of the femoral triangle are:",["The inguinal ligament (superior), sartorius (lateral), and adductor longus (medial)","Biceps femoris, semitendinosus, and gastrocnemius","Sartorius, gracilis, and the inguinal ligament","The adductor magnus, pectineus, and iliopsoas"]],
+   ["The contents of the femoral triangle, lateral to medial, are:",["Femoral nerve, artery, vein, and lymphatics","Femoral vein, artery, nerve, then sciatic nerve","Great saphenous vein, femoral artery, obturator nerve","Tibial nerve, popliteal artery and vein"]],
+   ["The floor of the femoral triangle is formed by which muscles?",["Iliopsoas and pectineus","Sartorius and gracilis","Adductor longus and magnus","Gastrocnemius and soleus"]],
+   ["The borders of the popliteal fossa are formed by:",["Biceps femoris (superolateral), semitendinosus/semimembranosus (superomedial), and the two heads of gastrocnemius (inferior)","The inguinal ligament, sartorius, and adductor longus","The quadriceps, patella, and tibial tuberosity","The soleus, plantaris, and Achilles tendon"]],
+   ["The contents of the popliteal fossa include:",["The popliteal artery and vein, the tibial nerve, and the common fibular nerve","The femoral nerve, artery, vein, and lymphatics","The obturator nerve and great saphenous vein","The sciatic nerve and adductor vessels"]]
+  ]}
+  };
+  var ORDER=["A","B","C","D","E","F"];
+
+  // Master section: pool every question from A-F.
+  (function(){
+    var all=[];
+    ORDER.forEach(function(L){ DATA[L].qs.forEach(function(qq){ all.push(qq); }); });
+    DATA.M={title:"Master — all worksheets",master:true,qs:all};
+  })();
+  var HUB_ORDER=["A","B","C","D","E","F","M"];
+
+  // Persistent scores
+  var STORE_KEY="anatomyDrillScores_v1";
+  var scores={};
+  try{ var raw=localStorage.getItem(STORE_KEY); if(raw) scores=JSON.parse(raw)||{}; }catch(e){ scores={}; }
+  function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(scores)); }catch(e){} }
+
+  function sh(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var hub=document.getElementById('hub'),quiz=document.getElementById('quiz'),
+      q=document.getElementById('q'),opts=document.getElementById('opts'),fb=document.getElementById('fb'),
+      nx=document.getElementById('next'),prog=document.getElementById('prog'),sc=document.getElementById('sc'),
+      card=document.getElementById('card'),done=document.getElementById('done'),qhead=document.getElementById('qhead'),
+      toHub=document.getElementById('toHub'),restartTop=document.getElementById('restartTop');
+
+  function badge(L){
+    var s=scores[L];
+    if(!s) return '<span style="font-size:13px;color:var(--color-text-tertiary);">Not started</span>';
+    var col=s.pct===100?'var(--color-text-success)':(s.pct>=80?'var(--color-text-primary)':'var(--color-text-danger)');
+    return '<span style="font-size:13px;font-weight:500;color:'+col+';">'+s.right+'/'+s.total+' &middot; '+s.pct+'%</span>';
+  }
+  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function renderHub(){
+    quiz.style.display='none';hub.style.display='block';
+    var done_n=Object.keys(scores).length;
+    var html='<div style="margin-bottom:4px;"><div style="font-size:22px;font-weight:600;">Lower extremity drill</div>'+
+      '<div style="font-size:13px;color:var(--color-text-secondary);margin-top:2px;">Six worksheets + a master gauntlet &middot; pick a section, drill to 100%</div></div>'+
+      '<div style="display:flex;flex-direction:column;gap:8px;margin:16px 0;">';
+    HUB_ORDER.forEach(function(L){
+      var d=DATA[L],isM=!!d.master;
+      html+='<div style="display:flex;align-items:center;gap:12px;background:var(--color-background-primary);border:0.5px solid '+(isM?'var(--color-border-success)':'var(--color-border-tertiary)')+';border-radius:var(--border-radius-lg);padding:12px 14px;">'+
+        '<div style="width:30px;height:30px;flex:none;border-radius:8px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;">'+L+'</div>'+
+        '<div style="flex:1;min-width:0;">'+
+          '<div style="font-size:15px;font-weight:500;">'+esc(d.title)+'</div>'+
+          '<div style="font-size:12px;color:var(--color-text-secondary);">'+d.qs.length+' questions'+(d.note?' &middot; partial':'')+(isM?' &middot; everything, shuffled':'')+'</div>'+
+        '</div>'+
+        '<div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">'+
+          badge(L)+
+          '<div style="display:flex;gap:6px;">'+
+            '<button data-start="'+L+'" style="padding:3px 12px;font-size:13px;min-height:0;">'+(scores[L]?'Retake':'Start')+'</button>'+
+            (scores[L]?'<button data-reset="'+L+'" style="padding:3px 10px;font-size:12px;min-height:0;color:var(--color-text-secondary);">Reset</button>':'')+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    });
+    html+='</div>';
+    html+='<div style="display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid var(--color-border-tertiary);padding-top:12px;">'+
+      '<span style="font-size:13px;color:var(--color-text-secondary);">'+done_n+' sections scored</span>'+
+      '<button id="resetAll" style="padding:3px 12px;font-size:13px;min-height:0;">Reset all scores</button></div>';
+    hub.innerHTML=html;
+    Array.prototype.forEach.call(hub.querySelectorAll('[data-start]'),function(b){b.onclick=function(){startSection(b.getAttribute('data-start'));};});
+    Array.prototype.forEach.call(hub.querySelectorAll('[data-reset]'),function(b){b.onclick=function(){delete scores[b.getAttribute('data-reset')];save();renderHub();};});
+    document.getElementById('resetAll').onclick=function(){scores={};save();renderHub();};
+  }
+
+  var cur=null,order=[],i=0,right=0,ans=0,missed=[];
+  function startSection(L){
+    cur=L;var d=DATA[L];
+    order=sh(d.qs.map(function(_,k){return k;}));
+    i=0;right=0;ans=0;missed=[];
+    hub.style.display='none';quiz.style.display='block';
+    done.style.display='none';card.style.display='block';
+    qhead.innerHTML=(d.master?'Master gauntlet':'Worksheet '+L)+' &mdash; '+esc(d.title)+(d.note?'<div style="font-size:12px;color:var(--color-text-tertiary);font-weight:400;margin-top:3px;">'+esc(d.note)+'</div>':'');
+    render();
+  }
+  function render(){
+    var d=DATA[cur],it=d.qs[order[i]],ok=it[1][0];
+    prog.textContent=(i+1)+' / '+d.qs.length;sc.textContent=right+' correct';q.textContent=it[0];
+    fb.style.display='none';nx.style.display='none';opts.innerHTML='';
+    sh(it[1].slice()).forEach(function(t){
+      var b=document.createElement('button');b.textContent=t;
+      b.style.cssText='text-align:left;justify-content:flex-start;padding:10px 14px;font-size:15px;line-height:1.4;width:100%;';
+      b.onclick=function(){pick(b,t===ok,ok,it[0]);};opts.appendChild(b);
+    });
+  }
+  function pick(b,good,ok,qtext){
+    ans++;for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+    if(good){right++;b.style.borderColor='var(--color-border-success)';b.style.background='var(--color-background-success)';b.style.color='var(--color-text-success)';fb.textContent='Correct.';fb.style.color='var(--color-text-success)';}
+    else{missed.push(qtext);b.style.borderColor='var(--color-border-danger)';b.style.background='var(--color-background-danger)';b.style.color='var(--color-text-danger)';
+      for(var k=0;k<opts.children.length;k++){if(opts.children[k].textContent===ok){opts.children[k].style.borderColor='var(--color-border-success)';opts.children[k].style.background='var(--color-background-success)';opts.children[k].style.color='var(--color-text-success)';}}
+      fb.innerHTML='Incorrect. Answer: <b style="font-weight:600;">'+esc(ok)+'</b>';fb.style.color='var(--color-text-danger)';}
+    fb.style.display='block';sc.textContent=right+' correct';
+    nx.textContent=(i+1<DATA[cur].qs.length)?'Next':'See results';nx.style.display='inline-flex';
+  }
+  nx.onclick=function(){if(i+1<DATA[cur].qs.length){i++;render();}else finish();};
+  restartTop.onclick=function(){startSection(cur);};
+  toHub.onclick=function(){renderHub();};
+  function finish(){
+    var d=DATA[cur],total=d.qs.length,pct=Math.round(right/total*100),perfect=right===total;
+    scores[cur]={right:right,total:total,pct:pct};save();
+    card.style.display='none';nx.style.display='none';
+    done.style.display='block';
+    done.innerHTML='<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:6px;">'+(d.master?'Master gauntlet':'Worksheet '+cur)+' &mdash; '+esc(d.title)+'</div>'+
+      '<div style="font-size:44px;font-weight:600;color:'+(perfect?'var(--color-text-success)':'var(--color-text-primary)')+';">'+pct+'%</div>'+
+      '<div style="font-size:15px;color:var(--color-text-secondary);margin:4px 0 22px;">'+right+' of '+total+' correct</div>'+
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'+
+      '<button id="backHub">Back to hub</button>'+
+      '<button id="again">Restart section</button></div>';
+    document.getElementById('backHub').onclick=function(){renderHub();};
+    document.getElementById('again').onclick=function(){startSection(cur);};
+  }
+
+  renderHub();
+})();
 </script>
 </body>
 </html>
