@@ -1,354 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lower Extremity Drill Hub</title>
-<style>
-  :root{
-    --bg:#1a1a18;
-    --color-background-primary:#242422;
-    --color-background-secondary:#2e2e2b;
-    --color-background-success:#16321f;
-    --color-background-danger:#3a1c1c;
-    --color-text-primary:#f2f0ea;
-    --color-text-secondary:#a8a59c;
-    --color-text-tertiary:#76736b;
-    --color-text-success:#6cc28a;
-    --color-text-danger:#e08585;
-    --color-text-info:#7aa7d4;
-    --color-border-tertiary:#3a3a37;
-    --color-border-success:#3f7d54;
-    --color-border-danger:#8a4242;
-    --border-radius-lg:12px;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--bg);
-    color:var(--color-text-primary);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px;}
-  button{
-    font-family:inherit;
-    background:var(--color-background-secondary);
-    color:var(--color-text-primary);
-    border:0.5px solid var(--color-border-tertiary);
-    border-radius:8px;
-    padding:8px 16px;
-    font-size:14px;
-    cursor:pointer;
-    min-height:34px;
-    transition:background 0.12s,border-color 0.12s;
-  }
-  button:hover:not(:disabled){background:#383834;}
-  button:disabled{cursor:default;opacity:0.9;}
-  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COW Upper Limb Exam</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #5b6472;
+      --line: #d8dde6;
+      --soft: #eef1f5;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --good: #15803d;
+      --bad: #b91c1c;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    button { font: inherit; }
+    .app {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+    p { color: var(--muted); line-height: 1.5; }
+    .home-copy { max-width: 680px; margin-bottom: 22px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fafbfc;
+      padding: 14px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .progress {
+      width: 100%;
+      height: 12px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 22px;
+    }
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .btn:hover { background: var(--accent-dark); }
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .btn.secondary:hover { background: var(--soft); }
+    .btn.danger { background: var(--bad); }
+    .btn.danger:hover { background: #991b1b; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .topbar-title { font-weight: 800; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .source {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .choices { display: grid; gap: 10px; }
+    .choice {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      text-align: left;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .choice:hover { background: #f8fafc; }
+    .choice.selected {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+      background: #eff6ff;
+    }
+    .letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: var(--soft);
+      font-weight: 850;
+      color: var(--accent);
+    }
+    .quiz-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .missed-list { display: grid; gap: 12px; margin-top: 18px; }
+    .missed-item {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--bad);
+      border-radius: 14px;
+      background: #fff;
+      padding: 14px;
+    }
+    .missed-item strong { display: block; margin-bottom: 8px; }
+    .missed-item p { margin: 6px 0 0; }
+    .answer-line { color: var(--good); font-weight: 750; }
+    [hidden] { display: none !important; }
+    @media (max-width: 760px) {
+      .app { width: min(100% - 20px, 900px); padding: 16px 0; }
+      .card { padding: 18px; }
+      .stats, .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .quiz-footer { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1 class="sr-only">Lower extremity anatomy drill hub</h1>
-  <div id="hub"></div>
+  <main id="homeScreen" class="app">
+    <section class="card">
+      <h1>COW Upper Limb Exam</h1>
+      <p class="home-copy">Simple mode only: take the exam, missed questions get saved, then test only your misses until they are cleared.</p>
 
-  <div id="quiz" style="display:none;">
-    <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--color-text-secondary); margin-bottom:6px;">
-      <button id="toHub" style="padding:2px 10px; font-size:12px; min-height:0;">&larr; Hub</button>
-      <span style="display:flex; gap:12px; align-items:center;">
-        <span id="prog">1 / 1</span><span id="sc">0 correct</span>
-        <button id="restartTop" style="padding:2px 10px; font-size:12px; min-height:0;">Restart</button>
-      </span>
+      <div class="stats" aria-label="Study progress">
+        <div class="stat"><strong id="homeProgress">0%</strong><span>Progress</span></div>
+        <div class="stat"><strong id="homeAnswered">0/0</strong><span>Answered</span></div>
+        <div class="stat"><strong id="homeAccuracy">0%</strong><span>Accuracy</span></div>
+        <div class="stat"><strong id="homeMissed">0</strong><span>Missed</span></div>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="homeProgressBar"></span></div>
+
+      <div class="actions">
+        <button class="btn" id="startExamBtn">Start Exam</button>
+        <button class="btn secondary" id="testMissedBtn">Test Missed</button>
+        <button class="btn danger" id="clearAllBtn">Clear All</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="quizScreen" class="app" hidden>
+    <div class="topbar">
+      <button class="btn secondary" id="exitQuizBtn">Exit</button>
+      <div class="topbar-title" id="quizTitle">Exam</div>
+      <div class="pill" id="quizCounter">Question 1 of 1</div>
     </div>
-    <div id="qhead" style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin-bottom:10px;"></div>
-    <div id="card" style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1.1rem 1.25rem;">
-      <p id="q" style="font-size:16px; font-weight:500; margin:0 0 14px; line-height:1.5;"></p>
-      <div id="opts" style="display:flex; flex-direction:column; gap:8px;"></div>
-      <p id="fb" style="font-size:14px; margin:14px 0 0; display:none; line-height:1.5;"></p>
-    </div>
-    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
-      <button id="next" style="display:none;">Next</button>
-    </div>
-    <div id="done" style="display:none; text-align:center; padding:1.5rem 0;"></div>
-  </div>
-</div>
-<script>
-(function(){
-  var DATA={
-  A:{title:"Bones of Lower Extremity",qs:[
-   ["Which bones make up the leg (between knee and ankle)?",["Tibia and fibula","Femur and patella","Tarsals and metatarsals","Femur and tibia"]],
-   ["How many phalanges are in one foot?",["14","12","7","5"]],
-   ["How many tarsal bones are in the foot?",["7","5","8","14"]],
-   ["How many metatarsals are in one foot?",["5","7","14","3"]],
-   ["How is a hip bone described as positioned in correct anatomical position?",["Tilted anteriorly, with ASIS and pubic tubercle in the same vertical plane","Tilted posteriorly, with the iliac crest most anterior","Vertical, with the acetabulum facing forward","Horizontal, with the obturator foramen facing down"]],
-   ["Which bones articulate to form the pelvis?",["Two hip bones, sacrum, and coccyx","Two hip bones and sacrum only","Sacrum, coccyx, and one hip bone","Ilium, ischium, and pubis"]],
-   ["The lesser sciatic notch is a feature of which part of the hip bone?",["Ischium","Ilium","Pubis","Sacrum"]],
-   ["The greater sciatic notch is located primarily on which part of the hip bone?",["Ilium","Ischium","Pubis","Acetabulum"]],
-   ["The iliac crest, iliac fossa, and gluteal surface are features of which bone?",["Ilium","Ischium","Pubis","Femur"]],
-   ["The ischial spine and ischial tuberosity belong to which part of the hip bone?",["Ischium","Ilium","Pubis","Sacrum"]],
-   ["The pubic tubercle is a feature of which part of the hip bone?",["Pubis","Ischium","Ilium","Sacrum"]],
-   ["The inguinal ligament attaches to which two bony landmarks?",["ASIS and pubic tubercle","Iliac crest and ischial spine","ASIS and ischial tuberosity","Pubic symphysis and ischial spine"]],
-   ["How are the superior pubic ramus and ischiopubic ramus positioned relative to the obturator foramen?",["They form its borders","They pass through it","They lie entirely superior to it","They form the floor of the acetabulum"]],
-   ["The greater sciatic foramen is formed by the greater sciatic notch plus which structures?",["The sacrospinous and sacrotuberous ligaments","The inguinal and sacrospinous ligaments","The iliolumbar and sacrotuberous ligaments","The pubofemoral and iliofemoral ligaments"]],
-   ["Which ligament separates the greater sciatic foramen from the lesser sciatic foramen?",["Sacrospinous ligament","Sacrotuberous ligament","Inguinal ligament","Iliofemoral ligament"]],
-   ["Which feature on the POSTERIOR femur distinguishes it from the anterior surface?",["Linea aspera","Patellar surface","Tibial tuberosity","Intercondylar eminence"]],
-   ["With the femur held anteriorly, the head points toward which side?",["Medial","Lateral","Posterior","Superior only"]],
-   ["Which femur feature is on the DISTAL end?",["Intercondylar fossa","Greater trochanter","Head","Intertrochanteric crest"]],
-   ["Which group of femur features is entirely PROXIMAL?",["Head, neck, greater and lesser trochanters","Medial and lateral condyles","Medial and lateral epicondyles","Intercondylar fossa"]],
-   ["The hip joint: head of femur articulates with what, and is what joint type?",["Acetabulum; ball-and-socket","Acetabulum; hinge","Tibial plateau; ball-and-socket","Obturator foramen; pivot"]],
-   ["The knee joint (femur-tibia) is what type, with what primary motion?",["Hinge; flexion and extension","Ball-and-socket; rotation","Pivot; rotation","Saddle; abduction and adduction"]],
-   ["Which feature distinguishes the ANTERIOR surface of the tibia?",["Tibial tuberosity and sharp anterior border","Medial malleolus","Linea aspera","Lateral malleolus"]],
-   ["On the tibia, the medial malleolus is on the medial side; what is found on the lateral side?",["The articulation/notch where the fibula attaches","The tibial tuberosity","The intercondylar eminence","The lateral malleolus"]],
-   ["How are the tibia and fibula positioned, and which bears most weight?",["Parallel; tibia is the medial weight-bearing bone","Parallel; fibula is the lateral weight-bearing bone","Crossed; tibia bears the weight","Parallel; both share weight equally"]],
-   ["What two features sit at the distal ends of both the tibia and fibula?",["Medial malleolus (tibia) and lateral malleolus (fibula)","Two condyles","Two tuberosities","Head and neck"]],
-   ["The head and lateral malleolus are features of which leg bone?",["Fibula","Tibia","Femur","Talus"]],
-   ["At the ankle, the tibia articulates with which tarsal bone?",["Talus","Calcaneus","Navicular","Cuboid"]],
-   ["The talus articulates with all of the following EXCEPT:",["Cuboid","Tibia and fibula","Calcaneus","Navicular"]],
-   ["The calcaneus articulates with which two bones?",["Talus (above) and cuboid (in front)","Navicular and cuboid","Talus and navicular","Tibia and talus"]],
-   ["The navicular articulates with the talus behind and what in front?",["The three cuneiforms","The cuboid","The metatarsals","The calcaneus"]],
-   ["The medial cuneiform articulates with which metatarsal?",["1st","2nd","3rd","4th"]],
-   ["The cuboid articulates with which metatarsals?",["4th and 5th","1st and 2nd","3rd only","2nd and 3rd"]],
-   ["How do you differentiate the medial and lateral sides of the foot?",["Medial has the big toe; lateral has the little toe","Lateral has the big toe; medial has the little toe","Medial has the heel; lateral has the arch","They are identical"]],
-   ["Which digit of the foot lacks a middle phalanx?",["The big toe (1st digit)","The 5th toe","The 2nd toe","The 3rd toe"]]
-  ]},
-  B:{title:"Muscles of Gluteus & Thigh",qs:[
-   ["The primary action of gluteus maximus at the hip is:",["Extension and lateral rotation","Abduction and medial rotation","Flexion and adduction","Adduction and lateral rotation"]],
-   ["The primary action of gluteus medius (and minimus) is:",["Abduction at the hip and stabilizing the pelvis","Extension at the hip","Lateral rotation at the hip","Flexion at the knee"]],
-   ["The primary action of the piriformis is:",["Lateral rotation at the hip","Medial rotation at the hip","Abduction at the hip","Extension at the knee"]],
-   ["Which muscle abducts and flexes the hip, stabilizes when standing, and tenses the fascia lata?",["Tensor fasciae latae","Gluteus maximus","Piriformis","Sartorius"]],
-   ["Which three muscles share a distal attachment on the greater trochanter of the femur?",["Gluteus medius, gluteus minimus, piriformis","Gluteus maximus, gluteus medius, piriformis","Gluteus minimus, TFL, piriformis","Gluteus maximus, gluteus minimus, TFL"]],
-   ["What action do gluteus medius and gluteus maximus share?",["Abduction at the hip","Flexion at the hip","Medial rotation at the hip","Flexion at the knee"]],
-   ["What is the relationship between the piriformis and the sciatic nerve?",["The sciatic nerve passes inferior to the piriformis as it exits the greater sciatic foramen","The sciatic nerve passes superior to the piriformis","The sciatic nerve exits through the lesser sciatic foramen","The piriformis passes through the obturator foramen deep to the nerve"]],
-   ["Ordered superficial to deep, the three gluteal muscles are:",["Maximus, medius, minimus","Minimus, medius, maximus","Medius, maximus, minimus","Maximus, minimus, medius"]],
-   ["The iliotibial tract is located on which side of the thigh?",["Lateral","Medial","Anterior","Posterior"]],
-   ["Which two muscles share a distal attachment on the iliotibial tract?",["TFL and gluteus maximus","TFL and gluteus medius","Gluteus maximus and piriformis","Sartorius and TFL"]],
-   ["TFL and gluteus maximus both attach to the IT tract. What do they share and how do they differ?",["Both abduct/stabilize the hip; TFL flexes while gluteus maximus extends","Both extend the hip; TFL adducts while maximus abducts","Both flex the knee; they do not differ","Both medially rotate; TFL extends, maximus flexes"]],
-   ["The thigh muscles are compartmentalized by fascia into which three compartments?",["Anterior, medial, posterior","Anterior, lateral, posterior","Superior, middle, inferior","Medial, lateral, deep"]],
-   ["The primary flexor at the hip (anterior thigh) is:",["Iliopsoas","Rectus femoris","Sartorius","Vastus lateralis"]],
-   ["What are the actions of the sartorius?",["Flexion at the hip and flexion at the knee","Extension at the hip and the knee","Adduction at the hip only","Extension at the knee only"]],
-   ["What are the actions of the rectus femoris?",["Assists flexion at the hip and extends the knee","Flexes the hip and flexes the knee","Extends the hip and the knee","Adducts the hip"]],
-   ["The three vastus muscles (lateralis, medialis, intermedius) act to:",["Extend the knee","Flex the knee","Flex the hip","Adduct the hip"]],
-   ["Which anterior thigh muscles cross BOTH the hip and the knee?",["Sartorius and rectus femoris","Iliopsoas and rectus femoris","Vastus medialis and vastus lateralis","Sartorius and iliopsoas"]],
-   ["Which anterior thigh muscle crosses ONLY the hip joint?",["Iliopsoas","Rectus femoris","Sartorius","Vastus intermedius"]],
-   ["Which anterior thigh muscles cross ONLY the knee joint?",["Vastus lateralis, medialis, and intermedius","Rectus femoris and sartorius","Iliopsoas and the vastii","Sartorius and the vastii"]],
-   ["The distal attachment path of the quadriceps group at the knee is:",["Quadriceps tendon then patella then patellar ligament then tibial tuberosity","Patellar ligament then patella then quadriceps tendon then femur","Quadriceps tendon then tibial tuberosity directly","IT tract then patella then tibial tuberosity"]],
-   ["The action produced by the quadriceps femoris group at the knee is:",["Extension","Flexion","Adduction","Lateral rotation"]],
-   ["Which action do ALL medial thigh muscles share?",["Adduction","Abduction","Extension at the knee","Flexion at the hip"]],
-   ["Which is the only medial thigh muscle to cross both hip and knee, and its action at the knee?",["Gracilis; flexion at the knee","Pectineus; extension at the knee","Adductor longus; flexion at the knee","Adductor magnus; extension at the knee"]],
-   ["In the three-layer medial thigh, which muscles form the superficial (first) layer?",["Gracilis, adductor longus, pectineus","Adductor brevis alone","Adductor magnus alone","Gracilis and adductor magnus"]],
-   ["Which muscle forms the middle (second) layer of the medial thigh?",["Adductor brevis","Adductor magnus","Gracilis","Pectineus"]],
-   ["Which muscle makes up the deepest (third) layer of the medial thigh?",["Adductor magnus","Adductor brevis","Gracilis","Pectineus"]],
-   ["Besides adduction, the adductor magnus assists in which action via its hamstring part?",["Extension at the hip","Flexion at the knee","Abduction at the hip","Medial rotation"]],
-   ["The three hamstring muscles are:",["Biceps femoris, semitendinosus, semimembranosus","Biceps femoris, sartorius, gracilis","Semitendinosus, semimembranosus, adductor magnus","Biceps femoris, semitendinosus, rectus femoris"]],
-   ["Collectively, the hamstrings produce which actions?",["Extension at the hip and flexion at the knee","Flexion at the hip and extension at the knee","Abduction at the hip and flexion at the knee","Extension at the hip and extension at the knee"]],
-   ["Which two posterior thigh muscles lie on the MEDIAL side, and their relationship?",["Semitendinosus and semimembranosus; semitendinosus is superficial","Long and short head of biceps femoris; long is superficial","Semitendinosus and biceps femoris; semitendinosus is deep","Semimembranosus and gracilis; semimembranosus is superficial"]],
-   ["Which two heads lie on the LATERAL side of the posterior thigh, and their relationship?",["Long and short heads of biceps femoris; short head is deep to long","Semitendinosus and semimembranosus; short is deep","Long head of biceps and semitendinosus","Long and short heads of semimembranosus"]],
-   ["The only posterior thigh muscle that does NOT cross the hip joint is:",["The short head of biceps femoris","Semitendinosus","Semimembranosus","The long head of biceps femoris"]],
-   ["For flexion at the hip, the muscle crosses the hip on which side, and which is the prime mover?",["Anterior side; iliopsoas","Posterior side; gluteus maximus","Anterior side; rectus femoris","Lateral side; TFL"]],
-   ["For extension at the hip, the muscle crosses the hip on which side, and which is the prime mover?",["Posterior side; gluteus maximus","Anterior side; iliopsoas","Posterior side; the hamstrings","Lateral side; gluteus medius"]]
-  ]},
-  C:{title:"Muscles of Leg",qs:[
-   ["How are the muscles of the leg compartmentalized?",["Into anterior, posterior, and lateral compartments","Into anterior, medial, and posterior compartments","Into three plantar layers","Into superior, middle, and inferior groups"]],
-   ["The term 'extensor' in a muscle name refers to a muscle that:",["Extends the digits","Flexes the digits","Everts the foot","Inverts the foot"]],
-   ["The term 'flexor' in a muscle name refers to a muscle that:",["Flexes the digits","Extends the digits","Dorsiflexes the ankle","Everts the foot"]],
-   ["A muscle named 'tibialis' is identified how?",["Its first tendon is anterior or posterior to the tibia","Its first tendon is related to the fibula","It always inverts the foot","It only crosses the knee"]],
-   ["A muscle named 'fibularis' is identified how?",["Its first tendon is anterior or posterior to the fibula","Its first tendon is related to the tibia","It always dorsiflexes","It only crosses the knee"]],
-   ["The term 'hallucis' refers to which digit?",["Digit 1 (the hallux / big toe)","Digits 2-5","The little toe","All five toes"]],
-   ["The term 'digitorum' refers to which digits?",["Digits 2-5","Digit 1 only","All five toes","The little toe only"]],
-   ["What are the actions of the tibialis anterior?",["Dorsiflexion and inversion","Plantarflexion and eversion","Dorsiflexion and eversion","Plantarflexion and inversion"]],
-   ["What are the actions of the extensor digitorum longus?",["Dorsiflexion and extension of toes 2-5","Plantarflexion and flexion of toes","Extension of the big toe only","Eversion and dorsiflexion"]],
-   ["What are the actions of the extensor hallucis longus?",["Extends the big toe and dorsiflexes","Extends toes 2-5 and everts","Plantarflexes and inverts","Flexes the big toe"]],
-   ["What are the actions of the fibularis tertius?",["Eversion and dorsiflexion","Inversion and plantarflexion","Toe flexion","Knee flexion"]],
-   ["What is the common action of all anterior leg muscles, and why can they perform it?",["Dorsiflexion; they all cross anterior to the joint axis","Plantarflexion; they all cross posterior to the ankle","Eversion; they all sit on the lateral side","Inversion; they all attach to the tibia"]],
-   ["Identify the primary dorsiflexor at the ankle.",["Tibialis anterior","Extensor digitorum longus","Fibularis tertius","Gastrocnemius"]],
-   ["Describe the extensor retinaculum.",["A thickened deep fascia at the ankle that holds the extensor tendons down","A band on the medial ankle holding flexor tendons to the sole","The aponeurosis covering the sole of the foot","The tendon of the gastrocnemius and soleus"]],
-   ["What are the actions of the gastrocnemius?",["Plantarflexion and flexion of the knee","Plantarflexion only","Dorsiflexion and inversion","Knee extension"]],
-   ["What is the action of the soleus?",["Plantarflexion","Plantarflexion and knee flexion","Dorsiflexion","Eversion"]],
-   ["What is the action of the popliteus?",["Unlocks the (flexed) knee","Plantarflexes the ankle","Everts the foot","Extends the toes"]],
-   ["What are the actions of the flexor digitorum longus and tibialis posterior?",["Plantarflexion and inversion","Dorsiflexion and eversion","Extension of the toes","Knee flexion"]],
-   ["What is the common action of all posterior leg muscles, and why can they perform it?",["Plantarflexion; they all cross posterior to the ankle","Dorsiflexion; they all cross anterior to the joint axis","Eversion; they all sit on the lateral side","Inversion; they all attach to the fibula"]],
-   ["Describe the flexor retinaculum.",["A deep fascia band on the medial side of the ankle that holds tendons passing to the sole","A band on the lateral ankle holding the fibularis tendons","The aponeurosis covering the sole of the foot","The tendon connecting gastrocnemius to the calcaneus"]],
-   ["The lateral leg muscles (fibularis longus and brevis) produce which actions?",["Eversion and plantarflexion","Inversion and dorsiflexion","Dorsiflexion only","Toe flexion"]],
-   ["Which muscles produce INVERSION at the ankle?",["Tibialis anterior and tibialis posterior","Fibularis longus and brevis","Gastrocnemius and soleus","Extensor digitorum and hallucis"]],
-   ["Which muscles produce EVERSION at the ankle?",["Fibularis longus and brevis","Tibialis anterior and posterior","Gastrocnemius and soleus","Flexor digitorum and hallucis longus"]],
-   ["The dorsal foot muscles (extensor digitorum brevis, extensor hallucis brevis) act to:",["Extend the toes","Flex the toes","Evert the foot","Invert the foot"]],
-   ["The intrinsic plantar muscles (in four layers) primarily act to:",["Flex, abduct, and adduct the toes and support the arch","Dorsiflex the ankle","Evert the foot","Extend the knee"]],
-   ["Describe the plantar aponeurosis.",["A thick deep fascia on the sole that supports the arch","A band on the medial ankle holding flexor tendons","The tendon of the gastrocnemius and soleus","The retinaculum over the dorsum of the foot"]]
-  ]},
-  D:{title:"Study of Lower Limb Joints",qs:[
-   ["The hip joint is the specific articulation between:",["The head of the femur and the acetabulum of the hip bone","The femoral condyles and the tibial plateau","The talus and the tibia","The patella and the femur"]],
-   ["The joint capsule of the hip attaches from the rim of the acetabulum to where on the femur?",["The intertrochanteric line/crest of the femur neck","The linea aspera","The femoral head only","The lesser trochanter tip"]],
-   ["Which three ligaments support the joint capsule of the hip?",["Iliofemoral, pubofemoral, ischiofemoral","Cruciate, collateral, patellar","Sacrospinous, sacrotuberous, inguinal","Deltoid, spring, plantar"]],
-   ["Which hip ligament is the strong one that prevents hyperextension (resists 'the splits')?",["Iliofemoral ligament","Pubofemoral ligament","Ischiofemoral ligament","Ligamentum teres"]],
-   ["The pubofemoral ligament primarily resists which motion at the hip?",["Hyperabduction","Hyperflexion","Medial rotation","Extension"]],
-   ["What structural feature lets the hip joint perform all linear and rotational movements?",["It is a ball-and-socket joint","It is a hinge joint","It is a pivot joint","It is a saddle joint"]],
-   ["The knee joint involves how many articulations, and which nearby bone does NOT articulate with the femur?",["Three articulations (two femorotibial, one patellofemoral); the fibula does not articulate with the femur","Two articulations; the patella does not touch the femur","One articulation; the tibia does not touch the femur","Four articulations; the talus is nearby"]],
-   ["What factors most influence the stability of the knee joint?",["The strength of surrounding muscles and the ligaments connecting to the femur","The depth of its socket","The shape of the patella alone","Air pressure within the capsule"]],
-   ["Which knee ligaments ARE thickenings of the synovial joint capsule, named for their location?",["The medial and lateral collateral ligaments","The anterior and posterior cruciate ligaments","The patellar and quadriceps tendons","The meniscofemoral ligaments"]],
-   ["Which two knee ligaments are NOT thickenings of the joint capsule?",["The anterior and posterior cruciate ligaments","The medial and lateral collateral ligaments","The patellar and iliotibial bands","The coronary ligaments"]],
-   ["How does each meniscus relate to its collateral ligament?",["The medial meniscus is attached to the medial collateral ligament; the lateral meniscus is NOT attached to the lateral collateral","Both menisci are attached to their collateral ligaments","Neither meniscus attaches to a collateral ligament","The lateral meniscus attaches to the MCL"]],
-   ["In the knee model, the anterior cruciate ligament corresponds to which letter?",["E","F","C","H"]],
-   ["In the knee model, the quadriceps tendon and patellar ligament correspond to which letters?",["G and H","A and B","C and D","E and F"]],
-   ["Describe the articulations at the ankle (talocrural) joint.",["The tibia and fibula form a mortise around the talus (hinge joint)","The talus articulates with the calcaneus and navicular only","The tibia articulates with the navicular","The fibula articulates with the calcaneus"]],
-   ["Which muscle actions are listed for the ankle joint?",["Dorsiflexion, plantarflexion, inversion, eversion","Flexion, extension, abduction, adduction","Rotation only","Pronation and supination of the forearm"]]
-  ]},
-  E:{title:"Lumbosacral Plexus of Nerves",qs:[
-   ["The lumbosacral plexus is a network formed by the anterior rami of which spinal nerves?",["L1 through S4","T12 through L2","S2 through Co1","C5 through T1"]],
-   ["What is the difference between efferent and afferent fibers?",["Efferent carry motor signals away from the CNS; afferent carry sensory signals toward the CNS","Efferent carry sensory in; afferent carry motor out","Both carry only motor signals","Both carry only sensory signals"]],
-   ["A spinal nerve branches into which two structures?",["An anterior (ventral) ramus and a posterior (dorsal) ramus","A sensory root and a motor root","A plexus and a ganglion","An efferent and an afferent root only"]],
-   ["What do the anterior rami collectively create?",["Nerve plexuses","Dorsal root ganglia","The spinal cord","Posterior rami"]],
-   ["Which anterior rami contribute to the LUMBAR plexus?",["L1-L4","L4-S3","S1-S4","T12-L1"]],
-   ["The two major nerves of the lumbar plexus, and their rami, are:",["Femoral nerve (L2-L4) and obturator nerve (L2-L4)","Sciatic nerve (L4-S3) and tibial nerve","Pudendal nerve and superior gluteal nerve","Common fibular and deep fibular nerves"]],
-   ["Which anterior rami contribute to the SACRAL plexus?",["L4-S4","L1-L4","T12-L2","S3-Co1"]],
-   ["The primary nerve created by the sacral plexus, and its rami, is:",["The sciatic nerve (L4-S3)","The femoral nerve (L2-L4)","The obturator nerve (L2-L4)","The pudendal nerve (S2-S4)"]],
-   ["The femoral nerve provides MOTOR innervation chiefly to which muscles?",["The anterior thigh (quadriceps, sartorius, pectineus)","The medial thigh adductors","The posterior thigh hamstrings","The lateral leg evertors"]],
-   ["The femoral nerve passes under the inguinal ligament in what position relative to the femoral artery?",["Lateral to the femoral artery","Medial to the femoral artery","Posterior to the femoral vein","Inside the femoral canal"]],
-   ["The obturator nerve provides motor innervation to which muscle group, passing through what?",["The medial thigh adductors; via the obturator foramen/canal","The quadriceps; via the femoral triangle","The hamstrings; via the greater sciatic foramen","The leg flexors; behind the medial malleolus"]],
-   ["The sciatic nerve exits the pelvis where, relative to the piriformis?",["Through the greater sciatic foramen, inferior to the piriformis","Through the lesser sciatic foramen, superior to piriformis","Through the obturator foramen","Through the femoral triangle"]],
-   ["The sciatic nerve splits into which two nerves, and typically where?",["The tibial and common fibular nerves, at the popliteal fossa","The femoral and obturator nerves, in the thigh","The deep and superficial fibular nerves, at the knee","The pudendal and gluteal nerves, in the pelvis"]],
-   ["The tibial nerve runs through the popliteal fossa and supplies which region?",["The posterior leg and the plantar foot","The anterior leg dorsiflexors","The lateral leg evertors","The medial thigh adductors"]],
-   ["The common fibular nerve is most vulnerable as it wraps around what landmark?",["The neck of the fibula","The medial malleolus","The greater trochanter","The popliteal fossa floor"]],
-   ["The deep fibular nerve provides motor innervation to which compartment?",["The anterior leg dorsiflexors (tibialis anterior, EDL, EHL)","The lateral leg evertors","The posterior leg plantarflexors","The medial thigh"]],
-   ["The deep fibular nerve gives cutaneous sensation to which small area?",["The web space between the 1st and 2nd toes","The entire sole","The lateral thigh","The medial leg"]],
-   ["The superficial fibular nerve provides motor innervation to which muscles?",["Fibularis longus and brevis (the evertors)","The dorsiflexors","The plantarflexors","The adductors"]],
-   ["In the sciatic flowchart, the sciatic nerve passes near which muscle and through which space before dividing?",["The piriformis muscle, then the popliteal fossa","The gastrocnemius, then the tarsal tunnel","The adductor longus, then the femoral triangle","The sartorius, then the adductor hiatus"]]
-  ]},
-  F:{title:"Blood Vessels of Lower Limb",qs:[
-   ["The external iliac artery branches from which vessel?",["The common iliac artery","The abdominal aorta directly","The internal iliac artery","The femoral artery"]],
-   ["Describe the path of the external iliac artery.",["It runs along the pelvic brim and passes deep to the inguinal ligament into the thigh","It descends through the obturator foramen","It runs posterior to the sacrum","It passes through the greater sciatic foramen"]],
-   ["The external iliac artery becomes the femoral artery when it does what?",["Passes posterior to (under) the inguinal ligament, entering the thigh","Passes through the adductor hiatus","Enters the popliteal fossa","Crosses the pelvic brim"]],
-   ["The femoral artery becomes the popliteal artery when it does what?",["Passes through the adductor hiatus, entering the popliteal fossa","Passes under the inguinal ligament","Branches in the femoral triangle","Crosses the knee anteriorly"]],
-   ["The adductor hiatus is an opening in which muscle, and what is its significance?",["An opening in the adductor magnus; it passes the femoral vessels from anterior thigh to the posterior knee","An opening in the sartorius; it carries the saphenous vein","A gap in the inguinal ligament; it carries lymphatics","An opening in the gracilis; it carries the obturator nerve"]],
-   ["After the popliteal fossa, the popliteal artery branches into which two vessels?",["The anterior tibial and posterior tibial arteries","The femoral and obturator arteries","The dorsalis pedis and saphenous arteries","The medial and lateral plantar arteries"]],
-   ["Describe the path of the posterior tibial artery and what it becomes.",["It descends the deep posterior leg, passes behind the medial malleolus, and becomes the medial and lateral plantar arteries","It runs the anterior compartment and becomes the dorsalis pedis","It ascends to become the popliteal artery","It becomes the great saphenous vein"]],
-   ["Describe the path of the anterior tibial artery and what it becomes.",["It enters the anterior compartment, descends, and becomes the dorsalis pedis on the dorsum of the foot","It runs behind the medial malleolus to the sole","It becomes the small saphenous vein","It becomes the posterior tibial artery"]],
-   ["Where does the superficial venous return begin?",["At the dorsal venous arch of the foot","At the popliteal vein","At the femoral vein","At the inferior vena cava"]],
-   ["Describe the path of the great (greater) saphenous vein.",["From the dorsal venous arch, up the MEDIAL leg and thigh (anterior to the medial malleolus), draining into the femoral vein","Up the posterior leg into the popliteal vein","Down the lateral leg into the fibular vein","Through the adductor hiatus into the popliteal vein"]],
-   ["Describe the path of the small (lesser) saphenous vein.",["From the dorsal venous arch, up the POSTERIOR leg (behind the lateral malleolus), draining into the popliteal vein","Up the medial thigh into the femoral vein","Anterior to the medial malleolus into the femoral vein","Into the dorsalis pedis artery"]],
-   ["How are deep veins named, and are superficial veins named the same way?",["Deep veins are named after the artery they accompany; superficial veins are NOT (they have their own names)","Deep and superficial veins are both named after arteries","Superficial veins are named after arteries; deep veins are not","Neither is named after arteries"]],
-   ["What is the Latin term for the paired veins that accompany a named artery?",["Venae comitantes","Vasa vasorum","Vena cava","Arteriae rectae"]],
-   ["In the 'Tom, Dick, and nervous Harry' mnemonic behind the medial malleolus, the structures (front to back) are:",["Tibialis posterior, flexor Digitorum longus, posterior tibial Artery & Vein, tibial Nerve, flexor Hallucis longus","Tibialis anterior, EDL, anterior tibial artery, deep fibular nerve, EHL","Tibialis posterior, fibularis longus, popliteal artery, sciatic nerve, soleus","Gastrocnemius, soleus, popliteal vessels, tibial nerve, plantaris"]],
-   ["The borders of the femoral triangle are:",["The inguinal ligament (superior), sartorius (lateral), and adductor longus (medial)","Biceps femoris, semitendinosus, and gastrocnemius","Sartorius, gracilis, and the inguinal ligament","The adductor magnus, pectineus, and iliopsoas"]],
-   ["The contents of the femoral triangle, lateral to medial, are:",["Femoral nerve, artery, vein, and lymphatics","Femoral vein, artery, nerve, then sciatic nerve","Great saphenous vein, femoral artery, obturator nerve","Tibial nerve, popliteal artery and vein"]],
-   ["The floor of the femoral triangle is formed by which muscles?",["Iliopsoas and pectineus","Sartorius and gracilis","Adductor longus and magnus","Gastrocnemius and soleus"]],
-   ["The borders of the popliteal fossa are formed by:",["Biceps femoris (superolateral), semitendinosus/semimembranosus (superomedial), and the two heads of gastrocnemius (inferior)","The inguinal ligament, sartorius, and adductor longus","The quadriceps, patella, and tibial tuberosity","The soleus, plantaris, and Achilles tendon"]],
-   ["The contents of the popliteal fossa include:",["The popliteal artery and vein, the tibial nerve, and the common fibular nerve","The femoral nerve, artery, vein, and lymphatics","The obturator nerve and great saphenous vein","The sciatic nerve and adductor vessels"]]
-  ]}
-  };
-  var ORDER=["A","B","C","D","E","F"];
+    <div class="progress" aria-hidden="true"><span id="quizProgressBar"></span></div>
+    <section class="card">
+      <div class="source" id="questionSource"></div>
+      <h2 id="questionPrompt"></h2>
+      <div class="choices" id="choiceList"></div>
+      <div class="quiz-footer">
+        <button class="btn secondary" id="backBtn">Back</button>
+        <button class="btn" id="nextBtn" disabled>Next</button>
+      </div>
+    </section>
+  </main>
 
-  // Master section: pool every question from A-F.
-  (function(){
-    var all=[];
-    ORDER.forEach(function(L){ DATA[L].qs.forEach(function(qq){ all.push(qq); }); });
-    DATA.M={title:"Master — all worksheets",master:true,qs:all};
-  })();
-  var HUB_ORDER=["A","B","C","D","E","F","M"];
+  <main id="reviewScreen" class="app" hidden>
+    <section class="card">
+      <h1 id="reviewTitle">Exam Complete</h1>
+      <p id="reviewCopy"></p>
+      <div class="review-grid">
+        <div class="stat"><strong id="reviewScore">0%</strong><span>Score</span></div>
+        <div class="stat"><strong id="reviewCorrect">0/0</strong><span>Correct</span></div>
+        <div class="stat"><strong id="reviewMissed">0</strong><span>Added/Kept Missed</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="reviewExamBtn">Start Exam</button>
+        <button class="btn secondary" id="reviewMissedBtn">Test Missed</button>
+        <button class="btn secondary" id="reviewHomeBtn">Home</button>
+      </div>
+      <div class="missed-list" id="sessionMissedList"></div>
+    </section>
+  </main>
 
-  // Persistent scores
-  var STORE_KEY="anatomyDrillScores_v1";
-  var scores={};
-  try{ var raw=localStorage.getItem(STORE_KEY); if(raw) scores=JSON.parse(raw)||{}; }catch(e){ scores={}; }
-  function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(scores)); }catch(e){} }
+  <script>
+    const BANK = [{"id": "A1", "unit": "Worksheet A", "topic": "Bones of Upper Extremity", "source": "A1", "prompt": "Which statement best describes the pectoral girdle bones and their relative positions?", "choices": ["The clavicle lies anteriorly across the chest while the scapula lies posteriorly on the thorax.", "The scapula lies anteriorly across the chest while the clavicle lies posteriorly on the thorax.", "The humerus and scapula form the pectoral girdle, with the humerus lateral to the scapula.", "The clavicle and sternum form the pectoral girdle, with the sternum posterior to the clavicle."], "answer": 0, "explanation": "The pectoral girdle is the clavicle and scapula. The clavicle is anterior; the scapula sits posteriorly on the thoracic wall."}, {"id": "A2", "unit": "Worksheet A", "topic": "Bones of Upper Extremity", "source": "A2", "prompt": "Which answer correctly matches each upper-limb region with its bones?", "choices": ["Pectoral girdle: sternum and clavicle; arm: radius; forearm: humerus and ulna; hand: carpals and metatarsals.", "Pectoral girdle: scapula and ribs; arm: humerus and radius; forearm: ulna only; hand: phalanges only.", "Pectoral girdle: clavicle and scapula; arm: humerus; forearm: radius and ulna; hand: carpals, metacarpals, phalanges.", "Pectoral girdle: humerus and scapula; arm: clavicle; forearm: radius only; hand: metacarpals and tarsals."], "answer": 2, "explanation": "Upper limb regions: pectoral girdle = clavicle/scapula, arm = humerus, forearm = radius/ulna, hand = carpals/metacarpals/phalanges."}, {"id": "A5", "unit": "Worksheet A", "topic": "Humerus Features", "source": "A5", "prompt": "At the proximal humerus, which pairing correctly separates bony articulation from muscle/ligament attachment?", "choices": ["Greater tubercle articulates with the glenoid cavity; the head primarily anchors the deltoid.", "Surgical neck articulates with the scapula; anatomical neck is the main insertion for rotator cuff muscles.", "Deltoid tuberosity articulates with the glenoid cavity; the head anchors the biceps tendon.", "Head articulates with the glenoid cavity; greater and lesser tubercles/intertubercular sulcus serve as attachment-related landmarks."], "answer": 3, "explanation": "The humeral head is the smooth articular surface for the glenoid cavity. Tubercle/sulcus landmarks are mainly for muscle or tendon attachments."}, {"id": "A6", "unit": "Worksheet A", "topic": "Humerus Features", "source": "A6", "prompt": "At the distal humerus, which features are primarily for bony articulation with the forearm?", "choices": ["Surgical neck and anatomical neck", "Capitulum and trochlea", "Medial and lateral epicondyles", "Olecranon fossa and deltoid tuberosity"], "answer": 1, "explanation": "The capitulum articulates with the radius and the trochlea articulates with the ulna. Epicondyles are attachment landmarks."}, {"id": "A8", "unit": "Worksheet A", "topic": "Forearm Bones", "source": "A8", "prompt": "Which proximal forearm feature articulates specifically with the trochlea of the humerus?", "choices": ["Trochlear notch of the ulna", "Head of the radius", "Radial tuberosity", "Olecranon fossa of the humerus"], "answer": 0, "explanation": "The trochlear notch of the ulna grips the trochlea of the humerus at the humeroulnar joint."}, {"id": "A9", "unit": "Worksheet A", "topic": "Carpal Bones", "source": "A9", "prompt": "From lateral to medial in anatomical position, which sequence lists the proximal row of carpals?", "choices": ["Pisiform, triquetrum, lunate, scaphoid", "Scaphoid, trapezium, lunate, capitate", "Scaphoid, lunate, triquetrum, pisiform", "Trapezium, trapezoid, capitate, hamate"], "answer": 2, "explanation": "Proximal row from thumb side to pinky side: scaphoid, lunate, triquetrum, pisiform."}, {"id": "A10", "unit": "Worksheet A", "topic": "Carpal Bones", "source": "A10", "prompt": "Which distal row carpal sequence is correct from lateral to medial, including common metacarpal relationships?", "choices": ["Trapezium with metacarpal V, trapezoid with IV, capitate with II, hamate with I", "Scaphoid with metacarpal I, lunate with II, triquetrum with III, pisiform with IV and V", "Hamate with metacarpal I, capitate with II, trapezoid with III, trapezium with IV and V", "Trapezium with metacarpal I, trapezoid with II, capitate mainly with III, hamate with IV and V"], "answer": 3, "explanation": "Distal row thumb-to-pinky: trapezium, trapezoid, capitate, hamate. The trapezium supports thumb metacarpal I; hamate relates to IV and V."}, {"id": "A11", "unit": "Worksheet A", "topic": "Hand Bones", "source": "A11", "prompt": "Which digits articulate with metacarpal I and metacarpal V?", "choices": ["Metacarpal I with the ring finger; metacarpal V with the index finger", "Metacarpal I with the thumb; metacarpal V with the little finger", "Metacarpal I with the index finger; metacarpal V with the thumb", "Metacarpal I with the little finger; metacarpal V with the thumb"], "answer": 1, "explanation": "Metacarpal numbering starts at the thumb. I = thumb, V = little finger."}, {"id": "A12", "unit": "Worksheet A", "topic": "Phalanges", "source": "A12", "prompt": "Which statement best describes the relative positions of the phalanges in digits 2 to 5?", "choices": ["Proximal phalanges are closest to the metacarpals, middle phalanges are between them, and distal phalanges are at the fingertips.", "Distal phalanges are closest to the metacarpals, middle phalanges are at the fingertips, and proximal phalanges are between them.", "Middle phalanges articulate directly with metacarpals, while proximal phalanges form the fingertips.", "All digits have only proximal and distal phalanges, with no middle phalanges."], "answer": 0, "explanation": "Digits 2 to 5 each have proximal, middle, and distal phalanges arranged from palm to fingertip."}, {"id": "A13", "unit": "Worksheet A", "topic": "Digits", "source": "A13", "prompt": "How does digit 1 differ from digits 2 to 5?", "choices": ["The thumb lacks a metacarpal and articulates directly with the radius.", "The thumb has a middle phalanx but no distal phalanx.", "The thumb has only two phalanges and articulates with metacarpal I.", "The thumb has three phalanges and articulates with metacarpal V."], "answer": 2, "explanation": "The thumb has proximal and distal phalanges only; it does not have a middle phalanx."}, {"id": "B1", "unit": "Worksheet B", "topic": "Shoulder and Arm Muscles", "source": "B1", "prompt": "What best defines an axioappendicular muscle?", "choices": ["A muscle that connects one forearm bone to the other and only moves the wrist", "A muscle that originates and inserts entirely within the hand", "A muscle that only stabilizes the vertebral column and never crosses into the upper limb", "A muscle that connects the axial skeleton to the appendicular skeleton and acts on the pectoral girdle or shoulder joint"], "answer": 3, "explanation": "Axioappendicular muscles link axial skeleton structures to the appendicular skeleton and commonly move/stabilize the scapula, clavicle, or humerus."}, {"id": "B2", "unit": "Worksheet B", "topic": "Anterior Axioappendicular Muscles", "source": "B2", "prompt": "Which set correctly matches an anterior axioappendicular muscle with a key attachment or action?", "choices": ["Pectoralis minor: clavicle to humerus; extends the elbow", "Serratus anterior: ribs to scapula; holds the scapula against the thoracic wall during pushing", "Trapezius: ribs 1 to 8 to scapula; primary protractor of the scapula", "Subclavius: sternum to humerus; primary shoulder adductor"], "answer": 1, "explanation": "Serratus anterior originates from ribs and attaches to the scapula; it protracts/stabilizes the scapula against the thoracic wall."}, {"id": "B3", "unit": "Worksheet B", "topic": "Posterior Axioappendicular Muscles", "source": "B3", "prompt": "Which posterior axioappendicular muscle is correctly matched with its general location/action?", "choices": ["Latissimus dorsi: broad back muscle that extends, adducts, and medially rotates the arm", "Pectoralis minor: posterior neck muscle that elevates the scapula", "Subclavius: posterior scapular muscle that retracts the scapula", "Serratus anterior: spine-to-clavicle muscle that depresses the clavicle"], "answer": 0, "explanation": "Latissimus dorsi is a posterior axioappendicular muscle that acts at the shoulder to extend, adduct, and medially rotate the arm."}, {"id": "B4", "unit": "Worksheet B", "topic": "Axioappendicular Attachments", "source": "B4", "prompt": "Which muscle-to-bony-feature pairing is correct for axioappendicular attachments?", "choices": ["Pectoralis major attaches only to the coracoid process; levator scapulae attaches to the humerus.", "Trapezius attaches to the lesser tubercle; latissimus dorsi attaches to the superior border of the scapula.", "Pectoralis minor attaches to the coracoid process; rhomboid major and minor attach along the medial border of the scapula.", "Subclavius attaches to the medial border of the scapula; serratus anterior attaches to the sternum."], "answer": 2, "explanation": "Pectoralis minor attaches to the coracoid process. Rhomboids attach to the medial border of the scapula."}, {"id": "B5", "unit": "Worksheet B", "topic": "Scapulohumeral Muscles", "source": "B5", "prompt": "Which list contains the rotator cuff muscles from the scapulohumeral muscle group?", "choices": ["Deltoid, teres major, biceps brachii, brachialis", "Pectoralis major, latissimus dorsi, teres major, deltoid", "Trapezius, rhomboid major, levator scapulae, serratus anterior", "Supraspinatus, infraspinatus, teres minor, subscapularis"], "answer": 3, "explanation": "SITS: supraspinatus, infraspinatus, teres minor, subscapularis."}, {"id": "B6", "unit": "Worksheet B", "topic": "Rotator Cuff Attachments", "source": "B6", "prompt": "Which rotator cuff muscles insert on the greater tubercle of the humerus?", "choices": ["Biceps brachii and coracobrachialis", "Supraspinatus, infraspinatus, and teres minor", "Subscapularis only", "Teres major and deltoid"], "answer": 1, "explanation": "Three rotator cuff muscles insert on the greater tubercle: supraspinatus, infraspinatus, and teres minor."}, {"id": "B7", "unit": "Worksheet B", "topic": "Rotator Cuff Attachments", "source": "B7", "prompt": "Which rotator cuff muscle inserts on the lesser tubercle of the humerus?", "choices": ["Subscapularis", "Supraspinatus", "Infraspinatus", "Teres minor"], "answer": 0, "explanation": "Subscapularis is the rotator cuff muscle that inserts on the lesser tubercle."}, {"id": "B8", "unit": "Worksheet B", "topic": "Muscle Insertions", "source": "B8", "prompt": "The deltoid muscle distally inserts on which humeral feature?", "choices": ["Intertubercular sulcus", "Medial epicondyle", "Deltoid tuberosity", "Lesser tubercle"], "answer": 2, "explanation": "The deltoid inserts on the deltoid tuberosity of the humerus."}, {"id": "B9", "unit": "Worksheet B", "topic": "Muscle Insertions", "source": "B9", "prompt": "The teres major muscle inserts on which humeral feature?", "choices": ["Greater tubercle", "Deltoid tuberosity", "Radial groove", "Crest of the lesser tubercle"], "answer": 3, "explanation": "Teres major inserts on the crest of the lesser tubercle of the humerus."}, {"id": "B9_actions", "unit": "Worksheet B", "topic": "Shoulder Muscle Actions", "source": "B9 chart", "prompt": "Which muscle-action match from the shoulder and arm chart is correct?", "choices": ["Latissimus dorsi: primary abduction of the arm", "Subscapularis: medial rotation of the arm", "Supraspinatus: elbow extension", "Pectoralis minor: lateral rotation of the arm"], "answer": 1, "explanation": "Subscapularis medially rotates the arm. Supraspinatus initiates abduction; latissimus dorsi extends, adducts, and medially rotates."}, {"id": "B10", "unit": "Worksheet B", "topic": "Arm Compartments", "source": "B10", "prompt": "How are the muscles of the arm compartmentalized?", "choices": ["Into anterior and posterior compartments separated by medial and lateral intermuscular septa", "Into superficial, intermediate, and deep layers separated only by retinacula", "Into radial, ulnar, and carpal compartments separated by the palmar aponeurosis", "Into thenar and hypothenar compartments separated by the clavicle"], "answer": 0, "explanation": "The arm has anterior and posterior compartments, separated by medial and lateral intermuscular septa."}, {"id": "B11", "unit": "Worksheet B", "topic": "Arm Muscles and Joints Crossed", "source": "B11", "prompt": "Which statement correctly describes an arm muscle and the joint(s) it crosses?", "choices": ["Coracobrachialis crosses only the elbow joint.", "The lateral head of triceps crosses both shoulder and elbow joints.", "Biceps brachii crosses both the shoulder and elbow joints.", "Brachialis crosses only the shoulder joint."], "answer": 2, "explanation": "Biceps brachii crosses both shoulder and elbow. Brachialis crosses the elbow, coracobrachialis crosses the shoulder, and only the long head of triceps crosses shoulder and elbow."}, {"id": "B12", "unit": "Worksheet B", "topic": "Arm Muscle Origins", "source": "B12", "prompt": "Which proximal attachment pairing is correct for the arm muscles?", "choices": ["Short head of biceps: radial tuberosity; brachialis: coracoid process", "Coracobrachialis: olecranon; lateral head of triceps: anterior humerus", "Brachialis: scapular spine; medial head of triceps: supraglenoid tubercle", "Long head of biceps: supraglenoid tubercle; long head of triceps: infraglenoid tubercle"], "answer": 3, "explanation": "Long head of biceps originates at the supraglenoid tubercle; long head of triceps originates at the infraglenoid tubercle."}, {"id": "B13", "unit": "Worksheet B", "topic": "Arm Muscle Actions", "source": "B13", "prompt": "Which action pairing is correct for the listed arm muscles?", "choices": ["Coracobrachialis extends and abducts the shoulder; brachialis supinates the forearm.", "Biceps brachii flexes the elbow and supinates the forearm; triceps brachii extends the elbow.", "Brachialis extends the elbow; coracobrachialis pronates the forearm.", "Triceps brachii flexes the shoulder; biceps brachii extends the elbow."], "answer": 1, "explanation": "Biceps brachii flexes the elbow and supinates; triceps extends the elbow. Coracobrachialis flexes/adducts the shoulder, and brachialis flexes the elbow."}, {"id": "C1", "unit": "Worksheet C", "topic": "Forearm Compartments", "source": "C1", "prompt": "What structures compartmentalize the forearm muscles?", "choices": ["Antebrachial fascia with deep septa and the interosseous membrane dividing anterior and posterior compartments", "Palmar aponeurosis alone dividing medial and lateral compartments", "The clavicle and scapula forming anterior and posterior compartments", "Only the flexor and extensor retinacula dividing the arm into compartments"], "answer": 0, "explanation": "The antebrachial fascia, septa, and interosseous membrane help separate the forearm into anterior and posterior compartments."}, {"id": "C2", "unit": "Worksheet C", "topic": "Forearm Muscle Naming", "source": "C2", "prompt": "Which decoding of forearm muscle terms is correct?", "choices": ["Extensor = anterior flexor group, flexor = posterior extensor group, radialis = medial side", "Digiti minimi = index finger, indicis = little finger, ulnaris = thumb side", "Carpi = wrist, radialis = lateral/radial side, pollicis = thumb, indicis = index finger", "Carpi = fingers 2 to 5, ulnaris = lateral side, pollicis = little finger, digitorum = thumb"], "answer": 2, "explanation": "The names tell you action and target: carpi wrist, radialis radial/lateral side, pollicis thumb, indicis index finger, digitorum fingers."}, {"id": "C3", "unit": "Worksheet C", "topic": "Posterior Forearm", "source": "C3", "prompt": "Where would you expect to find most extensor muscles of the forearm, and why?", "choices": ["Anterior/palmar side because they flex the wrist and digits", "Medial side only because they all attach to the ulnar styloid process", "Deep palm only because extensor tendons do not cross the wrist", "Posterior/dorsal side because they extend the wrist, hand, and digits"], "answer": 3, "explanation": "Forearm extensors are mainly in the posterior compartment and act across the dorsal wrist/hand."}, {"id": "C4", "unit": "Worksheet C", "topic": "Posterior Forearm", "source": "C4", "prompt": "How are posterior forearm muscles generally grouped?", "choices": ["Anterior and medial cords", "Superficial and deep layers", "Superficial, intermediate, and deep layers", "Thenar and hypothenar groups"], "answer": 1, "explanation": "Posterior forearm muscles are commonly organized into superficial and deep layers."}, {"id": "C5", "unit": "Worksheet C", "topic": "Anterior Forearm", "source": "C5", "prompt": "Where would you expect to find most flexor muscles of the forearm, and why?", "choices": ["Anterior/palmar side because they flex the wrist, hand, and digits", "Posterior/dorsal side because they extend the wrist and digits", "Lateral side only because flexors all attach to the radius", "Inside the carpal tunnel only because flexors do not originate in the forearm"], "answer": 0, "explanation": "Forearm flexors are mostly in the anterior compartment and act on the palmar side."}, {"id": "C6", "unit": "Worksheet C", "topic": "Anterior Forearm", "source": "C6", "prompt": "How are anterior forearm muscles generally grouped?", "choices": ["Thenar and hypothenar layers only", "Radial, ulnar, and carpal cords", "Superficial, intermediate, and deep layers", "Posterior, lateral, and medial layers"], "answer": 2, "explanation": "Anterior forearm muscles are commonly grouped as superficial, intermediate, and deep."}, {"id": "C7", "unit": "Worksheet C", "topic": "Forearm Muscle Naming", "source": "C7", "prompt": "What do muscles containing carpi radialis and carpi ulnaris have in common, and how do they differ?", "choices": ["Both act only on digits; radialis moves the little finger and ulnaris moves the thumb.", "Both are shoulder muscles; radialis abducts the arm and ulnaris adducts the arm.", "Both are nerves; radialis supplies flexors and ulnaris supplies extensors.", "Both act at the wrist; radialis muscles contribute to radial deviation and ulnaris muscles contribute to ulnar deviation."], "answer": 3, "explanation": "Carpi means wrist. Radialis points toward radial deviation; ulnaris points toward ulnar deviation."}, {"id": "C8", "unit": "Worksheet C", "topic": "Forearm Muscle Actions", "source": "C8", "prompt": "Why can a forearm muscle that acts on digits also influence the wrist?", "choices": ["Only muscles named carpi can cross the wrist joint.", "Its tendons must cross the wrist to reach the digits, so it can also create wrist movement unless stabilized.", "Digit muscles attach only to the humerus, so they bypass the wrist entirely.", "All digit muscles are located in the palm and never cross joints."], "answer": 1, "explanation": "Tendons to the fingers pass across the wrist, so these muscles can create wrist movement as a secondary action."}, {"id": "C9", "unit": "Worksheet C", "topic": "Other Forearm Muscles", "source": "C9", "prompt": "Which match is correct for a forearm muscle not simply named flexor or extensor?", "choices": ["Pronator teres: anterior forearm muscle that pronates the forearm", "Brachioradialis: deep posterior thumb abductor only", "Palmaris longus: primary elbow extensor in the posterior arm", "Abductor pollicis longus: medial forearm muscle that flexes digits 2 to 5"], "answer": 0, "explanation": "Pronator teres is an anterior forearm muscle involved in pronation. Brachioradialis flexes the elbow; APL acts on the thumb."}, {"id": "C10", "unit": "Worksheet C", "topic": "Outcropping Muscles", "source": "C10", "prompt": "Which muscles are the three outcropping muscles around the lateral forearm/wrist?", "choices": ["Pronator teres, pronator quadratus, palmaris longus", "Extensor carpi ulnaris, flexor carpi ulnaris, anconeus", "Abductor pollicis longus, extensor pollicis brevis, extensor pollicis longus", "Flexor digitorum superficialis, flexor digitorum profundus, flexor pollicis longus"], "answer": 2, "explanation": "The outcropping thumb muscles are APL, EPB, and EPL."}, {"id": "C11", "unit": "Worksheet C", "topic": "Anterior Forearm Layers", "source": "C11", "prompt": "Which set correctly places anterior forearm muscles into layers?", "choices": ["Superficial: flexor digitorum profundus and pronator quadratus; intermediate: palmaris longus; deep: pronator teres", "Superficial: extensor indicis and extensor digiti minimi; intermediate: biceps; deep: triceps", "Superficial: thenar muscles; intermediate: hypothenar muscles; deep: rotator cuff", "Superficial: pronator teres, flexor carpi radialis, palmaris longus, flexor carpi ulnaris; intermediate: flexor digitorum superficialis; deep: flexor digitorum profundus, flexor pollicis longus, pronator quadratus"], "answer": 3, "explanation": "This is the standard anterior forearm grouping: superficial flexor/pronator group, FDS intermediate, FDP/FPL/PQ deep."}, {"id": "C12", "unit": "Worksheet C", "topic": "Finger Flexors", "source": "C12", "prompt": "How are flexor digitorum superficialis and flexor digitorum profundus similar and different?", "choices": ["Both are shoulder adductors that insert on the humerus.", "Both flex digits 2 to 5 and cross the wrist; superficialis is more superficial and profundus is deeper.", "Both extend digits 2 to 5; superficialis is posterior and profundus is anterior.", "Superficialis moves the thumb only, while profundus moves only the wrist."], "answer": 1, "explanation": "Both flex fingers 2 to 5 and cross the wrist. Superficialis is the more superficial layer; profundus is deep."}, {"id": "C13", "unit": "Worksheet C", "topic": "Forearm Muscle Naming", "source": "C13", "prompt": "What is the best strategy for efficiently naming forearm muscles?", "choices": ["Decode the name by action, target structure, and side/location terms.", "Ignore the name pieces and memorize every muscle as an unrelated word.", "Use only the nerve supply because muscle names do not describe action or target.", "Start with shoulder motions, then assign every forearm muscle to the scapula."], "answer": 0, "explanation": "Forearm names often tell you the action, target, and side: flexor/extensor, carpi/digitorum/pollicis, radialis/ulnaris."}, {"id": "C14", "unit": "Worksheet C", "topic": "Posterior Forearm Actions", "source": "C14", "prompt": "Which specific action and common action are correct for posterior forearm extensors?", "choices": ["Extensor pollicis muscles extend the little finger; the group commonly pronates.", "Extensor digiti minimi extends the thumb; the group commonly supinates only.", "Extensor indicis extends the index finger; the listed posterior extensor group commonly performs extension.", "Extensor digitorum flexes digits 2 to 5; the group commonly performs flexion."], "answer": 2, "explanation": "Posterior extensor muscles generally extend. Extensor indicis targets the index finger."}, {"id": "C15", "unit": "Worksheet C", "topic": "Anterior Forearm Actions", "source": "C15", "prompt": "Which action pairing is correct for the listed anterior forearm muscles?", "choices": ["Flexor digitorum muscles extend fingers; flexor pollicis longus abducts the shoulder; the common action is extension.", "Flexor pollicis longus extends the index finger; flexor digitorum muscles rotate the scapula.", "All anterior forearm muscles only supinate the forearm and do not cross the wrist.", "Flexor digitorum muscles flex fingers; flexor pollicis longus flexes the thumb; the common action is flexion."], "answer": 3, "explanation": "Anterior forearm flexors generally flex; digitorum acts on fingers and pollicis acts on the thumb."}, {"id": "C16", "unit": "Worksheet C", "topic": "Wrist Movements", "source": "C16", "prompt": "Which set correctly matches carpi muscles with two specific actions?", "choices": ["Extensor carpi ulnaris: finger flexion and pronation; flexor carpi radialis: shoulder abduction", "Extensor carpi radialis: wrist extension and radial deviation; flexor carpi ulnaris: wrist flexion and ulnar deviation", "Extensor carpi radialis: wrist flexion and ulnar deviation; flexor carpi ulnaris: wrist extension and radial deviation", "Flexor carpi radialis: elbow extension and supination; extensor carpi ulnaris: thumb opposition"], "answer": 1, "explanation": "Radialis muscles deviate toward the radius; ulnaris muscles deviate toward the ulna. Flexor/extensor tells wrist flexion/extension."}, {"id": "C17", "unit": "Worksheet C", "topic": "Retinacula", "source": "C17", "prompt": "What are the wrist thickenings of antebrachial fascia called, and what do they do?", "choices": ["Flexor and extensor retinacula; they hold tendons close to the wrist.", "Thenar and hypothenar eminences; they attach the humerus to the scapula.", "Anterior and posterior divisions; they form the brachial plexus roots.", "Radial and ulnar styloid processes; they produce elbow flexion."], "answer": 0, "explanation": "Retinacula are fascial bands that keep tendons from bowstringing across the wrist."}, {"id": "C18", "unit": "Worksheet C", "topic": "Hand Muscle Groups", "source": "C18", "prompt": "Where are the thenar and hypothenar eminences, and what separates these hand muscle groups?", "choices": ["Anterior forearm; thenar is radial artery, hypothenar is ulnar artery, separated by the biceps tendon.", "Posterior arm; both groups attach to the olecranon and are separated by the deltoid tuberosity.", "Anterior/palmar hand; thenar is thumb side, hypothenar is little-finger side, separated by palmar aponeurosis/fascia.", "Posterior/dorsal hand; thenar is index side, hypothenar is ring-finger side, separated by the clavicle."], "answer": 2, "explanation": "Thenar = thumb pad; hypothenar = little-finger pad. They are on the palmar side and separated by palmar fascia/aponeurosis."}, {"id": "D1", "unit": "Worksheet D", "topic": "Upper Limb Joints", "source": "D1", "prompt": "Which bones create the pectoral girdle, and how are they positioned?", "choices": ["Scapula anterior across the chest and clavicle posterior on the thorax", "Humerus anterior and radius posterior", "Sternum lateral and ulna medial", "Clavicle anterior across the chest and scapula posterior on the thorax"], "answer": 3, "explanation": "The pectoral girdle consists of clavicle and scapula; clavicle is anterior, scapula is posterior."}, {"id": "D2", "unit": "Worksheet D", "topic": "Sternoclavicular Joint", "source": "D2", "prompt": "What is the only bony axioappendicular joint of the upper limb?", "choices": ["Radiocarpal joint between the radius and proximal carpals", "Sternoclavicular joint between the medial clavicle and manubrium of the sternum", "Glenohumeral joint between the humeral head and glenoid cavity", "Humeroulnar joint between the trochlea and trochlear notch"], "answer": 1, "explanation": "The sternoclavicular joint is the only direct bony connection between the axial skeleton and upper limb."}, {"id": "D3", "unit": "Worksheet D", "topic": "Shoulder Articulations", "source": "D3", "prompt": "Which two bony articulations are around the shoulder area, and which is the common shoulder ball-and-socket joint?", "choices": ["Acromioclavicular and glenohumeral; the glenohumeral joint is the ball-and-socket shoulder joint.", "Sternoclavicular and radiocarpal; the sternoclavicular joint is the shoulder ball-and-socket joint.", "Humeroulnar and humeroradial; the humeroulnar joint is the shoulder ball-and-socket joint.", "Proximal and distal radioulnar; the distal radioulnar joint is the shoulder ball-and-socket joint."], "answer": 0, "explanation": "AC and GH are the shoulder-area articulations; GH is the shoulder joint proper and is ball-and-socket."}, {"id": "D4", "unit": "Worksheet D", "topic": "Scapula-Clavicle Ligaments", "source": "D4", "prompt": "Which ligaments attach between the scapula and clavicle?", "choices": ["Palmar aponeurosis, flexor retinaculum, and extensor retinaculum", "Interosseous membrane, radial collateral ligament, and transverse carpal ligament", "Acromioclavicular ligament plus the coracoclavicular ligament components: conoid and trapezoid", "Coracoacromial, annular, and ulnar collateral ligaments"], "answer": 2, "explanation": "The AC ligament connects acromion to clavicle, and the coracoclavicular ligament includes conoid and trapezoid parts."}, {"id": "D5", "unit": "Worksheet D", "topic": "Shoulder Capsule", "source": "D5", "prompt": "Which description of the shoulder joint capsule and superior support is correct?", "choices": ["A tight capsule runs from the olecranon to the radial tuberosity; the annular ligament prevents superior dislocation.", "The capsule is made of flexor retinaculum; the palmar aponeurosis prevents humeral dislocation.", "The capsule connects radius to ulna; the interosseous membrane blocks shoulder abduction.", "A loose fibrous capsule runs from the glenoid rim to the anatomical neck; the coracoacromial ligament helps prevent superior displacement."], "answer": 3, "explanation": "The glenohumeral capsule is loose for mobility. The coracoacromial arch/ligament provides superior protection."}, {"id": "D7", "unit": "Worksheet D", "topic": "Glenohumeral Joint", "source": "D7", "prompt": "What about the glenohumeral joint permits many linear and rotational movements?", "choices": ["It is a plane joint that only glides between carpals.", "It is a ball-and-socket joint with the humeral head fitting into the glenoid cavity.", "It is a hinge joint with the ulna locked into the trochlea.", "It is a syndesmosis where an interosseous membrane allows only pronation."], "answer": 1, "explanation": "The shoulder is highly mobile because the humeral head articulates with the glenoid cavity as a ball-and-socket joint."}, {"id": "D8", "unit": "Worksheet D", "topic": "Shoulder Muscle Actions", "source": "D8", "prompt": "Which shoulder action is matched with a correct muscle group?", "choices": ["Lateral rotation: infraspinatus, teres minor, and posterior deltoid", "Abduction: pectoralis major, latissimus dorsi, and teres major", "Extension: pectoralis major, anterior deltoid, and coracobrachialis", "Medial rotation: supraspinatus and middle deltoid only"], "answer": 0, "explanation": "Lateral rotators include infraspinatus, teres minor, and posterior deltoid."}, {"id": "D9", "unit": "Worksheet D", "topic": "Elbow Joint", "source": "D9", "prompt": "Which bony features create the major articulations of the elbow joint?", "choices": ["Scaphoid with radius; pisiform with ulna", "Medial clavicle with manubrium; coracoid with acromion", "Trochlea of humerus with trochlear notch of ulna; capitulum of humerus with head of radius", "Head of humerus with glenoid cavity; acromion with clavicle"], "answer": 2, "explanation": "The elbow includes humeroulnar and humeroradial articulations: trochlea-notch and capitulum-radius head."}, {"id": "D10", "unit": "Worksheet D", "topic": "Elbow Joint", "source": "D10", "prompt": "How are the humeroulnar and humeroradial joints similar?", "choices": ["Both are wrist joints and allow only radial deviation.", "Both are shoulder joints and allow circumduction only.", "Both are syndesmoses and prevent elbow movement.", "Both are part of the elbow and contribute to flexion and extension."], "answer": 3, "explanation": "Both humeroulnar and humeroradial articulations are part of the elbow complex and participate in flexion/extension."}, {"id": "D11", "unit": "Worksheet D", "topic": "Humeroradial Joint", "source": "D11", "prompt": "Why does the humeroradial joint have more mobility than the humeroulnar joint?", "choices": ["The radius is fused to the humerus by an interosseous membrane.", "The rounded radial head can pivot/rotate on the capitulum during forearm movement.", "The ulna is absent from the elbow joint.", "The capitulum locks into a deep trochlear notch and prevents rotation."], "answer": 1, "explanation": "The radial head is round and can spin against the capitulum, adding mobility."}, {"id": "D12", "unit": "Worksheet D", "topic": "Elbow Flexors", "source": "D12", "prompt": "Which order lists elbow flexors from strongest to weaker as studied?", "choices": ["Brachialis, biceps brachii, brachioradialis", "Biceps brachii, triceps brachii, pronator teres", "Brachioradialis, anconeus, triceps brachii", "Coracobrachialis, deltoid, subclavius"], "answer": 0, "explanation": "Brachialis is the workhorse elbow flexor, followed by biceps brachii and brachioradialis."}, {"id": "D13", "unit": "Worksheet D", "topic": "Elbow Extension", "source": "D13", "prompt": "Which muscle is the primary extensor of the elbow joint?", "choices": ["Brachialis", "Coracobrachialis", "Triceps brachii", "Biceps brachii"], "answer": 2, "explanation": "Triceps brachii extends the elbow."}, {"id": "D14", "unit": "Worksheet D", "topic": "Pronation and Supination", "source": "D14", "prompt": "Which primary muscles were studied for pronation and supination, and what bone do they commonly attach to?", "choices": ["Brachialis and triceps; both attach to the clavicle", "Deltoid and supraspinatus; both attach to the ulna", "Pectoralis minor and serratus anterior; both attach to the metacarpals", "Pronator teres and supinator; both attach to the radius"], "answer": 3, "explanation": "Pronator teres and supinator rotate the radius during pronation/supination."}, {"id": "D15", "unit": "Worksheet D", "topic": "Radioulnar Joints", "source": "D15", "prompt": "The three radioulnar joints collectively allow which two forearm actions?", "choices": ["Elevation and depression of the scapula", "Pronation and supination", "Abduction and adduction of the shoulder", "Flexion and extension of the knee"], "answer": 1, "explanation": "The radioulnar joints are responsible for pronation and supination."}, {"id": "D16", "unit": "Worksheet D", "topic": "Radius and Ulna", "source": "D16", "prompt": "What syndesmotic structure binds the shafts of the radius and ulna?", "choices": ["Interosseous membrane", "Flexor retinaculum", "Coracoacromial ligament", "Palmar aponeurosis"], "answer": 0, "explanation": "The interosseous membrane connects the shafts of radius and ulna."}, {"id": "D17", "unit": "Worksheet D", "topic": "Radiocarpal Joint", "source": "D17", "prompt": "Which bones participate directly in the radiocarpal joint, and which carpal is excluded by an articular disc?", "choices": ["Humerus with scaphoid and trapezium; clavicle excluded by articular disc", "Radius with all distal-row carpals; lunate excluded by articular disc", "Radius with scaphoid, lunate, and triquetrum; ulna excluded by articular disc", "Ulna with pisiform, hamate, and capitate; radius excluded by articular disc"], "answer": 2, "explanation": "The wrist joint involves the distal radius and proximal carpals, mainly scaphoid/lunate/triquetrum; the ulna is separated by an articular disc."}, {"id": "D18", "unit": "Worksheet D", "topic": "Wrist Joint Actions", "source": "D18", "prompt": "Which set correctly matches radiocarpal joint actions with the side of forearm muscles that perform them?", "choices": ["Flexion: posterior; extension: anterior; radial deviation: medial; ulnar deviation: lateral", "Flexion: lateral; extension: medial; radial deviation: posterior; ulnar deviation: anterior", "All four wrist actions are performed only by muscles in the palm", "Flexion: anterior; extension: posterior; radial deviation: lateral; ulnar deviation: medial"], "answer": 3, "explanation": "Anterior flexors flex the wrist, posterior extensors extend it, radial side deviates radially, and ulnar side deviates ulnarly."}, {"id": "E1", "unit": "Worksheet E", "topic": "Brachial Plexus", "source": "E1", "prompt": "What is a plexus?", "choices": ["A thickened band of fascia only in the hand", "A network of nerves", "A smooth articular surface", "A tendon sheath at the wrist"], "answer": 1, "explanation": "A plexus is a network, especially a nerve network."}, {"id": "E2", "unit": "Worksheet E", "topic": "Brachial Plexus", "source": "E2", "prompt": "Which statement best describes the brachial plexus?", "choices": ["A nerve network extending from the neck toward the axilla that innervates the upper limb", "A blood vessel network beginning at the dorsal venous arch and draining the hand", "A ligament complex connecting the clavicle to the acromion", "A muscle group that only flexes the wrist"], "answer": 0, "explanation": "The brachial plexus runs from the neck into the axilla and supplies motor/sensory innervation to the upper limb."}, {"id": "E3", "unit": "Worksheet E", "topic": "Spinal Nerves", "source": "E3", "prompt": "As a spinal nerve travels away from the spinal cord, it branches into which two structures?", "choices": ["Flexor retinaculum and extensor retinaculum", "Radial artery and ulnar artery", "Anterior ramus and posterior ramus", "Medial cord and lateral cord"], "answer": 2, "explanation": "A spinal nerve divides into anterior and posterior rami."}, {"id": "E4", "unit": "Worksheet E", "topic": "Brachial Plexus Roots", "source": "E4", "prompt": "Which anterior rami form the brachial plexus from superior to inferior?", "choices": ["C1, C2, C3, C4, C5", "T1, T2, T3, T4, T5", "C7, T1, L1, L2, S1", "C5, C6, C7, C8, T1"], "answer": 3, "explanation": "The brachial plexus roots are C5 through T1."}, {"id": "E5", "unit": "Worksheet E", "topic": "Brachial Plexus Roots", "source": "E5", "prompt": "In the brachial plexus, the anterior rami are more specifically called the what?", "choices": ["Retinacula", "Roots", "Cords", "Terminal branches"], "answer": 1, "explanation": "The anterior rami C5 to T1 form the roots of the brachial plexus."}, {"id": "E6", "unit": "Worksheet E", "topic": "Brachial Plexus Trunks", "source": "E6", "prompt": "Which root combinations form the three trunks of the brachial plexus?", "choices": ["Upper: C5-C6; middle: C7; lower: C8-T1", "Upper: C1-C2; middle: C3; lower: C4-C5", "Upper: C8-T1; middle: C7; lower: C5-C6", "Upper: T1-T2; middle: T3; lower: T4-T5"], "answer": 0, "explanation": "The trunks are upper C5-C6, middle C7, and lower C8-T1."}, {"id": "E7", "unit": "Worksheet E", "topic": "Brachial Plexus Divisions", "source": "E7", "prompt": "Each trunk of the brachial plexus divides into what two divisions?", "choices": ["Superficial and deep veins", "Thenar and hypothenar divisions", "Anterior and posterior divisions", "Medial and lateral epicondyles"], "answer": 2, "explanation": "Each trunk gives an anterior and a posterior division."}, {"id": "E8", "unit": "Worksheet E", "topic": "Brachial Plexus Divisions", "source": "E8", "prompt": "How many total posterior divisions are made in the brachial plexus?", "choices": ["Two", "Five", "Six", "Three"], "answer": 3, "explanation": "There are three trunks, and each gives one posterior division, so there are three posterior divisions."}, {"id": "E9", "unit": "Worksheet E", "topic": "Brachial Plexus Divisions", "source": "E9", "prompt": "How many total anterior divisions are made in the brachial plexus?", "choices": ["Six", "Three", "One", "Four"], "answer": 1, "explanation": "Three trunks each make one anterior division, so the total is three."}, {"id": "E10", "unit": "Worksheet E", "topic": "Brachial Plexus Divisions", "source": "E10", "prompt": "What is the general purpose pattern of anterior versus posterior divisions?", "choices": ["Anterior divisions generally supply flexor compartments; posterior divisions generally supply extensor compartments.", "Anterior divisions only supply skin; posterior divisions only supply arteries.", "Anterior divisions become the radial nerve; posterior divisions become the median nerve only.", "Anterior divisions supply lower limb muscles; posterior divisions supply facial muscles."], "answer": 0, "explanation": "Anterior division fibers are associated with flexor compartments; posterior division fibers with extensor compartments."}, {"id": "E11", "unit": "Worksheet E", "topic": "Brachial Plexus Cords", "source": "E11", "prompt": "Which formation of brachial plexus cords is correct?", "choices": ["Posterior cord from anterior divisions only; lateral cord from lower trunk only; medial cord from upper and middle trunks", "All cords form directly from spinal nerves without roots, trunks, or divisions", "Posterior cord from all three posterior divisions; lateral cord from anterior divisions of upper and middle trunks; medial cord from anterior division of lower trunk", "Posterior cord from only C5; lateral cord from all posterior divisions; medial cord from the radial nerve"], "answer": 2, "explanation": "The cords are named by position around the axillary artery: posterior from posterior divisions, lateral from upper/middle anterior divisions, medial from lower anterior division."}, {"id": "E12", "unit": "Worksheet E", "topic": "Brachial Plexus Cords", "source": "E12", "prompt": "What does cord formation suggest about the eventual purpose of the posterior cord compared with the lateral and medial cords?", "choices": ["Posterior cord only supplies veins; lateral and medial cords only supply ligaments.", "Posterior cord becomes the median nerve only; lateral and medial cords become the radial nerve only.", "All three cords have no relationship to flexor or extensor compartments.", "Posterior cord tends toward extensor innervation; lateral and medial cords largely contribute to flexor-side terminal nerves."], "answer": 3, "explanation": "Because posterior divisions feed the posterior cord, it is associated with extensor-compartment branches like radial and axillary nerves."}, {"id": "E13", "unit": "Worksheet E", "topic": "Terminal Branches", "source": "E13", "prompt": "What terminal branches does the posterior cord form distally?", "choices": ["Long thoracic and dorsal scapular nerves", "Axillary and radial nerves", "Musculocutaneous and median nerves only", "Ulnar nerve and median nerve only"], "answer": 1, "explanation": "The posterior cord gives rise to the axillary and radial nerves."}, {"id": "E14", "unit": "Worksheet E", "topic": "Terminal Branches", "source": "E14", "prompt": "What do the lateral and medial cords form as they branch distally?", "choices": ["Musculocutaneous nerve, median nerve contributions, and ulnar nerve", "Axillary nerve and radial nerve only", "Dorsal scapular nerve and long thoracic nerve only", "Femoral nerve and sciatic nerve"], "answer": 0, "explanation": "Lateral cord contributes musculocutaneous and lateral root of median; medial cord contributes ulnar and medial root of median."}, {"id": "E15", "unit": "Worksheet E", "topic": "Axillary and Radial Nerves", "source": "E15", "prompt": "Which nerve match is correct?", "choices": ["Axillary nerve: anterior forearm flexors; radial nerve: coracobrachialis only", "Axillary nerve: ulnar side of hand only; radial nerve: pectoralis major", "Axillary nerve: deltoid and teres minor; radial nerve: posterior arm/forearm extensors", "Axillary nerve: finger flexors; radial nerve: thenar muscles only"], "answer": 2, "explanation": "Axillary nerve supplies deltoid and teres minor. Radial nerve supplies the posterior extensor compartments."}, {"id": "E16", "unit": "Worksheet E", "topic": "Axillary Nerve Injury", "source": "E16", "prompt": "Which signs would best fit axillary nerve injury?", "choices": ["Wrist drop and numbness over the posterior forearm only", "Loss of thumb opposition with carpal tunnel symptoms only", "Weak elbow flexion and lateral forearm numbness only", "Weak arm abduction, flattened shoulder contour, and numbness over the lateral shoulder"], "answer": 3, "explanation": "Axillary nerve injury affects deltoid function and sensation around the lateral shoulder."}, {"id": "E17", "unit": "Worksheet E", "topic": "Radial Nerve Injury", "source": "E17", "prompt": "Which signs would best fit radial nerve injury?", "choices": ["Weak elbow flexion with lateral forearm numbness only", "Wrist drop, loss of extension, and numbness on posterior arm/forearm regions", "Flattened shoulder with loss of deltoid abduction only", "Loss of pronation with thenar numbness only"], "answer": 1, "explanation": "Radial nerve injury commonly causes wrist drop due to loss of wrist/finger extension."}, {"id": "E18", "unit": "Worksheet E", "topic": "Musculocutaneous Median Ulnar Nerves", "source": "E18", "prompt": "Which nerve-function match is most accurate?", "choices": ["Musculocutaneous nerve: biceps brachii, brachialis, coracobrachialis and lateral forearm sensation", "Median nerve: deltoid and teres minor with lateral shoulder sensation", "Ulnar nerve: all posterior forearm extensors with wrist drop signs", "Radial nerve: most anterior forearm flexors and thenar muscles only"], "answer": 0, "explanation": "Musculocutaneous nerve supplies the anterior arm flexors and gives lateral forearm cutaneous sensation."}, {"id": "E19", "unit": "Worksheet E", "topic": "Musculocutaneous Nerve Injury", "source": "E19", "prompt": "Which signs would best fit musculocutaneous nerve injury?", "choices": ["Loss of shoulder abduction and lateral shoulder numbness", "Clawing of medial hand with no elbow flexion weakness", "Weak elbow flexion/supination and numbness of the lateral forearm", "Wrist drop with posterior arm numbness"], "answer": 2, "explanation": "Musculocutaneous nerve supplies biceps/brachialis/coracobrachialis and lateral forearm sensation."}, {"id": "E20", "unit": "Worksheet E", "topic": "Median Nerve Injury", "source": "E20", "prompt": "Which finding fits median nerve injury at the flexor retinaculum, and what is that condition called?", "choices": ["Wrist drop from radial nerve compression in the radial groove; Saturday night palsy", "Flat shoulder from axillary nerve compression at the surgical neck; shoulder tunnel syndrome", "Weak elbow extension from ulnar nerve compression at the cubital tunnel; tennis elbow", "Thenar-related sensory/motor problems from compression in the carpal tunnel; carpal tunnel syndrome"], "answer": 3, "explanation": "Median nerve compression beneath the flexor retinaculum is carpal tunnel syndrome."}, {"id": "F1", "unit": "Worksheet F", "topic": "Upper Limb Blood Vessels", "source": "F1", "prompt": "Which statement correctly describes blood flow direction in arteries and veins relative to the heart?", "choices": ["Both arteries and veins only carry blood within capillaries.", "Arteries carry blood away from the heart; veins carry blood toward the heart.", "Arteries carry blood toward the heart; veins carry blood away from the heart.", "Both arteries and veins always carry blood away from the heart."], "answer": 1, "explanation": "Arteries carry blood away from the heart; veins return blood to the heart."}, {"id": "F2", "unit": "Worksheet F", "topic": "Subclavian Artery", "source": "F2", "prompt": "Where do the right and left subclavian arteries branch from?", "choices": ["Right from the brachiocephalic trunk; left from the aortic arch", "Right from the aortic arch; left from the brachiocephalic trunk", "Both directly from the axillary artery", "Both directly from the radial artery"], "answer": 0, "explanation": "The right subclavian comes from the brachiocephalic trunk; the left subclavian comes from the aortic arch."}, {"id": "F3", "unit": "Worksheet F", "topic": "Subclavian Artery", "source": "F3", "prompt": "Which path best describes the subclavian artery?", "choices": ["Passes behind the olecranon into the posterior forearm", "Begins at the dorsal venous network and drains to the basilic vein", "Passes over the first rib, between the scalene muscles, and under the clavicle", "Runs through the carpal tunnel with the median nerve"], "answer": 2, "explanation": "The subclavian artery passes between scalenes, over the first rib, and beneath the clavicle."}, {"id": "F4", "unit": "Worksheet F", "topic": "Artery Name Changes", "source": "F4", "prompt": "When does the subclavian artery become the axillary artery, and why is that name appropriate?", "choices": ["At the inferior border of teres major, as it enters the arm proper", "At the cubital fossa, because it enters the forearm", "At the wrist, because it enters the carpal tunnel", "At the lateral border of the first rib, as it enters the axillary region"], "answer": 3, "explanation": "The subclavian artery becomes the axillary artery at the lateral border of the first rib as it enters the axilla."}, {"id": "F5", "unit": "Worksheet F", "topic": "Artery Name Changes", "source": "F5", "prompt": "When does the axillary artery become the brachial artery?", "choices": ["At the supraglenoid tubercle as it enters the shoulder", "At the inferior border of teres major as it enters the arm", "At the lateral border of the first rib as it leaves the neck", "At the radial styloid process as it enters the hand"], "answer": 1, "explanation": "The axillary artery becomes the brachial artery at the inferior border of teres major."}, {"id": "F6", "unit": "Worksheet F", "topic": "Cubital Fossa", "source": "F6", "prompt": "What is the special area anterior to the elbow, and what artery and nerve enter it?", "choices": ["Cubital fossa; brachial artery and median nerve", "Carpal tunnel; radial artery and axillary nerve", "Anatomical snuffbox; ulnar artery and radial nerve", "Axilla; subclavian artery and musculocutaneous nerve"], "answer": 0, "explanation": "The cubital fossa is anterior to the elbow and contains important structures including the brachial artery and median nerve."}, {"id": "F7", "unit": "Worksheet F", "topic": "Brachial Artery Branching", "source": "F7", "prompt": "What are the two terminal branches of the brachial artery, and where does the branching occur?", "choices": ["Axillary and subclavian arteries at the wrist", "Median and ulnar arteries at the shoulder", "Radial and ulnar arteries at/near the cubital fossa", "Cephalic and basilic veins at the dorsal venous network"], "answer": 2, "explanation": "The brachial artery divides into radial and ulnar arteries near the cubital fossa."}, {"id": "F8", "unit": "Worksheet F", "topic": "Forearm Arteries", "source": "F8", "prompt": "Which statement correctly relates radius/ulna to forearm arteries and the common peripheral pulse?", "choices": ["Ulnar artery is lateral/thumb side and most commonly palpated at the wrist; radial artery is medial/pinky side.", "Both radial and ulnar arteries run only on the posterior arm near the triceps.", "The radial artery runs with the basilic vein and the ulnar artery runs with the cephalic vein in the shoulder.", "Radial artery is lateral/thumb side and commonly palpated at the wrist; ulnar artery is medial/pinky side."], "answer": 3, "explanation": "In anatomical position, radius is lateral/thumb side, so radial artery is lateral and commonly used for a pulse."}, {"id": "F9", "unit": "Worksheet F", "topic": "Veins", "source": "F9", "prompt": "What are the two types of veins of the upper limb by general location?", "choices": ["Thenar veins and hypothenar ligaments", "Superficial veins and deep veins", "Anterior veins and posterior arteries", "Axillary veins and brachial plexus roots"], "answer": 1, "explanation": "Upper limb veins are commonly organized as superficial and deep."}, {"id": "F10", "unit": "Worksheet F", "topic": "Superficial Venous Return", "source": "F10", "prompt": "Where does superficial venous return of the upper limb begin?", "choices": ["Dorsal venous network of the hand", "Deep palmar arterial arch only", "Subclavian artery beneath the clavicle", "Interosseous membrane between radius and ulna"], "answer": 0, "explanation": "Superficial venous return begins in the dorsal venous network of the hand."}, {"id": "F11", "unit": "Worksheet F", "topic": "Cephalic Vein", "source": "F11", "prompt": "Which path best describes the cephalic vein?", "choices": ["Deep paired vein that follows the ulnar artery only", "Posterior arm vein that drains directly into the radial nerve", "Lateral superficial vein that ascends the upper limb and drains into the axillary vein", "Medial vein that dives deep mid-arm and joins brachial veins early"], "answer": 2, "explanation": "The cephalic vein is lateral and remains superficial for much of its course before draining into the axillary vein."}, {"id": "F12", "unit": "Worksheet F", "topic": "Basilic Vein", "source": "F12", "prompt": "Which path best describes the basilic vein?", "choices": ["Lateral superficial vein that remains superficial to the deltopectoral groove and drains into the axillary vein", "Deep vein paired with the radial artery along the lateral forearm only", "Artery that branches into radial and ulnar vessels at the elbow", "Medial superficial vein that dives deep in the mid-arm and contributes to brachial/axillary venous return"], "answer": 3, "explanation": "The basilic vein runs medially and pierces deep fascia in the arm, joining deep veins to form/continue axillary drainage."}, {"id": "F13", "unit": "Worksheet F", "topic": "Cephalic vs Basilic Veins", "source": "F13", "prompt": "What is a key difference between the cephalic and basilic veins?", "choices": ["Both pass through the carpal tunnel with the median nerve.", "Basilic dives deep earlier; cephalic stays superficial longer on the lateral side.", "Cephalic dives deep in the forearm; basilic stays lateral and superficial to the shoulder.", "Both are deep veins named after matching arteries."], "answer": 1, "explanation": "Basilic is medial and becomes deep earlier; cephalic is lateral and remains superficial longer."}, {"id": "F14", "unit": "Worksheet F", "topic": "Median Cubital Vein", "source": "F14", "prompt": "What is the median cubital vein?", "choices": ["A superficial vein in the cubital fossa connecting cephalic and basilic veins, commonly used for blood draws", "A deep artery connecting radial and ulnar arteries in the palm", "A nerve branch connecting radial and median nerves at the wrist", "A ligament connecting the coracoid process to the clavicle"], "answer": 0, "explanation": "The median cubital vein connects cephalic and basilic veins in the cubital fossa and is a common venipuncture site."}, {"id": "F15", "unit": "Worksheet F", "topic": "Deep Veins", "source": "F15", "prompt": "How are deep veins usually named, and were the superficial veins named this way?", "choices": ["Deep veins are named after bones only; superficial veins are named after ligaments.", "Deep veins are unnamed; superficial veins are named only after nerves.", "Deep veins are often named after nearby arteries; superficial veins are not usually named that way.", "Deep veins are named after hand muscles; superficial veins are named after arteries."], "answer": 2, "explanation": "Deep veins usually travel with and share names with arteries. Superficial veins like cephalic and basilic do not follow that same naming pattern."}, {"id": "F16", "unit": "Worksheet F", "topic": "Deep Veins", "source": "F16", "prompt": "What Latin term describes paired deep veins traveling alongside a named artery?", "choices": ["Carpi radialis", "Rami anteriores", "Fossa cubitalis", "Venae comitantes"], "answer": 3, "explanation": "Venae comitantes means accompanying veins, the paired veins traveling with an artery."}];
+    const STORE_KEY = 'trevor_cow_upper_limb_quiz_v1';
+    const letters = ['A', 'B', 'C', 'D'];
+    let stats = loadStats();
+    let session = null;
 
-  function sh(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-  var hub=document.getElementById('hub'),quiz=document.getElementById('quiz'),
-      q=document.getElementById('q'),opts=document.getElementById('opts'),fb=document.getElementById('fb'),
-      nx=document.getElementById('next'),prog=document.getElementById('prog'),sc=document.getElementById('sc'),
-      card=document.getElementById('card'),done=document.getElementById('done'),qhead=document.getElementById('qhead'),
-      toHub=document.getElementById('toHub'),restartTop=document.getElementById('restartTop');
+    function loadStats() {
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          return {
+            answered: parsed.answered || {},
+            correct: parsed.correct || {},
+            missed: parsed.missed || {},
+            attempts: Number(parsed.attempts || 0),
+            correctAttempts: Number(parsed.correctAttempts || 0)
+          };
+        }
+      } catch (error) {}
+      return { answered: {}, correct: {}, missed: {}, attempts: 0, correctAttempts: 0 };
+    }
 
-  function badge(L){
-    var s=scores[L];
-    if(!s) return '<span style="font-size:13px;color:var(--color-text-tertiary);">Not started</span>';
-    var col=s.pct===100?'var(--color-text-success)':(s.pct>=80?'var(--color-text-primary)':'var(--color-text-danger)');
-    return '<span style="font-size:13px;font-weight:500;color:'+col+';">'+s.right+'/'+s.total+' &middot; '+s.pct+'%</span>';
-  }
-  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function renderHub(){
-    quiz.style.display='none';hub.style.display='block';
-    var done_n=Object.keys(scores).length;
-    var html='<div style="margin-bottom:4px;"><div style="font-size:22px;font-weight:600;">Lower extremity drill</div>'+
-      '<div style="font-size:13px;color:var(--color-text-secondary);margin-top:2px;">Six worksheets + a master gauntlet &middot; pick a section, drill to 100%</div></div>'+
-      '<div style="display:flex;flex-direction:column;gap:8px;margin:16px 0;">';
-    HUB_ORDER.forEach(function(L){
-      var d=DATA[L],isM=!!d.master;
-      html+='<div style="display:flex;align-items:center;gap:12px;background:var(--color-background-primary);border:0.5px solid '+(isM?'var(--color-border-success)':'var(--color-border-tertiary)')+';border-radius:var(--border-radius-lg);padding:12px 14px;">'+
-        '<div style="width:30px;height:30px;flex:none;border-radius:8px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;">'+L+'</div>'+
-        '<div style="flex:1;min-width:0;">'+
-          '<div style="font-size:15px;font-weight:500;">'+esc(d.title)+'</div>'+
-          '<div style="font-size:12px;color:var(--color-text-secondary);">'+d.qs.length+' questions'+(d.note?' &middot; partial':'')+(isM?' &middot; everything, shuffled':'')+'</div>'+
-        '</div>'+
-        '<div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">'+
-          badge(L)+
-          '<div style="display:flex;gap:6px;">'+
-            '<button data-start="'+L+'" style="padding:3px 12px;font-size:13px;min-height:0;">'+(scores[L]?'Retake':'Start')+'</button>'+
-            (scores[L]?'<button data-reset="'+L+'" style="padding:3px 10px;font-size:12px;min-height:0;color:var(--color-text-secondary);">Reset</button>':'')+
-          '</div>'+
-        '</div>'+
-      '</div>';
+    function saveStats() {
+      localStorage.setItem(STORE_KEY, JSON.stringify(stats));
+    }
+
+    function byId(id) {
+      return BANK.find((question) => question.id === id);
+    }
+
+    function percent(part, whole) {
+      return whole ? Math.round((part / whole) * 100) : 0;
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let index = copy.length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+      }
+      return copy;
+    }
+
+    function show(screenId) {
+      ['homeScreen', 'quizScreen', 'reviewScreen'].forEach((id) => {
+        document.getElementById(id).hidden = id !== screenId;
+      });
+    }
+
+    function updateHome() {
+      const answeredCount = Object.keys(stats.answered).filter((id) => byId(id)).length;
+      const missedCount = Object.keys(stats.missed).filter((id) => byId(id)).length;
+      const progress = percent(answeredCount, BANK.length);
+      const accuracy = percent(stats.correctAttempts, stats.attempts);
+      document.getElementById('homeProgress').textContent = progress + '%';
+      document.getElementById('homeProgressBar').style.width = progress + '%';
+      document.getElementById('homeAnswered').textContent = answeredCount + '/' + BANK.length;
+      document.getElementById('homeAccuracy').textContent = accuracy + '%';
+      document.getElementById('homeMissed').textContent = missedCount;
+      document.getElementById('testMissedBtn').disabled = missedCount === 0;
+      document.getElementById('reviewMissedBtn').disabled = missedCount === 0;
+    }
+
+    function buildSessionItems(ids) {
+      return shuffle(ids).map((id) => {
+        const question = byId(id);
+        const choices = shuffle(question.choices.map((text, originalIndex) => ({
+          text,
+          correct: originalIndex === question.answer
+        })));
+        return { id, choices };
+      });
+    }
+
+    function startSession(mode) {
+      const ids = mode === 'missed'
+        ? Object.keys(stats.missed).filter((id) => byId(id))
+        : BANK.map((question) => question.id);
+
+      if (ids.length === 0) {
+        alert('No missed questions yet. Take the exam first.');
+        updateHome();
+        return;
+      }
+
+      session = {
+        mode,
+        title: mode === 'missed' ? 'Test Missed' : 'Exam',
+        items: buildSessionItems(ids),
+        index: 0,
+        answers: {}
+      };
+      show('quizScreen');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const item = session.items[session.index];
+      const question = byId(item.id);
+      const selected = session.answers[item.id];
+      const questionNumber = session.index + 1;
+      const progress = percent(session.index, session.items.length);
+
+      document.getElementById('quizTitle').textContent = session.title;
+      document.getElementById('quizCounter').textContent = 'Question ' + questionNumber + ' of ' + session.items.length;
+      document.getElementById('quizProgressBar').style.width = progress + '%';
+      document.getElementById('questionSource').textContent = question.unit + ' • ' + question.topic + ' • ' + question.source;
+      document.getElementById('questionPrompt').textContent = question.prompt;
+
+      const choiceList = document.getElementById('choiceList');
+      choiceList.innerHTML = '';
+      item.choices.forEach((choice, choiceIndex) => {
+        const button = document.createElement('button');
+        button.className = 'choice' + (selected === choiceIndex ? ' selected' : '');
+        button.type = 'button';
+        button.innerHTML = '<span class="letter">' + letters[choiceIndex] + '</span><span>' + escapeHtml(choice.text) + '</span>';
+        button.addEventListener('click', () => selectChoice(choiceIndex));
+        choiceList.appendChild(button);
+      });
+
+      document.getElementById('backBtn').disabled = session.index === 0;
+      document.getElementById('nextBtn').disabled = selected === undefined;
+      document.getElementById('nextBtn').textContent = session.index === session.items.length - 1 ? 'Finish' : 'Next';
+    }
+
+    function selectChoice(choiceIndex) {
+      const item = session.items[session.index];
+      session.answers[item.id] = choiceIndex;
+      renderQuestion();
+    }
+
+    function goNext() {
+      const item = session.items[session.index];
+      if (session.answers[item.id] === undefined) return;
+      if (session.index < session.items.length - 1) {
+        session.index += 1;
+        renderQuestion();
+      } else {
+        finishSession();
+      }
+    }
+
+    function goBack() {
+      if (!session || session.index === 0) return;
+      session.index -= 1;
+      renderQuestion();
+    }
+
+    function finishSession() {
+      let correctCount = 0;
+      const missedThisSession = [];
+
+      session.items.forEach((item) => {
+        const question = byId(item.id);
+        const selectedIndex = session.answers[item.id];
+        const selectedChoice = item.choices[selectedIndex];
+        const wasCorrect = Boolean(selectedChoice && selectedChoice.correct);
+
+        stats.answered[item.id] = true;
+        stats.attempts += 1;
+
+        if (wasCorrect) {
+          correctCount += 1;
+          stats.correctAttempts += 1;
+          stats.correct[item.id] = true;
+          delete stats.missed[item.id];
+        } else {
+          delete stats.correct[item.id];
+          stats.missed[item.id] = true;
+          missedThisSession.push({
+            question,
+            selected: selectedChoice ? selectedChoice.text : 'No answer selected',
+            correct: question.choices[question.answer]
+          });
+        }
+      });
+
+      saveStats();
+      renderReview(correctCount, missedThisSession);
+      session = null;
+      updateHome();
+    }
+
+    function renderReview(correctCount, missedThisSession) {
+      const total = session.items.length;
+      const score = percent(correctCount, total);
+      const modeName = session.mode === 'missed' ? 'Missed Test' : 'Exam';
+
+      document.getElementById('reviewTitle').textContent = modeName + ' Complete';
+      document.getElementById('reviewCopy').textContent = missedThisSession.length === 0
+        ? 'Clean run. Nothing was added to missed.'
+        : 'These questions are in missed. Test them until they clear.';
+      document.getElementById('reviewScore').textContent = score + '%';
+      document.getElementById('reviewCorrect').textContent = correctCount + '/' + total;
+      document.getElementById('reviewMissed').textContent = missedThisSession.length;
+
+      const missedList = document.getElementById('sessionMissedList');
+      missedList.innerHTML = '';
+      missedThisSession.forEach((entry) => {
+        const item = document.createElement('div');
+        item.className = 'missed-item';
+        item.innerHTML = `
+          <strong>${escapeHtml(entry.question.prompt)}</strong>
+          <p>Your answer: ${escapeHtml(entry.selected)}</p>
+          <p class="answer-line">Correct answer: ${escapeHtml(entry.correct)}</p>
+          <p>${escapeHtml(entry.question.explanation)}</p>
+        `;
+        missedList.appendChild(item);
+      });
+
+      show('reviewScreen');
+    }
+
+    function clearAll() {
+      if (!confirm('Clear all progress and missed questions?')) return;
+      localStorage.removeItem(STORE_KEY);
+      stats = loadStats();
+      session = null;
+      updateHome();
+      show('homeScreen');
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    document.getElementById('startExamBtn').addEventListener('click', () => startSession('exam'));
+    document.getElementById('testMissedBtn').addEventListener('click', () => startSession('missed'));
+    document.getElementById('clearAllBtn').addEventListener('click', clearAll);
+    document.getElementById('reviewExamBtn').addEventListener('click', () => startSession('exam'));
+    document.getElementById('reviewMissedBtn').addEventListener('click', () => startSession('missed'));
+    document.getElementById('reviewHomeBtn').addEventListener('click', () => { updateHome(); show('homeScreen'); });
+    document.getElementById('exitQuizBtn').addEventListener('click', () => {
+      if (confirm('Exit this session? Answers from this unfinished run will not be saved.')) {
+        session = null;
+        updateHome();
+        show('homeScreen');
+      }
     });
-    html+='</div>';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid var(--color-border-tertiary);padding-top:12px;">'+
-      '<span style="font-size:13px;color:var(--color-text-secondary);">'+done_n+' sections scored</span>'+
-      '<button id="resetAll" style="padding:3px 12px;font-size:13px;min-height:0;">Reset all scores</button></div>';
-    hub.innerHTML=html;
-    Array.prototype.forEach.call(hub.querySelectorAll('[data-start]'),function(b){b.onclick=function(){startSection(b.getAttribute('data-start'));};});
-    Array.prototype.forEach.call(hub.querySelectorAll('[data-reset]'),function(b){b.onclick=function(){delete scores[b.getAttribute('data-reset')];save();renderHub();};});
-    document.getElementById('resetAll').onclick=function(){scores={};save();renderHub();};
-  }
-
-  var cur=null,order=[],i=0,right=0,ans=0,missed=[];
-  function startSection(L){
-    cur=L;var d=DATA[L];
-    order=sh(d.qs.map(function(_,k){return k;}));
-    i=0;right=0;ans=0;missed=[];
-    hub.style.display='none';quiz.style.display='block';
-    done.style.display='none';card.style.display='block';
-    qhead.innerHTML=(d.master?'Master gauntlet':'Worksheet '+L)+' &mdash; '+esc(d.title)+(d.note?'<div style="font-size:12px;color:var(--color-text-tertiary);font-weight:400;margin-top:3px;">'+esc(d.note)+'</div>':'');
-    render();
-  }
-  function render(){
-    var d=DATA[cur],it=d.qs[order[i]],ok=it[1][0];
-    prog.textContent=(i+1)+' / '+d.qs.length;sc.textContent=right+' correct';q.textContent=it[0];
-    fb.style.display='none';nx.style.display='none';opts.innerHTML='';
-    sh(it[1].slice()).forEach(function(t){
-      var b=document.createElement('button');b.textContent=t;
-      b.style.cssText='text-align:left;justify-content:flex-start;padding:10px 14px;font-size:15px;line-height:1.4;width:100%;';
-      b.onclick=function(){pick(b,t===ok,ok,it[0]);};opts.appendChild(b);
+    document.getElementById('nextBtn').addEventListener('click', goNext);
+    document.getElementById('backBtn').addEventListener('click', goBack);
+    document.addEventListener('keydown', (event) => {
+      if (!session) return;
+      const key = event.key.toUpperCase();
+      const choiceIndex = letters.indexOf(key);
+      if (choiceIndex >= 0 && choiceIndex < 4) selectChoice(choiceIndex);
+      if (event.key === 'Enter' && !document.getElementById('nextBtn').disabled) goNext();
     });
-  }
-  function pick(b,good,ok,qtext){
-    ans++;for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
-    if(good){right++;b.style.borderColor='var(--color-border-success)';b.style.background='var(--color-background-success)';b.style.color='var(--color-text-success)';fb.textContent='Correct.';fb.style.color='var(--color-text-success)';}
-    else{missed.push(qtext);b.style.borderColor='var(--color-border-danger)';b.style.background='var(--color-background-danger)';b.style.color='var(--color-text-danger)';
-      for(var k=0;k<opts.children.length;k++){if(opts.children[k].textContent===ok){opts.children[k].style.borderColor='var(--color-border-success)';opts.children[k].style.background='var(--color-background-success)';opts.children[k].style.color='var(--color-text-success)';}}
-      fb.innerHTML='Incorrect. Answer: <b style="font-weight:600;">'+esc(ok)+'</b>';fb.style.color='var(--color-text-danger)';}
-    fb.style.display='block';sc.textContent=right+' correct';
-    nx.textContent=(i+1<DATA[cur].qs.length)?'Next':'See results';nx.style.display='inline-flex';
-  }
-  nx.onclick=function(){if(i+1<DATA[cur].qs.length){i++;render();}else finish();};
-  restartTop.onclick=function(){startSection(cur);};
-  toHub.onclick=function(){renderHub();};
-  function finish(){
-    var d=DATA[cur],total=d.qs.length,pct=Math.round(right/total*100),perfect=right===total;
-    scores[cur]={right:right,total:total,pct:pct};save();
-    card.style.display='none';nx.style.display='none';
-    done.style.display='block';
-    done.innerHTML='<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:6px;">'+(d.master?'Master gauntlet':'Worksheet '+cur)+' &mdash; '+esc(d.title)+'</div>'+
-      '<div style="font-size:44px;font-weight:600;color:'+(perfect?'var(--color-text-success)':'var(--color-text-primary)')+';">'+pct+'%</div>'+
-      '<div style="font-size:15px;color:var(--color-text-secondary);margin:4px 0 22px;">'+right+' of '+total+' correct</div>'+
-      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'+
-      '<button id="backHub">Back to hub</button>'+
-      '<button id="again">Restart section</button></div>';
-    document.getElementById('backHub').onclick=function(){renderHub();};
-    document.getElementById('again').onclick=function(){startSection(cur);};
-  }
 
-  renderHub();
-})();
-</script>
+    updateHome();
+  </script>
 </body>
 </html>
