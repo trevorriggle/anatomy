@@ -151,10 +151,21 @@
       line-height: 1.4;
     }
     .choice:hover { background: #f8fafc; }
+    .choice:disabled { cursor: default; opacity: 1; }
     .choice.selected {
       border-color: var(--accent);
       box-shadow: inset 0 0 0 1px var(--accent);
       background: #eff6ff;
+    }
+    .choice.correct {
+      border-color: var(--good);
+      box-shadow: inset 0 0 0 1px var(--good);
+      background: #ecfdf3;
+    }
+    .choice.incorrect {
+      border-color: var(--bad);
+      box-shadow: inset 0 0 0 1px var(--bad);
+      background: #fef2f2;
     }
     .letter {
       display: inline-flex;
@@ -167,6 +178,24 @@
       font-weight: 850;
       color: var(--accent);
     }
+    .feedback {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-top: 14px;
+      padding: 14px;
+      background: #fafbfc;
+      line-height: 1.45;
+    }
+    .feedback.good {
+      border-color: rgba(21, 128, 61, 0.35);
+      background: #ecfdf3;
+    }
+    .feedback.bad {
+      border-color: rgba(185, 28, 28, 0.35);
+      background: #fef2f2;
+    }
+    .feedback strong { display: block; margin-bottom: 6px; }
+    .feedback p { margin: 0; color: var(--text); }
     .quiz-footer {
       display: flex;
       justify-content: space-between;
@@ -228,6 +257,7 @@
     <div class="topbar">
       <button class="btn secondary" id="exitQuizBtn">Exit</button>
       <div class="topbar-title" id="quizTitle">Exam</div>
+      <div class="pill" id="liveScore">Live: 0% (0/0)</div>
       <div class="pill" id="quizCounter">Question 1 of 1</div>
     </div>
     <div class="progress" aria-hidden="true"><span id="quizProgressBar"></span></div>
@@ -235,6 +265,7 @@
       <div class="source" id="questionSource"></div>
       <h2 id="questionPrompt"></h2>
       <div class="choices" id="choiceList"></div>
+      <div class="feedback" id="feedbackBox" hidden></div>
       <div class="quiz-footer">
         <button class="btn secondary" id="backBtn">Back</button>
         <button class="btn" id="nextBtn" disabled>Next</button>
@@ -358,16 +389,31 @@
       renderQuestion();
     }
 
+    function getSessionResults() {
+      const answeredItems = session.items.filter((item) => session.answers[item.id] !== undefined);
+      const correctItems = answeredItems.filter((item) => item.choices[session.answers[item.id]].correct);
+      return { answered: answeredItems.length, correct: correctItems.length };
+    }
+
+    function updateLiveScore() {
+      const results = getSessionResults();
+      const livePercent = percent(results.correct, results.answered);
+      const progressPercent = percent(results.answered, session.items.length);
+      document.getElementById('liveScore').textContent = 'Live: ' + livePercent + '% (' + results.correct + '/' + results.answered + ')';
+      document.getElementById('quizProgressBar').style.width = progressPercent + '%';
+    }
+
     function renderQuestion() {
       const item = session.items[session.index];
       const question = byId(item.id);
       const selected = session.answers[item.id];
+      const isAnswered = selected !== undefined;
+      const selectedChoice = isAnswered ? item.choices[selected] : null;
       const questionNumber = session.index + 1;
-      const progress = percent(session.index, session.items.length);
 
       document.getElementById('quizTitle').textContent = session.title;
       document.getElementById('quizCounter').textContent = 'Question ' + questionNumber + ' of ' + session.items.length;
-      document.getElementById('quizProgressBar').style.width = progress + '%';
+      updateLiveScore();
       document.getElementById('questionSource').textContent = question.unit + ' • ' + question.topic + ' • ' + question.source;
       document.getElementById('questionPrompt').textContent = question.prompt;
 
@@ -375,21 +421,61 @@
       choiceList.innerHTML = '';
       item.choices.forEach((choice, choiceIndex) => {
         const button = document.createElement('button');
-        button.className = 'choice' + (selected === choiceIndex ? ' selected' : '');
+        let className = 'choice';
+        if (isAnswered && choice.correct) className += ' correct';
+        if (isAnswered && selected === choiceIndex && !choice.correct) className += ' incorrect';
+        if (isAnswered && selected === choiceIndex) className += ' selected';
+        button.className = className;
         button.type = 'button';
+        button.disabled = isAnswered;
         button.innerHTML = '<span class="letter">' + letters[choiceIndex] + '</span><span>' + escapeHtml(choice.text) + '</span>';
         button.addEventListener('click', () => selectChoice(choiceIndex));
         choiceList.appendChild(button);
       });
 
+      const feedbackBox = document.getElementById('feedbackBox');
+      if (isAnswered) {
+        const wasCorrect = Boolean(selectedChoice && selectedChoice.correct);
+        feedbackBox.hidden = false;
+        feedbackBox.className = 'feedback ' + (wasCorrect ? 'good' : 'bad');
+        feedbackBox.innerHTML = wasCorrect
+          ? '<strong>Correct.</strong><p>' + escapeHtml(question.explanation) + '</p>'
+          : '<strong>Wrong.</strong><p>Correct answer: ' + escapeHtml(question.choices[question.answer]) + '</p><p>' + escapeHtml(question.explanation) + '</p>';
+      } else {
+        feedbackBox.hidden = true;
+        feedbackBox.className = 'feedback';
+        feedbackBox.innerHTML = '';
+      }
+
       document.getElementById('backBtn').disabled = session.index === 0;
-      document.getElementById('nextBtn').disabled = selected === undefined;
+      document.getElementById('nextBtn').disabled = !isAnswered;
       document.getElementById('nextBtn').textContent = session.index === session.items.length - 1 ? 'Finish' : 'Next';
+    }
+
+    function recordAnswer(item, choiceIndex) {
+      const question = byId(item.id);
+      const wasCorrect = Boolean(item.choices[choiceIndex] && item.choices[choiceIndex].correct);
+
+      stats.answered[item.id] = true;
+      stats.attempts += 1;
+
+      if (wasCorrect) {
+        stats.correctAttempts += 1;
+        stats.correct[item.id] = true;
+        delete stats.missed[item.id];
+      } else {
+        delete stats.correct[item.id];
+        stats.missed[item.id] = true;
+      }
+
+      saveStats();
     }
 
     function selectChoice(choiceIndex) {
       const item = session.items[session.index];
+      if (session.answers[item.id] !== undefined) return;
       session.answers[item.id] = choiceIndex;
+      recordAnswer(item, choiceIndex);
       renderQuestion();
     }
 
@@ -420,17 +506,9 @@
         const selectedChoice = item.choices[selectedIndex];
         const wasCorrect = Boolean(selectedChoice && selectedChoice.correct);
 
-        stats.answered[item.id] = true;
-        stats.attempts += 1;
-
         if (wasCorrect) {
           correctCount += 1;
-          stats.correctAttempts += 1;
-          stats.correct[item.id] = true;
-          delete stats.missed[item.id];
         } else {
-          delete stats.correct[item.id];
-          stats.missed[item.id] = true;
           missedThisSession.push({
             question,
             selected: selectedChoice ? selectedChoice.text : 'No answer selected',
@@ -439,7 +517,6 @@
         }
       });
 
-      saveStats();
       renderReview(correctCount, missedThisSession);
       session = null;
       updateHome();
