@@ -220,6 +220,29 @@
     .missed-item strong { display: block; margin-bottom: 8px; }
     .missed-item p { margin: 6px 0 0; }
     .answer-line { color: var(--good); font-weight: 750; }
+    .export-panel {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+    .export-text {
+      width: 100%;
+      min-height: 360px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+      color: var(--text);
+      font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      -webkit-user-select: text;
+      user-select: text;
+    }
+    .export-status {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
     [hidden] { display: none !important; }
     @media (max-width: 760px) {
       .app { width: min(100% - 20px, 900px); padding: 16px 0; }
@@ -248,6 +271,7 @@
       <div class="actions">
         <button class="btn" id="startExamBtn">Start Exam</button>
         <button class="btn secondary" id="testMissedBtn">Test Missed</button>
+        <button class="btn secondary" id="copyMissedBtn">Copy Missed</button>
         <button class="btn danger" id="clearAllBtn">Clear All</button>
       </div>
     </section>
@@ -285,9 +309,26 @@
       <div class="actions">
         <button class="btn" id="reviewExamBtn">Start Exam</button>
         <button class="btn secondary" id="reviewMissedBtn">Test Missed</button>
+        <button class="btn secondary" id="reviewExportBtn">Copy Missed</button>
         <button class="btn secondary" id="reviewHomeBtn">Home</button>
       </div>
       <div class="missed-list" id="sessionMissedList"></div>
+    </section>
+  </main>
+
+  <main id="exportScreen" class="app" hidden>
+    <section class="card">
+      <h1>Missed Questions</h1>
+      <p>Copy this block into ChatGPT/AI. It includes each missed question, the answer you selected, the correct answer, and the explanation. On iPhone/iPad, use <strong>Select All Text</strong> if clipboard copy is blocked.</p>
+      <div class="actions">
+        <button class="btn" id="exportCopyBtn">Copy to Clipboard</button>
+        <button class="btn secondary" id="exportSelectBtn">Select All Text</button>
+        <button class="btn secondary" id="exportHomeBtn">Home</button>
+      </div>
+      <p class="export-status" id="exportStatus" aria-live="polite"></p>
+      <div class="export-panel">
+        <textarea class="export-text" id="missedExportText" readonly spellcheck="false" aria-label="Missed questions export text"></textarea>
+      </div>
     </section>
   </main>
 
@@ -337,7 +378,7 @@
     }
 
     function show(screenId) {
-      ['homeScreen', 'quizScreen', 'reviewScreen'].forEach((id) => {
+      ['homeScreen', 'quizScreen', 'reviewScreen', 'exportScreen'].forEach((id) => {
         document.getElementById(id).hidden = id !== screenId;
       });
     }
@@ -354,6 +395,10 @@
       document.getElementById('homeMissed').textContent = missedCount;
       document.getElementById('testMissedBtn').disabled = missedCount === 0;
       document.getElementById('reviewMissedBtn').disabled = missedCount === 0;
+      ['copyMissedBtn', 'reviewExportBtn', 'exportCopyBtn', 'exportSelectBtn'].forEach((id) => {
+        const button = document.getElementById(id);
+        if (button) button.disabled = missedCount === 0;
+      });
     }
 
     function buildSessionItems(ids) {
@@ -464,8 +509,15 @@
         stats.correct[item.id] = true;
         delete stats.missed[item.id];
       } else {
+        const selectedChoice = item.choices[choiceIndex];
+        const selectedOriginalIndex = question.choices.findIndex((choice) => choice === selectedChoice.text);
         delete stats.correct[item.id];
-        stats.missed[item.id] = true;
+        stats.missed[item.id] = {
+          selectedText: selectedChoice.text,
+          selectedLetter: selectedOriginalIndex >= 0 ? letters[selectedOriginalIndex] : '?',
+          selectedOriginalIndex: selectedOriginalIndex,
+          savedAt: new Date().toISOString()
+        };
       }
 
       saveStats();
@@ -552,6 +604,101 @@
       show('reviewScreen');
     }
 
+    function getMissedQuestions() {
+      return Object.keys(stats.missed)
+        .filter((id) => byId(id))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .map((id) => byId(id));
+    }
+
+    function formatMissedQuestionsForAI() {
+      const missed = getMissedQuestions();
+      if (missed.length === 0) return '';
+
+      const lines = [
+        'COW Upper Limb Quiz - Missed Questions',
+        'Help me study these. I included what I selected, the correct answer, and the explanation for every missed question. Explain the patterns I am missing, then quiz me one at a time without giving the answers first.',
+        '',
+        'Total missed: ' + missed.length,
+        ''
+      ];
+
+      missed.forEach((question, questionIndex) => {
+        lines.push((questionIndex + 1) + '. [' + question.unit + ' • ' + question.topic + ' • ' + question.source + ']');
+        lines.push('Question: ' + question.prompt);
+        question.choices.forEach((choice, choiceIndex) => {
+          lines.push(letters[choiceIndex] + '. ' + choice);
+        });
+        const missedRecord = stats.missed[question.id];
+        if (missedRecord && typeof missedRecord === 'object' && missedRecord.selectedText) {
+          const selectedLetter = missedRecord.selectedLetter || '?';
+          lines.push('My selected answer: ' + selectedLetter + '. ' + missedRecord.selectedText);
+        } else {
+          lines.push('My selected answer: Not saved in this older missed record. Retest missed questions to capture selected answers.');
+        }
+        lines.push('Correct answer: ' + letters[question.answer] + '. ' + question.choices[question.answer]);
+        lines.push('Explanation: ' + question.explanation);
+        lines.push('');
+      });
+
+      return lines.join('\n').trim();
+    }
+
+    function refreshExportText() {
+      const box = document.getElementById('missedExportText');
+      if (box) box.value = formatMissedQuestionsForAI();
+    }
+
+    function openExportScreen(message) {
+      const text = formatMissedQuestionsForAI();
+      if (!text) {
+        alert('No missed questions yet. Miss some in the exam first, then come back here.');
+        updateHome();
+        return false;
+      }
+
+      document.getElementById('missedExportText').value = text;
+      document.getElementById('exportStatus').textContent = message || 'Ready to copy. If you are on iPhone/iPad and copy is blocked, tap Select All Text, then Copy.';
+      show('exportScreen');
+      updateHome();
+      return true;
+    }
+
+    function selectMissedText(message) {
+      if (!openExportScreen(message || 'Text selected. On iPhone/iPad, tap the selected text and choose Copy.')) return;
+      const box = document.getElementById('missedExportText');
+      box.focus();
+      box.select();
+      box.setSelectionRange(0, box.value.length);
+    }
+
+    async function copyMissedToClipboard() {
+      if (!openExportScreen('Copying missed questions...')) return;
+      const text = document.getElementById('missedExportText').value;
+      const status = document.getElementById('exportStatus');
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          status.textContent = 'Copied. Paste it into ChatGPT/AI and ask for help.';
+          return;
+        }
+      } catch (error) {}
+
+      try {
+        const box = document.getElementById('missedExportText');
+        box.focus();
+        box.select();
+        box.setSelectionRange(0, box.value.length);
+        const copied = document.execCommand && document.execCommand('copy');
+        status.textContent = copied
+          ? 'Copied. Paste it into ChatGPT/AI and ask for help.'
+          : 'Clipboard was blocked, but the text is selected. On iPhone/iPad, tap the selection and choose Copy.';
+      } catch (error) {
+        selectMissedText('Clipboard was blocked, but the text is selected. On iPhone/iPad, tap the selection and choose Copy.');
+      }
+    }
+
     function clearAll() {
       if (!confirm('Clear all progress and missed questions?')) return;
       localStorage.removeItem(STORE_KEY);
@@ -573,11 +720,16 @@
     document.getElementById('startExamBtn').addEventListener('click', () => startSession('exam'));
     document.getElementById('testMissedBtn').addEventListener('click', () => startSession('missed'));
     document.getElementById('clearAllBtn').addEventListener('click', clearAll);
+    document.getElementById('copyMissedBtn').addEventListener('click', copyMissedToClipboard);
     document.getElementById('reviewExamBtn').addEventListener('click', () => startSession('exam'));
     document.getElementById('reviewMissedBtn').addEventListener('click', () => startSession('missed'));
+    document.getElementById('reviewExportBtn').addEventListener('click', copyMissedToClipboard);
     document.getElementById('reviewHomeBtn').addEventListener('click', () => { updateHome(); show('homeScreen'); });
+    document.getElementById('exportCopyBtn').addEventListener('click', copyMissedToClipboard);
+    document.getElementById('exportSelectBtn').addEventListener('click', () => selectMissedText());
+    document.getElementById('exportHomeBtn').addEventListener('click', () => { updateHome(); show('homeScreen'); });
     document.getElementById('exitQuizBtn').addEventListener('click', () => {
-      if (confirm('Exit this session? Answers from this unfinished run will not be saved.')) {
+      if (confirm('Exit this session? Clicked answers are already saved, but this run will not be finished.')) {
         session = null;
         updateHome();
         show('homeScreen');
