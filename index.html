@@ -2,1463 +2,519 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<title>Head &amp; Neck Drill Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Trunk Unit Drill Hub &mdash; Thorax / Abdomen / Pelvis</title>
 <style>
-  :root{
-    --ground:#14211f;
-    --ground-2:#1b2c29;
-    --panel:#12726a;
-    --panel-edge:#0b1614;
-    --cream:#f4e8cd;
-    --cream-2:#fbf3e0;
-    --cream-line:#ddcb9f;
-    --ink:#20201a;
-    --ink-soft:#6f6650;
-    --bone:#f7f0dd;
-    --slate:#8fa6a2;
-    --cherry:#df4133;
-    --cherry-deep:#af2c20;
-    --teal:#1fa093;
-    --teal-deep:#0f5f58;
-    --gold:#f0ab2b;
-    --gold-deep:#bd7f12;
-    --hard:#0b1614;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:
-      radial-gradient(ellipse at 18% -12%, #24413b 0%, transparent 52%),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,.012) 0 2px, transparent 2px 22px),
-      var(--ground);
-    color:var(--bone);
-    font-family:"Barlow",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    line-height:1.45;
-    min-height:100vh;
-    -webkit-font-smoothing:antialiased;
-  }
-  .display{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;}
-  .mono{font-family:"Anton",Impact,sans-serif;font-weight:400;letter-spacing:.01em;}
-  a{color:inherit}
-  button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  button:focus-visible, .choice:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --board:#14161a;
+  --board-2:#191c21;
+  --plate:#ece6d6;
+  --plate-edge:#cdbf9a;
+  --ink:#20201b;
+  --ink-soft:#5b564c;
+  --brass:#c69a3e;
+  --brass-deep:#8a6a24;
+  --crimson:#a83f2c;
+  --crimson-soft:#3a1f1a;
+  --patina:#4f8073;
+  --patina-soft:#17281f;
+  --slate:#7f858b;
+  --bone:#e7e1d3;
+  --line:#2c3037;
+  --good:#5b9a6f;
+  --bad:#bb5140;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(ellipse at 15% -10%, #21252b 0%, transparent 55%), var(--board);
+  color:var(--bone);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.disp{font-family:"Space Grotesk",Georgia,serif;}
+.mono{font-family:"Space Mono",ui-monospace,Menlo,Consolas,monospace;}
+button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:none;background:none;color:inherit}
+button:focus-visible,.opt:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.wrap{max-width:820px;margin:0 auto;padding:22px 16px 96px;}
 
-  /* ---------- shell ---------- */
-  .shell{max-width:760px;margin:0 auto;padding:26px 16px 80px;}
-  header.top{
-    display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
-    border-bottom:4px solid var(--cherry);padding-bottom:14px;margin-bottom:24px;
-  }
-  header.top h1{
-    font-family:"Alfa Slab One",Georgia,serif;
-    font-size:30px;margin:0;line-height:1.02;letter-spacing:.05em;color:var(--bone);
-    text-shadow:2.5px 2.5px 0 var(--cherry-deep);
-  }
-  header.top .tag{
-    font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.18em;
-    font-weight:700;margin-top:8px;
-  }
-  .reset-link{
-    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
-    color:var(--bone);background:transparent;border:2.5px solid var(--slate);
-    padding:8px 12px;border-radius:6px;white-space:nowrap;
-    box-shadow:3px 3px 0 var(--hard);transition:transform .08s,box-shadow .08s;
-  }
-  .reset-link:hover{border-color:var(--cherry);color:var(--cherry);}
-  .reset-link:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--hard);}
+/* header */
+header.top{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px;}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
+.masterbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+.masterpct{font-size:34px;font-weight:700;font-family:"Space Mono";color:var(--brass)}
+.masterlabel{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.track{flex:1;min-width:160px;height:8px;background:#23262c;border-radius:6px;overflow:hidden}
+.track > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .4s}
 
-  /* ---------- master card ---------- */
-  .master{
-    background:var(--panel);
-    border:3px solid var(--panel-edge);border-radius:8px;
-    padding:20px 20px 18px;margin-bottom:28px;position:relative;overflow:hidden;
-    box-shadow:7px 7px 0 rgba(0,0,0,.42);
-    border-top:8px solid var(--gold);
-  }
-  .master::before{
-    content:"°5";
-    position:absolute;top:12px;right:16px;
-    font-size:26px;color:var(--gold);line-height:1;
-    text-shadow:2px 2px 0 var(--panel-edge);
-  }
-  .master h2{
-    margin:0 0 3px;font-size:26px;font-family:"Alfa Slab One",Georgia,serif;
-    color:var(--bone);letter-spacing:.045em;line-height:1;
-  }
-  .master .sub{color:#c8e9e4;font-size:13.5px;margin-bottom:18px;font-weight:500;}
-  .master-stats{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
-  .stamp{
-    font-family:"Anton",Impact,sans-serif;font-size:44px;color:var(--gold);
-    line-height:.9;text-shadow:2px 2px 0 var(--panel-edge);
-  }
-  .stamp-label{font-size:10px;color:#a9d6cf;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-top:4px;}
-  .missed-pill{
-    font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-    color:var(--bone);background:var(--cherry);border:2.5px solid var(--panel-edge);
-    padding:5px 12px;border-radius:99px;box-shadow:2px 2px 0 var(--panel-edge);
-  }
-  .missed-pill.zero{color:#a9d6cf;background:transparent;border-color:#2a8a80;box-shadow:none;}
-  .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
-  .btn{
-    border-radius:6px;padding:11px 18px;font-size:13px;font-weight:700;
-    text-transform:uppercase;letter-spacing:.05em;
-    border:2.5px solid var(--panel-edge);display:inline-block;
-    box-shadow:3px 3px 0 var(--panel-edge);transition:transform .08s,box-shadow .08s;
-  }
-  .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--panel-edge);}
-  .btn-primary{background:var(--cherry);color:var(--bone);}
-  .btn-primary:hover{background:#e9513f;}
-  .btn-ghost{background:transparent;color:var(--bone);}
-  .btn-ghost:hover{background:rgba(247,240,221,.1);color:var(--gold);border-color:var(--gold);}
-  .btn-ghost:disabled{opacity:.35;cursor:default;box-shadow:none;}
-  .btn-ghost:disabled:hover{background:transparent;color:var(--bone);border-color:var(--panel-edge);}
-  .btn-ghost.copied{background:var(--gold);color:var(--ink);border-color:var(--panel-edge);}
-  .btn-ghost.copied:hover{background:var(--gold);color:var(--ink);}
+/* section grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.card{background:var(--board-2);border:1px solid var(--line);border-radius:10px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.card .tag{position:absolute;top:0;right:0;font-family:"Space Mono";font-size:38px;font-weight:700;color:#20242a;line-height:1;padding:6px 12px 0 0;letter-spacing:-.03em}
+.card h3{margin:0;font-size:15px;font-weight:600;padding-right:34px}
+.card .meta{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--slate)}
+.card .scorepct{font-family:"Space Mono";font-size:20px;font-weight:700;color:var(--bone)}
+.card .minibar{height:5px;background:#23262c;border-radius:4px;overflow:hidden}
+.card .minibar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .4s}
+.btnrow{display:flex;gap:7px;margin-top:2px}
+.btn{flex:1;text-align:center;font-size:12px;font-weight:600;padding:8px 6px;border-radius:7px;letter-spacing:.02em;border:1px solid transparent;transition:transform .06s,background .15s}
+.btn:active{transform:translateY(1px)}
+.btn.practice{background:#242830;color:var(--bone);border-color:#333944}
+.btn.practice:hover{background:#2b303a}
+.btn.exam{background:var(--crimson-soft);color:#e7b3a6;border-color:#5a2a20}
+.btn.exam:hover{background:#4a271f}
+.btn.drill{background:var(--patina-soft);color:#a7d2bf;border-color:#28453a}
+.btn.drill:hover{background:#1f3a2e}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.missflag{font-family:"Space Mono";font-size:11px;color:var(--crimson);}
+.missflag.zero{color:var(--slate);opacity:.6}
 
-  /* ---------- category index cards ---------- */
-  .index-label{
-    font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.16em;
-    font-weight:700;margin:26px 2px 14px;
-  }
-  .card{
-    background:var(--cream);color:var(--ink);border-radius:4px;
-    border:2.5px solid var(--hard);
-    box-shadow:5px 5px 0 rgba(0,0,0,.42);
-    padding:15px 16px 14px 18px;margin-bottom:14px;
-    position:relative;border-left:8px solid var(--cherry);
-    transition:transform .1s,box-shadow .1s;
-  }
-  .card:hover{transform:translate(-1px,-1px);box-shadow:7px 7px 0 rgba(0,0,0,.42);}
-  #cardList > .card:nth-child(3n+2){border-left-color:var(--teal);}
-  #cardList > .card:nth-child(3n){border-left-color:var(--gold);}
-  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-  .card-letter{
-    font-size:10.5px;color:var(--ink-soft);font-weight:700;
-    letter-spacing:.12em;margin-bottom:3px;text-transform:uppercase;
-  }
-  .card h3{margin:0;font-size:17px;font-family:"Alfa Slab One",Georgia,serif;color:var(--ink);line-height:1.08;letter-spacing:.04em;}
-  .card-pct{
-    font-family:"Anton",Impact,sans-serif;font-size:30px;text-align:right;line-height:.85;
-  }
-  .card-pct .n{font-size:10px;color:var(--ink-soft);font-weight:600;display:block;margin-top:3px;font-family:"Barlow",sans-serif;}
-  .pct-none{color:var(--ink-soft);}
-  .pct-low{color:var(--cherry-deep);}
-  .pct-mid{color:var(--gold-deep);}
-  .pct-high{color:var(--teal-deep);}
-  .card-foot{
-    display:flex;justify-content:space-between;align-items:center;margin-top:12px;
-    padding-top:11px;border-top:2px dashed var(--cream-line);
-  }
-  .card-count{font-size:12px;color:var(--ink-soft);font-weight:500;}
-  .card-count b{color:var(--ink);font-weight:700;}
-  .card-btns{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
-  .card-btn{
-    font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-    padding:7px 11px;border-radius:5px;border:2px solid var(--ink);
-    background:transparent;color:var(--ink);
-    box-shadow:2px 2px 0 var(--ink);transition:transform .08s,box-shadow .08s;
-  }
-  .card-btn:hover{background:var(--ink);color:var(--cream);}
-  .card-btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
-  .card-btn.missed{border-color:var(--cherry-deep);color:var(--cherry-deep);box-shadow:2px 2px 0 var(--cherry-deep);}
-  .card-btn.missed:hover{background:var(--cherry-deep);color:var(--cream);}
-  .card-btn.copy{border-color:var(--gold-deep);color:var(--gold-deep);box-shadow:2px 2px 0 var(--gold-deep);}
-  .card-btn.copy:hover{background:var(--gold-deep);color:var(--cream);}
-  .card-btn.copy.copied{background:var(--gold-deep);color:var(--cream);}
-  .card-btn:disabled{opacity:.3;border-color:var(--ink-soft);color:var(--ink-soft);cursor:default;box-shadow:none;}
-  .card-btn:disabled:hover{background:transparent;color:var(--ink-soft);}
-  .card-btn.copy:disabled:hover{background:transparent;color:var(--ink-soft);}
+/* master + custom cards span */
+.card.master{grid-column:1/-1;background:linear-gradient(180deg,#1b1f25,#15181d);border-color:#2f343c}
+.card.master .tag{color:#262b32}
+.card.wide{grid-column:1/-1}
+.subhead{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);margin:26px 0 10px}
 
-  footer.note{margin-top:30px;font-size:12px;color:var(--slate);text-align:center;line-height:1.7;font-weight:500;}
+/* custom chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.chip{font-family:"Space Mono";font-size:13px;padding:7px 12px;border-radius:20px;border:1px solid #333944;background:#20242a;color:var(--slate)}
+.chip.on{background:var(--brass);color:#1a1408;border-color:var(--brass);font-weight:700}
 
-  /* ---------- quiz screen ---------- */
-  .quiz-wrap{display:none;}
-  .quiz-wrap.active{display:block;}
-  .hub-wrap.hidden{display:none;}
-  .qhead{
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:12px;color:var(--slate);margin-bottom:12px;flex-wrap:wrap;gap:6px;
-  }
-  .qhead .back{border:none;background:none;color:var(--bone);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 0;}
-  .qhead .back:hover{color:var(--gold);}
-  .qhead .live{font-weight:600;color:var(--bone);}
-  .qhead .live b{color:var(--gold);font-weight:700;}
-  .progress-track{height:9px;background:var(--hard);border:2px solid var(--hard);border-radius:99px;overflow:hidden;margin-bottom:22px;}
-  .progress-fill{
-    height:100%;width:0%;transition:width .25s;
-    background:var(--gold);
-    background-image:repeating-linear-gradient(-45deg, rgba(0,0,0,.16) 0 6px, transparent 6px 12px);
-  }
+/* quiz */
+.quizhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.quizhead .where{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.quizhead .live{font-family:"Space Mono";font-size:13px;color:var(--slate)}
+.qtrack{height:6px;background:#23262c;border-radius:5px;overflow:hidden;margin-bottom:20px}
+.qtrack > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .3s}
+.plate{background:var(--plate);color:var(--ink);border-radius:12px;padding:22px 20px;box-shadow:0 1px 0 rgba(0,0,0,.4),0 14px 30px rgba(0,0,0,.4);position:relative}
+.plate::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;background:var(--crimson);border-radius:0 3px 3px 0}
+.qnum{font-family:"Space Mono";font-size:11px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:10px}
+.qtext{font-size:18px;font-weight:600;line-height:1.35;margin-bottom:18px;font-family:"Space Grotesk"}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:13px 14px;border-radius:9px;background:#f6f2e7;border:1.5px solid var(--plate-edge);font-size:15px;color:var(--ink);transition:background .12s,border-color .12s}
+.opt:hover:not(:disabled){background:#fbf8ef;border-color:var(--brass)}
+.opt .key{font-family:"Space Mono";font-weight:700;font-size:13px;color:var(--brass-deep);flex:none;width:16px}
+.opt.correct{background:#dcecdc;border-color:var(--good)}
+.opt.wrong{background:#f2d9d2;border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.feedback{margin-top:16px;font-size:14.5px;line-height:1.5;padding:13px 15px;border-radius:9px;display:none}
+.feedback.show{display:block}
+.feedback.right{background:#dcecdc;color:#1f4a2e}
+.feedback.miss{background:#f2d9d2;color:#6d271a}
+.feedback b{font-weight:700}
+.feedback .note{display:block;margin-top:6px;color:var(--ink-soft);font-size:13.5px}
+.flag{margin-top:12px;font-family:"Space Mono";font-size:12.5px;background:#fff3cd;border:1px solid #e3c766;color:#6b5310;padding:10px 12px;border-radius:8px;display:none}
+.flag.show{display:block}
+.qbtns{display:flex;gap:10px;margin-top:20px}
+.bigbtn{padding:13px 20px;border-radius:9px;font-size:14px;font-weight:700;letter-spacing:.02em}
+.bigbtn.next{background:var(--brass);color:#1a1408;flex:1}
+.bigbtn.next:hover{background:#d4a848}
+.bigbtn.ghost{background:#20242a;color:var(--bone);border:1px solid #333944}
+.bigbtn.ghost:hover{background:#282d34}
+.exam-note{font-family:"Space Mono";font-size:11px;color:var(--slate);margin-top:12px;text-align:center}
 
-  .qcard{
-    background:var(--cream);color:var(--ink);border-radius:6px;padding:22px 20px;
-    border:3px solid var(--hard);box-shadow:6px 6px 0 rgba(0,0,0,.42);
-  }
-  .qcat-tag{
-    font-size:11px;color:var(--cherry-deep);font-weight:700;
-    text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;
-  }
-  .qtext{font-size:18px;font-weight:600;line-height:1.42;margin-bottom:18px;color:var(--ink);}
-  .choices{display:flex;flex-direction:column;gap:9px;}
-  .choice{
-    text-align:left;background:var(--cream-2);border:2px solid var(--cream-line);border-radius:6px;
-    padding:12px 13px;font-size:15px;font-weight:500;color:var(--ink);
-    display:flex;gap:11px;align-items:flex-start;transition:border-color .1s,transform .06s;
-  }
-  .choice .k{font-family:"Anton",Impact,sans-serif;font-size:16px;color:var(--cherry-deep);flex-shrink:0;line-height:1.3;}
-  .choice:hover:not(:disabled){border-color:var(--teal-deep);transform:translateX(2px);}
-  .choice:disabled{cursor:default;}
-  .choice.correct{background:#deefe8;border-color:var(--teal-deep);color:#0e4b45;}
-  .choice.correct .k{color:var(--teal-deep);}
-  .choice.incorrect{background:#fbe0db;border-color:var(--cherry-deep);color:#7c241a;}
-  .choice.incorrect .k{color:var(--cherry-deep);}
-  .choice.dim{opacity:.45;}
+/* results */
+.results h2{font-family:"Space Grotesk";font-size:22px;margin:0 0 4px}
+.bigscore{font-family:"Space Mono";font-size:56px;font-weight:700;line-height:1;margin:10px 0}
+.bigscore.pass{color:var(--good)}
+.bigscore.mid{color:var(--brass)}
+.bigscore.low{color:var(--crimson)}
+.rtally{font-size:14px;color:var(--slate);margin-bottom:22px}
+.missblock{background:var(--board-2);border:1px solid var(--line);border-radius:10px;padding:4px 0;margin-bottom:20px}
+.missitem{padding:13px 16px;border-bottom:1px solid var(--line)}
+.missitem:last-child{border-bottom:none}
+.missitem .mq{font-size:14.5px;font-weight:600;margin-bottom:5px}
+.missitem .ma{font-size:13.5px;color:var(--good)}
+.missitem .mn{font-size:13px;color:var(--slate);margin-top:4px}
+.perfect{padding:24px 16px;text-align:center;color:var(--patina);font-size:15px}
 
-  .feedback{
-    margin-top:16px;padding:13px 15px;border-radius:6px;font-size:14px;line-height:1.5;
-    display:none;font-weight:500;border:2px solid;
-  }
-  .feedback.show{display:block;}
-  .feedback.right{background:#deefe8;color:#0e4b45;border-color:var(--teal-deep);}
-  .feedback.wrong{background:#fbe0db;color:#7c241a;border-color:var(--cherry-deep);}
-  .feedback b{display:block;margin-bottom:4px;font-weight:700;font-size:11px;
-    text-transform:uppercase;letter-spacing:.1em;}
-
-  .qfoot{display:flex;justify-content:flex-end;margin-top:18px;}
-  .next-btn{
-    background:var(--cherry);color:var(--bone);border:2.5px solid var(--hard);border-radius:6px;
-    padding:11px 20px;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.05em;
-    display:none;box-shadow:3px 3px 0 var(--hard);transition:transform .08s,box-shadow .08s;
-  }
-  .next-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--hard);}
-  .next-btn.show{display:inline-block;}
-  .kbd-hint{font-size:11px;color:var(--slate);text-align:center;margin-top:16px;font-weight:500;}
-
-  /* ---------- summary ---------- */
-  .summary-wrap{display:none;}
-  .summary-wrap.active{display:block;}
-  .summary-card{
-    background:var(--cream);color:var(--ink);border-radius:6px;padding:26px 22px;
-    border:3px solid var(--hard);box-shadow:6px 6px 0 rgba(0,0,0,.42);text-align:center;
-  }
-  .summary-card .big{font-family:"Anton",Impact,sans-serif;font-size:56px;line-height:.9;margin:8px 0;}
-  .summary-card .label{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.12em;font-weight:700;}
-  .summary-missed{text-align:left;margin-top:22px;border-top:2px dashed var(--cream-line);padding-top:16px;}
-  .summary-missed h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--cherry-deep);margin:0 0 12px;font-weight:700;}
-  .miss-item{font-size:13.5px;margin-bottom:11px;padding-bottom:11px;border-bottom:1.5px solid var(--cream-line);}
-  .miss-item:last-child{border-bottom:none;}
-  .miss-item .q{font-weight:600;margin-bottom:4px;color:var(--ink);}
-  .miss-item .a{color:var(--teal-deep);font-weight:600;font-size:13px;}
-  .summary-btns{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
-
-  @media (min-width:600px){
-    .master-stats{gap:30px;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;}
-    .card:hover{transform:none;}
-    .choice:hover:not(:disabled){transform:none;}
-  }
-
-
-  /* ---------- integrated cranial nerve lab ---------- */
-  .cn-trainer-wrap{display:none;}
-  .cn-trainer-wrap.active{display:block;}
-  .card-btn.trainer{border-color:var(--teal-deep);color:var(--teal-deep);box-shadow:2px 2px 0 var(--teal-deep);}
-  .card-btn.trainer:hover{background:var(--teal-deep);color:var(--cream);}
-  .cn-lab{
-    background:var(--cream);color:var(--ink);border:3px solid var(--hard);border-radius:7px;
-    box-shadow:7px 7px 0 rgba(0,0,0,.42);overflow:hidden;
-  }
-  .cn-lab-top{
-    background:var(--panel);color:var(--bone);padding:18px 18px 15px;border-bottom:6px solid var(--gold);
-    display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;
-  }
-  .cn-lab-title{font-family:"Alfa Slab One",Georgia,serif;font-size:25px;line-height:1;margin:0;letter-spacing:.045em;text-shadow:2px 2px 0 var(--panel-edge);}
-  .cn-lab-title span{color:var(--gold);}
-  .cn-lab-sub{color:#c8e9e4;font-size:12.5px;font-weight:500;margin-top:6px;}
-  .cn-hud{display:flex;gap:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums;}
-  .cn-stat{background:rgba(11,22,20,.42);border:2px solid var(--panel-edge);border-radius:6px;padding:7px 10px;min-width:72px;text-align:center;box-shadow:2px 2px 0 var(--panel-edge);}
-  .cn-stat-k{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#a9d6cf;font-weight:700;}
-  .cn-stat-v{display:block;font-family:"Anton",Impact,sans-serif;font-size:21px;line-height:1;margin-top:3px;color:var(--bone);}
-  .cn-stat-v.good{color:var(--gold);}
-  .cn-stat-v.warn{color:#ffb6ac;}
-  .cn-lab-body{padding:16px 16px 18px;}
-  .cn-tabs{display:inline-flex;background:var(--cream-2);border:2px solid var(--hard);border-radius:6px;padding:3px;gap:3px;box-shadow:3px 3px 0 var(--hard);}
-  .cn-tab{border:0;background:transparent;color:var(--ink-soft);border-radius:4px;padding:8px 13px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
-  .cn-tab:hover{color:var(--ink);background:#eee0bf;}
-  .cn-tab.on{background:var(--cherry);color:var(--bone);}
-  .cn-display-controls{display:none;align-items:center;gap:7px;flex-wrap:wrap;margin:12px 0 0;}
-  .cn-display-controls.show{display:flex;}
-  .cn-display-label{font-size:10px;color:var(--ink-soft);font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
-  .cn-display-switch{display:inline-flex;gap:3px;padding:3px;border:2px solid var(--cream-line);border-radius:6px;background:var(--cream-2);}
-  .cn-display-option{border:0;border-radius:4px;background:transparent;color:var(--ink-soft);font-size:11px;font-weight:700;padding:6px 9px;}
-  .cn-display-option:hover{color:var(--ink);}
-  .cn-display-option.on{background:var(--teal-deep);color:var(--cream);}
-  .cn-view{display:none;}
-  .cn-view.on{display:block;}
-  .cn-board{display:grid;grid-template-columns:minmax(0,1fr) 82px;gap:9px;margin-top:17px;}
-  .cn-board.location{grid-template-columns:minmax(0,.95fr) minmax(0,1.28fr);}
-  .cn-col{display:grid;gap:7px;align-content:start;}
-  .cn-col-head{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;padding:0 3px 5px;}
-  .cn-col-head.right{text-align:center;}
-  .cn-tile{
-    appearance:none;text-align:left;color:var(--ink);background:var(--cream-2);border:2px solid var(--cream-line);
-    border-radius:6px;padding:10px 12px;font-size:13px;font-weight:600;cursor:pointer;
-    transition:border-color .1s,transform .06s,background .1s;display:flex;align-items:center;gap:8px;min-height:43px;
-  }
-  .cn-tile:hover:not(:disabled){border-color:var(--teal-deep);transform:translateX(2px);}
-  .cn-tile.num{justify-content:center;text-align:center;font-family:"Anton",Impact,sans-serif;font-size:19px;padding:10px 5px;color:var(--cherry-deep);}
-  .cn-board.location .cn-tile{font-size:12px;line-height:1.25;padding:9px 10px;}
-  .cn-board.location .cn-location-tile{font-size:11px;}
-  .cn-board.location .cn-nerve-tile.numeral-only{justify-content:center;text-align:center;font-family:"Anton",Impact,sans-serif;font-size:18px;color:var(--cherry-deep);}
-  .cn-tile.selected{border-color:var(--gold-deep);box-shadow:0 0 0 1px var(--gold-deep);background:#fff1c9;}
-  .cn-tile.locked{background:#deefe8;border-color:var(--teal-deep);color:#0e4b45;cursor:default;}
-  .cn-tile.wrong{animation:cnShake .32s;border-color:var(--cherry-deep);background:#fbe0db;}
-  .cn-tile.pulse{animation:cnPulse .5s;}
-  .cn-num-badge{font-family:"Anton",Impact,sans-serif;font-size:13px;color:var(--teal-deep);min-width:28px;}
-  .cn-answer-reveal{display:block;color:var(--cherry-deep);font-size:10.5px;line-height:1.3;margin-top:4px;}
-  @keyframes cnShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
-  @keyframes cnPulse{0%{box-shadow:0 0 0 0 rgba(15,95,88,.5)}100%{box-shadow:0 0 0 13px transparent}}
-  .cn-prompt{margin-top:17px;background:var(--cream-2);border:2px solid var(--cream-line);border-radius:6px;padding:17px;}
-  .cn-prompt-lead{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cherry-deep);font-weight:700;}
-  .cn-prompt-q{font-size:20px;font-weight:700;line-height:1.3;margin:6px 0 0;}
-  .cn-prompt-q .cn-code{color:var(--teal-deep);font-family:"Anton",Impact,sans-serif;font-weight:400;}
-  .cn-choices{display:grid;gap:8px;margin-top:12px;}
-  .cn-choice{appearance:none;text-align:left;color:var(--ink);background:var(--cream-2);border:2px solid var(--cream-line);border-radius:6px;padding:11px 12px;font-size:13.5px;font-weight:500;display:flex;gap:10px;align-items:flex-start;}
-  .cn-choice:hover:not(:disabled){border-color:var(--teal-deep);transform:translateX(2px);}
-  .cn-choice-key{font-family:"Anton",Impact,sans-serif;color:var(--cherry-deep);font-size:16px;line-height:1.1;}
-  .cn-choice.correct{background:#deefe8;border-color:var(--teal-deep);color:#0e4b45;}
-  .cn-choice.incorrect{background:#fbe0db;border-color:var(--cherry-deep);color:#7c241a;}
-  .cn-choice:disabled{cursor:default;}
-  .cn-next-row{display:flex;justify-content:flex-end;margin-top:13px;min-height:39px;align-items:center;}
-  .cn-toolbar{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;padding-top:14px;border-top:2px dashed var(--cream-line);}
-  .cn-act{border-radius:5px;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:2px solid var(--ink);background:transparent;color:var(--ink);box-shadow:2px 2px 0 var(--ink);}
-  .cn-act:hover:not(:disabled){background:var(--ink);color:var(--cream);}
-  .cn-act:active:not(:disabled){transform:translate(2px,2px);box-shadow:none;}
-  .cn-act.primary{background:var(--cherry);color:var(--bone);border-color:var(--hard);box-shadow:2px 2px 0 var(--hard);}
-  .cn-act.primary:hover{background:#e9513f;color:var(--bone);}
-  .cn-act.copy{border-color:var(--gold-deep);color:var(--gold-deep);box-shadow:2px 2px 0 var(--gold-deep);}
-  .cn-act.copy:hover:not(:disabled){background:var(--gold-deep);color:var(--cream);}
-  .cn-act.copied{background:var(--gold);color:var(--ink);border-color:var(--hard);}
-  .cn-act:disabled{opacity:.32;cursor:default;box-shadow:none;}
-  .cn-copy-status{width:100%;min-height:16px;color:var(--ink-soft);font-size:11px;}
-  .cn-done{margin-top:16px;padding:18px;border-radius:6px;background:#deefe8;border:2px solid var(--teal-deep);text-align:center;display:none;color:#0e4b45;}
-  .cn-done.show{display:block;}
-  .cn-done h2{font-family:"Alfa Slab One",Georgia,serif;margin:0 0 5px;font-size:19px;letter-spacing:.04em;}
-  .cn-done p{margin:3px 0;font-size:13px;}
-  .cn-done .hl{color:var(--cherry-deep);font-family:"Anton",Impact,sans-serif;font-size:16px;}
-  .cn-hint{color:var(--ink-soft);font-size:11.5px;margin:15px 1px 0;line-height:1.55;}
-  .cn-hint b{color:var(--cherry-deep);}
-  @media(max-width:560px){
-    .cn-lab-top{align-items:flex-start;}
-    .cn-board{grid-template-columns:minmax(0,1fr) 61px;gap:6px;}
-    .cn-board.location{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);}
-    .cn-board.location .cn-tile{font-size:10.5px;padding:8px 7px;}
-    .cn-board.location .cn-location-tile{font-size:9.5px;}
-    .cn-tab{padding:7px 9px;font-size:10.5px;}
-  }
-
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-family:"Space Mono";font-size:11px;color:var(--slate);text-align:center;line-height:1.7}
+.hide{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="wrap">
 
-  <!-- ============ HUB ============ -->
-  <div class="hub-wrap" id="hubWrap">
+  <!-- ===== HUB ===== -->
+  <section id="hub">
     <header class="top">
-      <div>
-        <h1>Head &amp; Neck Drill Index</h1>
-        <div class="tag">BIO 2300 &middot; Concept Outline Worksheets A&ndash;I</div>
+      <div class="eyebrow">BIO &middot; Concept Outline Drill</div>
+      <h1 class="disp">Trunk Unit &mdash; Thorax, Abdomen &amp; Pelvis</h1>
+      <div class="masterbar">
+        <span class="masterpct" id="masterPct">0%</span>
+        <div style="flex:1;min-width:160px">
+          <div class="masterlabel">Master / full slate &middot; <span id="masterCount">0</span> questions</div>
+          <div class="track"><i id="masterBar"></i></div>
+        </div>
       </div>
-      <button class="reset-link" id="resetBtn">Reset scores</button>
     </header>
 
-    <div class="master">
-      <h2>Full Slate</h2>
-      <div class="sub">Every category, pooled and shuffled.</div>
-      <div class="master-stats">
-        <div>
-          <div class="stamp mono" id="masterPct">&mdash;</div>
-          <div class="stamp-label">live score</div>
-        </div>
-        <div class="mono" style="font-size:13px;color:var(--slate);" id="masterCount">0 / 0 answered</div>
-        <div class="missed-pill zero" id="masterMissedPill">0 missed</div>
+    <div class="card master">
+      <div class="tag mono">&Sigma;</div>
+      <h3>Master &mdash; every section, A&ndash;L</h3>
+      <div class="meta"><span>Full-slate run</span><span class="scorepct" id="masterScore">&mdash;</span></div>
+      <div class="minibar"><i id="masterMini"></i></div>
+      <div class="btnrow">
+        <button class="btn practice" onclick="startRun('MASTER','practice',false)">Practice</button>
+        <button class="btn exam" onclick="startRun('MASTER','exam',false)">Exam</button>
+        <button class="btn drill" id="masterDrill" onclick="startRun('MASTER','practice',true)">Drill missed</button>
       </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" id="masterFullBtn">Drill full slate</button>
-        <button class="btn btn-ghost" id="masterMissedBtn" disabled>Drill all missed</button>
-        <button class="btn btn-ghost" id="masterCopyBtn" disabled>Copy all missed</button>
+      <div class="missflag zero" id="masterMiss">0 in missed bank</div>
+    </div>
+
+    <div class="subhead">Sections</div>
+    <div class="grid" id="sectionGrid"></div>
+
+    <div class="subhead">Custom practice &mdash; combine sections</div>
+    <div class="card wide">
+      <div class="chips" id="customChips"></div>
+      <div class="btnrow">
+        <button class="btn practice" style="flex:2" onclick="startCustom('practice')">Practice selected</button>
+        <button class="btn exam" style="flex:2" onclick="startCustom('exam')">Exam selected</button>
       </div>
     </div>
 
-    <div class="index-label">Categories</div>
-    <div id="cardList"></div>
-
-    <footer class="note">
-      Scores are live for this session only &mdash; reload the page and the board resets.<br>
-      Distractors are pulled from real sibling structures, not random noise. Read carefully.
+    <footer>
+      Practice tells you right/wrong instantly &middot; Exam runs blind, misses revealed at the end<br>
+      Every miss drops into that section&rsquo;s bank &middot; drill missed until it empties &middot; scores persist on this device
     </footer>
-  </div>
+  </section>
 
-  <!-- ============ QUIZ ============ -->
-  <div class="quiz-wrap" id="quizWrap">
-    <div class="qhead">
-      <button class="back" id="backBtn">&larr; Index</button>
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz" class="hide">
+    <div class="quizhead">
+      <span class="where" id="quizWhere">&mdash;</span>
       <span class="live" id="quizLive"></span>
     </div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="qcard">
-      <div class="qcat-tag" id="qCatTag"></div>
-      <div class="qtext" id="qText"></div>
-      <div class="choices" id="choicesWrap"></div>
-      <div class="feedback" id="feedback"></div>
-      <div class="qfoot"><button class="next-btn" id="nextBtn">Next &rarr;</button></div>
+    <div class="qtrack"><i id="quizBar"></i></div>
+    <div class="plate">
+      <div class="qnum mono" id="quizNum"></div>
+      <div class="qtext" id="quizText"></div>
+      <div class="opts" id="quizOpts"></div>
+      <div class="feedback" id="quizFeedback"></div>
+      <div class="flag" id="quizFlag"></div>
     </div>
-    <div class="kbd-hint">Press 1&ndash;4 to answer &middot; Enter to advance</div>
-  </div>
+    <div class="qbtns">
+      <button class="bigbtn ghost" onclick="quitToHub()">Quit</button>
+      <button class="bigbtn next hide" id="quizNext" onclick="nextQuestion()">Next</button>
+    </div>
+    <div class="exam-note hide" id="examNote">Exam mode &mdash; no feedback until the end.</div>
+  </section>
 
-  <!-- ============ SUMMARY ============ -->
-  <div class="summary-wrap" id="summaryWrap">
-    <div class="summary-card">
-      <div class="label" id="summaryCatLabel">Session complete</div>
-      <div class="big" id="summaryScore">0%</div>
-      <div class="label" id="summaryCount">0 of 0 correct</div>
-      <div class="summary-missed" id="summaryMissedBlock" style="display:none;">
-        <h4>Missed this run</h4>
-        <div id="summaryMissedList"></div>
-      </div>
-      <div class="summary-btns">
-        <button class="btn btn-ghost" id="summaryCopyBtn" style="display:none;">Copy missed</button>
-        <button class="btn btn-primary" id="summaryHubBtn">Back to index</button>
+  <!-- ===== RESULTS ===== -->
+  <section id="results" class="hide">
+    <div class="results">
+      <div class="quizhead"><span class="where" id="resWhere">&mdash;</span></div>
+      <div class="bigscore mono" id="resScore">0%</div>
+      <div class="rtally" id="resTally"></div>
+      <div id="resMissWrap"></div>
+      <div class="qbtns">
+        <button class="bigbtn ghost" onclick="quitToHub()">Back to hub</button>
+        <button class="bigbtn ghost" id="resCopy" onclick="copyMissed()">Copy missed</button>
+        <button class="bigbtn next" id="resDrill" onclick="drillFromResults()">Drill missed</button>
       </div>
     </div>
-  </div>
-
-
-  <!-- ============ CRANIAL NERVE LAB ============ -->
-  <div class="cn-trainer-wrap" id="cnTrainerWrap">
-    <div class="qhead">
-      <button class="back" id="cnBackBtn">&larr; Index</button>
-      <span class="live">Worksheet E &middot; Cranial Nerve Lab</span>
-    </div>
-
-    <section class="cn-lab" aria-labelledby="cnLabTitle">
-      <div class="cn-lab-top">
-        <div>
-          <h2 class="cn-lab-title" id="cnLabTitle">Cranial Nerve Trainer<span>.</span></h2>
-          <div class="cn-lab-sub" id="cnSub">Pair each nerve with its Roman numeral.</div>
-        </div>
-        <div class="cn-hud">
-          <div class="cn-stat"><span class="cn-stat-k" id="cnS1k">Matched</span><span class="cn-stat-v" id="cnS1v">0 / 12</span></div>
-          <div class="cn-stat"><span class="cn-stat-k" id="cnS2k">Misses</span><span class="cn-stat-v warn" id="cnS2v">0</span></div>
-          <div class="cn-stat"><span class="cn-stat-k">Time</span><span class="cn-stat-v good" id="cnS3v">0:00</span></div>
-        </div>
-      </div>
-
-      <div class="cn-lab-body">
-        <div class="cn-tabs" role="tablist" aria-label="Cranial nerve trainer modes">
-          <button class="cn-tab on" data-cn-mode="match" role="tab">Numeral</button>
-          <button class="cn-tab" data-cn-mode="location" role="tab">Location</button>
-          <button class="cn-tab" data-cn-mode="function" role="tab">Function</button>
-        </div>
-
-        <div class="cn-display-controls" id="cnDisplayControls">
-          <span class="cn-display-label">Show nerves as</span>
-          <div class="cn-display-switch" role="group" aria-label="Location nerve label format">
-            <button class="cn-display-option on" data-cn-display="both" aria-pressed="true">Names &amp; numerals</button>
-            <button class="cn-display-option" data-cn-display="name" aria-pressed="false">Names only</button>
-            <button class="cn-display-option" data-cn-display="numeral" aria-pressed="false">Numerals only</button>
-          </div>
-        </div>
-
-        <div class="cn-view on" id="cnViewMatch">
-          <div class="cn-board" id="cnMatchBoard">
-            <div><div class="cn-col-head" id="cnLeftHead">Cranial nerve</div><div class="cn-col" id="cnColNames"></div></div>
-            <div><div class="cn-col-head right" id="cnRightHead">Number</div><div class="cn-col" id="cnColNums"></div></div>
-          </div>
-        </div>
-
-        <div class="cn-view" id="cnViewMC">
-          <div class="cn-prompt">
-            <div class="cn-prompt-lead" id="cnMCLead">Function</div>
-            <div class="cn-prompt-q" id="cnMCQ">&mdash;</div>
-          </div>
-          <div class="cn-choices" id="cnMCChoices"></div>
-          <div class="cn-next-row" id="cnMCNextRow"></div>
-        </div>
-
-        <div class="cn-done" id="cnDone"></div>
-
-        <div class="cn-toolbar">
-          <button class="cn-act primary" id="cnRestart">New round</button>
-          <button class="cn-act" id="cnReveal">Show answer key</button>
-          <button class="cn-act copy" id="cnCopyMissed" disabled>Copy Numeral missed (0)</button>
-          <button class="cn-act copy" id="cnCopyAllMissed" disabled>Copy all missed (0)</button>
-          <button class="cn-act" id="cnClearMissed" disabled>Clear missed</button>
-          <div class="cn-copy-status" id="cnCopyStatus" role="status" aria-live="polite"></div>
-        </div>
-
-        <p class="cn-hint">
-          Mnemonic: <b>O</b>h <b>O</b>h <b>O</b>h <b>T</b>o <b>T</b>ouch <b>A</b>nd <b>F</b>eel <b>V</b>ery <b>G</b>ood <b>V</b>elvet, <b>A</b>h <b>H</b>eaven &mdash;
-          Olfactory &middot; Optic &middot; Oculomotor &middot; Trochlear &middot; Trigeminal &middot; Abducens &middot; Facial &middot; Vestibulocochlear &middot; Glossopharyngeal &middot; Vagus &middot; Accessory &middot; Hypoglossal.
-        </p>
-      </div>
-    </section>
-  </div>
+  </section>
 
 </div>
 
 <script>
-/* =========================================================
-   QUESTION BANK
-   ========================================================= */
-const CATEGORIES = [
-{
-  id:"vert", letter:"A", name:"Vertebral Column",
-  questions:[
-    {q:"How many vertebrae make up the thoracic region?", choices:["7","12","5","4"], correct:1},
-    {q:"What feature separates individual vertebrae in the column?", choices:["The ligamentum flavum","Intervertebral discs","Facet joints alone","The vertebral foramen"], correct:1},
-    {q:"Primary curvatures of the vertebral column develop during the fetal period. Which regions do they affect?", choices:["Cervical and lumbar","Thoracic and sacral/pelvic","Cervical and thoracic","Lumbar and sacral only"], correct:1},
-    {q:"A more acute lumbosacral angle is beneficial during childbirth because it:", choices:["narrows the pelvic outlet for stability","opens the sacrum, projecting it more anteriorly to widen the birth canal","increases lumbar lordosis to support fetal weight","shifts load onto the coccyx"], correct:1},
-    {q:"The vertebral (neural) arch is formed by which two features?", choices:["Spinous process and transverse process","Lamina and pedicles","Vertebral body and lamina","Superior and inferior articular processes"], correct:1},
-    {q:"An intervertebral foramen is formed by:", choices:["the inferior vertebral notch of one vertebra and the superior vertebral notch of the one below","the vertebral foramina of adjacent vertebrae stacking up","the lamina and pedicle of a single vertebra","the transverse processes of adjacent vertebrae"], correct:0},
-    {q:"What passes through the transverse foramen of a cervical vertebra?", choices:["The spinal nerve","The vertebral artery and vertebral vein","The spinal cord itself","The denticulate ligament"], correct:1, note:"Same trick as the vertebral vs. intervertebral foramen mix-up \u2014 transverse foramen is a cervical-only feature, purely vascular."},
-    {q:"A short, bifid spinous process combined with a transverse foramen is characteristic of:", choices:["cervical vertebrae","thoracic vertebrae","lumbar vertebrae","sacral vertebrae"], correct:0},
-    {q:"C1, the atlas, is unique in that it:", choices:["has the strongest, most vertical projection of any vertebra","has no body or spinous process, and its superior articular surfaces meet the occipital condyles","contains four costal facets for rib articulation","has a large oval body"], correct:1},
-    {q:"The dens (odontoid process) is a vertical projection located on:", choices:["C1, where it meets the occipital condyles","the sacrum, where it forms the ala","C2 (the axis), acting as the pivot for head rotation","T1, where the first rib articulates"], correct:2, note:"Think of it like the axis pin on a hinge \u2014 C2 is called the axis because the dens is literally the post everything rotates around, the same way an overdate is fixed relative to the coin's rim."},
-    {q:"Thoracic vertebrae are distinguished from other regions by:", choices:["large oval bodies and no spinous process","strong spinous processes and costal facets that articulate with ribs","bifid spinous processes and transverse foramina","fused spinous processes forming a median crest"], correct:1},
-    {q:"How many costal facets does a typical thoracic vertebra contain?", choices:["2","6","4","8"], correct:2},
-    {q:"The ala of the sacrum formed from fused remnants of which feature?", choices:["Spinous processes","Transverse processes","Costal facets","Articular processes"], correct:1},
-    {q:"The median sacral crest is formed by:", choices:["the fused transverse processes of S1\u2013S4","the auricular surface where the sacrum meets the ilium","the fused spinous processes of S1\u2013S4","the sacral hiatus"], correct:2},
-    {q:"In an intervertebral disc, the nucleus pulposus is:", choices:["the outer fibrous ring that contains the core","the inner gel-like core responsible for shock absorption","the cartilage cap on the vertebral body","a stabilizing ligament between adjacent vertebrae"], correct:1},
-    {q:"A herniated disc occurs when:", choices:["the annulus fibrosus pushes into the vertebral foramen","the vertebral body fractures under axial load","the nucleus pulposus pushes through a tear in the annulus fibrosus","the ligamentum flavum calcifies and narrows the canal"], correct:2},
-    {q:"An excessive posterior curvature of the vertebral column, most likely to occur in the thoracic region, is called:", choices:["lordosis","scoliosis","spina bifida","kyphosis"], correct:3},
-    {q:"An excessive anterior curvature, most likely to occur in the lumbar region, is called:", choices:["kyphosis","lordosis","scoliosis","spondylosis"], correct:1}
-  ]
-},
-{
-  id:"muscle", letter:"B", name:"Axial Muscles",
-  questions:[
-    {q:"Cranial nerve VII (the facial nerve) innervates which group of muscles?", choices:["Muscles of mastication","Suprahyoid muscles","Muscles of facial expression","Intrinsic back muscles"], correct:2},
-    {q:"What is unique about the insertion (distal attachment) of every muscle of facial expression?", choices:["They all insert onto the hyoid bone","They insert into skin rather than bone","They insert onto the mandible exclusively","They share one common tendon of insertion"], correct:1},
-    {q:"Which cranial nerve innervates the sternocleidomastoid (SCM)?", choices:["CN VII, the facial nerve","CN XII, the hypoglossal nerve","CN XI, the spinal accessory nerve","CN V, the trigeminal nerve"], correct:2, note:"Same nerve that runs the trapezius \u2014 XI is the odd one out that leaves the skull and doubles back into the neck for muscle motor control only."},
-    {q:"An action of the SCM is to:", choices:["extend the neck and depress the mandible","flex the neck and rotate the head to the opposite side","elevate the mandible for mastication","retract the scalp"], correct:1},
-    {q:"The muscles of mastication are innervated by which division of cranial nerve V?", choices:["V1, the ophthalmic division","V2, the maxillary division","V3, the mandibular division","All three divisions equally"], correct:2},
-    {q:"The buccinator muscle primarily functions to:", choices:["elevate the mandible for biting","close the eyelids","compress the cheek against the teeth, aiding chewing and expression","retract the corner of the mouth"], correct:2},
-    {q:"Which muscle elevates the eyebrows and wrinkles the forehead?", choices:["Occipitofrontalis, occipital belly","Orbicularis oculi","Occipitofrontalis, frontal belly","Zygomaticus"], correct:2},
-    {q:"The suprahyoid muscles are located:", choices:["below the hyoid bone","above the hyoid bone","lateral to the larynx","posterior to the trachea"], correct:1},
-    {q:"The infrahyoid muscles (sternothyroid, thyrohyoid, sternohyoid, omohyoid) are located:", choices:["above the hyoid bone","below the hyoid bone","deep to the carotid sheath only","within the parotid gland"], correct:1},
-    {q:"Which type of muscle acts to depress the mandible?", choices:["The masseter","The temporalis","A suprahyoid muscle, such as the digastric","The medial pterygoid"], correct:2},
-    {q:"The erector spinae, a superficial intrinsic back muscle, is composed of three fiber groups. These are:", choices:["iliocostalis, trapezius, and rhomboid","longissimus, latissimus, and spinalis","iliocostalis, longissimus, and spinalis","spinalis, splenius, and semispinalis"], correct:2},
-    {q:"The intrinsic back muscles are innervated by which rami of the spinal nerves?", choices:["Anterior rami","Posterior rami","Both anterior and posterior equally","Cranial nerve branches only"], correct:1},
-    {q:"Orbicularis oculi is the muscle responsible for:", choices:["pursing the lips","closing the eyelids","elevating the corner of the mouth","wrinkling the forehead"], correct:1},
-    {q:"The platysma muscle is located:", choices:["deep to the SCM","within the carotid sheath","superficially in the neck, extending into the lower face","in the posterior triangle only"], correct:2}
-  ]
-},
-{
-  id:"brain", letter:"C", name:"Structure of the Brain",
-  questions:[
-    {q:"The structural unit of the nervous system is the:", choices:["nucleus","tract","neuron","ganglion"], correct:2},
-    {q:"A collection of neuron cell bodies located inside the CNS is called a:", choices:["ganglion","nucleus","tract","nerve"], correct:1},
-    {q:"A collection of cell bodies located outside the CNS is called a:", choices:["nucleus","tract","ganglion","plexus"], correct:2},
-    {q:"A nerve is best described as a:", choices:["collection of axons found exclusively in the CNS","container of nerve fibers found in the PNS","collection of cell bodies inside the CNS","bundle of dendrites found in the PNS"], correct:1},
-    {q:"A tract is a collection of axons traveling together, found:", choices:["exclusively within the PNS","in both the CNS and PNS equally","exclusively within the CNS","only within cranial nerves"], correct:2},
-    {q:"Gray matter of the brain consists of:", choices:["axons only","cell bodies and dendrites","myelinated tracts","ganglia only"], correct:1},
-    {q:"White matter of the brain consists of:", choices:["cell bodies and dendrites","nuclei only","axons","unmyelinated cell bodies"], correct:2},
-    {q:"The commissural tract connecting the left and right cerebral hemispheres is the:", choices:["cerebral aqueduct","internal capsule","fornix","corpus callosum"], correct:3},
-    {q:"The primary motor cortex is located on which gyrus?", choices:["The postcentral gyrus","The precentral gyrus","The superior temporal gyrus","The cingulate gyrus"], correct:1},
-    {q:"The primary sensory cortex is located on which gyrus?", choices:["The precentral gyrus","The postcentral gyrus","The lateral gyrus","The parahippocampal gyrus"], correct:1},
-    {q:"The central sulcus separates which two lobes?", choices:["Temporal and occipital","Parietal and occipital","Frontal and parietal","Frontal and temporal"], correct:2},
-    {q:"The lateral sulcus separates the temporal lobe from which lobes?", choices:["Occipital and parietal","Frontal and parietal","Frontal and occipital","Parietal only"], correct:1},
-    {q:"The thalamus functions to:", choices:["serve as the command center for the endocrine system","receive, group, and relay sensory information","regulate sleep/wake cycles","produce melatonin"], correct:1},
-    {q:"The hypothalamus functions as:", choices:["the primary relay station for sensory information","the region controlling posture and balance","the command center for the endocrine system","the site of melatonin production"], correct:2},
-    {q:"Which gland connects directly to the hypothalamus and responds to its commands?", choices:["The pineal gland","The thyroid gland","The pituitary gland","The adrenal gland"], correct:2},
-    {q:"The epithalamus, which contains the pineal gland, primarily functions to:", choices:["relay sensory information to the cortex","regulate sleep/wake cycles via melatonin","control involuntary functions like breathing","coordinate posture and fine motor control"], correct:1},
-    {q:"The basal nuclei are best described as:", choices:["a ridge of gray matter on the cerebral surface","paired, irregular masses of gray matter buried deep within the central white matter","a shallow groove separating lobes","a bundle of tracts connecting hemispheres"], correct:1},
-    {q:"The cerebellum functions primarily in:", choices:["relaying sensory information to the thalamus","regulating the endocrine system","posture, balance, and fine coordination","controlling involuntary respiratory rhythm"], correct:2},
-    {q:"Which division of the brainstem serves as the respiratory center?", choices:["The midbrain","The pons","The medulla","The cerebellum"], correct:1},
-    {q:"Which division of the brainstem controls involuntary functions such as heart rate?", choices:["The pons","The midbrain","The medulla","The thalamus"], correct:2},
-    {q:"Which division of the brainstem acts as a relay station for visual and auditory information?", choices:["The pons","The medulla","The midbrain","The cerebellum"], correct:2}
-  ]
-},
-{
-  id:"cord", letter:"D", name:"Structure of the Spinal Cord",
-  questions:[
-    {q:"In the spinal cord, gray matter is:", choices:["superficial and made of axons","deep and made of cell bodies","superficial and made of cell bodies","found only in the posterior horn"], correct:1},
-    {q:"In the spinal cord, white matter is:", choices:["deep and made of cell bodies","superficial and made of axons","found only in the lateral horn","the same as gray matter, just unmyelinated"], correct:1},
-    {q:"The posterior horn of the spinal cord is connected to the:", choices:["anterior root ganglion","posterior root ganglion","sympathetic chain ganglion","dorsal ramus directly"], correct:1},
-    {q:"The anterior horn of the spinal cord is connected to the:", choices:["posterior root ganglion","anterior root, which is motor","posterior root, which is sensory","lateral horn only"], correct:1},
-    {q:"The lateral horn of the spinal cord is similar to the anterior horn but contains:", choices:["exclusively sensory cell bodies","different (autonomic) cell bodies","no cell bodies at all","only white matter tracts"], correct:1},
-    {q:"The tip of the spinal cord is called the:", choices:["cauda equina","filum terminale","conus medullaris","dural sac"], correct:2},
-    {q:"The tip of the spinal cord is typically found at what level?", choices:["Between T12 and L1","Between L1 and L2","Between L4 and L5","Between S1 and S2"], correct:1},
-    {q:"Cauda equina is best defined as:", choices:["a collection of rootlets inferior to the conus medullaris","the pia mater extension anchoring the cord to the coccyx","the fluid-filled sac surrounding the cord","the H-shaped gray matter of the cord"], correct:0},
-    {q:"Filum terminale is an extension of which meningeal layer, and what does it do?", choices:["Dura mater; forms the dural sac","Arachnoid mater; suspends the cord in CSF","Pia mater; anchors the spinal cord to the coccyx","Arachnoid trabeculae; stabilizes the cord laterally"], correct:2},
-    {q:"An Upper Motor Neuron (UMN) is best defined as running:", choices:["from the spinal cord to the target muscle","from the cerebral cortex to the spinal cord","from the posterior root ganglion to the cord","from the target muscle back to the cord"], correct:1},
-    {q:"A Lower Motor Neuron (LMN) is best defined as running:", choices:["from the cerebral cortex to the spinal cord","from the spinal cord to the target muscle","from the thalamus to the cerebral cortex","from the target muscle to the posterior horn"], correct:1},
-    {q:"A spinal nerve is formed by the union of:", choices:["the posterior ramus and anterior ramus","the posterior root and anterior root","two adjacent posterior roots","the dorsal and ventral rami of two different levels"], correct:1},
-    {q:"The posterior root of a spinal nerve is:", choices:["motor","sensory","both sensory and motor","autonomic only"], correct:1},
-    {q:"The anterior root of a spinal nerve is:", choices:["sensory","both sensory and motor","motor","autonomic only"], correct:2},
-    {q:"After forming, a spinal nerve immediately divides (splits) into:", choices:["a posterior root and an anterior root","a posterior ramus and an anterior ramus","the cauda equina and filum terminale","a sympathetic and a parasympathetic branch"], correct:1},
-    {q:"The posterior rami of spinal nerves innervate:", choices:["the limbs and anterior trunk","skin and deep back muscles only","visceral organs exclusively","the diaphragm only"], correct:1},
-    {q:"The anterior rami of spinal nerves innervate:", choices:["only the deep back muscles","skin of the back only","everything else \u2014 limbs, anterior and lateral trunk","only cranial structures"], correct:2},
-    {q:"A plexus is defined as:", choices:["a single spinal nerve dividing into rami","a network of intermingling anterior rami","the meningeal covering of a nerve root","a collection of nuclei inside the CNS"], correct:1},
-    {q:"How many pairs of spinal nerves does the human body have?", choices:["24 pairs","31 pairs","33 pairs","12 pairs"], correct:1},
-    {q:"In the cervical region, a spinal nerve is named for the vertebra:", choices:["above it, and the nerve exits below that vertebra","below it, and the nerve exits above that vertebra","at the same level, exiting through the vertebral body","two levels below its exit point"], correct:1},
-    {q:"There are 7 cervical vertebrae, but how many cervical spinal nerves are there, and why?", choices:["7, matching the vertebrae exactly","8, because C8 exits between C7 and T1","6, because C1 has no matching nerve","8, because two nerves exit at C1"], correct:1}
-  ]
-},
-{
-  id:"circ", letter:"H", name:"Head &amp; Neck Circulation",
-  questions:[
-    {q:"The LEFT common carotid artery is a direct branch of the:", choices:["brachiocephalic trunk","aortic arch","subclavian artery","external carotid artery"], correct:1},
-    {q:"The RIGHT common carotid artery is a direct branch of the:", choices:["aortic arch","brachiocephalic trunk","vertebral artery","internal carotid artery"], correct:1},
-    {q:"The carotid sheath contains the common carotid artery, the vagus nerve, and the:", choices:["external jugular vein","internal jugular vein","facial vein","vertebral vein"], correct:1},
-    {q:"The vertebral arteries are branches of the:", choices:["common carotid artery","subclavian artery","aortic arch","basilar artery"], correct:1},
-    {q:"As they travel toward the skull, the vertebral arteries pass through the transverse foramina of the cervical vertebrae and then enter the skull through the:", choices:["carotid canal","jugular foramen","foramen magnum","superior orbital fissure"], correct:2},
-    {q:"Which branch of the common carotid artery gives rise to NO branches in the neck and instead travels directly to supply the brain?", choices:["The external carotid artery","The internal carotid artery","The facial artery","The vertebral artery"], correct:1},
-    {q:"The internal carotid artery enters the skull through the:", choices:["jugular foramen","foramen magnum","carotid canal","superior orbital fissure"], correct:2},
-    {q:"The two vertebral arteries join within the skull to form the:", choices:["circle of Willis directly","basilar artery","internal carotid artery","posterior communicating artery"], correct:1},
-    {q:"The cerebral arterial circle (Circle of Willis) is formed primarily by the union of the:", choices:["external carotid arteries and the facial artery","internal carotid arteries and the basilar artery system","vertebral arteries and the middle meningeal artery","common carotid arteries and the aortic arch"], correct:1},
-    {q:"The artery that supplies the dura mater, and which arises as a branch of the maxillary artery, is the:", choices:["superior sagittal sinus","middle meningeal artery","posterior cerebral artery","ophthalmic artery"], correct:1},
-    {q:"An impact to the side of the head is most likely to tear which artery, causing an epidural hematoma?", choices:["The internal carotid artery","The basilar artery","The middle meningeal artery","The vertebral artery"], correct:2},
-    {q:"The facial artery is a branch of the:", choices:["internal carotid artery","external carotid artery","vertebral artery","ophthalmic artery"], correct:1},
-    {q:"Dural venous sinuses are located:", choices:["within the subarachnoid space","between the periosteal and meningeal layers of the dura","between the arachnoid and pia mater","inside the ventricles"], correct:1},
-    {q:"Which of the following is NOT one of the three dural venous sinuses used as an example in this unit?", choices:["Superior sagittal sinus","Transverse sinus","Sigmoid sinus","Cavernous sinus"], correct:3, note:"The cavernous sinus is real, but it's not one of the three named on the worksheet \u2014 don't let a true fact from outside the unit trip you on a scoped question."},
-    {q:"Venous blood exits the skull primarily through the:", choices:["carotid canal","jugular foramen","foramen magnum","superior orbital fissure"], correct:1},
-    {q:"The facial vein drains into which major vein?", choices:["The external jugular vein","The internal jugular vein","The subclavian vein","The brachiocephalic vein directly"], correct:1},
-    {q:"Which major vein lies superficial to the sternocleidomastoid (SCM)?", choices:["The internal jugular vein","The external jugular vein","The vertebral vein","The brachiocephalic vein"], correct:1},
-    {q:"Which major vein lies deep to the SCM?", choices:["The external jugular vein","The facial vein","The internal jugular vein","The vertebral vein"], correct:2},
-    {q:"The internal jugular vein unites with the subclavian vein to form the:", choices:["brachiocephalic vein","superior vena cava","external jugular vein","azygos vein"], correct:0}
-  ]
-},
-{
-  id:"mening", letter:"I", name:"Meninges &amp; Ventricles",
-  questions:[
-    {q:"Listed from outer (superficial) to inner (deep), the correct order of the meninges is:", choices:["arachnoid, dura, pia","dura, arachnoid, pia","pia, arachnoid, dura","dura, pia, arachnoid"], correct:1},
-    {q:"The extradural (epidural) space is specifically located:", choices:["between the dura and the arachnoid mater","between the dura and the vertebra","between the arachnoid and pia mater","within the subarachnoid space"], correct:1},
-    {q:"The dural sac is best described as:", choices:["a tubular sheath containing the spinal cord, formed by dura mater","the fluid-filled cavity inside the ventricles","the space between periosteal and meningeal dura","a fold of pia mater anchoring the cord"], correct:0},
-    {q:"The subarachnoid space is located specifically:", choices:["superficial to the arachnoid mater","deep to the arachnoid mater and superficial to the pia mater","between the dura and arachnoid mater","deep to the pia mater only"], correct:1},
-    {q:"What is found within the subarachnoid space?", choices:["Cerebrospinal fluid (CSF)","Venous blood","Arterial blood only","Interstitial fluid exclusively"], correct:0},
-    {q:"The denticulate ligaments, made of pia mater, function to:", choices:["produce CSF","suspend the spinal cord within the dural sac","anchor the cord to the coccyx","separate the cerebral hemispheres"], correct:1},
-    {q:"Spina bifida is best described as:", choices:["a herniation of the spinal cord through an intact vertebral arch","the failure of fusion of one or more vertebral arches","an outward bulge of the dura mater only","excessive curvature of the vertebral column"], correct:1},
-    {q:"Spina bifida cystica differs from spina bifida occulta in that cystica:", choices:["never involves the lumbar or sacral region","forms a cyst as one or more vertebral arches fail to fuse","only affects cervical vertebrae","involves no failure of vertebral fusion at all"], correct:1},
-    {q:"In a meningocele, which structures herniate?", choices:["Meninges and CSF only","Meninges, CSF, and spinal cord/nerve roots","Spinal cord only","Vertebral bone fragments only"], correct:0},
-    {q:"In a myelomeningocele, which structures herniate?", choices:["Meninges and CSF only","Meninges, CSF, and spinal cord/nerve roots","Dura mater only","Vertebral bone only"], correct:1},
-    {q:"The purpose of a lumbar puncture is to:", choices:["introduce anesthetic into the epidural space","obtain CSF from the subarachnoid space","drain blood from a dural venous sinus","biopsy the pia mater"], correct:1},
-    {q:"A lumbar puncture needle is inserted below which vertebral level, and why?", choices:["Below T12\u2013L1, to avoid the kidneys","Below L3\u2013L4 or L4\u2013L5, to avoid the spinal cord itself","Below S1\u2013S2, to stay within the sacral canal","Below C7\u2013T1, to avoid the brachial plexus"], correct:1},
-    {q:"The purpose of an epidural block is to:", choices:["obtain a CSF sample for diagnosis","introduce anesthetic into the extradural (epidural) space","drain excess CSF from the ventricles","anchor the dural sac to the coccyx"], correct:1},
-    {q:"The two layers of the dura mater in the cranium are:", choices:["superficial and deep","periosteal and meningeal","parietal and visceral","fibrous and serous"], correct:1},
-    {q:"A dural septa is defined as:", choices:["an inward fold of the meningeal dura that partitions the cranial cavity and stabilizes the brain","a blood vessel running within the dura","the space between the two dural layers","a fold of pia mater within the ventricles"], correct:0},
-    {q:"The dural septa found within the longitudinal fissure is the:", choices:["tentorium cerebelli","falx cerebri","falx cerebelli","diaphragma sellae"], correct:1},
-    {q:"The dural septa found within the transverse fissure is the:", choices:["falx cerebri","falx cerebelli","tentorium cerebelli","diaphragma sellae"], correct:2},
-    {q:"Arachnoid villi function to:", choices:["produce new CSF","return CSF into the dural venous sinuses (venous blood)","anchor the arachnoid to the pia mater","filter blood before it enters the brain"], correct:1},
-    {q:"How many ventricles are present in the brain, and what are they?", choices:["Two lateral, one third, one fourth","One lateral, two third, one fourth","Two lateral, two third, one fourth","Three lateral, one third"], correct:0},
-    {q:"The 3rd and 4th ventricles are connected by the:", choices:["interventricular foramina","cerebral aqueduct","median aperture","lateral apertures"], correct:1},
-    {q:"CSF exits the 4th ventricle into the subarachnoid space through:", choices:["one median and two lateral apertures","the cerebral aqueduct only","the interventricular foramina","the central canal exclusively"], correct:0},
-    {q:"The choroid plexus, which produces CSF, is located:", choices:["in the subarachnoid space","in the roof of each ventricle","within the dural venous sinuses","along the falx cerebri"], correct:1}
-  ]
-},
-{
-  id:"eyeear", letter:"Eye/Ear", name:"Eye &amp; Ear",
-  questions:[
-    {q:"The eye is made up of three general tunics (layers). These are:", choices:["fibrous, vascular, and nervous","fibrous, muscular, and neural","vascular, muscular, and sensory","fibrous, sensory, and glandular"], correct:0},
-    {q:"The fibrous tunic of the eye is composed of two components:", choices:["retina and choroid","sclera and cornea","iris and ciliary body","conjunctiva and lens"], correct:1},
-    {q:"Which cranial nerve allows for sensation on the surface of the eye?", choices:["CN II (Optic)","CN III (Oculomotor)","CN V1 (Ophthalmic division of Trigeminal)","CN VII (Facial)"], correct:2},
-    {q:"The vascular tunic of the eye is made up of three components:", choices:["sclera, cornea, and lens","choroid, ciliary body, and iris","retina, macula, and optic disk","cornea, iris, and retina"], correct:1},
-    {q:"The choroid layer primarily functions to:", choices:["focus light onto the retina","supply blood and nutrients to the eye, and absorb stray light","produce aqueous humor","transmit visual signals to the brain"], correct:1},
-    {q:"The ciliary body is made up of what type of muscle?", choices:["Skeletal muscle","Cardiac muscle","Smooth muscle","No muscle tissue at all"], correct:2},
-    {q:"During accommodation for near vision, the ciliary body:", choices:["relaxes, flattening the lens","contracts, allowing the lens to round up","dilates the pupil","constricts the pupil directly"], correct:1},
-    {q:"The iris is made up of two muscle groups. These are:", choices:["sphincter pupillae and dilator pupillae","ciliary and choroidal muscle","superior and inferior rectus","levator and orbicularis"], correct:0},
-    {q:"Pupillary constriction is controlled by which cranial nerve and division of the autonomic nervous system?", choices:["CN III, sympathetic","CN III, parasympathetic","CN VII, parasympathetic","CN VI, sympathetic"], correct:1},
-    {q:"Pupillary dilation relates to which content learned in the Functional Nervous System concept?", choices:["The parasympathetic division","The sympathetic division","The somatic efferent division","The visceral afferent division"], correct:1},
-    {q:"The optic disk is referred to as the \u201cblind spot\u201d because:", choices:["it contains only rod photoreceptors","it is where the optic nerve exits, leaving no photoreceptors there","it is covered by the choroid","it lacks any blood supply"], correct:1},
-    {q:"The macula lutea is the region of the retina responsible for:", choices:["peripheral vision","the sharpest, most detailed central vision","producing aqueous humor","attaching the lens to the ciliary body"], correct:1},
-    {q:"The fluid found in the anterior segment of the eye is:", choices:["vitreous humor","aqueous humor","CSF","lymph"], correct:1},
-    {q:"The fluid found in the posterior segment of the eye is:", choices:["aqueous humor","vitreous humor","synovial fluid","plasma"], correct:1},
-    {q:"Which of the eye's humors circulates and is continually replaced, and which is permanent?", choices:["Vitreous circulates and is replaced; aqueous is permanent","Aqueous circulates and is replaced; vitreous is permanent","Both circulate and are replaced equally","Neither is ever replaced"], correct:1},
-    {q:"The bulbar (ocular) conjunctiva differs from the palpebral conjunctiva in that the bulbar conjunctiva:", choices:["lines the inner eyelid","covers the anterior sclera","produces tears directly","forms part of the fibrous tunic"], correct:1},
-    {q:"A tear travels from the lacrimal gland to the nasal cavity by passing through the lacrimal punctum, lacrimal canaliculi, and lacrimal sac, and finally through the:", choices:["Eustachian tube","nasolacrimal duct","optic canal","choroid plexus"], correct:1},
-    {q:"Which cranial nerve stimulates production of fluid from the lacrimal gland?", choices:["CN V (Trigeminal)","CN VII (Facial)","CN III (Oculomotor)","CN IX (Glossopharyngeal)"], correct:1},
-    {q:"The three regions of the ear are:", choices:["superior, middle, inferior","external, middle, and inner","tympanic, cochlear, vestibular","anterior, medial, posterior"], correct:1},
-    {q:"Beginning at the tympanic membrane, sound waves pass through the ossicles in which order before reaching the oval window?", choices:["Incus, malleus, stapes","Malleus, incus, stapes","Stapes, incus, malleus","Malleus, stapes, incus"], correct:1},
-    {q:"The two muscles located in the middle ear, which help dampen sound, are the tensor tympani and the:", choices:["stapedius","stylohyoid","buccinator","orbicularis"], correct:0},
-    {q:"The auditory (Eustachian) tube functions to:", choices:["produce CSF for the inner ear","equalize air pressure between the middle ear and the pharynx","transmit sound directly to CN VIII","anchor the tympanic membrane"], correct:1},
-    {q:"The three structures of the inner ear are the cochlea, the vestibule, and the:", choices:["ossicles","semicircular canals","auricle","auditory tube"], correct:1},
-    {q:"Which cranial nerve carries the impulse for both balance and hearing?", choices:["CN VII (Facial)","CN VIII (Vestibulocochlear)","CN IX (Glossopharyngeal)","CN V (Trigeminal)"], correct:1}
-  ]
-},
-{
-  id:"fns", letter:"F", name:"Functional Nervous System",
-  questions:[
-    {q:"The functional nervous system is divided into two main divisions:", choices:["central and peripheral","somatic and visceral","sympathetic and parasympathetic","afferent and efferent only"], correct:1},
-    {q:"In the somatic division, how many neurons connect the CNS to the effector tissue (skeletal muscle)?", choices:["One","Two","Three","It varies by muscle"], correct:0},
-    {q:"In the visceral (autonomic) division, how many neurons connect the CNS to the effector tissue?", choices:["One","Two, a preganglionic and a postganglionic neuron","Three","None \u2014 it connects directly"], correct:1},
-    {q:"In the visceral division, where is the cell body of the postganglionic neuron located?", choices:["Inside the CNS","In a ganglion outside the CNS","In the effector tissue itself","In the posterior horn"], correct:1},
-    {q:"A synapse is best defined as:", choices:["a bundle of axons traveling together","the junction where one neuron communicates with another cell","a collection of cell bodies in the PNS","the myelin sheath around an axon"], correct:1},
-    {q:"A monosynaptic reflex, such as the patellar (knee-jerk) reflex, involves:", choices:["multiple interneurons and one synapse","exactly one synapse between sensory and motor neuron","communication with the cerebral cortex","two motor neurons in series"], correct:1},
-    {q:"A polysynaptic reflex, such as the withdrawal reflex, involves:", choices:["exactly one synapse","one or more interneurons and multiple synapses","no motor neuron at all","only sensory neurons"], correct:1},
-    {q:"Which of the two reflex types also communicates with the cerebral cortex, allowing conscious awareness?", choices:["The monosynaptic reflex","The polysynaptic reflex","Neither reflex reaches the cortex","Both reach the cortex equally"], correct:1},
-    {q:"The visceral efferent (motor) pathway is divided into two subdivisions:", choices:["afferent and efferent","sympathetic and parasympathetic","somatic and autonomic","central and ganglionic"], correct:1},
-    {q:"The phrase commonly used to recall the functions of the parasympathetic nervous system is:", choices:["\u201cfight or flight\u201d","\u201crest and digest\u201d","\u201cuse it or lose it\u201d","\u201call or none\u201d"], correct:1},
-    {q:"The phrase commonly used to recall the functions of the sympathetic nervous system is:", choices:["\u201crest and digest\u201d","\u201cfight or flight\u201d","\u201chome base\u201d","\u201cwatch and wait\u201d"], correct:1},
-    {q:"The command center for the autonomic nervous system is located in the:", choices:["thalamus","hypothalamus","cerebellum","medulla only"], correct:1},
-    {q:"A nerve signal traveling FROM the bladder TO the spinal cord, signaling distension, is carried by which division?", choices:["The visceral efferent division","The visceral afferent division","The somatic efferent division","The somatic afferent division"], correct:1},
-    {q:"A nerve signal traveling FROM the spinal cord TO the bladder, causing it to contract, is carried by which division?", choices:["Visceral afferent","Somatic afferent","Visceral efferent","Somatic efferent"], correct:2},
-    {q:"Pupillary dilation is controlled by which subdivision of visceral efferent?", choices:["Parasympathetic","Sympathetic","Somatic","Visceral afferent"], correct:1},
-    {q:"Pupillary constriction is controlled by which subdivision, carried by which cranial nerve?", choices:["Sympathetic, via CN VI","Parasympathetic, via CN III","Sympathetic, via CN III","Parasympathetic, via CN VII"], correct:1}
-  ]
-},
-{
-  id:"cn", letter:"E", name:"Cranial Nerves",
-  questions:[
-    {q:"Cranial nerve I is the olfactory nerve. It allows for:", choices:["vision","the sense of smell","hearing","taste"], correct:1},
-    {q:"Cranial nerve II is the optic nerve. It allows for:", choices:["eye movement","vision","pupillary constriction","facial sensation"], correct:1},
-    {q:"Cranial nerve III is the oculomotor nerve. Besides moving the eyeball, it also carries parasympathetic fibers for:", choices:["salivation","pupillary constriction","tear production","taste"], correct:1},
-    {q:"Cranial nerve IV is the trochlear nerve. It innervates which extraocular muscle?", choices:["Lateral rectus","Medial rectus","Superior oblique","Inferior oblique"], correct:2},
-    {q:"Cranial nerve V, the trigeminal nerve, has three divisions. Which division is somatic efferent (motor), innervating the muscles of mastication?", choices:["V1, ophthalmic","V2, maxillary","V3, mandibular","All three equally"], correct:2},
-    {q:"Cranial nerve VI is the abducens nerve. It innervates which extraocular muscle?", choices:["Superior oblique","Lateral rectus","Medial rectus","Inferior rectus"], correct:1},
-    {q:"Cranial nerve VII, the facial nerve, is responsible for muscles of facial expression and also carries sensory fibers for:", choices:["taste on the anterior two-thirds of the tongue","general sensation of the face","hearing","taste on the posterior third of the tongue"], correct:0},
-    {q:"Cranial nerve VIII, the vestibulocochlear nerve, carries the impulse for:", choices:["facial movement and taste","balance and hearing","swallowing and gag reflex","tongue movement"], correct:1},
-    {q:"Cranial nerve IX, the glossopharyngeal nerve, carries both sensory and motor fibers, including taste from the:", choices:["anterior two-thirds of the tongue","posterior third of the tongue","entire tongue equally","soft palate only"], correct:1},
-    {q:"Cranial nerve X, the vagus nerve, is unique among cranial nerves because it:", choices:["only carries motor fibers","is the only cranial nerve that courses inferior to the head/neck region","enters the skull through the foramen magnum","has no parasympathetic component"], correct:1},
-    {q:"Cranial nerve XI, the spinal accessory nerve, is a motor nerve innervating:", choices:["the muscles of mastication","the SCM and trapezius","the tongue","the muscles of facial expression"], correct:1},
-    {q:"Cranial nerve XII, the hypoglossal nerve, is a motor nerve innervating:", choices:["the pharynx","the SCM","the tongue","the larynx"], correct:2},
-    {q:"Which four cranial nerves pass through the superior orbital fissure?", choices:["II, III, IV, VI","III, IV, V1, VI","I, II, III, IV","V1, V2, V3, VI"], correct:1},
-    {q:"Which three cranial nerves allow for movement of the eyeball?", choices:["II, III, IV","III, IV, VI","III, IV, V1","II, IV, VI"], correct:1},
-    {q:"Which four cranial nerves carry parasympathetic fibers?", choices:["III, VII, IX, X","III, IV, VI, XI","I, II, VIII, XII","V, VII, IX, XI"], correct:0},
-    {q:"True or False: cranial nerves carry sympathetic fibers.", choices:["True \u2014 all 12 cranial nerves originate sympathetic outflow","False \u2014 cranial nerves do not carry their own sympathetic fibers","True, but only CN III and CN X do","False, only spinal nerves exist at all"], correct:1},
-    {q:"Which four cranial nerves innervate the tongue in some capacity (taste and/or motor)?", choices:["V, VII, IX, XII","VII, IX, X, XII","I, VII, IX, XII","III, VII, IX, XII"], correct:1},
-    {q:"Which cranial nerve allows you to read the questions on a worksheet?", choices:["CN I (Olfactory)","CN II (Optic)","CN III (Oculomotor)","CN VII (Facial)"], correct:1},
-    {q:"Cranial nerves are part of which division of the nervous system?", choices:["The central nervous system (CNS)","The peripheral nervous system (PNS)","Both equally","Neither \u2014 they are autonomic only"], correct:1},
-    {q:"Which cranial nerve allows the SCM to contract, permitting one to flex the neck?", choices:["CN VII (Facial)","CN X (Vagus)","CN XI (Spinal Accessory)","CN XII (Hypoglossal)"], correct:2}
-  ]
-}
-];
+const DATA = {"sections": [{"id": "A", "title": "Skeleton of Thorax", "questions": [{"q": "The term 'osteocartilaginous' describes the thoracic cage because it is composed of:", "opts": ["Both bone and cartilage", "Bone only", "Cartilage and ligament", "Dense connective tissue only"], "ans": 0, "note": "Osteo = bone, cartilaginous = cartilage. The cage is ribs/sternum (bone) plus costal cartilage."}, {"q": "List the three sections of the sternum from superior to inferior:", "opts": ["Manubrium, body, xiphoid process", "Xiphoid, body, manubrium", "Manubrium, xiphoid, body", "Body, manubrium, xiphoid"], "ans": 0, "note": "Manubrium (top) → body (middle) → xiphoid process (bottom)."}, {"q": "The manubrium articulates with the clavicles, the 1st rib, and part of the:", "opts": ["2nd rib (at the sternal angle)", "3rd rib", "Xiphoid process only", "7th rib"], "ans": 0, "note": "The 2nd rib articulates at the manubriosternal junction (sternal angle), shared with the body."}, {"q": "The 1st rib articulates with the manubrium via:", "opts": ["Full costal cartilage", "A synovial joint only", "The sternal angle", "The xiphoid process"], "ans": 0, "note": "Rib 1 joins the manubrium through its complete costal cartilage."}, {"q": "The sternal angle is the joint between the manubrium and body, also called the:", "opts": ["Manubriosternal joint", "Xiphisternal joint", "Sternoclavicular joint", "Costochondral joint"], "ans": 0, "note": "It is a clinically key landmark used to locate the 2nd rib and for auscultation."}, {"q": "The sternal angle is clinically used to identify which rib?", "opts": ["The 2nd rib", "The 1st rib", "The 7th rib", "The 12th rib"], "ans": 0, "note": "Slide laterally from the sternal angle to find the 2nd costal cartilage/rib."}, {"q": "The body of the sternum articulates via costal cartilage with which ribs?", "opts": ["Ribs 2-7", "Ribs 1-5", "Ribs 8-12", "Ribs 3-10"], "ans": 0, "note": "The body shares rib 2 with the manubrium and takes ribs 3-7 (and part of 2)."}, {"q": "The xiphoid process is the inferior section of the sternum and serves as an attachment for the:", "opts": ["Diaphragm", "Trapezius", "Clavicle", "Scalenes"], "ans": 0, "note": "The xiphoid is a landmark and attachment point (diaphragm, some abdominal muscles)."}, {"q": "Ribs 1-7, which attach directly to the sternum by their own costal cartilage, are termed:", "opts": ["Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Vertebral (floating) ribs", "Costal ribs"], "ans": 0, "note": "True ribs attach directly to the sternum."}, {"q": "Ribs 8-10, which attach to the sternum indirectly via the cartilage above them, are termed:", "opts": ["Vertebrochondral (false) ribs", "Vertebrosternal (true) ribs", "Vertebral (floating) ribs", "Cervical ribs"], "ans": 0, "note": "False ribs share costal cartilage rather than attaching directly."}, {"q": "Ribs 11-12, which have no anterior sternal attachment, are termed:", "opts": ["Vertebral (floating) ribs", "Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Costal ribs"], "ans": 0, "note": "Floating ribs attach only posteriorly to vertebrae."}, {"q": "The head of a typical rib articulates with the:", "opts": ["Bodies of vertebrae (costal facets)", "Transverse process only", "Spinous process", "Costal cartilage of the rib above"], "ans": 0, "note": "The head joins vertebral bodies; the tubercle joins the transverse process."}, {"q": "The tubercle of a typical rib articulates with the:", "opts": ["Transverse process of a thoracic vertebra", "Vertebral body", "Spinous process", "Sternum"], "ans": 0, "note": "Tubercle → transverse process; head → vertebral body/bodies."}, {"q": "The costal groove on the inferior inner surface of a rib houses the:", "opts": ["Intercostal vein, artery, and nerve (VAN)", "Spinal cord", "Thoracic duct", "Vagus nerve"], "ans": 0, "note": "The neurovascular bundle runs in the costal groove: vein, artery, nerve top-to-bottom."}, {"q": "The head of Rib 1 is atypical because it articulates with:", "opts": ["T1 only (a single vertebra)", "T1 and T2", "C7 and T1", "T1 through T3"], "ans": 0, "note": "Rib 1's head joins only T1; typical ribs (2-9) join two vertebrae."}, {"q": "The head of a typical rib (e.g., Ribs 2-9) articulates with:", "opts": ["Two adjacent vertebrae and the disc between them", "One vertebra only", "The transverse process only", "The sternum"], "ans": 0, "note": "Typical rib heads span two vertebral bodies plus the intervertebral disc."}, {"q": "Ribs 11 and 12 are atypical posteriorly because their heads articulate with:", "opts": ["Their own single vertebra only (no tubercle articulation)", "Two vertebrae plus disc", "The transverse process", "T10 and T11"], "ans": 0, "note": "Floating ribs join only their own vertebra and lack a tubercle articulation."}, {"q": "Rib 1 is visibly unique because it is short, flat, sharply curved, and has grooves for the:", "opts": ["Subclavian vessels", "Vertebral artery", "Azygos vein", "Internal thoracic artery"], "ans": 0, "note": "The subclavian artery and vein grooves cross the superior surface of rib 1."}, {"q": "Ribs 11 and 12 are visibly unique because they:", "opts": ["Lack a neck and tubercle", "Have the longest necks", "Articulate with the sternum", "Have two facets on the head"], "ans": 0, "note": "Floating ribs are short and lack the neck/tubercle of typical ribs."}]}, {"id": "B", "title": "Muscles of Thorax", "questions": [{"q": "The diaphragm attaches bony to the xiphoid process, the lower six costal cartilages/ribs, and the:", "opts": ["L1-L3 vertebrae via crura", "T1-T4 vertebrae", "Manubrium", "Clavicles"], "ans": 0, "note": "The right and left crura anchor the diaphragm to the upper lumbar vertebrae."}, {"q": "The central tendon of the diaphragm is a:", "opts": ["Trefoil-shaped aponeurosis at the center", "Bony plate", "Muscular sphincter", "Cartilage disc"], "ans": 0, "note": "Muscle fibers converge on this leaf-shaped tendon."}, {"q": "The caval opening of the diaphragm at the T8 level transmits the:", "opts": ["Inferior vena cava", "Aorta", "Esophagus", "Thoracic duct"], "ans": 0, "note": "T8 = IVC. Mnemonic: vena cava has 8 letters."}, {"q": "The esophageal hiatus of the diaphragm at the T10 level transmits the esophagus and the:", "opts": ["Vagus nerves", "Thoracic duct", "Azygos vein", "Phrenic nerve"], "ans": 0, "note": "T10 = esophagus + vagal trunks. 'Esophagus' has 10 letters."}, {"q": "The aortic hiatus at the T12 level transmits the aorta, thoracic duct, and:", "opts": ["Azygos vein", "Vagus nerves", "Inferior vena cava", "Phrenic nerve"], "ans": 0, "note": "T12 = aorta + thoracic duct + azygos. 'Aortic hiatus' has 12 letters."}, {"q": "The 2 intercostal muscles that elevate the ribs for inspiration are the external intercostals and the:", "opts": ["Interchondral part of the internal intercostals", "Innermost intercostals", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "External intercostals + the interchondral (parasternal) internal intercostals aid inspiration."}, {"q": "The 2 intercostal muscles that depress the ribs for expiration are the internal intercostals and the:", "opts": ["Innermost intercostals", "External intercostals", "Scalenes", "Pectoralis minor"], "ans": 0, "note": "The interosseous internal intercostals plus innermost intercostals depress ribs."}, {"q": "The 3 accessory muscles for forced inhalation are the sternocleidomastoid, scalenes, and:", "opts": ["Pectoralis minor", "Rectus abdominis", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "SCM and scalenes lift the upper ribs/sternum; pec minor assists when arms are fixed."}, {"q": "The 2 thoracic muscles active in forced exhalation are the transversus thoracis and the:", "opts": ["Serratus posterior inferior", "Diaphragm", "Scalenes", "Sternocleidomastoid"], "ans": 0, "note": "These pull ribs down; abdominal muscles also drive forced expiration."}, {"q": "The nerve that controls contractions of the diaphragm is the:", "opts": ["Phrenic nerve (C3, C4, C5)", "Vagus nerve", "Intercostal nerves", "Thoracodorsal nerve"], "ans": 0, "note": "'C3, 4, 5 keep the diaphragm alive.'"}]}, {"id": "C", "title": "Heart", "questions": [{"q": "The fibrous pericardium functions to:", "opts": ["Anchor the heart and prevent overfilling", "Produce serous fluid", "Contract to pump blood", "Conduct electrical impulses"], "ans": 0, "note": "Tough outer sac: protection, anchoring, prevents overdistension."}, {"q": "The parietal serous pericardium is located:", "opts": ["Lining the inner surface of the fibrous pericardium", "Directly on the heart surface", "Between the two ventricles", "Around the great vessels only"], "ans": 0, "note": "Parietal layer lines the fibrous sac; visceral layer hugs the heart."}, {"q": "The visceral serous pericardium is located:", "opts": ["On the outer surface of the heart", "Lining the fibrous pericardium", "In the pericardial cavity as fluid", "Within the myocardium"], "ans": 0, "note": "It clings directly to the heart's surface."}, {"q": "The alternative name for the visceral serous pericardium is the:", "opts": ["Epicardium", "Endocardium", "Myocardium", "Parietal pericardium"], "ans": 0, "note": "Visceral serous pericardium = epicardium (the heart's outer layer)."}, {"q": "The pericardial cavity contains serous fluid whose function is to:", "opts": ["Reduce friction as the heart beats", "Oxygenate the myocardium", "Trigger the heartbeat", "Store calcium"], "ans": 0, "note": "The lubricating film lets the serous layers glide."}, {"q": "The three layers of the heart wall from outer to inner are:", "opts": ["Epicardium, myocardium, endocardium", "Endocardium, myocardium, epicardium", "Myocardium, epicardium, endocardium", "Pericardium, myocardium, endocardium"], "ans": 0, "note": "Epi- (outer), myo- (muscle), endo- (inner lining)."}, {"q": "Gap junctions in cardiac muscle function to:", "opts": ["Allow electrical signals to spread cell-to-cell", "Anchor cells mechanically only", "Store neurotransmitter", "Filter blood"], "ans": 0, "note": "Gap junctions let ions pass so the myocardium acts as a functional syncytium."}, {"q": "The 2 upper chambers of the heart are the:", "opts": ["Atria", "Ventricles", "Auricles", "Sinuses"], "ans": 0, "note": "Atria receive blood; ventricles pump it out."}, {"q": "The 2 lower chambers of the heart are the:", "opts": ["Ventricles", "Atria", "Auricles", "Vena cavae"], "ans": 0, "note": "Ventricles are the pumping chambers."}, {"q": "The tricuspid valve is located between the:", "opts": ["Right atrium and right ventricle", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Left ventricle and aorta"], "ans": 0, "note": "Right AV valve = tricuspid (3 cusps)."}, {"q": "The bicuspid valve, located between the left atrium and left ventricle, is also called the:", "opts": ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"], "ans": 0, "note": "Left AV valve = bicuspid = mitral."}, {"q": "The large artery carrying blood away from the right ventricle is the:", "opts": ["Pulmonary trunk", "Aorta", "Superior vena cava", "Coronary sinus"], "ans": 0, "note": "Right ventricle → pulmonary trunk → lungs."}, {"q": "The large artery carrying blood away from the left ventricle is the:", "opts": ["Aorta", "Pulmonary trunk", "Pulmonary vein", "Coronary artery"], "ans": 0, "note": "Left ventricle → aorta → body."}, {"q": "The pulmonary (semilunar) valve is located between the:", "opts": ["Right ventricle and pulmonary trunk", "Right atrium and right ventricle", "Left ventricle and aorta", "Left atrium and left ventricle"], "ans": 0, "note": "Guards the exit from the right ventricle."}, {"q": "The aortic (semilunar) valve is located between the:", "opts": ["Left ventricle and aorta", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Right atrium and right ventricle"], "ans": 0, "note": "Guards the exit from the left ventricle."}, {"q": "The right side of the heart carries which type of blood?", "opts": ["Deoxygenated blood", "Oxygenated blood", "Filtered blood", "Mixed blood only"], "ans": 0, "note": "Right side = deoxygenated (heads to lungs)."}, {"q": "The 3 structures that return blood to the right atrium are the SVC, IVC, and:", "opts": ["Coronary sinus", "Pulmonary veins", "Aorta", "Azygos vein"], "ans": 0, "note": "The coronary sinus drains the heart's own venous blood into the RA."}, {"q": "The left side of the heart carries which type of blood?", "opts": ["Oxygenated blood", "Deoxygenated blood", "Filtered blood", "Lymph"], "ans": 0, "note": "Left side = oxygenated (heads to body)."}, {"q": "The structures that return blood to the left atrium are the:", "opts": ["Four pulmonary veins", "Superior and inferior vena cava", "Coronary sinus", "Pulmonary arteries"], "ans": 0, "note": "Four pulmonary veins bring oxygenated blood from the lungs to the LA."}, {"q": "A key structural difference between an atrioventricular valve and a semilunar valve is that AV valves have:", "opts": ["Chordae tendineae anchoring them", "Three cusps always", "No cusps", "A muscular sphincter"], "ans": 0, "note": "AV valves attach to papillary muscles via chordae tendineae; semilunar valves do not."}, {"q": "Pectinate muscles are ridged muscle bundles found in the:", "opts": ["Atrial walls/auricles", "Ventricular walls", "Interventricular septum", "Great vessels"], "ans": 0, "note": "Pectinate muscle = atria; trabeculae carneae = ventricles."}, {"q": "Trabeculae carneae are the irregular muscular ridges found in the:", "opts": ["Ventricular walls", "Atrial walls", "Coronary sinus", "Aortic arch"], "ans": 0, "note": "Ridges of the ventricular myocardium."}, {"q": "The fossa ovalis is a depression in the interatrial septum that is the remnant of the:", "opts": ["Foramen ovale", "Ductus arteriosus", "Ligamentum arteriosum", "Coronary sinus"], "ans": 0, "note": "The fetal foramen ovale closes to become the fossa ovalis."}, {"q": "The SA node, the heart's pacemaker, is located in the wall of the:", "opts": ["Right atrium (near the SVC)", "Left ventricle", "Interventricular septum", "Aortic arch"], "ans": 0, "note": "SA node sits in the RA wall near the SVC opening."}, {"q": "Place the cardiac conduction components in the correct order from the SA node:", "opts": ["SA node → AV node → AV bundle → bundle branches → Purkinje fibers", "SA node → Purkinje fibers → AV node → bundle branches → AV bundle", "AV node → SA node → bundle branches → AV bundle → Purkinje fibers", "SA node → bundle branches → AV node → AV bundle → Purkinje fibers"], "ans": 0, "note": "SA → AV node → bundle of His → L/R bundle branches → Purkinje fibers."}, {"q": "The autonomic centers that regulate the heart are located in the brainstem's:", "opts": ["Medulla oblongata", "Cerebellum", "Thalamus", "Pons only"], "ans": 0, "note": "Cardiac (cardioacceleratory/cardioinhibitory) centers are in the medulla."}, {"q": "Sympathetic innervation of the heart has what effect?", "opts": ["Increases heart rate and contractility", "Decreases heart rate", "Has no effect on rate", "Stops the heart"], "ans": 0, "note": "Sympathetic = 'fight or flight' = faster, stronger beats."}, {"q": "Parasympathetic innervation (via the vagus nerve) of the heart has what effect?", "opts": ["Decreases heart rate", "Increases contractility", "Increases heart rate", "No effect on rate"], "ans": 0, "note": "Vagal 'rest and digest' slows the heart."}]}, {"id": "D", "title": "Cardiovascular Pathways", "questions": [{"q": "The contraction of the left ventricle is the driving force for which circulation?", "opts": ["Systemic circulation", "Pulmonary circulation", "Portal circulation", "Coronary circulation only"], "ans": 0, "note": "Left ventricle → systemic; right ventricle → pulmonary."}, {"q": "In systemic circulation, oxygen travels within systemic arteries and diffuses out at the:", "opts": ["Capillary beds", "Large arteries", "Venules only", "Aorta"], "ans": 0, "note": "Gas exchange happens in capillaries."}, {"q": "Systemic veins carry which blood back to the right side of the heart?", "opts": ["Less-oxygenated blood", "Fully oxygenated blood", "Lymph", "Filtered plasma"], "ans": 0, "note": "Systemic veins return deoxygenated blood to the RA."}, {"q": "The contraction of the right ventricle drives blood to the lungs; oxygenation then occurs in the:", "opts": ["Pulmonary capillary beds", "Systemic capillaries", "Left ventricle", "Aorta"], "ans": 0, "note": "Pulmonary capillaries surrounding alveoli."}, {"q": "Pulmonary veins are unusual because they carry oxygenated blood to the:", "opts": ["Left side of the heart", "Right side of the heart", "Lungs", "Systemic tissues"], "ans": 0, "note": "Pulmonary veins carry oxygenated blood (arteries carry deoxygenated) to the LA."}, {"q": "The left ventricular wall is thicker than the right because it must:", "opts": ["Generate higher pressure for systemic circulation", "Hold more blood", "Contract more slowly", "Pump against gravity only"], "ans": 0, "note": "Systemic circuit has far higher resistance than the pulmonary circuit."}, {"q": "The brachiocephalic trunk, a branch of the aortic arch, branches into the right common carotid and the:", "opts": ["Right subclavian artery", "Left subclavian artery", "Left common carotid", "Internal thoracic artery"], "ans": 0, "note": "Brachiocephalic → R subclavian + R common carotid."}, {"q": "The left common carotid and left subclavian arteries branch directly from the:", "opts": ["Aortic arch", "Brachiocephalic trunk", "Pulmonary trunk", "Descending aorta"], "ans": 0, "note": "On the left, both arise straight off the arch (no brachiocephalic on the left)."}, {"q": "The internal thoracic artery is a branch of the:", "opts": ["Subclavian artery", "Common carotid artery", "Celiac trunk", "Abdominal aorta"], "ans": 0, "note": "It descends behind the sternum from the subclavian."}, {"q": "The celiac trunk is an unpaired branch of the abdominal aorta that branches into the left gastric, splenic, and:", "opts": ["Common hepatic artery", "Superior mesenteric artery", "Renal artery", "Gonadal artery"], "ans": 0, "note": "Celiac trunk trifurcation: left gastric, splenic, common hepatic."}, {"q": "The superior mesenteric artery branches from the:", "opts": ["Abdominal aorta", "Celiac trunk", "Common iliac artery", "Splenic artery"], "ans": 0, "note": "SMA is an unpaired anterior branch of the abdominal aorta."}, {"q": "The renal arteries are paired branches of the:", "opts": ["Abdominal aorta", "Common iliac arteries", "Celiac trunk", "Superior mesenteric artery"], "ans": 0, "note": "Paired laterals to the kidneys."}, {"q": "The gonadal (ovarian/testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "Paired anterior branches just below the renal arteries."}, {"q": "The common iliac artery divides into the external iliac and:", "opts": ["Internal iliac artery", "Renal artery", "Femoral artery", "Gonadal artery"], "ans": 0, "note": "At the pelvic brim the common iliac splits into external + internal iliac."}, {"q": "The subclavian vein and internal jugular vein join to form the:", "opts": ["Brachiocephalic vein", "Superior vena cava", "Azygos vein", "Hemiazygos vein"], "ans": 0, "note": "Subclavian + IJ → brachiocephalic vein."}, {"q": "The right and left brachiocephalic veins unite to form the:", "opts": ["Superior vena cava", "Inferior vena cava", "Azygos vein", "Coronary sinus"], "ans": 0, "note": "Both brachiocephalic veins merge into the SVC."}, {"q": "The azygos vein drains the thoracic wall and empties into the:", "opts": ["Superior vena cava", "Inferior vena cava", "Left brachiocephalic vein", "Coronary sinus"], "ans": 0, "note": "The azygos arches over the right lung root into the SVC."}, {"q": "The hepatic veins drain the liver directly into the:", "opts": ["Inferior vena cava", "Hepatic portal vein", "Superior vena cava", "Splenic vein"], "ans": 0, "note": "Hepatic veins → IVC (distinct from the portal inflow)."}, {"q": "The renal veins drain the kidneys into the:", "opts": ["Inferior vena cava", "Superior vena cava", "Azygos vein", "Hepatic portal vein"], "ans": 0, "note": "Kidneys → renal veins → IVC."}, {"q": "The right gonadal vein drains into the IVC, but the left gonadal vein drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Azygos vein"], "ans": 0, "note": "Left gonadal → left renal vein → IVC (asymmetry worth remembering)."}]}, {"id": "E", "title": "Special Cardiovascular", "questions": [{"q": "A portal venous system is defined as one in which blood passes through:", "opts": ["Two capillary beds before returning to the heart", "One capillary bed only", "No capillary beds", "The lymphatic system first"], "ans": 0, "note": "Portal systems link two capillary beds in series."}, {"q": "The hepatic portal system specifically carries blood from the:", "opts": ["GI tract to the liver", "Liver to the heart", "Kidneys to the liver", "Spleen to the lungs"], "ans": 0, "note": "Nutrient-rich blood from the gut is filtered by the liver first."}, {"q": "Blood from an organ supplied by a branch of the superior mesenteric artery drains into the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Arterial supply and venous drainage usually mirror each other by name."}, {"q": "Blood from an organ supplied by a branch of the inferior mesenteric artery drains into the:", "opts": ["Inferior mesenteric vein", "Superior mesenteric vein", "Splenic vein", "Hepatic vein"], "ans": 0, "note": "IMA territory → IMV."}, {"q": "The two veins that combine to form the hepatic portal vein are the splenic vein and the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Splenic v. + SMV = hepatic portal vein."}, {"q": "The inferior mesenteric vein typically connects to the:", "opts": ["Splenic vein", "Superior mesenteric vein directly", "Inferior vena cava", "Hepatic vein"], "ans": 0, "note": "The IMV usually joins the splenic vein en route to the portal vein."}, {"q": "'Porta hepatis' is another name for which opening of the liver?", "opts": ["The hilum", "The falciform ligament", "The bare area", "The caudate lobe"], "ans": 0, "note": "Porta hepatis = the liver's hilum, where vessels/ducts enter and exit."}, {"q": "At the porta hepatis, the common hepatic duct primarily:", "opts": ["Exits, carrying bile away from the liver", "Enters, carrying blood in", "Enters, carrying oxygen", "Exits, carrying lymph"], "ans": 0, "note": "Hepatic portal vein and hepatic artery enter; the common hepatic duct exits with bile."}, {"q": "Coronary arteries bring blood to the heart tissue itself and arise just above which valve?", "opts": ["Aortic (semilunar) valve", "Pulmonary valve", "Mitral valve", "Tricuspid valve"], "ans": 0, "note": "The coronary ostia sit in the aortic sinuses just above the aortic valve."}, {"q": "The two branches of the left coronary artery are the circumflex and the:", "opts": ["Anterior interventricular (LAD)", "Posterior interventricular", "Right marginal", "Coronary sinus"], "ans": 0, "note": "Left coronary → circumflex + anterior interventricular (LAD)."}, {"q": "The two branches of the right coronary artery are the right marginal and the:", "opts": ["Posterior interventricular", "Anterior interventricular", "Circumflex", "Left marginal"], "ans": 0, "note": "Right coronary → right marginal + posterior interventricular."}, {"q": "The coronary sinus functions to:", "opts": ["Collect venous blood from the heart wall", "Supply oxygen to the myocardium", "Pump blood to the lungs", "Store bile"], "ans": 0, "note": "It's the main venous drain of the heart."}, {"q": "The coronary sinus drains into which chamber?", "opts": ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], "ans": 0, "note": "Coronary sinus empties into the RA."}, {"q": "The fundamental difference between fetal and adult circulation is that in the fetus:", "opts": ["The lungs are largely bypassed", "The liver is bypassed only", "There is no heartbeat", "Blood does not carry oxygen"], "ans": 0, "note": "Fetal shunts route blood around the non-functional lungs."}, {"q": "The foramen ovale in the fetus is an opening that allows blood to pass:", "opts": ["From the right atrium to the left atrium", "From the left ventricle to the aorta", "Between the two ventricles", "From the aorta to the pulmonary trunk"], "ans": 0, "note": "It shunts blood RA→LA, bypassing the pulmonary circuit."}, {"q": "The ligamentum arteriosum is the adult remnant of the:", "opts": ["Ductus arteriosus", "Ductus venosus", "Foramen ovale", "Umbilical vein"], "ans": 0, "note": "The ductus arteriosus (pulmonary trunk↔aorta shunt) becomes this ligament."}, {"q": "In fetal circulation, the umbilical vein carries which blood, and in which direction?", "opts": ["Oxygenated blood toward the fetus", "Deoxygenated blood away from the fetus", "Oxygenated blood to the placenta", "Deoxygenated blood to the fetus"], "ans": 0, "note": "Umbilical VEIN = oxygenated, to the fetus; umbilical ARTERIES = deoxygenated, to placenta."}, {"q": "The foramen ovale becomes which structure after birth?", "opts": ["Fossa ovalis", "Ligamentum arteriosum", "Ligamentum teres", "Ligamentum venosum"], "ans": 0, "note": "Fetal → remnant: foramen ovale → fossa ovalis."}, {"q": "The ductus arteriosus becomes which structure after birth?", "opts": ["Ligamentum arteriosum", "Fossa ovalis", "Ligamentum teres (round ligament of liver)", "Medial umbilical ligaments"], "ans": 0, "note": "Ductus arteriosus → ligamentum arteriosum."}, {"q": "The umbilical vein becomes which structure after birth?", "opts": ["Ligamentum teres (round ligament of the liver)", "Ligamentum arteriosum", "Fossa ovalis", "Ligamentum venosum"], "ans": 0, "note": "Umbilical vein → ligamentum teres / round ligament of the liver."}, {"q": "The paired umbilical arteries become which structures after birth?", "opts": ["Medial umbilical ligaments", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Umbilical arteries → medial umbilical ligaments."}, {"q": "The ductus venosus becomes which structure after birth?", "opts": ["Ligamentum venosum", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Ductus venosus (bypassed the liver) → ligamentum venosum."}]}, {"id": "F", "title": "Lymphatic System", "questions": [{"q": "The three functions of the lymphatic system are immunity, fat absorption, and:", "opts": ["Fluid balance (returning interstitial fluid to blood)", "Gas exchange", "Hormone secretion", "Erythrocyte production"], "ans": 0, "note": "Fluid balance, immune defense, lipid absorption (lacteals)."}, {"q": "Lymphatic vessels are structurally like veins because they:", "opts": ["Have valves and carry fluid one-way toward the heart", "Carry blood away from the heart", "Have thick muscular walls", "Pulse with the heartbeat"], "ans": 0, "note": "One-way, low-pressure, valved vessels."}, {"q": "The fluid that travels through lymphatic vessels is called:", "opts": ["Lymph", "Plasma", "Serum", "Interstitial fluid"], "ans": 0, "note": "Once interstitial fluid enters a lymphatic vessel it is called lymph."}, {"q": "Place the fluid in order as it moves to and from the cardiovascular system:", "opts": ["Plasma → interstitial fluid → lymph → (back to plasma)", "Lymph → plasma → interstitial fluid", "Interstitial fluid → plasma → lymph", "Plasma → lymph → interstitial fluid"], "ans": 0, "note": "Plasma leaks out as interstitial fluid, is picked up as lymph, and returns to blood."}, {"q": "An organ is classified as lymphatic if it:", "opts": ["Contains large amounts of lymphatic tissue/lymphocytes", "Filters blood only", "Produces bile", "Secretes hormones"], "ans": 0, "note": "Lymphatic organs are built from reticular tissue housing lymphocytes."}, {"q": "The lymphatic organs include the spleen, thymus, tonsils, red bone marrow, and:", "opts": ["Lymph nodes", "Pancreas", "Liver", "Adrenal glands"], "ans": 0, "note": "Spleen, thymus, tonsils, marrow, nodes (and MALT)."}, {"q": "The only lymphatic organ capable of producing lymphocytes/WBCs is the:", "opts": ["Red bone marrow", "Spleen", "Tonsils", "Thymus"], "ans": 0, "note": "All blood cells, including lymphocytes, originate in red bone marrow."}, {"q": "The lymphatic structure that allows the maturation of T-lymphocytes is the:", "opts": ["Thymus", "Spleen", "Red bone marrow", "Lymph node"], "ans": 0, "note": "T cells mature in the thymus."}, {"q": "The 2 lymphatic ducts are the right lymphatic duct and the thoracic duct, which drains about:", "opts": ["75% of the body (into the left venous angle)", "25% of the body", "100% of the body", "50% of the body"], "ans": 0, "note": "Thoracic duct drains ~3/4 of the body; right lymphatic duct drains the right upper quadrant."}, {"q": "If lymphatic fluid is not picked up by lymphatic capillaries in the tissues, the result is:", "opts": ["Edema (tissue swelling)", "Dehydration", "Anemia", "Ischemia"], "ans": 0, "note": "Fluid accumulates in the interstitium as edema."}, {"q": "The spleen is located in the LUQ and filters blood; its arterial supply, the splenic artery, branches from the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Renal artery", "Inferior mesenteric artery"], "ans": 0, "note": "Splenic artery is a branch of the celiac trunk."}, {"q": "The primary function of a lymph node is to:", "opts": ["Filter lymph and mount immune responses", "Produce red blood cells", "Store bile", "Oxygenate blood"], "ans": 0, "note": "Nodes filter lymph and house lymphocytes/macrophages."}, {"q": "The vessels that carry lymph INTO a lymph node are the ___, and those carrying it OUT are the ___:", "opts": ["Afferent vessels; efferent vessels", "Efferent vessels; afferent vessels", "Arteries; veins", "Ducts; capillaries"], "ans": 0, "note": "Afferent = Arrive; Efferent = Exit."}]}, {"id": "G", "title": "Thoracic Cavity & Respiratory", "questions": [{"q": "The three subdivisions of the thoracic cavity are the two pleural cavities and the:", "opts": ["Mediastinum", "Pericardial cavity only", "Peritoneal cavity", "Abdominal cavity"], "ans": 0, "note": "Left + right pleural cavities flank the central mediastinum."}, {"q": "The border between the superior and inferior mediastinum is marked by the:", "opts": ["Sternal angle (T4/T5)", "Xiphoid process", "Jugular notch", "Diaphragm"], "ans": 0, "note": "A plane from the sternal angle to the T4/T5 disc divides the mediastinum."}, {"q": "The heart is found in which region of the mediastinum?", "opts": ["Middle mediastinum", "Superior mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The heart and pericardium define the middle mediastinum."}, {"q": "The thoracic aorta and esophagus are found in which region of the mediastinum?", "opts": ["Posterior mediastinum", "Middle mediastinum", "Anterior mediastinum", "Superior mediastinum only"], "ans": 0, "note": "Descending thoracic aorta, esophagus, azygos, thoracic duct = posterior."}, {"q": "The thymus gland is found primarily in which mediastinal region(s)?", "opts": ["Superior/anterior mediastinum", "Posterior mediastinum", "Middle mediastinum", "Pleural cavity"], "ans": 0, "note": "The thymus sits in the anterior/superior mediastinum behind the sternum."}, {"q": "The aortic arch is found in which region of the mediastinum?", "opts": ["Superior mediastinum", "Middle mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The arch lies in the superior mediastinum."}, {"q": "The trachea belongs to which body system?", "opts": ["Respiratory system", "Digestive system", "Lymphatic system", "Cardiovascular system"], "ans": 0, "note": "The trachea conducts air (respiratory)."}, {"q": "The esophagus belongs to which body system?", "opts": ["Digestive system", "Respiratory system", "Cardiovascular system", "Nervous system"], "ans": 0, "note": "The esophagus moves food (digestive)."}, {"q": "The thoracic duct belongs to which body system?", "opts": ["Lymphatic system", "Cardiovascular system", "Digestive system", "Respiratory system"], "ans": 0, "note": "The thoracic duct is the body's largest lymphatic vessel."}, {"q": "The vagus nerve and phrenic nerve belong to which body system?", "opts": ["Nervous system", "Cardiovascular system", "Respiratory system", "Lymphatic system"], "ans": 0, "note": "Both are nerves (nervous system)."}, {"q": "The azygos vein, aortic arch, and brachiocephalic vein all belong to which body system?", "opts": ["Cardiovascular system", "Lymphatic system", "Respiratory system", "Nervous system"], "ans": 0, "note": "All are blood vessels (cardiovascular)."}, {"q": "The three layers of the pericardium from outer to inner are:", "opts": ["Fibrous, parietal serous, visceral serous (epicardium)", "Visceral serous, parietal serous, fibrous", "Endocardium, myocardium, epicardium", "Parietal, visceral, myocardium"], "ans": 0, "note": "Fibrous sac → parietal serous lining → visceral serous (epicardium) on the heart."}, {"q": "The visceral pleura adheres to the:", "opts": ["Outer surface of the lungs", "Inner surface of the thoracic wall", "Diaphragm only", "Mediastinum"], "ans": 0, "note": "Visceral pleura hugs the lung; parietal pleura lines the thoracic wall."}, {"q": "The parietal pleura adheres to the:", "opts": ["Inner surface of the thoracic wall", "Outer surface of the lungs", "Surface of the heart", "Trachea"], "ans": 0, "note": "Parietal = chest wall; visceral = lung surface; pleural cavity between them."}, {"q": "Compared to the left lung, the right lung is unique in that it has:", "opts": ["Three lobes and a horizontal fissure", "Two lobes and a cardiac notch", "A lingula", "No fissures"], "ans": 0, "note": "Right lung: 3 lobes, oblique + horizontal fissures. Left: 2 lobes, cardiac notch, lingula."}, {"q": "The cardiac notch and the lingula are features unique to the:", "opts": ["Left lung", "Right lung", "Both lungs equally", "Neither lung"], "ans": 0, "note": "The left lung is indented by the heart (cardiac notch) and has the lingula."}, {"q": "The nose and mouth are connected posteriorly by the:", "opts": ["Nasal cavity/pharynx", "Trachea", "Esophagus", "Larynx"], "ans": 0, "note": "Air and food pathways meet in the pharynx."}, {"q": "Inhaled air is filtered, warmed, and moistened primarily in the:", "opts": ["Nasal cavity", "Trachea", "Bronchi", "Alveoli"], "ans": 0, "note": "The nasal conchae/mucosa condition incoming air."}, {"q": "The nasopharynx and laryngopharynx are connected by the:", "opts": ["Oropharynx", "Nasal cavity", "Larynx", "Esophagus"], "ans": 0, "note": "Pharyngeal regions top-to-bottom: naso-, oro-, laryngopharynx."}, {"q": "The larynx opens inferiorly into the:", "opts": ["Trachea", "Esophagus", "Nasopharynx", "Primary bronchi"], "ans": 0, "note": "Larynx → trachea → bronchi."}, {"q": "The cricoid cartilage of the larynx is best described as:", "opts": ["A complete ring of cartilage", "A leaf-shaped flap", "The Adam's apple", "A pair of vocal folds"], "ans": 0, "note": "The cricoid is the only complete cartilage ring of the airway."}, {"q": "The carina is the ridge at the point where the trachea:", "opts": ["Divides into the primary bronchi", "Meets the larynx", "Enters the lung hilum", "Branches into alveoli"], "ans": 0, "note": "The carina marks the tracheal bifurcation."}, {"q": "The thyroid cartilage of the larynx is commonly known as the:", "opts": ["Adam's apple", "Cricoid ring", "Epiglottis", "Carina"], "ans": 0, "note": "The thyroid cartilage forms the laryngeal prominence."}, {"q": "The hilus (hilum) of the lung is the:", "opts": ["Indentation where vessels/bronchi enter the lung", "Apex of the lung", "Base resting on the diaphragm", "Cardiac notch"], "ans": 0, "note": "The root structures pass through the hilum."}]}, {"id": "H", "title": "Abdominopelvic Muscles", "questions": [{"q": "The 3 specific components of the levator ani muscle are the pubococcygeus, iliococcygeus, and:", "opts": ["Puborectalis", "Coccygeus", "Bulbospongiosus", "Ischiocavernosus"], "ans": 0, "note": "Levator ani = pubococcygeus + iliococcygeus + puborectalis."}, {"q": "The pubococcygeus muscle acts to:", "opts": ["Support the pelvic viscera and compress the urethra/vagina", "Sling around the anorectal junction", "Compress the crus of the penis", "Expel urine from the urethra"], "ans": 0, "note": "It supports pelvic organs and helps close the urethra/vagina."}, {"q": "The iliococcygeus muscle acts to:", "opts": ["Elevate the pelvic floor", "Constrict the vaginal orifice", "Compress the clitoris", "Support the perineal body"], "ans": 0, "note": "It lifts and supports the pelvic floor."}, {"q": "The puborectalis muscle acts to:", "opts": ["Sling around the anorectal junction to maintain continence", "Elevate the pelvic floor only", "Compress the greater vestibular gland", "Support the crus of the penis"], "ans": 0, "note": "Its sling raises the anorectal junction and preserves fecal continence."}, {"q": "The bony landmarks of the perineum include the pubic symphysis, ischial tuberosities, coccyx, and:", "opts": ["Ischiopubic rami", "Iliac crest", "Sacral promontory", "Xiphoid process"], "ans": 0, "note": "Diamond boundaries: pubic symphysis, ischiopubic rami, ischial tuberosities, sacrotuberous ligaments, coccyx."}, {"q": "The perineum can be subdivided into two triangles:", "opts": ["The urogenital triangle and the anal triangle", "The pelvic and abdominal triangles", "The superior and inferior triangles", "The femoral and inguinal triangles"], "ans": 0, "note": "A line between the ischial tuberosities splits it into UG (anterior) and anal (posterior)."}, {"q": "Three muscles present in the urogenital triangle of BOTH sexes are the ischiocavernosus, bulbospongiosus, and:", "opts": ["Superficial transverse perineal", "Levator ani", "Coccygeus", "Puborectalis"], "ans": 0, "note": "Ischiocavernosus, bulbospongiosus, superficial transverse perineal are common to both."}, {"q": "The muscle structures of the anal triangle include the anal canal and the:", "opts": ["External anal sphincter", "Bulbospongiosus", "Ischiocavernosus", "Deep transverse perineal"], "ans": 0, "note": "The anal triangle contains the anal canal and external anal sphincter."}, {"q": "In the biological female, the bulbospongiosus muscle acts to:", "opts": ["Constrict the vaginal orifice and compress the greater vestibular gland", "Compress the clitoris", "Expel semen from the urethra", "Support the perineal body"], "ans": 0, "note": "Female bulbospongiosus: constricts the vaginal orifice and compresses Bartholin's gland."}, {"q": "In the biological male, the bulbospongiosus muscle acts to:", "opts": ["Expel urine/semen from the urethra", "Constrict the vaginal orifice", "Compress the clitoris", "Elevate the pelvic floor"], "ans": 0, "note": "Male bulbospongiosus empties the urethra of urine/semen."}, {"q": "The ischiocavernosus muscle acts to:", "opts": ["Compress the crus of the penis or clitoris", "Constrict the vaginal orifice", "Elevate the anorectal junction", "Expel semen"], "ans": 0, "note": "It compresses the crus to maintain erection."}, {"q": "The superficial transverse perineal muscle acts to:", "opts": ["Support the perineal body", "Compress the clitoris", "Constrict the vaginal orifice", "Elevate the pelvic floor"], "ans": 0, "note": "It stabilizes the central perineal body/tendon."}, {"q": "The structures named in question 14 of the anal triangle are the anal canal and the external anal sphincter, the latter being under:", "opts": ["Voluntary (skeletal) control", "Involuntary (smooth) control", "No control", "Hormonal control only"], "ans": 0, "note": "External anal sphincter = skeletal muscle, voluntary; internal = smooth, involuntary."}]}, {"id": "I", "title": "Digestive System", "questions": [{"q": "Name the organs of the GI tract in order:", "opts": ["Oral cavity, pharynx, esophagus, stomach, small intestine, large intestine, anal canal", "Esophagus, stomach, pharynx, small intestine, large intestine", "Oral cavity, esophagus, stomach, liver, small intestine, anal canal", "Pharynx, stomach, small intestine, pancreas, large intestine"], "ans": 0, "note": "The continuous alimentary tube from mouth to anus."}, {"q": "The accessory digestive organs include the teeth, tongue, salivary glands, liver, gallbladder, and:", "opts": ["Pancreas", "Stomach", "Small intestine", "Esophagus"], "ans": 0, "note": "Accessories aid digestion but food doesn't pass through them (except mouth structures)."}, {"q": "The general function of the digestive system described as 'food in the mouth' is:", "opts": ["Ingestion", "Absorption", "Defecation", "Propulsion"], "ans": 0, "note": "Ingestion = taking food into the mouth."}, {"q": "The structure(s) dividing the abdominal cavity into 4 quadrants intersect at the:", "opts": ["Umbilicus (median + transumbilical planes)", "Xiphoid process", "Pubic symphysis", "Iliac crest"], "ans": 0, "note": "Two perpendicular planes crossing at the umbilicus give the four quadrants."}, {"q": "The purpose of dividing the abdominal cavity into quadrants is to:", "opts": ["Give clinicians quick vocabulary to localize organs/pain", "Separate the peritoneal cavities", "Define embryonic gut regions", "Mark vertebral levels"], "ans": 0, "note": "Quadrants/regions are a clinical shorthand for location."}, {"q": "The liver and gallbladder are found predominantly in which quadrant?", "opts": ["Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)", "Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)"], "ans": 0, "note": "Liver + gallbladder = RUQ."}, {"q": "The stomach and spleen are found predominantly in which quadrant?", "opts": ["Left upper quadrant (LUQ)", "Right upper quadrant (RUQ)", "Left lower quadrant (LLQ)", "Right lower quadrant (RLQ)"], "ans": 0, "note": "Stomach and spleen = LUQ."}, {"q": "The appendix is found predominantly in which quadrant?", "opts": ["Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)", "Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)"], "ans": 0, "note": "Appendix = RLQ (McBurney's point)."}, {"q": "List the 4 layers/tunics of the GI tract wall from inner to outer:", "opts": ["Mucosa, submucosa, muscularis externa, serosa", "Serosa, muscularis, submucosa, mucosa", "Mucosa, muscularis, submucosa, serosa", "Submucosa, mucosa, serosa, muscularis"], "ans": 0, "note": "Lumen → mucosa → submucosa → muscularis externa → serosa."}, {"q": "The peritoneum is defined as:", "opts": ["A serous membrane lining the abdominopelvic cavity", "A muscular layer of the gut wall", "The lining of blood vessels", "A cartilage sheet"], "ans": 0, "note": "Serous membrane with parietal and visceral layers."}, {"q": "Parietal peritoneum lines the ___, while visceral peritoneum covers the ___:", "opts": ["Cavity wall; organs", "Organs; cavity wall", "Blood vessels; nerves", "Diaphragm; lungs"], "ans": 0, "note": "Parietal = wall; visceral = organ surface."}, {"q": "An intraperitoneal organ is one that is:", "opts": ["Wrapped in peritoneum and mobile within the cavity", "Behind the peritoneum, fixed to the back wall", "Outside the abdominal cavity", "Located in the thorax"], "ans": 0, "note": "Intraperitoneal = suspended by mesentery; retroperitoneal = fixed behind."}, {"q": "Which of the following is an intraperitoneal organ?", "opts": ["Stomach", "Kidneys", "Pancreas (most of it)", "Ascending colon"], "ans": 0, "note": "Intraperitoneal: stomach, jejunum, ileum, transverse & sigmoid colon, liver, spleen."}, {"q": "Which of the following is a retroperitoneal organ?", "opts": ["Kidneys", "Stomach", "Transverse colon", "Spleen"], "ans": 0, "note": "Retroperitoneal: kidneys, pancreas, duodenum (2-4), ascending & descending colon."}, {"q": "A mesentery is defined as a:", "opts": ["Double peritoneal layer suspending an organ from the body wall", "Single serous membrane on the gut lumen", "Muscular sphincter", "Fold of the diaphragm"], "ans": 0, "note": "Two peritoneal sheets carrying vessels/nerves to an organ."}, {"q": "The three segments of the pharynx from superior to inferior are the nasopharynx, oropharynx, and:", "opts": ["Laryngopharynx", "Esophagus", "Larynx", "Trachea"], "ans": 0, "note": "Naso- (air only), oro- (air + food), laryngo- (air + food)."}, {"q": "A primary function of the esophagus is to:", "opts": ["Move the bolus by peristalsis and secrete mucus for lubrication", "Absorb nutrients", "Produce digestive enzymes", "Store bile"], "ans": 0, "note": "It transports and lubricates; no absorption/enzymes."}, {"q": "The esophagus lies in which position relative to the thoracic/descending aorta?", "opts": ["Anterior to the aorta", "Posterior to the aorta", "Lateral to the aorta only", "Inferior to the aorta"], "ans": 0, "note": "The esophagus runs anterior to the descending thoracic aorta."}, {"q": "The esophagus passes through the diaphragm at the esophageal hiatus, guarded by the:", "opts": ["Lower esophageal sphincter", "Pyloric sphincter", "Ileocecal valve", "Upper esophageal sphincter"], "ans": 0, "note": "The LES (cardiac sphincter) controls entry into the stomach at T10."}, {"q": "The semifluid product that exits the stomach into the duodenum is called:", "opts": ["Chyme", "Bolus", "Bile", "Chyle"], "ans": 0, "note": "Bolus (mouth) → chyme (stomach) → chyle (lymph fat)."}, {"q": "The regions of the stomach are the cardia, fundus, body, pylorus, and the two:", "opts": ["Curvatures (lesser and greater)", "Sphincters only", "Rugae", "Omenta"], "ans": 0, "note": "Lesser and greater curvatures define its right and left borders."}, {"q": "The pyloric sphincter functions to:", "opts": ["Control the release of chyme into the duodenum", "Prevent reflux into the esophagus", "Regulate flow into the large intestine", "Release bile"], "ans": 0, "note": "It meters chyme from stomach to duodenum."}, {"q": "The rugae of the stomach are folds that function to:", "opts": ["Allow the stomach to distend and increase surface area", "Secrete bile", "Absorb nutrients", "Grind bone"], "ans": 0, "note": "Rugae flatten out as the stomach fills."}, {"q": "The stomach has a unique third muscularis layer that allows churning:", "opts": ["The inner oblique layer", "An extra longitudinal layer", "A cartilage ring", "A serous layer"], "ans": 0, "note": "The stomach adds an oblique layer (inner) for mechanical churning."}, {"q": "Chemical (enzymatic) digestion after the small intestine:", "opts": ["Does not occur — no enzymatic reaction in the large intestine", "Increases in the large intestine", "Occurs only in the rectum", "Occurs in the anal canal"], "ans": 0, "note": "Enzymatic digestion is essentially complete by the end of the small intestine."}, {"q": "The final segment of the small intestine is the ileum, which meets the large intestine at the:", "opts": ["Ileocecal valve/junction (into the cecum)", "Pyloric sphincter", "Duodenojejunal flexure", "Anal canal"], "ans": 0, "note": "Ileum → ileocecal valve → cecum."}, {"q": "True or False: Both the duodenum and the pancreas are retroperitoneal.", "opts": ["True", "False", "Only the duodenum is", "Only the pancreas is"], "ans": 0, "note": "STANDARD ANATOMY = TRUE. The duodenum (parts 2-4) and pancreas (head/neck/body) are (secondarily) retroperitoneal; only the pancreatic tail is intraperitoneal. NOTE: your worksheet was marked 'False' — flag this with Dr. DeAngelo, but the textbook answer is True."}, {"q": "The substances that enter at the major duodenal papilla are:", "opts": ["Bile and pancreatic juice", "Chyme and mucus", "Gastric acid and bile", "Saliva and bile"], "ans": 0, "note": "The hepatopancreatic ampulla delivers bile + pancreatic juice here."}, {"q": "The three surface features that identify the large intestine are haustra, omental (epiploic) appendages, and:", "opts": ["Teniae coli", "Rugae", "Villi", "Plicae circulares"], "ans": 0, "note": "Teniae coli, haustra, omental appendages are unique to the large intestine."}, {"q": "List the segments of the large intestine from proximal to distal:", "opts": ["Cecum, ascending, transverse, descending, sigmoid colon", "Sigmoid, descending, transverse, ascending, cecum", "Cecum, transverse, ascending, sigmoid, descending", "Ascending, cecum, transverse, descending, sigmoid"], "ans": 0, "note": "Cecum → ascending → transverse → descending → sigmoid → rectum."}, {"q": "The first segment of the large intestine is the cecum, into which open the ileum and the:", "opts": ["Appendix", "Sigmoid colon", "Duodenum", "Jejunum"], "ans": 0, "note": "The ileum and the vermiform appendix open into the cecum."}, {"q": "Compare the external and internal anal sphincters:", "opts": ["External is skeletal/voluntary; internal is smooth/involuntary", "External is smooth/involuntary; internal is skeletal", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "External = skeletal (voluntary); internal = smooth (involuntary)."}, {"q": "Of the liver's general functions, the one relating specifically to digestion of nutrients is:", "opts": ["Bile production", "Detoxification", "Glycogen storage", "Vitamin storage"], "ans": 0, "note": "Bile aids fat digestion; the others aren't direct digestion roles."}, {"q": "The function of bile is to:", "opts": ["Emulsify fats into small droplets so lipase can work (no enzymes itself)", "Enzymatically digest proteins", "Neutralize saliva", "Absorb water"], "ans": 0, "note": "Bile emulsifies — it has no digestive enzymes of its own."}, {"q": "The gallbladder functions to:", "opts": ["Store and concentrate bile, then release it to the duodenum", "Produce bile", "Produce insulin", "Filter blood"], "ans": 0, "note": "It stores/concentrates liver-made bile and releases it on demand."}, {"q": "The biliary tree order from the liver is: right & left hepatic ducts → common hepatic duct → ___ → bile duct:", "opts": ["Cystic duct", "Pancreatic duct", "Ureter", "Hepatic vein"], "ans": 0, "note": "The cystic duct (from the gallbladder) joins the common hepatic duct to form the bile duct."}, {"q": "The pancreas has two general functions:", "opts": ["Exocrine (digestive enzymes) and endocrine (hormones)", "Storage and detoxification", "Filtration and secretion", "Bile production and storage"], "ans": 0, "note": "Exocrine acini make enzymes; islets make insulin/glucagon."}, {"q": "The two ducts of the pancreas are the main pancreatic duct (of Wirsung) and the:", "opts": ["Accessory pancreatic duct (of Santorini)", "Cystic duct", "Common hepatic duct", "Bile duct"], "ans": 0, "note": "Main duct (Wirsung) + accessory duct (Santorini)."}, {"q": "EMBRYONIC GUT TUBE — The foregut gives rise to the esophagus, stomach, proximal duodenum, liver, gallbladder, and pancreas. Its supplying artery is the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Inferior mesenteric artery", "Common iliac artery"], "ans": 0, "note": "Foregut = celiac trunk."}, {"q": "EMBRYONIC GUT TUBE — The midgut (distal duodenum through proximal 2/3 of the transverse colon) is supplied by the:", "opts": ["Superior mesenteric artery", "Celiac trunk", "Inferior mesenteric artery", "Splenic artery"], "ans": 0, "note": "Midgut = SMA."}, {"q": "EMBRYONIC GUT TUBE — The hindgut (distal 1/3 transverse colon through the rectum) is supplied by the:", "opts": ["Inferior mesenteric artery", "Superior mesenteric artery", "Celiac trunk", "Internal iliac artery"], "ans": 0, "note": "Hindgut = IMA."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to BOTH the foregut and midgut is the:", "opts": ["Vagus nerve", "Pelvic splanchnic nerves", "Greater splanchnic nerve", "Lumbar splanchnic nerves"], "ans": 0, "note": "Vagus = parasympathetic to foregut + midgut; pelvic splanchnics serve the hindgut."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to the hindgut is the:", "opts": ["Pelvic splanchnic nerves", "Vagus nerve", "Greater splanchnic nerve", "Phrenic nerve"], "ans": 0, "note": "Hindgut parasympathetics = pelvic splanchnic nerves (S2-S4)."}, {"q": "EMBRYONIC GUT TUBE — The source of sympathetic nerves to the foregut is the:", "opts": ["Greater splanchnic nerve", "Lesser splanchnic nerve", "Lumbar splanchnic nerve", "Vagus nerve"], "ans": 0, "note": "Foregut sympathetics = greater splanchnic; midgut = lesser splanchnic; hindgut = lumbar splanchnic."}]}, {"id": "J", "title": "Urinary System", "questions": [{"q": "Name the organs of the urinary system:", "opts": ["Kidneys, ureters, urinary bladder, urethra", "Kidneys, bladder, urethra, prostate", "Kidneys, ureters, bladder, rectum", "Ureters, bladder, urethra, nephron"], "ans": 0, "note": "Two kidneys, two ureters, one bladder, one urethra."}, {"q": "The general functions of the urinary system include waste removal and:", "opts": ["Fluid and electrolyte balance", "Bile production", "Gas exchange", "Hormone digestion"], "ans": 0, "note": "Filtration, waste excretion, fluid/electrolyte/pH balance, blood pressure regulation."}, {"q": "The structures that enter and exit the kidney at the hilum are the renal artery, renal vein, and:", "opts": ["Ureter (renal pelvis)", "Aorta", "Inferior vena cava", "Adrenal gland"], "ans": 0, "note": "Renal artery in, renal vein and ureter out."}, {"q": "The renal cortex is the:", "opts": ["Outer region of the kidney", "Inner region containing the pyramids", "Hollow collecting space", "Fibrous outer capsule"], "ans": 0, "note": "Cortex = outer; medulla = inner (pyramids)."}, {"q": "The renal medulla contains the:", "opts": ["Renal pyramids", "Renal cortex", "Renal capsule", "Renal artery only"], "ans": 0, "note": "Pyramids (and columns between them) make up the medulla."}, {"q": "The nephron is best defined as the:", "opts": ["Functional unit of the kidney", "Outer covering of the kidney", "Storage sac for urine", "Blood supply of the kidney"], "ans": 0, "note": "Each kidney has ~1 million nephrons."}, {"q": "Compared to a cortical nephron, a juxtamedullary nephron has a:", "opts": ["Long nephron loop extending deep into the medulla", "Short loop staying in the cortex", "No glomerulus", "No collecting duct"], "ans": 0, "note": "Juxtamedullary nephrons concentrate urine via long loops."}, {"q": "The nephron structures in order of filtrate flow are: renal corpuscle → PCT → nephron loop → ___ → collecting duct:", "opts": ["Distal convoluted tubule (DCT)", "Proximal convoluted tubule", "Renal pelvis", "Ureter"], "ans": 0, "note": "Corpuscle → PCT → loop → DCT → collecting duct."}, {"q": "As urine exits the kidney it passes through the renal papilla and moves toward the:", "opts": ["Minor calyx → major calyx → renal pelvis → ureter", "Ureter → renal pelvis → calyces", "Cortex → capsule → ureter", "Collecting duct → glomerulus"], "ans": 0, "note": "Papilla → minor calyx → major calyx → renal pelvis → ureter."}, {"q": "The trigone is a triangular region of the bladder defined by the openings of the two ureters and the:", "opts": ["Urethra", "Renal pelvis", "Collecting ducts", "Renal artery"], "ans": 0, "note": "Two ureteric orifices + internal urethral orifice form the trigone."}, {"q": "The urinary bladder functions to:", "opts": ["Store urine", "Filter blood", "Produce urine", "Concentrate bile"], "ans": 0, "note": "It's a distensible storage sac."}, {"q": "The type of epithelium lining the bladder is transitional epithelium, which is important because it:", "opts": ["Allows the bladder to stretch", "Secretes enzymes", "Absorbs nutrients", "Filters blood"], "ans": 0, "note": "Transitional (urothelium) accommodates distension."}, {"q": "The muscularis (middle layer) of the bladder is known as the:", "opts": ["Detrusor muscle", "Trigone", "Rugae", "Trabeculae carneae"], "ans": 0, "note": "The detrusor contracts to expel urine."}, {"q": "Compare the internal and external urethral sphincters:", "opts": ["Internal is smooth/involuntary; external is skeletal/voluntary", "Internal is skeletal/voluntary; external is smooth", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "Internal = smooth (involuntary); external = skeletal (voluntary)."}, {"q": "List the segments of the biological male urethra:", "opts": ["Prostatic, membranous (intermediate), spongy (penile)", "Spongy, prostatic, membranous", "Membranous, spongy, prostatic", "Prostatic, penile, renal"], "ans": 0, "note": "Prostatic → membranous → spongy (penile)."}, {"q": "The arterial supply for the kidney is the:", "opts": ["Renal artery", "Gonadal artery", "Common iliac artery", "Superior mesenteric artery"], "ans": 0, "note": "Renal artery in, renal vein out."}, {"q": "The bladder receives parasympathetic motor innervation that:", "opts": ["Contracts the detrusor to empty the bladder", "Relaxes the detrusor to store urine", "Has no effect on the bladder", "Filters the blood"], "ans": 0, "note": "Parasympathetic = micturition (detrusor contracts, internal sphincter relaxes)."}]}, {"id": "K", "title": "Reproductive System", "questions": [{"q": "The perineum in both sexes includes the external genitalia and the region between the thighs bounded by the:", "opts": ["Pubic symphysis, ischial tuberosities, and coccyx", "Iliac crests and umbilicus", "Xiphoid and pubis", "Sacrum and femur"], "ans": 0, "note": "Same diamond as the pelvic floor perineum."}, {"q": "Define the terms gonad and gamete:", "opts": ["Gonad = sex organ producing gametes; gamete = sex cell (sperm/egg)", "Gonad = sex cell; gamete = sex organ", "Both mean sex hormone", "Both mean reproductive duct"], "ans": 0, "note": "Gonads (ovary/testis) produce gametes (ova/sperm)."}, {"q": "The term 'homologue' refers to structures that:", "opts": ["Arise from the same embryonic tissue in males and females", "Perform the same function only", "Are the same size", "Are found only in one sex"], "ans": 0, "note": "Homologues share embryonic origin (e.g., clitoris/penis)."}, {"q": "List the general structure of the ovary:", "opts": ["Outer cortex with follicles, inner medulla with vessels", "Seminiferous tubules and epididymis", "Cortex, medulla, and calyces", "Lobes and lactiferous ducts"], "ans": 0, "note": "Cortex houses follicles; medulla has vessels/nerves."}, {"q": "Place the ovarian follicles in order of development:", "opts": ["Primordial → primary → secondary → mature (Graafian)", "Mature → secondary → primary → primordial", "Primary → primordial → mature → secondary", "Secondary → primary → primordial → mature"], "ans": 0, "note": "Primordial → primary → secondary → mature (Graafian) → ovulation."}, {"q": "Compare a primary oocyte and a secondary oocyte:", "opts": ["Primary is arrested in meiosis I; secondary is arrested in meiosis II (released at ovulation)", "Primary is haploid; secondary is diploid", "Both are diploid", "Both complete meiosis before ovulation"], "ans": 0, "note": "The primary oocyte finishes meiosis I to form a secondary oocyte (arrested in meiosis II)."}, {"q": "The corpus luteum forms after ovulation and primarily produces:", "opts": ["Progesterone", "Testosterone", "Insulin", "Oxytocin"], "ans": 0, "note": "It secretes progesterone (and some estrogen) to maintain the endometrium."}, {"q": "List the regions of the uterine tube from the ovary toward the uterus:", "opts": ["Infundibulum → ampulla → isthmus → uterine part", "Isthmus → ampulla → infundibulum → uterine part", "Ampulla → infundibulum → uterine part → isthmus", "Uterine part → isthmus → ampulla → infundibulum"], "ans": 0, "note": "Infundibulum (fimbriae) → ampulla (fertilization) → isthmus → uterine part."}, {"q": "The fimbriae function to:", "opts": ["Sweep the ovulated oocyte into the uterine tube", "Produce progesterone", "Anchor the ovary to the uterus", "Secrete enzymes"], "ans": 0, "note": "Finger-like projections capture the oocyte."}, {"q": "The typical position of the uterus in the pelvis is:", "opts": ["Anteverted and anteflexed", "Retroverted and retroflexed", "Vertical and midline", "Inverted"], "ans": 0, "note": "Most commonly anteverted/anteflexed over the bladder."}, {"q": "List the regions of the uterus:", "opts": ["Fundus, body, cervix", "Cortex, medulla, hilum", "Infundibulum, ampulla, isthmus", "Head, neck, tail"], "ans": 0, "note": "Fundus (top), body (middle), cervix (neck into vagina)."}, {"q": "List the layers of the uterine wall from inner to outer:", "opts": ["Endometrium, myometrium, perimetrium", "Perimetrium, myometrium, endometrium", "Myometrium, endometrium, perimetrium", "Mucosa, submucosa, serosa"], "ans": 0, "note": "Endo- (inner, sheds), myo- (muscle), peri- (serous outer)."}, {"q": "The greater vestibular (Bartholin's) glands function to:", "opts": ["Secrete lubricating mucus into the vestibule", "Produce ova", "Produce progesterone", "Filter blood"], "ans": 0, "note": "They lubricate the vaginal vestibule."}, {"q": "The clitoris is the female homologue of the:", "opts": ["Penis", "Scrotum", "Prostate", "Epididymis"], "ans": 0, "note": "Clitoris ↔ penis (both erectile, same embryonic origin)."}, {"q": "The components of the mammary gland include lobes, lobules, alveoli, lactiferous sinus, suspensory ligaments, and:", "opts": ["Lactiferous ducts", "Seminiferous tubules", "Rugae", "Fimbriae"], "ans": 0, "note": "Alveoli → lactiferous ducts → lactiferous sinus → nipple; lobules group into lobes."}, {"q": "The dartos and cremaster muscles of the scrotum function to:", "opts": ["Regulate testicular temperature by raising/lowering the testes", "Produce sperm", "Secrete testosterone", "Transport semen"], "ans": 0, "note": "Dartos wrinkles the skin; cremaster elevates the testes for temperature control."}, {"q": "The spermatic cord contains the ductus deferens, testicular vessels, and:", "opts": ["Nerves and the cremaster muscle", "The epididymis", "The prostate", "The seminal vesicle"], "ans": 0, "note": "Ductus deferens, testicular artery/veins (pampiniform plexus), nerves, cremaster."}, {"q": "The interstitial (Leydig) cells of the testes produce which hormone?", "opts": ["Testosterone", "Progesterone", "Insulin", "Estrogen only"], "ans": 0, "note": "Leydig cells between the tubules secrete testosterone."}, {"q": "Spermatogenesis (sperm production) occurs in the:", "opts": ["Seminiferous tubules", "Epididymis", "Ductus deferens", "Prostate"], "ans": 0, "note": "Sperm are made in the seminiferous tubules of the testis."}, {"q": "The function of the epididymis is:", "opts": ["Sperm maturation and storage", "Sperm production", "Hormone secretion", "Semen expulsion"], "ans": 0, "note": "Sperm mature and are stored in the epididymis."}, {"q": "Place the ducts sperm pass through in order:", "opts": ["Seminiferous tubules → epididymis → ductus deferens → ejaculatory duct → urethra", "Epididymis → seminiferous tubules → urethra → ejaculatory duct", "Ductus deferens → epididymis → seminiferous tubules → urethra", "Seminiferous tubules → ejaculatory duct → epididymis → urethra"], "ans": 0, "note": "Tubules → epididymis → ductus (vas) deferens → ejaculatory duct → urethra."}, {"q": "The function of the ductus (vas) deferens is to:", "opts": ["Transport sperm from the epididymis toward the urethra", "Produce sperm", "Store bile", "Secrete testosterone"], "ans": 0, "note": "It propels sperm during emission."}, {"q": "The ejaculatory duct joins the urethra within the:", "opts": ["Prostatic urethra", "Membranous urethra", "Spongy urethra", "Epididymis"], "ans": 0, "note": "The ejaculatory ducts open into the prostatic urethra."}, {"q": "Does semen always contain sperm?", "opts": ["No — it is mostly seminal fluid and may contain little/no sperm", "Yes, always in equal amounts", "Yes, semen is pure sperm", "No, semen never contains sperm"], "ans": 0, "note": "Semen is mostly gland secretions; sperm are a small fraction."}, {"q": "The accessory glands of the male reproductive system are the seminal vesicles, prostate, and:", "opts": ["Bulbourethral (Cowper's) glands", "Bartholin's glands", "Adrenal glands", "Thyroid gland"], "ans": 0, "note": "Seminal vesicles, prostate, bulbourethral glands."}, {"q": "Comparing the erectile tissues, the corpus spongiosum is the tissue that comprises the:", "opts": ["Glans (and surrounds the urethra)", "Two dorsal columns only", "Scrotum", "Testis"], "ans": 0, "note": "Corpus spongiosum surrounds the urethra and forms the glans; corpora cavernosa are the paired dorsal columns."}, {"q": "Comparing erection and ejaculation, erection is controlled by ___ and ejaculation by ___:", "opts": ["Parasympathetic; sympathetic", "Sympathetic; parasympathetic", "Both parasympathetic", "Both sympathetic"], "ans": 0, "note": "'Point and Shoot': Parasympathetic = erection (point), Sympathetic = ejaculation (shoot)."}, {"q": "The gonadal (ovarian or testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "They arise from the aorta near the renal arteries (gonads descend from there embryonically)."}, {"q": "The venous drainage differs by side: the right ovarian/testicular vein drains into the IVC, but the left drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Portal vein"], "ans": 0, "note": "Left gonadal vein → left renal vein → IVC (clinically relevant for varicocele)."}]}, {"id": "L", "title": "Endocrine System", "questions": [{"q": "Define homeostasis:", "opts": ["Maintenance of a stable internal environment", "Rapid cell division", "Production of gametes", "Breakdown of nutrients"], "ans": 0, "note": "Keeping internal conditions within a narrow range."}, {"q": "The two systems that communicate within the body to maintain homeostasis are the endocrine system and the:", "opts": ["Nervous system", "Digestive system", "Lymphatic system", "Urinary system"], "ans": 0, "note": "Nervous (fast, electrical) + endocrine (slower, chemical)."}, {"q": "The nervous system uses which chemicals for communication?", "opts": ["Neurotransmitters", "Hormones", "Enzymes", "Bile salts"], "ans": 0, "note": "Neurons release neurotransmitters across synapses."}, {"q": "The endocrine system uses which chemicals for communication?", "opts": ["Hormones", "Neurotransmitters", "Antibodies", "Electrolytes"], "ans": 0, "note": "Glands secrete hormones into the blood."}, {"q": "The two classifications of glands in the body are:", "opts": ["Exocrine and endocrine", "Serous and mucous only", "Sympathetic and parasympathetic", "Cortical and medullary"], "ans": 0, "note": "Exocrine use ducts; endocrine are ductless (into blood)."}, {"q": "The role of the hypothalamus in the endocrine system is to:", "opts": ["Link the nervous and endocrine systems and control the pituitary", "Produce insulin", "Filter blood", "Store bile"], "ans": 0, "note": "The hypothalamus regulates the pituitary via releasing hormones/neural links."}, {"q": "The role of the pituitary gland in the endocrine system is to:", "opts": ["Secrete hormones that regulate other endocrine glands", "Produce bile", "Filter blood", "Store urine"], "ans": 0, "note": "The 'master gland' directs thyroid, adrenal, gonads, etc."}, {"q": "The pancreas, an endocrine gland viewed in lab, secretes hormones that:", "opts": ["Regulate blood sugar (insulin and glucagon)", "Regulate calcium only", "Produce bile", "Filter blood"], "ans": 0, "note": "Islet cells: insulin (lowers) and glucagon (raises) blood glucose."}, {"q": "The role of the pancreas as an endocrine gland in lowering blood sugar after a meal is via:", "opts": ["Insulin", "Glucagon", "Cortisol", "Thyroxine"], "ans": 0, "note": "Insulin drives glucose into cells, lowering blood sugar."}, {"q": "Which of the following is an endocrine gland?", "opts": ["Thyroid gland", "Salivary gland", "Sweat gland", "Sebaceous gland"], "ans": 0, "note": "Endocrine: pituitary, thyroid, parathyroid, adrenal, pancreas, gonads, pineal, thymus. The others are exocrine."}]}]};
+const STORE_KEY = "trunk_hub_v1";
 
-/* =========================================================
-   STATE  (session-only, resets on reload)
-   ========================================================= */
-let state = {};
-function initState(){
-  state = {};
-  CATEGORIES.forEach(cat=>{
-    state[cat.id] = { attempted:0, correct:0, missed:new Set() };
-  });
+// ---- persistence ----
+function loadStore(){
+  try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s) return s; }catch(e){}
+  return {best:{}, missed:{}}; // best: {A: pct}, missed: {A:[qidx,...]}
 }
-initState();
+function saveStore(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){} }
+let store = loadStore();
 
-let session = null; // {pool:[{catId,qIndex}], idx, correct, total, missedNow:[], mode, label}
+const SEC = {};
+DATA.sections.forEach(s=>SEC[s.id]=s);
+const IDS = DATA.sections.map(s=>s.id);
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
-function shuffle(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
-  }
-  return a;
-}
-function catById(id){ return CATEGORIES.find(c=>c.id===id); }
-function pct(correct, attempted){
-  if(attempted===0) return null;
-  return Math.round((correct/attempted)*100);
-}
-function pctClass(p){
-  if(p===null) return "pct-none";
-  if(p<70) return "pct-low";
-  if(p<90) return "pct-mid";
-  return "pct-high";
-}
-function masterAgg(){
-  let attempted=0, correct=0, missed=0;
-  CATEGORIES.forEach(c=>{
-    attempted += state[c.id].attempted;
-    correct += state[c.id].correct;
-    missed += state[c.id].missed.size;
-  });
-  return {attempted, correct, missed};
-}
+// ---- run state ----
+let run = null; // {label, mode, items:[{sid,qi}], pos, correct, answered, missedThisRun:[{sid,qi}]}
 
-/* =========================================================
-   COPY MISSED  (per section / all / this-run)
-   ========================================================= */
-function decodeEntities(str){
-  const t = document.createElement("textarea");
-  t.innerHTML = str;
-  return t.value;
-}
-function copyText(text, btn, doneLabel){
-  const restore = btn ? btn.textContent : null;
-  const flash = ok=>{
-    if(!btn) return;
-    btn.textContent = ok ? (doneLabel || "Copied \u2713") : "Copy failed";
-    btn.classList.toggle("copied", ok);
-    setTimeout(()=>{ btn.textContent = restore; btn.classList.remove("copied"); }, 1400);
-  };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>flash(true)).catch(()=>fallbackCopy(text, flash));
-  } else {
-    fallbackCopy(text, flash);
-  }
-}
-function fallbackCopy(text, flash){
-  try{
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    const ok = document.execCommand("copy");
-    document.body.removeChild(ta);
-    flash(ok);
-  }catch(e){ flash(false); }
-}
+function qCount(sid){ return SEC[sid].questions.length; }
+function missedCount(sid){ return (store.missed[sid]||[]).length; }
+function totalMissed(){ return IDS.reduce((n,id)=>n+missedCount(id),0); }
 
-/* one section's missed questions -> plain text (empty string if none) */
-function categoryMissedText(cat){
-  const s = state[cat.id];
-  const idxs = Array.from(s.missed).sort((a,b)=>a-b);
-  if(idxs.length===0) return "";
-  const header = "Worksheet " + cat.letter + " \u00b7 " + decodeEntities(cat.name);
-  const lines = idxs.map(i=>{
-    const q = cat.questions[i];
-    return "\u2022 " + decodeEntities(q.q) + "\n  Answer: " + decodeEntities(q.choices[q.correct]);
-  });
-  return header + "\n" + lines.join("\n\n");
-}
-
-function copyCategoryMissed(catId, btn){
-  const cat = catById(catId);
-  const body = categoryMissedText(cat);
-  if(!body) return;
-  copyText("Head & Neck \u2014 Missed Questions\n\n" + body + "\n", btn, "Copied \u2713");
-}
-
-function copyAllMissed(btn){
-  const blocks = CATEGORIES.map(categoryMissedText).filter(Boolean);
-  if(blocks.length===0) return;
-  copyText("Head & Neck \u2014 Missed Questions (all sections)\n\n" + blocks.join("\n\n") + "\n",
-           btn, "Copied all \u2713");
-}
-
-/* the just-finished session's misses, grouped by section */
-function copySessionMissed(btn){
-  if(!session || session.missedNow.length===0) return;
-  const byKey = {}, order = [];
-  session.missedNow.forEach(m=>{
-    const key = m.letter + "|" + m.catName;
-    if(!byKey[key]){ byKey[key] = []; order.push(key); }
-    byKey[key].push(m);
-  });
-  const blocks = order.map(key=>{
-    const sep = key.indexOf("|");
-    const letter = key.slice(0, sep), catName = key.slice(sep+1);
-    const header = "Worksheet " + letter + " \u00b7 " + decodeEntities(catName);
-    const lines = byKey[key].map(m=>
-      "\u2022 " + decodeEntities(m.q) + "\n  Answer: " + decodeEntities(m.answer));
-    return header + "\n" + lines.join("\n\n");
-  });
-  copyText("Head & Neck \u2014 Missed This Run\n\n" + blocks.join("\n\n") + "\n", btn, "Copied \u2713");
-}
-
-/* =========================================================
-   RENDER: HUB
-   ========================================================= */
+// ---- hub rendering ----
 function renderHub(){
-  const m = masterAgg();
-  const mp = pct(m.correct, m.attempted);
-  document.getElementById("masterPct").textContent = mp===null ? "\u2014" : mp+"%";
-  document.getElementById("masterPct").className = "stamp mono " + pctClass(mp);
-  document.getElementById("masterCount").textContent = m.correct+" / "+m.attempted+" answered";
-  const mmPill = document.getElementById("masterMissedPill");
-  mmPill.textContent = m.missed + " missed";
-  mmPill.className = "missed-pill" + (m.missed===0 ? " zero" : "");
-  document.getElementById("masterMissedBtn").disabled = m.missed===0;
-  document.getElementById("masterCopyBtn").disabled = m.missed===0;
+  // master
+  const totalAll = IDS.reduce((n,id)=>n+qCount(id),0);
+  document.getElementById('masterCount').textContent = totalAll;
+  const mBest = store.best.MASTER;
+  document.getElementById('masterPct').textContent = (mBest==null?0:mBest)+'%';
+  document.getElementById('masterBar').style.width = (mBest==null?0:mBest)+'%';
+  document.getElementById('masterScore').textContent = mBest==null?'\u2014':mBest+'%';
+  document.getElementById('masterMini').style.width = (mBest==null?0:mBest)+'%';
+  const tm = totalMissed();
+  const mm = document.getElementById('masterMiss');
+  mm.textContent = tm+' in missed bank';
+  mm.className = 'missflag'+(tm===0?' zero':'');
+  document.getElementById('masterDrill').disabled = tm===0;
 
-  const list = document.getElementById("cardList");
-  list.innerHTML = "";
-  CATEGORIES.forEach(cat=>{
-    const s = state[cat.id];
-    const p = pct(s.correct, s.attempted);
-    const missedCount = s.missed.size;
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <div class="card-top">
-        <div>
-          <div class="card-letter">WORKSHEET ${cat.letter}</div>
-          <h3>${cat.name}</h3>
-        </div>
-        <div class="card-pct ${pctClass(p)}">${p===null?"\u2014":p+"%"}<span class="n">${s.correct}/${s.attempted}</span></div>
+  // sections
+  const grid = document.getElementById('sectionGrid');
+  grid.innerHTML='';
+  DATA.sections.forEach(s=>{
+    const best = store.best[s.id];
+    const mc = missedCount(s.id);
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML = `
+      <div class="tag mono">${s.id}</div>
+      <h3>${s.title}</h3>
+      <div class="meta"><span>${qCount(s.id)} questions</span>
+        <span class="scorepct">${best==null?'\u2014':best+'%'}</span></div>
+      <div class="minibar"><i style="width:${best==null?0:best}%"></i></div>
+      <div class="btnrow">
+        <button class="btn practice">Practice</button>
+        <button class="btn exam">Exam</button>
+        <button class="btn drill" ${mc===0?'disabled':''}>Missed</button>
       </div>
-      <div class="card-foot">
-        <div class="card-count"><b>${cat.questions.length}</b> questions &middot; <b>${missedCount}</b> missed</div>
-        <div class="card-btns">
-          <button class="card-btn" data-action="full" data-cat="${cat.id}">Drill</button>
-          <button class="card-btn missed" data-action="missed" data-cat="${cat.id}" ${missedCount===0?"disabled":""}>Missed</button>
-          <button class="card-btn copy" data-action="copy" data-cat="${cat.id}" ${missedCount===0?"disabled":""}>Copy</button>
-          ${cat.id==="cn" ? '<button class="card-btn trainer" data-action="trainer" data-cat="cn">Trainer</button>' : ''}
-        </div>
-      </div>
-    `;
-    list.appendChild(div);
+      <div class="missflag ${mc===0?'zero':''}">${mc} in missed bank</div>`;
+    const [pB,eB,dB] = card.querySelectorAll('button');
+    pB.onclick=()=>startRun(s.id,'practice',false);
+    eB.onclick=()=>startRun(s.id,'exam',false);
+    dB.onclick=()=>startRun(s.id,'practice',true);
+    grid.appendChild(card);
   });
 
-  list.querySelectorAll("button[data-action]").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const catId = btn.getAttribute("data-cat");
-      const action = btn.getAttribute("data-action");
-      if(action==="full") startCategoryFull(catId);
-      else if(action==="copy") copyCategoryMissed(catId, btn);
-      else if(action==="trainer") openCranialTrainer();
-      else startCategoryMissed(catId);
-    });
+  // custom chips
+  const cc = document.getElementById('customChips');
+  cc.innerHTML='';
+  IDS.forEach(id=>{
+    const chip=document.createElement('button');
+    chip.className='chip'+(customSel.has(id)?' on':'');
+    chip.textContent=id;
+    chip.title=SEC[id].title;
+    chip.onclick=()=>{ customSel.has(id)?customSel.delete(id):customSel.add(id); renderHub(); };
+    cc.appendChild(chip);
   });
+}
+let customSel = new Set();
+
+// ---- shuffle ----
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// ---- build item lists ----
+function itemsForSections(ids){
+  let items=[];
+  ids.forEach(id=>SEC[id].questions.forEach((q,qi)=>items.push({sid:id,qi})));
+  return items;
+}
+function itemsMissed(ids){
+  let items=[];
+  ids.forEach(id=>(store.missed[id]||[]).forEach(qi=>items.push({sid:id,qi})));
+  return items;
 }
 
-/* =========================================================
-   SESSION START
-   ========================================================= */
-function startCategoryFull(catId){
-  const cat = catById(catId);
-  const pool = shuffle(cat.questions.map((q,i)=>({catId, qIndex:i})));
-  beginSession(pool, "full", cat.name);
+function startRun(target, mode, drill){
+  let ids = target==='MASTER' ? IDS.slice() : [target];
+  let items = drill ? itemsMissed(ids) : itemsForSections(ids);
+  if(items.length===0) return;
+  beginRun(items, mode, labelFor(target,drill), target);
 }
-function startCategoryMissed(catId){
-  const cat = catById(catId);
-  const pool = shuffle(Array.from(state[catId].missed).map(i=>({catId, qIndex:i})));
-  beginSession(pool, "missed", cat.name+" \u2014 missed only");
+function startCustom(mode){
+  if(customSel.size===0){ alert('Pick at least one section to combine.'); return; }
+  const ids=[...customSel];
+  const items=itemsForSections(ids);
+  beginRun(items, mode, 'Custom \u00b7 '+ids.join(' '), ids.length===IDS.length?'MASTER':null);
 }
-function startMasterFull(){
-  let pool = [];
-  CATEGORIES.forEach(c=>{
-    c.questions.forEach((q,i)=> pool.push({catId:c.id, qIndex:i}));
-  });
-  beginSession(shuffle(pool), "full", "Full Slate");
-}
-function startMasterMissed(){
-  let pool = [];
-  CATEGORIES.forEach(c=>{
-    state[c.id].missed.forEach(i=> pool.push({catId:c.id, qIndex:i}));
-  });
-  beginSession(shuffle(pool), "missed", "Full Slate \u2014 missed only");
+function labelFor(target,drill){
+  if(target==='MASTER') return (drill?'Drill missed \u00b7 ':'')+'Master \u2014 all sections';
+  return (drill?'Drill missed \u00b7 ':'')+target+' \u00b7 '+SEC[target].title;
 }
 
-function beginSession(pool, mode, label){
-  if(pool.length===0) return;
-  session = { pool, idx:0, correct:0, total:0, missedNow:[], mode, label };
-  document.getElementById("hubWrap").classList.add("hidden");
-  document.getElementById("summaryWrap").classList.remove("active");
-  document.getElementById("quizWrap").classList.add("active");
+function beginRun(items, mode, label, scoreTarget){
+  run={ items:shuffle(items.slice()), pos:0, correct:0, answered:0, mode, label, scoreTarget,
+        missedThisRun:[] };
+  show('quiz');
+  document.getElementById('quizWhere').textContent=label;
+  document.getElementById('examNote').classList.toggle('hide', mode!=='exam');
   renderQuestion();
 }
 
-/* =========================================================
-   QUIZ RENDER
-   ========================================================= */
-let currentAnswered = false;
-let currentChoiceOrder = [];
-
-function liveLabelFor(catId){
-  const s = state[catId];
-  const p = pct(s.correct, s.attempted);
-  return (p===null?"\u2014":p+"%") + " (" + s.correct + "/" + s.attempted + ")";
-}
-
 function renderQuestion(){
-  currentAnswered = false;
-  const item = session.pool[session.idx];
-  const cat = catById(item.catId);
-  const q = cat.questions[item.qIndex];
+  const it=run.items[run.pos];
+  const q=SEC[it.sid].questions[it.qi];
+  document.getElementById('quizBar').style.width=((run.pos)/run.items.length*100)+'%';
+  document.getElementById('quizNum').textContent=`Question ${run.pos+1} of ${run.items.length} \u2014 Section ${it.sid}`;
+  document.getElementById('quizText').textContent=q.q;
+  const live=document.getElementById('quizLive');
+  if(run.mode==='practice'){ live.textContent = run.answered? Math.round(run.correct/run.answered*100)+'% \u00b7 '+run.correct+'/'+run.answered : ''; }
+  else { live.textContent = (run.pos)+' / '+run.items.length+' answered'; }
 
-  document.getElementById("qCatTag").textContent = "Worksheet " + cat.letter + " \u00b7 " + cat.name;
-  document.getElementById("qText").textContent = q.q;
-
-  // build shuffled choice order
-  currentChoiceOrder = shuffle(q.choices.map((c,i)=>i));
-  const wrap = document.getElementById("choicesWrap");
-  wrap.innerHTML = "";
-  const letters = ["A","B","C","D"];
-  currentChoiceOrder.forEach((origIdx, pos)=>{
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = `<span class="k">${letters[pos]}</span><span>${q.choices[origIdx]}</span>`;
-    btn.addEventListener("click", ()=> selectChoice(origIdx, pos));
-    wrap.appendChild(btn);
+  // shuffle option order but track correct
+  const order=shuffle(q.opts.map((t,i)=>({t,i})));
+  const optsEl=document.getElementById('quizOpts');
+  optsEl.innerHTML='';
+  const keys=['A','B','C','D','E','F'];
+  order.forEach((o,vi)=>{
+    const b=document.createElement('button');
+    b.className='opt';
+    b.innerHTML=`<span class="key mono">${keys[vi]}</span><span>${o.t}</span>`;
+    b.onclick=()=>choose(vi,order,q);
+    optsEl.appendChild(b);
   });
-
-  document.getElementById("feedback").className = "feedback";
-  document.getElementById("feedback").innerHTML = "";
-  document.getElementById("nextBtn").classList.remove("show");
-
-  const pctDone = Math.round((session.idx/session.pool.length)*100);
-  document.getElementById("progressFill").style.width = pctDone+"%";
-  document.getElementById("quizLive").innerHTML =
-    session.label + " &middot; " + (session.idx+1) + "/" + session.pool.length +
-    " &middot; live <b>" + liveLabelFor(item.catId) + "</b>";
+  const fb=document.getElementById('quizFeedback'); fb.className='feedback'; fb.textContent='';
+  const fl=document.getElementById('quizFlag'); fl.className='flag'; fl.textContent='';
+  document.getElementById('quizNext').classList.add('hide');
+  run._order=order; run._answered=false;
 }
 
-function selectChoice(origIdx, pos){
-  if(currentAnswered) return;
-  currentAnswered = true;
-  const item = session.pool[session.idx];
-  const cat = catById(item.catId);
-  const q = cat.questions[item.qIndex];
-  const isCorrect = origIdx === q.correct;
-
-  // update state
-  const s = state[item.catId];
-  s.attempted++;
-  session.total++;
-  if(isCorrect){
-    s.correct++;
-    session.correct++;
-    s.missed.delete(item.qIndex);
-  } else {
-    s.missed.add(item.qIndex);
-    session.missedNow.push({catName:cat.name, letter:cat.letter, q:q.q, answer:q.choices[q.correct]});
+function choose(vi, order, q){
+  if(run._answered) return;
+  run._answered=true;
+  run.answered++;
+  const it=run.items[run.pos];
+  const chosen=order[vi].i;
+  const isRight=chosen===q.ans;
+  if(isRight){ run.correct++; }
+  else{
+    run.missedThisRun.push({sid:it.sid, qi:it.qi});
+    addMissed(it.sid, it.qi);
   }
+  // if right and it was in the missed bank, clear it
+  if(isRight) removeMissed(it.sid, it.qi);
 
-  // style buttons
-  const buttons = document.querySelectorAll("#choicesWrap .choice");
-  buttons.forEach((b, i)=>{
-    const btnOrigIdx = currentChoiceOrder[i];
-    b.disabled = true;
-    if(btnOrigIdx === q.correct){
-      b.classList.add("correct");
-    } else if(i === pos){
-      b.classList.add("incorrect");
-    } else {
-      b.classList.add("dim");
+  const btns=document.getElementById('quizOpts').querySelectorAll('.opt');
+  if(run.mode==='practice'){
+    btns.forEach((b,idx)=>{
+      b.disabled=true;
+      if(order[idx].i===q.ans) b.classList.add('correct');
+      else if(idx===vi) b.classList.add('wrong');
+    });
+    const fb=document.getElementById('quizFeedback');
+    fb.classList.add('show', isRight?'right':'miss');
+    fb.innerHTML = (isRight?'<b>Correct.</b> ':'<b>Not quite.</b> Correct answer: <b>'+q.opts[q.ans]+'</b>')
+      + (q.note?'<span class="note">'+q.note+'</span>':'');
+    // special flag for the retroperitoneal T/F discrepancy
+    if(q.note && q.note.indexOf('flag this')>-1){
+      const fl=document.getElementById('quizFlag');
+      fl.classList.add('show');
+      fl.textContent='\u26A0 Answer-key conflict: your worksheet was marked differently. Confirm with Dr. DeAngelo.';
     }
-  });
-
-  const fb = document.getElementById("feedback");
-  fb.className = "feedback show " + (isCorrect ? "right" : "wrong");
-  let html = "<b>"+(isCorrect ? "Correct" : "Missed")+"</b>";
-  if(!isCorrect){
-    html += "Answer: " + q.choices[q.correct];
+    document.getElementById('quizLive').textContent=Math.round(run.correct/run.answered*100)+'% \u00b7 '+run.correct+'/'+run.answered;
+    document.getElementById('quizNext').classList.remove('hide');
+    document.getElementById('quizNext').textContent = run.pos+1>=run.items.length?'See results':'Next';
+    document.getElementById('quizNext').focus();
+  } else {
+    // exam: no feedback, auto-advance
+    btns.forEach(b=>b.disabled=true);
+    setTimeout(nextQuestion, 130);
   }
-  if(q.note){
-    html += (isCorrect ? "" : "<br>") + "<span style='opacity:.85'>" + q.note + "</span>";
-  }
-  fb.innerHTML = html;
-
-  document.getElementById("nextBtn").classList.add("show");
-  document.getElementById("quizLive").innerHTML =
-    session.label + " &middot; " + (session.idx+1) + "/" + session.pool.length +
-    " &middot; live <b>" + liveLabelFor(item.catId) + "</b>";
 }
 
 function nextQuestion(){
-  if(!currentAnswered) return;
-  session.idx++;
-  if(session.idx >= session.pool.length){
-    showSummary();
+  run.pos++;
+  if(run.pos>=run.items.length){ finishRun(); return; }
+  renderQuestion();
+}
+
+function finishRun(){
+  document.getElementById('quizBar').style.width='100%';
+  const pct=Math.round(run.correct/run.items.length*100);
+  // update best score for the scoreTarget (only for full-section or master non-drill runs, but we store best seen)
+  if(run.scoreTarget){
+    const prev=store.best[run.scoreTarget];
+    if(prev==null || pct>prev) store.best[run.scoreTarget]=pct;
+  }
+  saveStore();
+  // results view
+  show('results');
+  document.getElementById('resWhere').textContent=run.label;
+  const sc=document.getElementById('resScore');
+  sc.textContent=pct+'%';
+  sc.className='bigscore mono '+(pct>=90?'pass':pct>=75?'mid':'low');
+  document.getElementById('resTally').textContent=`${run.correct} of ${run.items.length} correct \u00b7 ${run.items.length-run.correct} missed`;
+  const wrap=document.getElementById('resMissWrap');
+  if(run.missedThisRun.length===0){
+    wrap.innerHTML='<div class="perfect">Clean run &mdash; nothing dropped into the missed bank.</div>';
+    document.getElementById('resDrill').classList.add('hide');
+    document.getElementById('resCopy').classList.add('hide');
   } else {
-    renderQuestion();
+    document.getElementById('resDrill').classList.remove('hide');
+    document.getElementById('resCopy').classList.remove('hide');
+    let html='<div class="missblock">';
+    run.missedThisRun.forEach(m=>{
+      const q=SEC[m.sid].questions[m.qi];
+      html+=`<div class="missitem"><div class="mq">[${m.sid}] ${q.q}</div>
+        <div class="ma">\u2192 ${q.opts[q.ans]}</div>
+        ${q.note?'<div class="mn">'+q.note+'</div>':''}</div>`;
+    });
+    html+='</div>';
+    wrap.innerHTML=html;
   }
 }
 
-/* =========================================================
-   SUMMARY
-   ========================================================= */
-function showSummary(){
-  document.getElementById("quizWrap").classList.remove("active");
-  document.getElementById("summaryWrap").classList.add("active");
-  const p = pct(session.correct, session.total);
-  document.getElementById("summaryCatLabel").textContent = session.label + " \u2014 complete";
-  document.getElementById("summaryScore").textContent = (p===null?"0":p) + "%";
-  document.getElementById("summaryScore").className = "big mono " + pctClass(p);
-  document.getElementById("summaryCount").textContent = session.correct + " of " + session.total + " correct";
-
-  const block = document.getElementById("summaryMissedBlock");
-  const list = document.getElementById("summaryMissedList");
-  document.getElementById("summaryCopyBtn").style.display =
-    session.missedNow.length>0 ? "inline-block" : "none";
-  if(session.missedNow.length>0){
-    block.style.display = "block";
-    list.innerHTML = session.missedNow.map(m=>`
-      <div class="miss-item">
-        <div class="q">${m.q}</div>
-        <div class="a">Worksheet ${m.letter} &middot; ${m.answer}</div>
-      </div>
-    `).join("");
-  } else {
-    block.style.display = "none";
-  }
+function drillFromResults(){
+  const items=run.missedThisRun.slice();
+  if(items.length===0) return;
+  beginRun(items,'practice','Drill missed \u00b7 '+run.label, run.scoreTarget);
 }
 
-/* =========================================================
-   NAV / EVENTS
-   ========================================================= */
-function openCranialTrainer(){
-  session = null;
-  document.getElementById("hubWrap").classList.add("hidden");
-  document.getElementById("quizWrap").classList.remove("active");
-  document.getElementById("summaryWrap").classList.remove("active");
-  document.getElementById("cnTrainerWrap").classList.add("active");
-  CranialTrainer.open();
-  window.scrollTo({top:0, behavior:"smooth"});
+function copyMissed(){
+  // group by section
+  const bySec={};
+  run.missedThisRun.forEach(m=>{ (bySec[m.sid]=bySec[m.sid]||[]).push(m.qi); });
+  let out='MISSED \u2014 '+run.label+'\n';
+  Object.keys(bySec).sort().forEach(sid=>{
+    out+='\n== Section '+sid+' \u00b7 '+SEC[sid].title+' ==\n';
+    bySec[sid].forEach(qi=>{
+      const q=SEC[sid].questions[qi];
+      out+='\u2022 '+q.q+'\n    \u2192 '+q.opts[q.ans]+'\n';
+    });
+  });
+  const btn=document.getElementById('resCopy');
+  navigator.clipboard.writeText(out).then(()=>{
+    const t=btn.textContent; btn.textContent='Copied \u2713';
+    setTimeout(()=>btn.textContent=t,1400);
+  }).catch(()=>{
+    // fallback
+    const ta=document.createElement('textarea'); ta.value=out; document.body.appendChild(ta);
+    ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove();
+    const t=btn.textContent; btn.textContent='Copied \u2713'; setTimeout(()=>btn.textContent=t,1400);
+  });
 }
 
-function returnToHub(){
-  session = null;
-  document.getElementById("quizWrap").classList.remove("active");
-  document.getElementById("summaryWrap").classList.remove("active");
-  document.getElementById("cnTrainerWrap").classList.remove("active");
-  CranialTrainer.pause();
-  document.getElementById("hubWrap").classList.remove("hidden");
-  renderHub();
+// ---- missed bank ----
+function addMissed(sid,qi){
+  const arr=store.missed[sid]=store.missed[sid]||[];
+  if(!arr.includes(qi)) arr.push(qi);
+}
+function removeMissed(sid,qi){
+  if(!store.missed[sid]) return;
+  store.missed[sid]=store.missed[sid].filter(x=>x!==qi);
 }
 
+// ---- nav ----
+function show(id){ ['hub','quiz','results'].forEach(s=>document.getElementById(s).classList.toggle('hide',s!==id)); if(id==='hub'){renderHub();} window.scrollTo(0,0); }
+function quitToHub(){ saveStore(); run=null; show('hub'); }
 
-/* =========================================================
-   INTEGRATED CRANIAL NERVE TRAINER
-   ========================================================= */
-const CranialTrainer = (()=>{
-  const NERVES = [
-    { r:"I",    n:"Olfactory",         loc:"Cribriform plate of the ethmoid", fn:"Sensory — smell" },
-    { r:"II",   n:"Optic",             loc:"Optic canal", fn:"Sensory — vision" },
-    { r:"III",  n:"Oculomotor",        loc:"Superior orbital fissure", fn:"Motor — moves eyeball (4 muscles), raises eyelid, constricts pupil" },
-    { r:"IV",   n:"Trochlear",         loc:"Superior orbital fissure", fn:"Motor — superior oblique (eye down-and-out)" },
-    { r:"V",    n:"Trigeminal",        loc:"Sup. orbital fissure, foramen rotundum & foramen ovale", fn:"Both — facial sensation; muscles of mastication" },
-    { r:"VI",   n:"Abducens",          loc:"Superior orbital fissure", fn:"Motor — lateral rectus (abducts eye)" },
-    { r:"VII",  n:"Facial",            loc:"Internal acoustic meatus → stylomastoid foramen", fn:"Both — facial expression; taste (ant. ⅔); salivary & lacrimal glands" },
-    { r:"VIII", n:"Vestibulocochlear", loc:"Internal acoustic meatus", fn:"Sensory — hearing & balance" },
-    { r:"IX",   n:"Glossopharyngeal",  loc:"Jugular foramen", fn:"Both — taste/sensation (post. ⅓), swallowing; parotid gland" },
-    { r:"X",    n:"Vagus",             loc:"Jugular foramen", fn:"Both — thoracic & abdominal viscera; swallowing, speech" },
-    { r:"XI",   n:"Accessory",         loc:"Jugular foramen", fn:"Motor — sternocleidomastoid & trapezius" },
-    { r:"XII",  n:"Hypoglossal",       loc:"Hypoglossal canal", fn:"Motor — tongue movement" }
-  ];
-
-  const LOCATION_ITEMS = [
-    { id:"I", numeral:"CN I", name:"Olfactory", loc:"Cribriform plate" },
-    { id:"II", numeral:"CN II", name:"Optic", loc:"Optic canal" },
-    { id:"III", numeral:"CN III", name:"Oculomotor", loc:"Superior orbital fissure" },
-    { id:"IV", numeral:"CN IV", name:"Trochlear", loc:"Superior orbital fissure" },
-    { id:"V1", numeral:"CN V1", name:"Ophthalmic division", loc:"Superior orbital fissure" },
-    { id:"V2", numeral:"CN V2", name:"Maxillary division", loc:"Foramen rotundum" },
-    { id:"V3", numeral:"CN V3", name:"Mandibular division", loc:"Foramen ovale" },
-    { id:"VI", numeral:"CN VI", name:"Abducens", loc:"Superior orbital fissure" },
-    { id:"VII", numeral:"CN VII", name:"Facial", loc:"Internal acoustic meatus → Stylomastoid foramen" },
-    { id:"VIII", numeral:"CN VIII", name:"Vestibulocochlear", loc:"Internal acoustic meatus" },
-    { id:"IX", numeral:"CN IX", name:"Glossopharyngeal", loc:"Jugular foramen" },
-    { id:"X", numeral:"CN X", name:"Vagus", loc:"Jugular foramen" },
-    { id:"XI", numeral:"CN XI", name:"Accessory", loc:"Jugular foramen" },
-    { id:"XII", numeral:"CN XII", name:"Hypoglossal", loc:"Hypoglossal canal" }
-  ];
-
-  const $ = id => document.getElementById(id);
-  const shuffleLocal = arr => {
-    const a = arr.slice();
-    for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
-      [a[i],a[j]] = [a[j],a[i]];
-    }
-    return a;
-  };
-  const fmt = seconds => `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
-  const KEYS = ["A","B","C","D"];
-  const STORAGE_KEY = "head-neck-hub-cn-missed-v1";
-  const DISPLAY_KEY = "head-neck-hub-cn-location-display";
-  const MODE_LABELS = {match:"Numeral",location:"Location",function:"Function"};
-  const missedBanks = {match:new Map(),location:new Map(),function:new Map()};
-
-  let mode = "match";
-  let startTime = null;
-  let timer = null;
-  let locationDisplayMode = "both";
-  let initialized = false;
-
-  let selName=null, selNum=null, matched=0, misses=0, revealedMatch=false, activeMatchItems=[];
-  let mcQueue=[], mcIdx=0, mcScore=0, mcAnswered=false;
-
-  function loadSettings(){
-    try{ locationDisplayMode = localStorage.getItem(DISPLAY_KEY) || "both"; }catch(_){ locationDisplayMode="both"; }
-    if(!["both","name","numeral"].includes(locationDisplayMode)) locationDisplayMode="both";
-    try{
-      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-      Object.keys(missedBanks).forEach(section=>{
-        (raw[section] || []).forEach(entry=>missedBanks[section].set(entry.key,entry));
-      });
-    }catch(_){}
-  }
-  function saveMissed(){
-    const data={};
-    Object.keys(missedBanks).forEach(section=>data[section]=[...missedBanks[section].values()]);
-    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(_){}
-  }
-  function totalMissed(){return Object.values(missedBanks).reduce((sum,bank)=>sum+bank.size,0);}
-  function updateCopyButtons(){
-    const current=missedBanks[mode].size,total=totalMissed();
-    $("cnCopyMissed").textContent=`Copy ${MODE_LABELS[mode]} missed (${current})`;
-    $("cnCopyMissed").disabled=current===0;
-    $("cnCopyAllMissed").textContent=`Copy all missed (${total})`;
-    $("cnCopyAllMissed").disabled=total===0;
-    $("cnClearMissed").disabled=total===0;
-  }
-  function addMissed(section,entry){missedBanks[section].set(entry.key,entry);saveMissed();updateCopyButtons();}
-  function buildMissedText(sections){
-    const blocks=["Cranial Nerve Trainer — Missed Questions"];
-    sections.forEach(section=>{
-      const entries=[...missedBanks[section].values()];
-      if(!entries.length)return;
-      blocks.push(`\n${MODE_LABELS[section]} (${entries.length})`);
-      entries.forEach((entry,index)=>{
-        blocks.push(`\n${index+1}. ${entry.question}`);
-        if(entry.selected)blocks.push(`   I selected: ${entry.selected}`);
-        blocks.push(`   Correct answer: ${entry.answer}`);
-      });
-    });
-    return blocks.join("\n");
-  }
-  async function clipboardCopy(text){
-    try{
-      if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(text);}
-      else{
-        const area=document.createElement("textarea");
-        area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";
-        document.body.appendChild(area);area.select();area.setSelectionRange(0,area.value.length);
-        if(!document.execCommand("copy"))throw new Error("copy failed");
-        area.remove();
-      }
-      return true;
-    }catch(_){return false;}
-  }
-  async function handleCopy(button,sections){
-    const ok=await clipboardCopy(buildMissedText(sections));
-    const original=button.textContent;
-    $("cnCopyStatus").textContent=ok?"Missed questions copied. Paste them into ChatGPT, Notes, or a message.":"Copy was blocked. Open the file directly in a browser tab and try again.";
-    if(ok){
-      button.classList.add("copied");button.textContent="Copied ✓";
-      setTimeout(()=>{button.classList.remove("copied");button.textContent=original;updateCopyButtons();},1300);
-    }
-  }
-
-  function startClock(){
-    if(startTime)return;
-    startTime=Date.now();
-    timer=setInterval(()=>{$("cnS3v").textContent=fmt(Math.floor((Date.now()-startTime)/1000));},500);
-  }
-  function stopClock(){if(timer)clearInterval(timer);timer=null;}
-  function resetClock(){stopClock();startTime=null;$("cnS3v").textContent="0:00";}
-
-  function locationLeftLabel(item){
-    if(locationDisplayMode==="name")return item.name;
-    if(locationDisplayMode==="numeral")return item.numeral;
-    return `${item.numeral} · ${item.name}`;
-  }
-  function updateDisplayControls(){
-    document.querySelectorAll(".cn-display-option").forEach(button=>{
-      const active=button.dataset.cnDisplay===locationDisplayMode;
-      button.classList.toggle("on",active);
-      button.setAttribute("aria-pressed",String(active));
-    });
-  }
-  function getMatchItems(){
-    if(mode==="location"){
-      return LOCATION_ITEMS.map(item=>({id:item.id,left:locationLeftLabel(item),fullLabel:`${item.numeral} · ${item.name}`,right:item.loc,match:item.loc,answer:item.loc}));
-    }
-    return NERVES.map(item=>({id:item.r,left:item.n,right:item.r,match:item.r,answer:`CN ${item.r}`}));
-  }
-  function buildMatch(){
-    resetClock();
-    const left=$("cnColNames"),right=$("cnColNums"),board=$("cnMatchBoard");
-    left.innerHTML="";right.innerHTML="";
-    selName=selNum=null;matched=0;misses=0;revealedMatch=false;activeMatchItems=getMatchItems();
-    const isLocation=mode==="location";
-    board.classList.toggle("location",isLocation);
-    $("cnLeftHead").textContent=isLocation?(locationDisplayMode==="both"?"Cranial nerve":locationDisplayMode==="name"?"Nerve name":"Roman numeral"):"Cranial nerve";
-    $("cnRightHead").textContent=isLocation?"Skull opening":"Number";
-    $("cnS1k").textContent="Matched";$("cnS1v").textContent=`0 / ${activeMatchItems.length}`;$("cnS1v").className="cn-stat-v";
-    $("cnS2k").textContent="Misses";$("cnS2v").textContent="0";$("cnS2v").className="cn-stat-v warn";
-    $("cnDone").classList.remove("show");
-
-    shuffleLocal(activeMatchItems).forEach(item=>{
-      const button=document.createElement("button");
-      button.className=isLocation?"cn-tile cn-nerve-tile":"cn-tile";
-      if(isLocation && locationDisplayMode==="numeral")button.classList.add("numeral-only");
-      button.textContent=item.left;button.dataset.id=item.id;button.dataset.match=item.match;
-      button.addEventListener("click",()=>pickMatch("name",button));left.appendChild(button);
-    });
-    shuffleLocal(activeMatchItems).forEach((item,index)=>{
-      const button=document.createElement("button");
-      button.className=isLocation?"cn-tile cn-location-tile":"cn-tile num";
-      button.textContent=item.right;button.dataset.id=`${item.id}-${index}`;button.dataset.match=item.match;
-      button.addEventListener("click",()=>pickMatch("num",button));right.appendChild(button);
-    });
-  }
-  function pickMatch(kind,element){
-    if(element.classList.contains("locked"))return;
-    startClock();
-    const current=kind==="name"?selName:selNum;
-    if(current)current.classList.remove("selected");
-    const next=current===element?null:element;
-    if(kind==="name")selName=next;else selNum=next;
-    if(next)next.classList.add("selected");
-    if(selName && selNum)evaluateMatch();
-  }
-  function evaluateMatch(){
-    const a=selName,b=selNum;selName=selNum=null;
-    if(a.dataset.match===b.dataset.match){
-      [a,b].forEach(tile=>{tile.classList.remove("selected");tile.classList.add("locked","pulse");tile.disabled=true;});
-      if(mode==="match" && !a.querySelector(".cn-num-badge")){
-        const badge=document.createElement("span");badge.className="cn-num-badge";badge.textContent=a.dataset.match;a.prepend(badge);
-      }
-      matched++;$("cnS1v").textContent=`${matched} / ${activeMatchItems.length}`;
-      if(matched===activeMatchItems.length)finishMatch();
-    }else{
-      misses++;$("cnS2v").textContent=misses;
-      const item=activeMatchItems.find(entry=>entry.id===a.dataset.id);
-      if(mode==="location"){
-        addMissed("location",{key:item.id,question:`Which skull opening is used by ${item.fullLabel}?`,selected:b.textContent,answer:item.answer});
-      }else{
-        const chosen=activeMatchItems.find(entry=>entry.match===b.dataset.match);
-        addMissed("match",{key:item.id,question:`Which Roman numeral belongs to the ${item.left} nerve?`,selected:`CN ${chosen.right} (${chosen.left})`,answer:item.answer});
-      }
-      [a,b].forEach(tile=>{tile.classList.remove("selected");tile.classList.add("wrong");setTimeout(()=>tile.classList.remove("wrong"),340);});
-    }
-  }
-  function finishMatch(){
-    stopClock();
-    const seconds=Math.floor((Date.now()-(startTime||Date.now()))/1000);
-    const message=misses===0?"Clean run — no misses.":misses>6?"Worth another round.":"Solid recall.";
-    const noun=mode==="location"?"nerve-opening pairs":"nerve-number pairs";
-    $("cnDone").innerHTML=`<h2>All ${activeMatchItems.length} ${noun} matched.</h2><p>Finished in <span class="hl">${fmt(seconds)}</span> with <span class="hl">${misses}</span> misses.</p><p>${message}</p>`;
-    $("cnDone").classList.add("show");
-  }
-  function revealMatch(){
-    if(revealedMatch){buildMatch();return;}
-    revealedMatch=true;stopClock();
-    [...$("cnColNames").children].forEach(tile=>{
-      const item=activeMatchItems.find(entry=>entry.id===tile.dataset.id);
-      if(!item || tile.querySelector(".cn-answer-reveal") || tile.querySelector(".cn-num-badge"))return;
-      if(mode==="match"){
-        const badge=document.createElement("span");badge.className="cn-num-badge";badge.textContent=item.right;badge.style.color="var(--cherry-deep)";tile.prepend(badge);
-      }else{
-        const answer=document.createElement("span");answer.className="cn-answer-reveal";answer.textContent=item.answer;tile.appendChild(answer);
-      }
-    });
-  }
-
-  function buildMC(){
-    resetClock();mcQueue=shuffleLocal(NERVES);mcIdx=0;mcScore=0;
-    $("cnS1k").textContent="Question";$("cnS1v").textContent="1 / 12";$("cnS1v").className="cn-stat-v";
-    $("cnS2k").textContent="Score";$("cnS2v").textContent="0";$("cnS2v").className="cn-stat-v good";
-    $("cnMCLead").textContent="Function";$("cnDone").classList.remove("show");renderMC();
-  }
-  function renderMC(){
-    mcAnswered=false;
-    const item=mcQueue[mcIdx];$("cnS1v").textContent=`${mcIdx+1} / 12`;
-    $("cnMCQ").innerHTML=`What does the <b>${item.n}</b> nerve <span class="cn-code">(CN ${item.r})</span> do?`;
-    const correct=item.fn;
-    const pool=[...new Set(NERVES.map(entry=>entry.fn).filter(value=>value!==correct))];
-    const options=shuffleLocal([correct,...shuffleLocal(pool).slice(0,3)]);
-    const box=$("cnMCChoices");box.innerHTML="";
-    options.forEach((text,index)=>{
-      const button=document.createElement("button");button.className="cn-choice";button.dataset.correct=text===correct?"1":"0";
-      button.innerHTML=`<span class="cn-choice-key">${KEYS[index]}</span><span>${text}</span>`;
-      button.addEventListener("click",()=>answerMC(button));box.appendChild(button);
-    });
-    $("cnMCNextRow").innerHTML="";
-  }
-  function answerMC(button){
-    if(mcAnswered)return;
-    mcAnswered=true;startClock();
-    const right=button.dataset.correct==="1";
-    if(right){mcScore++;$("cnS2v").textContent=mcScore;}
-    else{
-      const item=mcQueue[mcIdx];
-      addMissed("function",{key:item.r,question:`What does the ${item.n} nerve (CN ${item.r}) do?`,selected:button.querySelector("span:last-child").textContent,answer:item.fn});
-    }
-    [...$("cnMCChoices").children].forEach(choice=>{
-      choice.disabled=true;if(choice.dataset.correct==="1")choice.classList.add("correct");else if(choice===button)choice.classList.add("incorrect");
-    });
-    const next=document.createElement("button");next.className="cn-act primary";next.textContent=mcIdx<11?"Next":"See results";
-    next.addEventListener("click",()=>{if(mcIdx<11){mcIdx++;renderMC();}else finishMC();});
-    $("cnMCNextRow").appendChild(next);next.focus();
-  }
-  function finishMC(){
-    stopClock();
-    const seconds=Math.floor((Date.now()-(startTime||Date.now()))/1000);
-    const message=mcScore===12?"Perfect.":mcScore>=9?"Strong.":"Run it again.";
-    $("cnDone").innerHTML=`<h2>${mcScore} / 12 functions correct.</h2><p>Time <span class="hl">${fmt(seconds)}</span>.</p><p>${message}</p>`;
-    $("cnDone").classList.add("show");$("cnMCChoices").innerHTML="";$("cnMCQ").textContent="—";$("cnMCNextRow").innerHTML="";
-  }
-
-  function setMode(nextMode){
-    mode=nextMode;stopClock();$("cnCopyStatus").textContent="";
-    document.querySelectorAll(".cn-tab").forEach(tab=>tab.classList.toggle("on",tab.dataset.cnMode===mode));
-    $("cnDisplayControls").classList.toggle("show",mode==="location");updateDisplayControls();
-    $("cnViewMatch").classList.toggle("on",mode!=="function");$("cnViewMC").classList.toggle("on",mode==="function");$("cnDone").classList.remove("show");
-    if(mode==="match"){$("cnSub").textContent="Pair each nerve with its Roman numeral.";$("cnReveal").style.display="";buildMatch();}
-    else if(mode==="location"){$("cnSub").textContent="Match every cranial nerve with its skull opening on one board.";$("cnReveal").style.display="";buildMatch();}
-    else{$("cnSub").textContent="Identify the functional role of each nerve.";$("cnReveal").style.display="none";buildMC();}
-    updateCopyButtons();
-  }
-  function bind(){
-    document.querySelectorAll(".cn-tab").forEach(tab=>tab.addEventListener("click",()=>setMode(tab.dataset.cnMode)));
-    document.querySelectorAll(".cn-display-option").forEach(button=>button.addEventListener("click",()=>{
-      if(locationDisplayMode===button.dataset.cnDisplay)return;
-      locationDisplayMode=button.dataset.cnDisplay;try{localStorage.setItem(DISPLAY_KEY,locationDisplayMode);}catch(_){}
-      updateDisplayControls();if(mode==="location")buildMatch();
-    }));
-    $("cnRestart").addEventListener("click",()=>setMode(mode));
-    $("cnReveal").addEventListener("click",revealMatch);
-    $("cnCopyMissed").addEventListener("click",()=>handleCopy($("cnCopyMissed"),[mode]));
-    $("cnCopyAllMissed").addEventListener("click",()=>handleCopy($("cnCopyAllMissed"),["match","location","function"]));
-    $("cnClearMissed").addEventListener("click",()=>{
-      Object.values(missedBanks).forEach(bank=>bank.clear());saveMissed();updateCopyButtons();$("cnCopyStatus").textContent="All cranial-nerve missed banks cleared.";
-    });
-  }
-  function initialize(){
-    if(initialized)return;
-    loadSettings();bind();setMode("match");initialized=true;
-  }
-  function open(){initialize();updateCopyButtons();}
-  function pause(){stopClock();}
-  return {open,pause};
-})();
-
-document.getElementById("masterFullBtn").addEventListener("click", startMasterFull);
-document.getElementById("masterMissedBtn").addEventListener("click", startMasterMissed);
-document.getElementById("masterCopyBtn").addEventListener("click", (e)=> copyAllMissed(e.currentTarget));
-document.getElementById("summaryCopyBtn").addEventListener("click", (e)=> copySessionMissed(e.currentTarget));
-document.getElementById("backBtn").addEventListener("click", returnToHub);
-document.getElementById("summaryHubBtn").addEventListener("click", returnToHub);
-document.getElementById("cnBackBtn").addEventListener("click", returnToHub);
-document.getElementById("nextBtn").addEventListener("click", nextQuestion);
-document.getElementById("resetBtn").addEventListener("click", ()=>{
-  if(confirm("Reset every category score and missed-question bank? This can't be undone.")){
-    initState();
-    renderHub();
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('quiz').classList.contains('hide')) return;
+  if(!run) return;
+  if(['1','2','3','4','5','6'].includes(e.key) && !run._answered){
+    const idx=parseInt(e.key)-1;
+    const opts=document.getElementById('quizOpts').querySelectorAll('.opt');
+    if(opts[idx]) opts[idx].click();
+  } else if(e.key==='Enter' && run._answered && run.mode==='practice'){
+    const nb=document.getElementById('quizNext');
+    if(!nb.classList.contains('hide')) nb.click();
   }
 });
 
-document.addEventListener("keydown", (e)=>{
-  if(!document.getElementById("quizWrap").classList.contains("active")) return;
-  if(["1","2","3","4"].includes(e.key)){
-    const pos = parseInt(e.key,10)-1;
-    const buttons = document.querySelectorAll("#choicesWrap .choice");
-    if(buttons[pos] && !currentAnswered){
-      const origIdx = currentChoiceOrder[pos];
-      selectChoice(origIdx, pos);
-    }
-  } else if(e.key === "Enter"){
-    if(currentAnswered) nextQuestion();
-  }
-});
-
-/* init */
+// init
 renderHub();
 </script>
 </body>
