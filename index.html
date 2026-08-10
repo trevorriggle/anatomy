@@ -39,7 +39,7 @@ body{
 button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:none;background:none;color:inherit}
 button:focus-visible,.opt:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 .wrap{max-width:820px;margin:0 auto;padding:22px 16px 96px;}
- 
+
 /* header */
 header.top{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px;}
 .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
@@ -49,7 +49,7 @@ header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
 .masterlabel{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
 .track{flex:1;min-width:160px;height:8px;background:#23262c;border-radius:6px;overflow:hidden}
 .track > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .4s}
- 
+
 /* section grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
 .card{background:var(--board-2);border:1px solid var(--line);border-radius:10px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
@@ -71,18 +71,18 @@ header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .missflag{font-family:"Space Mono";font-size:11px;color:var(--crimson);}
 .missflag.zero{color:var(--slate);opacity:.6}
- 
+
 /* master + custom cards span */
 .card.master{grid-column:1/-1;background:linear-gradient(180deg,#1b1f25,#15181d);border-color:#2f343c}
 .card.master .tag{color:#262b32}
 .card.wide{grid-column:1/-1}
 .subhead{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);margin:26px 0 10px}
- 
+
 /* custom chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
 .chip{font-family:"Space Mono";font-size:13px;padding:7px 12px;border-radius:20px;border:1px solid #333944;background:#20242a;color:var(--slate)}
 .chip.on{background:var(--brass);color:#1a1408;border-color:var(--brass);font-weight:700}
- 
+
 /* quiz */
 .quizhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
 .quizhead .where{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
@@ -115,7 +115,7 @@ header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
 .bigbtn.ghost{background:#20242a;color:var(--bone);border:1px solid #333944}
 .bigbtn.ghost:hover{background:#282d34}
 .exam-note{font-family:"Space Mono";font-size:11px;color:var(--slate);margin-top:12px;text-align:center}
- 
+
 /* results */
 .results h2{font-family:"Space Grotesk";font-size:22px;margin:0 0 4px}
 .bigscore{font-family:"Space Mono";font-size:56px;font-weight:700;line-height:1;margin:10px 0}
@@ -130,9 +130,9 @@ header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
 .missitem .ma{font-size:13.5px;color:var(--good)}
 .missitem .mn{font-size:13px;color:var(--slate);margin-top:4px}
 .perfect{padding:24px 16px;text-align:center;color:var(--patina);font-size:15px}
- 
+
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-family:"Space Mono";font-size:11px;color:var(--slate);text-align:center;line-height:1.7}
- 
+
 /* clear controls + overall */
 .clearall{flex:none;margin-left:auto;font-family:"Space Mono";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);background:#1c1f25;border:1px solid #2c3037;padding:8px 12px;border-radius:7px;transition:color .15s,border-color .15s,background .15s}
 .clearall:hover:not(:disabled){color:#e7b3a6;border-color:#5a2a20;background:var(--crimson-soft)}
@@ -141,14 +141,18 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
 .clearsec{font-family:"Space Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:transparent;border:1px solid #2c3037;padding:4px 9px;border-radius:6px;line-height:1.3;transition:color .15s,border-color .15s}
 .clearsec:hover:not(:disabled){color:#e7b3a6;border-color:#5a2a20}
 .clearsec:disabled{opacity:.35;cursor:not-allowed}
- 
+.missrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+.copysec{font-family:"Space Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:transparent;border:1px solid #2c3037;padding:4px 9px;border-radius:6px;line-height:1.3;white-space:nowrap;transition:color .15s,border-color .15s}
+.copysec:hover:not(:disabled){color:#a7d2bf;border-color:#28453a}
+.copysec:disabled{opacity:.35;cursor:not-allowed}
+
 .hide{display:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
- 
+
   <!-- ===== HUB ===== -->
   <section id="hub">
     <header class="top">
@@ -163,7 +167,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
         <button class="clearall" id="clearAllBtn" onclick="clearAllScores()">Clear all scores</button>
       </div>
     </header>
- 
+
     <div class="card master">
       <div class="tag mono">&Sigma;</div>
       <h3>Master &mdash; every section, A&ndash;L</h3>
@@ -176,10 +180,10 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
       </div>
       <div class="missflag zero" id="masterMiss">0 in missed bank</div>
     </div>
- 
+
     <div class="subhead">Sections</div>
     <div class="grid" id="sectionGrid"></div>
- 
+
     <div class="subhead">Custom practice &mdash; combine sections</div>
     <div class="card wide">
       <div class="chips" id="customChips"></div>
@@ -188,13 +192,13 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
         <button class="btn exam" style="flex:2" onclick="startCustom('exam')">Exam selected</button>
       </div>
     </div>
- 
+
     <footer>
       Practice tells you right/wrong instantly &middot; Exam runs blind, misses revealed at the end<br>
       Every miss drops into that section&rsquo;s bank &middot; drill missed until it empties &middot; scores persist on this device
     </footer>
   </section>
- 
+
   <!-- ===== QUIZ ===== -->
   <section id="quiz" class="hide">
     <div class="quizhead">
@@ -215,7 +219,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
     </div>
     <div class="exam-note hide" id="examNote">Exam mode &mdash; no feedback until the end.</div>
   </section>
- 
+
   <!-- ===== RESULTS ===== -->
   <section id="results" class="hide">
     <div class="results">
@@ -230,13 +234,13 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-fa
       </div>
     </div>
   </section>
- 
+
 </div>
- 
+
 <script>
 const DATA = {"sections": [{"id": "A", "title": "Skeleton of Thorax", "questions": [{"q": "The term 'osteocartilaginous' describes the thoracic cage because it is composed of:", "opts": ["Both bone and cartilage", "Bone only", "Cartilage and ligament", "Dense connective tissue only"], "ans": 0, "note": "Osteo = bone, cartilaginous = cartilage. The cage is ribs/sternum (bone) plus costal cartilage."}, {"q": "List the three sections of the sternum from superior to inferior:", "opts": ["Manubrium, body, xiphoid process", "Xiphoid, body, manubrium", "Manubrium, xiphoid, body", "Body, manubrium, xiphoid"], "ans": 0, "note": "Manubrium (top) → body (middle) → xiphoid process (bottom)."}, {"q": "The manubrium articulates with the clavicles, the 1st rib, and part of the:", "opts": ["2nd rib (at the sternal angle)", "3rd rib", "Xiphoid process only", "7th rib"], "ans": 0, "note": "The 2nd rib articulates at the manubriosternal junction (sternal angle), shared with the body."}, {"q": "The 1st rib articulates with the manubrium via:", "opts": ["Full costal cartilage", "A synovial joint only", "The sternal angle", "The xiphoid process"], "ans": 0, "note": "Rib 1 joins the manubrium through its complete costal cartilage."}, {"q": "The sternal angle is the joint between the manubrium and body, also called the:", "opts": ["Manubriosternal joint", "Xiphisternal joint", "Sternoclavicular joint", "Costochondral joint"], "ans": 0, "note": "It is a clinically key landmark used to locate the 2nd rib and for auscultation."}, {"q": "The sternal angle is clinically used to identify which rib?", "opts": ["The 2nd rib", "The 1st rib", "The 7th rib", "The 12th rib"], "ans": 0, "note": "Slide laterally from the sternal angle to find the 2nd costal cartilage/rib."}, {"q": "The body of the sternum articulates via costal cartilage with which ribs?", "opts": ["Ribs 2-7", "Ribs 1-5", "Ribs 8-12", "Ribs 3-10"], "ans": 0, "note": "The body shares rib 2 with the manubrium and takes ribs 3-7 (and part of 2)."}, {"q": "The xiphoid process is the inferior section of the sternum and serves as an attachment for the:", "opts": ["Diaphragm", "Trapezius", "Clavicle", "Scalenes"], "ans": 0, "note": "The xiphoid is a landmark and attachment point (diaphragm, some abdominal muscles)."}, {"q": "Ribs 1-7, which attach directly to the sternum by their own costal cartilage, are termed:", "opts": ["Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Vertebral (floating) ribs", "Costal ribs"], "ans": 0, "note": "True ribs attach directly to the sternum."}, {"q": "Ribs 8-10, which attach to the sternum indirectly via the cartilage above them, are termed:", "opts": ["Vertebrochondral (false) ribs", "Vertebrosternal (true) ribs", "Vertebral (floating) ribs", "Cervical ribs"], "ans": 0, "note": "False ribs share costal cartilage rather than attaching directly."}, {"q": "Ribs 11-12, which have no anterior sternal attachment, are termed:", "opts": ["Vertebral (floating) ribs", "Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Costal ribs"], "ans": 0, "note": "Floating ribs attach only posteriorly to vertebrae."}, {"q": "The head of a typical rib articulates with the:", "opts": ["Bodies of vertebrae (costal facets)", "Transverse process only", "Spinous process", "Costal cartilage of the rib above"], "ans": 0, "note": "The head joins vertebral bodies; the tubercle joins the transverse process."}, {"q": "The tubercle of a typical rib articulates with the:", "opts": ["Transverse process of a thoracic vertebra", "Vertebral body", "Spinous process", "Sternum"], "ans": 0, "note": "Tubercle → transverse process; head → vertebral body/bodies."}, {"q": "The costal groove on the inferior inner surface of a rib houses the:", "opts": ["Intercostal vein, artery, and nerve (VAN)", "Spinal cord", "Thoracic duct", "Vagus nerve"], "ans": 0, "note": "The neurovascular bundle runs in the costal groove: vein, artery, nerve top-to-bottom."}, {"q": "The head of Rib 1 is atypical because it articulates with:", "opts": ["T1 only (a single vertebra)", "T1 and T2", "C7 and T1", "T1 through T3"], "ans": 0, "note": "Rib 1's head joins only T1; typical ribs (2-9) join two vertebrae."}, {"q": "The head of a typical rib (e.g., Ribs 2-9) articulates with:", "opts": ["Two adjacent vertebrae and the disc between them", "One vertebra only", "The transverse process only", "The sternum"], "ans": 0, "note": "Typical rib heads span two vertebral bodies plus the intervertebral disc."}, {"q": "Ribs 11 and 12 are atypical posteriorly because their heads articulate with:", "opts": ["Their own single vertebra only (no tubercle articulation)", "Two vertebrae plus disc", "The transverse process", "T10 and T11"], "ans": 0, "note": "Floating ribs join only their own vertebra and lack a tubercle articulation."}, {"q": "Rib 1 is visibly unique because it is short, flat, sharply curved, and has grooves for the:", "opts": ["Subclavian vessels", "Vertebral artery", "Azygos vein", "Internal thoracic artery"], "ans": 0, "note": "The subclavian artery and vein grooves cross the superior surface of rib 1."}, {"q": "Ribs 11 and 12 are visibly unique because they:", "opts": ["Lack a neck and tubercle", "Have the longest necks", "Articulate with the sternum", "Have two facets on the head"], "ans": 0, "note": "Floating ribs are short and lack the neck/tubercle of typical ribs."}]}, {"id": "B", "title": "Muscles of Thorax", "questions": [{"q": "The diaphragm attaches bony to the xiphoid process, the lower six costal cartilages/ribs, and the:", "opts": ["L1-L3 vertebrae via crura", "T1-T4 vertebrae", "Manubrium", "Clavicles"], "ans": 0, "note": "The right and left crura anchor the diaphragm to the upper lumbar vertebrae."}, {"q": "The central tendon of the diaphragm is a:", "opts": ["Trefoil-shaped aponeurosis at the center", "Bony plate", "Muscular sphincter", "Cartilage disc"], "ans": 0, "note": "Muscle fibers converge on this leaf-shaped tendon."}, {"q": "The caval opening of the diaphragm at the T8 level transmits the:", "opts": ["Inferior vena cava", "Aorta", "Esophagus", "Thoracic duct"], "ans": 0, "note": "T8 = IVC. Mnemonic: vena cava has 8 letters."}, {"q": "The esophageal hiatus of the diaphragm at the T10 level transmits the esophagus and the:", "opts": ["Vagus nerves", "Thoracic duct", "Azygos vein", "Phrenic nerve"], "ans": 0, "note": "T10 = esophagus + vagal trunks. 'Esophagus' has 10 letters."}, {"q": "The aortic hiatus at the T12 level transmits the aorta, thoracic duct, and:", "opts": ["Azygos vein", "Vagus nerves", "Inferior vena cava", "Phrenic nerve"], "ans": 0, "note": "T12 = aorta + thoracic duct + azygos. 'Aortic hiatus' has 12 letters."}, {"q": "The 2 intercostal muscles that elevate the ribs for inspiration are the external intercostals and the:", "opts": ["Interchondral part of the internal intercostals", "Innermost intercostals", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "External intercostals + the interchondral (parasternal) internal intercostals aid inspiration."}, {"q": "The 2 intercostal muscles that depress the ribs for expiration are the internal intercostals and the:", "opts": ["Innermost intercostals", "External intercostals", "Scalenes", "Pectoralis minor"], "ans": 0, "note": "The interosseous internal intercostals plus innermost intercostals depress ribs."}, {"q": "The 3 accessory muscles for forced inhalation are the sternocleidomastoid, scalenes, and:", "opts": ["Pectoralis minor", "Rectus abdominis", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "SCM and scalenes lift the upper ribs/sternum; pec minor assists when arms are fixed."}, {"q": "The 2 thoracic muscles active in forced exhalation are the transversus thoracis and the:", "opts": ["Serratus posterior inferior", "Diaphragm", "Scalenes", "Sternocleidomastoid"], "ans": 0, "note": "These pull ribs down; abdominal muscles also drive forced expiration."}, {"q": "The nerve that controls contractions of the diaphragm is the:", "opts": ["Phrenic nerve (C3, C4, C5)", "Vagus nerve", "Intercostal nerves", "Thoracodorsal nerve"], "ans": 0, "note": "'C3, 4, 5 keep the diaphragm alive.'"}]}, {"id": "C", "title": "Heart", "questions": [{"q": "The fibrous pericardium functions to:", "opts": ["Anchor the heart and prevent overfilling", "Produce serous fluid", "Contract to pump blood", "Conduct electrical impulses"], "ans": 0, "note": "Tough outer sac: protection, anchoring, prevents overdistension."}, {"q": "The parietal serous pericardium is located:", "opts": ["Lining the inner surface of the fibrous pericardium", "Directly on the heart surface", "Between the two ventricles", "Around the great vessels only"], "ans": 0, "note": "Parietal layer lines the fibrous sac; visceral layer hugs the heart."}, {"q": "The visceral serous pericardium is located:", "opts": ["On the outer surface of the heart", "Lining the fibrous pericardium", "In the pericardial cavity as fluid", "Within the myocardium"], "ans": 0, "note": "It clings directly to the heart's surface."}, {"q": "The alternative name for the visceral serous pericardium is the:", "opts": ["Epicardium", "Endocardium", "Myocardium", "Parietal pericardium"], "ans": 0, "note": "Visceral serous pericardium = epicardium (the heart's outer layer)."}, {"q": "The pericardial cavity contains serous fluid whose function is to:", "opts": ["Reduce friction as the heart beats", "Oxygenate the myocardium", "Trigger the heartbeat", "Store calcium"], "ans": 0, "note": "The lubricating film lets the serous layers glide."}, {"q": "The three layers of the heart wall from outer to inner are:", "opts": ["Epicardium, myocardium, endocardium", "Endocardium, myocardium, epicardium", "Myocardium, epicardium, endocardium", "Pericardium, myocardium, endocardium"], "ans": 0, "note": "Epi- (outer), myo- (muscle), endo- (inner lining)."}, {"q": "Gap junctions in cardiac muscle function to:", "opts": ["Allow electrical signals to spread cell-to-cell", "Anchor cells mechanically only", "Store neurotransmitter", "Filter blood"], "ans": 0, "note": "Gap junctions let ions pass so the myocardium acts as a functional syncytium."}, {"q": "The 2 upper chambers of the heart are the:", "opts": ["Atria", "Ventricles", "Auricles", "Sinuses"], "ans": 0, "note": "Atria receive blood; ventricles pump it out."}, {"q": "The 2 lower chambers of the heart are the:", "opts": ["Ventricles", "Atria", "Auricles", "Vena cavae"], "ans": 0, "note": "Ventricles are the pumping chambers."}, {"q": "The tricuspid valve is located between the:", "opts": ["Right atrium and right ventricle", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Left ventricle and aorta"], "ans": 0, "note": "Right AV valve = tricuspid (3 cusps)."}, {"q": "The bicuspid valve, located between the left atrium and left ventricle, is also called the:", "opts": ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"], "ans": 0, "note": "Left AV valve = bicuspid = mitral."}, {"q": "The large artery carrying blood away from the right ventricle is the:", "opts": ["Pulmonary trunk", "Aorta", "Superior vena cava", "Coronary sinus"], "ans": 0, "note": "Right ventricle → pulmonary trunk → lungs."}, {"q": "The large artery carrying blood away from the left ventricle is the:", "opts": ["Aorta", "Pulmonary trunk", "Pulmonary vein", "Coronary artery"], "ans": 0, "note": "Left ventricle → aorta → body."}, {"q": "The pulmonary (semilunar) valve is located between the:", "opts": ["Right ventricle and pulmonary trunk", "Right atrium and right ventricle", "Left ventricle and aorta", "Left atrium and left ventricle"], "ans": 0, "note": "Guards the exit from the right ventricle."}, {"q": "The aortic (semilunar) valve is located between the:", "opts": ["Left ventricle and aorta", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Right atrium and right ventricle"], "ans": 0, "note": "Guards the exit from the left ventricle."}, {"q": "The right side of the heart carries which type of blood?", "opts": ["Deoxygenated blood", "Oxygenated blood", "Filtered blood", "Mixed blood only"], "ans": 0, "note": "Right side = deoxygenated (heads to lungs)."}, {"q": "The 3 structures that return blood to the right atrium are the SVC, IVC, and:", "opts": ["Coronary sinus", "Pulmonary veins", "Aorta", "Azygos vein"], "ans": 0, "note": "The coronary sinus drains the heart's own venous blood into the RA."}, {"q": "The left side of the heart carries which type of blood?", "opts": ["Oxygenated blood", "Deoxygenated blood", "Filtered blood", "Lymph"], "ans": 0, "note": "Left side = oxygenated (heads to body)."}, {"q": "The structures that return blood to the left atrium are the:", "opts": ["Four pulmonary veins", "Superior and inferior vena cava", "Coronary sinus", "Pulmonary arteries"], "ans": 0, "note": "Four pulmonary veins bring oxygenated blood from the lungs to the LA."}, {"q": "A key structural difference between an atrioventricular valve and a semilunar valve is that AV valves have:", "opts": ["Chordae tendineae anchoring them", "Three cusps always", "No cusps", "A muscular sphincter"], "ans": 0, "note": "AV valves attach to papillary muscles via chordae tendineae; semilunar valves do not."}, {"q": "Pectinate muscles are ridged muscle bundles found in the:", "opts": ["Atrial walls/auricles", "Ventricular walls", "Interventricular septum", "Great vessels"], "ans": 0, "note": "Pectinate muscle = atria; trabeculae carneae = ventricles."}, {"q": "Trabeculae carneae are the irregular muscular ridges found in the:", "opts": ["Ventricular walls", "Atrial walls", "Coronary sinus", "Aortic arch"], "ans": 0, "note": "Ridges of the ventricular myocardium."}, {"q": "The fossa ovalis is a depression in the interatrial septum that is the remnant of the:", "opts": ["Foramen ovale", "Ductus arteriosus", "Ligamentum arteriosum", "Coronary sinus"], "ans": 0, "note": "The fetal foramen ovale closes to become the fossa ovalis."}, {"q": "The SA node, the heart's pacemaker, is located in the wall of the:", "opts": ["Right atrium (near the SVC)", "Left ventricle", "Interventricular septum", "Aortic arch"], "ans": 0, "note": "SA node sits in the RA wall near the SVC opening."}, {"q": "Place the cardiac conduction components in the correct order from the SA node:", "opts": ["SA node → AV node → AV bundle → bundle branches → Purkinje fibers", "SA node → Purkinje fibers → AV node → bundle branches → AV bundle", "AV node → SA node → bundle branches → AV bundle → Purkinje fibers", "SA node → bundle branches → AV node → AV bundle → Purkinje fibers"], "ans": 0, "note": "SA → AV node → bundle of His → L/R bundle branches → Purkinje fibers."}, {"q": "The autonomic centers that regulate the heart are located in the brainstem's:", "opts": ["Medulla oblongata", "Cerebellum", "Thalamus", "Pons only"], "ans": 0, "note": "Cardiac (cardioacceleratory/cardioinhibitory) centers are in the medulla."}, {"q": "Sympathetic innervation of the heart has what effect?", "opts": ["Increases heart rate and contractility", "Decreases heart rate", "Has no effect on rate", "Stops the heart"], "ans": 0, "note": "Sympathetic = 'fight or flight' = faster, stronger beats."}, {"q": "Parasympathetic innervation (via the vagus nerve) of the heart has what effect?", "opts": ["Decreases heart rate", "Increases contractility", "Increases heart rate", "No effect on rate"], "ans": 0, "note": "Vagal 'rest and digest' slows the heart."}]}, {"id": "D", "title": "Cardiovascular Pathways", "questions": [{"q": "The contraction of the left ventricle is the driving force for which circulation?", "opts": ["Systemic circulation", "Pulmonary circulation", "Portal circulation", "Coronary circulation only"], "ans": 0, "note": "Left ventricle → systemic; right ventricle → pulmonary."}, {"q": "In systemic circulation, oxygen travels within systemic arteries and diffuses out at the:", "opts": ["Capillary beds", "Large arteries", "Venules only", "Aorta"], "ans": 0, "note": "Gas exchange happens in capillaries."}, {"q": "Systemic veins carry which blood back to the right side of the heart?", "opts": ["Less-oxygenated blood", "Fully oxygenated blood", "Lymph", "Filtered plasma"], "ans": 0, "note": "Systemic veins return deoxygenated blood to the RA."}, {"q": "The contraction of the right ventricle drives blood to the lungs; oxygenation then occurs in the:", "opts": ["Pulmonary capillary beds", "Systemic capillaries", "Left ventricle", "Aorta"], "ans": 0, "note": "Pulmonary capillaries surrounding alveoli."}, {"q": "Pulmonary veins are unusual because they carry oxygenated blood to the:", "opts": ["Left side of the heart", "Right side of the heart", "Lungs", "Systemic tissues"], "ans": 0, "note": "Pulmonary veins carry oxygenated blood (arteries carry deoxygenated) to the LA."}, {"q": "The left ventricular wall is thicker than the right because it must:", "opts": ["Generate higher pressure for systemic circulation", "Hold more blood", "Contract more slowly", "Pump against gravity only"], "ans": 0, "note": "Systemic circuit has far higher resistance than the pulmonary circuit."}, {"q": "The brachiocephalic trunk, a branch of the aortic arch, branches into the right common carotid and the:", "opts": ["Right subclavian artery", "Left subclavian artery", "Left common carotid", "Internal thoracic artery"], "ans": 0, "note": "Brachiocephalic → R subclavian + R common carotid."}, {"q": "The left common carotid and left subclavian arteries branch directly from the:", "opts": ["Aortic arch", "Brachiocephalic trunk", "Pulmonary trunk", "Descending aorta"], "ans": 0, "note": "On the left, both arise straight off the arch (no brachiocephalic on the left)."}, {"q": "The internal thoracic artery is a branch of the:", "opts": ["Subclavian artery", "Common carotid artery", "Celiac trunk", "Abdominal aorta"], "ans": 0, "note": "It descends behind the sternum from the subclavian."}, {"q": "The celiac trunk is an unpaired branch of the abdominal aorta that branches into the left gastric, splenic, and:", "opts": ["Common hepatic artery", "Superior mesenteric artery", "Renal artery", "Gonadal artery"], "ans": 0, "note": "Celiac trunk trifurcation: left gastric, splenic, common hepatic."}, {"q": "The superior mesenteric artery branches from the:", "opts": ["Abdominal aorta", "Celiac trunk", "Common iliac artery", "Splenic artery"], "ans": 0, "note": "SMA is an unpaired anterior branch of the abdominal aorta."}, {"q": "The renal arteries are paired branches of the:", "opts": ["Abdominal aorta", "Common iliac arteries", "Celiac trunk", "Superior mesenteric artery"], "ans": 0, "note": "Paired laterals to the kidneys."}, {"q": "The gonadal (ovarian/testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "Paired anterior branches just below the renal arteries."}, {"q": "The common iliac artery divides into the external iliac and:", "opts": ["Internal iliac artery", "Renal artery", "Femoral artery", "Gonadal artery"], "ans": 0, "note": "At the pelvic brim the common iliac splits into external + internal iliac."}, {"q": "The subclavian vein and internal jugular vein join to form the:", "opts": ["Brachiocephalic vein", "Superior vena cava", "Azygos vein", "Hemiazygos vein"], "ans": 0, "note": "Subclavian + IJ → brachiocephalic vein."}, {"q": "The right and left brachiocephalic veins unite to form the:", "opts": ["Superior vena cava", "Inferior vena cava", "Azygos vein", "Coronary sinus"], "ans": 0, "note": "Both brachiocephalic veins merge into the SVC."}, {"q": "The azygos vein drains the thoracic wall and empties into the:", "opts": ["Superior vena cava", "Inferior vena cava", "Left brachiocephalic vein", "Coronary sinus"], "ans": 0, "note": "The azygos arches over the right lung root into the SVC."}, {"q": "The hepatic veins drain the liver directly into the:", "opts": ["Inferior vena cava", "Hepatic portal vein", "Superior vena cava", "Splenic vein"], "ans": 0, "note": "Hepatic veins → IVC (distinct from the portal inflow)."}, {"q": "The renal veins drain the kidneys into the:", "opts": ["Inferior vena cava", "Superior vena cava", "Azygos vein", "Hepatic portal vein"], "ans": 0, "note": "Kidneys → renal veins → IVC."}, {"q": "The right gonadal vein drains into the IVC, but the left gonadal vein drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Azygos vein"], "ans": 0, "note": "Left gonadal → left renal vein → IVC (asymmetry worth remembering)."}]}, {"id": "E", "title": "Special Cardiovascular", "questions": [{"q": "A portal venous system is defined as one in which blood passes through:", "opts": ["Two capillary beds before returning to the heart", "One capillary bed only", "No capillary beds", "The lymphatic system first"], "ans": 0, "note": "Portal systems link two capillary beds in series."}, {"q": "The hepatic portal system specifically carries blood from the:", "opts": ["GI tract to the liver", "Liver to the heart", "Kidneys to the liver", "Spleen to the lungs"], "ans": 0, "note": "Nutrient-rich blood from the gut is filtered by the liver first."}, {"q": "Blood from an organ supplied by a branch of the superior mesenteric artery drains into the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Arterial supply and venous drainage usually mirror each other by name."}, {"q": "Blood from an organ supplied by a branch of the inferior mesenteric artery drains into the:", "opts": ["Inferior mesenteric vein", "Superior mesenteric vein", "Splenic vein", "Hepatic vein"], "ans": 0, "note": "IMA territory → IMV."}, {"q": "The two veins that combine to form the hepatic portal vein are the splenic vein and the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Splenic v. + SMV = hepatic portal vein."}, {"q": "The inferior mesenteric vein typically connects to the:", "opts": ["Splenic vein", "Superior mesenteric vein directly", "Inferior vena cava", "Hepatic vein"], "ans": 0, "note": "The IMV usually joins the splenic vein en route to the portal vein."}, {"q": "'Porta hepatis' is another name for which opening of the liver?", "opts": ["The hilum", "The falciform ligament", "The bare area", "The caudate lobe"], "ans": 0, "note": "Porta hepatis = the liver's hilum, where vessels/ducts enter and exit."}, {"q": "At the porta hepatis, the common hepatic duct primarily:", "opts": ["Exits, carrying bile away from the liver", "Enters, carrying blood in", "Enters, carrying oxygen", "Exits, carrying lymph"], "ans": 0, "note": "Hepatic portal vein and hepatic artery enter; the common hepatic duct exits with bile."}, {"q": "Coronary arteries bring blood to the heart tissue itself and arise just above which valve?", "opts": ["Aortic (semilunar) valve", "Pulmonary valve", "Mitral valve", "Tricuspid valve"], "ans": 0, "note": "The coronary ostia sit in the aortic sinuses just above the aortic valve."}, {"q": "The two branches of the left coronary artery are the circumflex and the:", "opts": ["Anterior interventricular (LAD)", "Posterior interventricular", "Right marginal", "Coronary sinus"], "ans": 0, "note": "Left coronary → circumflex + anterior interventricular (LAD)."}, {"q": "The two branches of the right coronary artery are the right marginal and the:", "opts": ["Posterior interventricular", "Anterior interventricular", "Circumflex", "Left marginal"], "ans": 0, "note": "Right coronary → right marginal + posterior interventricular."}, {"q": "The coronary sinus functions to:", "opts": ["Collect venous blood from the heart wall", "Supply oxygen to the myocardium", "Pump blood to the lungs", "Store bile"], "ans": 0, "note": "It's the main venous drain of the heart."}, {"q": "The coronary sinus drains into which chamber?", "opts": ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], "ans": 0, "note": "Coronary sinus empties into the RA."}, {"q": "The fundamental difference between fetal and adult circulation is that in the fetus:", "opts": ["The lungs are largely bypassed", "The liver is bypassed only", "There is no heartbeat", "Blood does not carry oxygen"], "ans": 0, "note": "Fetal shunts route blood around the non-functional lungs."}, {"q": "The foramen ovale in the fetus is an opening that allows blood to pass:", "opts": ["From the right atrium to the left atrium", "From the left ventricle to the aorta", "Between the two ventricles", "From the aorta to the pulmonary trunk"], "ans": 0, "note": "It shunts blood RA→LA, bypassing the pulmonary circuit."}, {"q": "The ligamentum arteriosum is the adult remnant of the:", "opts": ["Ductus arteriosus", "Ductus venosus", "Foramen ovale", "Umbilical vein"], "ans": 0, "note": "The ductus arteriosus (pulmonary trunk↔aorta shunt) becomes this ligament."}, {"q": "In fetal circulation, the umbilical vein carries which blood, and in which direction?", "opts": ["Oxygenated blood toward the fetus", "Deoxygenated blood away from the fetus", "Oxygenated blood to the placenta", "Deoxygenated blood to the fetus"], "ans": 0, "note": "Umbilical VEIN = oxygenated, to the fetus; umbilical ARTERIES = deoxygenated, to placenta."}, {"q": "The foramen ovale becomes which structure after birth?", "opts": ["Fossa ovalis", "Ligamentum arteriosum", "Ligamentum teres", "Ligamentum venosum"], "ans": 0, "note": "Fetal → remnant: foramen ovale → fossa ovalis."}, {"q": "The ductus arteriosus becomes which structure after birth?", "opts": ["Ligamentum arteriosum", "Fossa ovalis", "Ligamentum teres (round ligament of liver)", "Medial umbilical ligaments"], "ans": 0, "note": "Ductus arteriosus → ligamentum arteriosum."}, {"q": "The umbilical vein becomes which structure after birth?", "opts": ["Ligamentum teres (round ligament of the liver)", "Ligamentum arteriosum", "Fossa ovalis", "Ligamentum venosum"], "ans": 0, "note": "Umbilical vein → ligamentum teres / round ligament of the liver."}, {"q": "The paired umbilical arteries become which structures after birth?", "opts": ["Medial umbilical ligaments", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Umbilical arteries → medial umbilical ligaments."}, {"q": "The ductus venosus becomes which structure after birth?", "opts": ["Ligamentum venosum", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Ductus venosus (bypassed the liver) → ligamentum venosum."}]}, {"id": "F", "title": "Lymphatic System", "questions": [{"q": "The three functions of the lymphatic system are immunity, fat absorption, and:", "opts": ["Fluid balance (returning interstitial fluid to blood)", "Gas exchange", "Hormone secretion", "Erythrocyte production"], "ans": 0, "note": "Fluid balance, immune defense, lipid absorption (lacteals)."}, {"q": "Lymphatic vessels are structurally like veins because they:", "opts": ["Have valves and carry fluid one-way toward the heart", "Carry blood away from the heart", "Have thick muscular walls", "Pulse with the heartbeat"], "ans": 0, "note": "One-way, low-pressure, valved vessels."}, {"q": "The fluid that travels through lymphatic vessels is called:", "opts": ["Lymph", "Plasma", "Serum", "Interstitial fluid"], "ans": 0, "note": "Once interstitial fluid enters a lymphatic vessel it is called lymph."}, {"q": "Place the fluid in order as it moves to and from the cardiovascular system:", "opts": ["Plasma → interstitial fluid → lymph → (back to plasma)", "Lymph → plasma → interstitial fluid", "Interstitial fluid → plasma → lymph", "Plasma → lymph → interstitial fluid"], "ans": 0, "note": "Plasma leaks out as interstitial fluid, is picked up as lymph, and returns to blood."}, {"q": "An organ is classified as lymphatic if it:", "opts": ["Contains large amounts of lymphatic tissue/lymphocytes", "Filters blood only", "Produces bile", "Secretes hormones"], "ans": 0, "note": "Lymphatic organs are built from reticular tissue housing lymphocytes."}, {"q": "The lymphatic organs include the spleen, thymus, tonsils, red bone marrow, and:", "opts": ["Lymph nodes", "Pancreas", "Liver", "Adrenal glands"], "ans": 0, "note": "Spleen, thymus, tonsils, marrow, nodes (and MALT)."}, {"q": "The only lymphatic organ capable of producing lymphocytes/WBCs is the:", "opts": ["Red bone marrow", "Spleen", "Tonsils", "Thymus"], "ans": 0, "note": "All blood cells, including lymphocytes, originate in red bone marrow."}, {"q": "The lymphatic structure that allows the maturation of T-lymphocytes is the:", "opts": ["Thymus", "Spleen", "Red bone marrow", "Lymph node"], "ans": 0, "note": "T cells mature in the thymus."}, {"q": "The 2 lymphatic ducts are the right lymphatic duct and the thoracic duct, which drains about:", "opts": ["75% of the body (into the left venous angle)", "25% of the body", "100% of the body", "50% of the body"], "ans": 0, "note": "Thoracic duct drains ~3/4 of the body; right lymphatic duct drains the right upper quadrant."}, {"q": "If lymphatic fluid is not picked up by lymphatic capillaries in the tissues, the result is:", "opts": ["Edema (tissue swelling)", "Dehydration", "Anemia", "Ischemia"], "ans": 0, "note": "Fluid accumulates in the interstitium as edema."}, {"q": "The spleen is located in the LUQ and filters blood; its arterial supply, the splenic artery, branches from the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Renal artery", "Inferior mesenteric artery"], "ans": 0, "note": "Splenic artery is a branch of the celiac trunk."}, {"q": "The primary function of a lymph node is to:", "opts": ["Filter lymph and mount immune responses", "Produce red blood cells", "Store bile", "Oxygenate blood"], "ans": 0, "note": "Nodes filter lymph and house lymphocytes/macrophages."}, {"q": "The vessels that carry lymph INTO a lymph node are the ___, and those carrying it OUT are the ___:", "opts": ["Afferent vessels; efferent vessels", "Efferent vessels; afferent vessels", "Arteries; veins", "Ducts; capillaries"], "ans": 0, "note": "Afferent = Arrive; Efferent = Exit."}]}, {"id": "G", "title": "Thoracic Cavity & Respiratory", "questions": [{"q": "The three subdivisions of the thoracic cavity are the two pleural cavities and the:", "opts": ["Mediastinum", "Pericardial cavity only", "Peritoneal cavity", "Abdominal cavity"], "ans": 0, "note": "Left + right pleural cavities flank the central mediastinum."}, {"q": "The border between the superior and inferior mediastinum is marked by the:", "opts": ["Sternal angle (T4/T5)", "Xiphoid process", "Jugular notch", "Diaphragm"], "ans": 0, "note": "A plane from the sternal angle to the T4/T5 disc divides the mediastinum."}, {"q": "The heart is found in which region of the mediastinum?", "opts": ["Middle mediastinum", "Superior mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The heart and pericardium define the middle mediastinum."}, {"q": "The thoracic aorta and esophagus are found in which region of the mediastinum?", "opts": ["Posterior mediastinum", "Middle mediastinum", "Anterior mediastinum", "Superior mediastinum only"], "ans": 0, "note": "Descending thoracic aorta, esophagus, azygos, thoracic duct = posterior."}, {"q": "The thymus gland is found primarily in which mediastinal region(s)?", "opts": ["Superior/anterior mediastinum", "Posterior mediastinum", "Middle mediastinum", "Pleural cavity"], "ans": 0, "note": "The thymus sits in the anterior/superior mediastinum behind the sternum."}, {"q": "The aortic arch is found in which region of the mediastinum?", "opts": ["Superior mediastinum", "Middle mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The arch lies in the superior mediastinum."}, {"q": "The trachea belongs to which body system?", "opts": ["Respiratory system", "Digestive system", "Lymphatic system", "Cardiovascular system"], "ans": 0, "note": "The trachea conducts air (respiratory)."}, {"q": "The esophagus belongs to which body system?", "opts": ["Digestive system", "Respiratory system", "Cardiovascular system", "Nervous system"], "ans": 0, "note": "The esophagus moves food (digestive)."}, {"q": "The thoracic duct belongs to which body system?", "opts": ["Lymphatic system", "Cardiovascular system", "Digestive system", "Respiratory system"], "ans": 0, "note": "The thoracic duct is the body's largest lymphatic vessel."}, {"q": "The vagus nerve and phrenic nerve belong to which body system?", "opts": ["Nervous system", "Cardiovascular system", "Respiratory system", "Lymphatic system"], "ans": 0, "note": "Both are nerves (nervous system)."}, {"q": "The azygos vein, aortic arch, and brachiocephalic vein all belong to which body system?", "opts": ["Cardiovascular system", "Lymphatic system", "Respiratory system", "Nervous system"], "ans": 0, "note": "All are blood vessels (cardiovascular)."}, {"q": "The three layers of the pericardium from outer to inner are:", "opts": ["Fibrous, parietal serous, visceral serous (epicardium)", "Visceral serous, parietal serous, fibrous", "Endocardium, myocardium, epicardium", "Parietal, visceral, myocardium"], "ans": 0, "note": "Fibrous sac → parietal serous lining → visceral serous (epicardium) on the heart."}, {"q": "The visceral pleura adheres to the:", "opts": ["Outer surface of the lungs", "Inner surface of the thoracic wall", "Diaphragm only", "Mediastinum"], "ans": 0, "note": "Visceral pleura hugs the lung; parietal pleura lines the thoracic wall."}, {"q": "The parietal pleura adheres to the:", "opts": ["Inner surface of the thoracic wall", "Outer surface of the lungs", "Surface of the heart", "Trachea"], "ans": 0, "note": "Parietal = chest wall; visceral = lung surface; pleural cavity between them."}, {"q": "Compared to the left lung, the right lung is unique in that it has:", "opts": ["Three lobes and a horizontal fissure", "Two lobes and a cardiac notch", "A lingula", "No fissures"], "ans": 0, "note": "Right lung: 3 lobes, oblique + horizontal fissures. Left: 2 lobes, cardiac notch, lingula."}, {"q": "The cardiac notch and the lingula are features unique to the:", "opts": ["Left lung", "Right lung", "Both lungs equally", "Neither lung"], "ans": 0, "note": "The left lung is indented by the heart (cardiac notch) and has the lingula."}, {"q": "The nose and mouth are connected posteriorly by the:", "opts": ["Nasal cavity/pharynx", "Trachea", "Esophagus", "Larynx"], "ans": 0, "note": "Air and food pathways meet in the pharynx."}, {"q": "Inhaled air is filtered, warmed, and moistened primarily in the:", "opts": ["Nasal cavity", "Trachea", "Bronchi", "Alveoli"], "ans": 0, "note": "The nasal conchae/mucosa condition incoming air."}, {"q": "The nasopharynx and laryngopharynx are connected by the:", "opts": ["Oropharynx", "Nasal cavity", "Larynx", "Esophagus"], "ans": 0, "note": "Pharyngeal regions top-to-bottom: naso-, oro-, laryngopharynx."}, {"q": "The larynx opens inferiorly into the:", "opts": ["Trachea", "Esophagus", "Nasopharynx", "Primary bronchi"], "ans": 0, "note": "Larynx → trachea → bronchi."}, {"q": "The cricoid cartilage of the larynx is best described as:", "opts": ["A complete ring of cartilage", "A leaf-shaped flap", "The Adam's apple", "A pair of vocal folds"], "ans": 0, "note": "The cricoid is the only complete cartilage ring of the airway."}, {"q": "The carina is the ridge at the point where the trachea:", "opts": ["Divides into the primary bronchi", "Meets the larynx", "Enters the lung hilum", "Branches into alveoli"], "ans": 0, "note": "The carina marks the tracheal bifurcation."}, {"q": "The thyroid cartilage of the larynx is commonly known as the:", "opts": ["Adam's apple", "Cricoid ring", "Epiglottis", "Carina"], "ans": 0, "note": "The thyroid cartilage forms the laryngeal prominence."}, {"q": "The hilus (hilum) of the lung is the:", "opts": ["Indentation where vessels/bronchi enter the lung", "Apex of the lung", "Base resting on the diaphragm", "Cardiac notch"], "ans": 0, "note": "The root structures pass through the hilum."}]}, {"id": "H", "title": "Abdominopelvic Muscles", "questions": [{"q": "The 3 specific components of the levator ani muscle are the pubococcygeus, iliococcygeus, and:", "opts": ["Puborectalis", "Coccygeus", "Bulbospongiosus", "Ischiocavernosus"], "ans": 0, "note": "Levator ani = pubococcygeus + iliococcygeus + puborectalis."}, {"q": "The pubococcygeus muscle acts to:", "opts": ["Support the pelvic viscera and compress the urethra/vagina", "Sling around the anorectal junction", "Compress the crus of the penis", "Expel urine from the urethra"], "ans": 0, "note": "It supports pelvic organs and helps close the urethra/vagina."}, {"q": "The iliococcygeus muscle acts to:", "opts": ["Elevate the pelvic floor", "Constrict the vaginal orifice", "Compress the clitoris", "Support the perineal body"], "ans": 0, "note": "It lifts and supports the pelvic floor."}, {"q": "The puborectalis muscle acts to:", "opts": ["Sling around the anorectal junction to maintain continence", "Elevate the pelvic floor only", "Compress the greater vestibular gland", "Support the crus of the penis"], "ans": 0, "note": "Its sling raises the anorectal junction and preserves fecal continence."}, {"q": "The bony landmarks of the perineum include the pubic symphysis, ischial tuberosities, coccyx, and:", "opts": ["Ischiopubic rami", "Iliac crest", "Sacral promontory", "Xiphoid process"], "ans": 0, "note": "Diamond boundaries: pubic symphysis, ischiopubic rami, ischial tuberosities, sacrotuberous ligaments, coccyx."}, {"q": "The perineum can be subdivided into two triangles:", "opts": ["The urogenital triangle and the anal triangle", "The pelvic and abdominal triangles", "The superior and inferior triangles", "The femoral and inguinal triangles"], "ans": 0, "note": "A line between the ischial tuberosities splits it into UG (anterior) and anal (posterior)."}, {"q": "Three muscles present in the urogenital triangle of BOTH sexes are the ischiocavernosus, bulbospongiosus, and:", "opts": ["Superficial transverse perineal", "Levator ani", "Coccygeus", "Puborectalis"], "ans": 0, "note": "Ischiocavernosus, bulbospongiosus, superficial transverse perineal are common to both."}, {"q": "The muscle structures of the anal triangle include the anal canal and the:", "opts": ["External anal sphincter", "Bulbospongiosus", "Ischiocavernosus", "Deep transverse perineal"], "ans": 0, "note": "The anal triangle contains the anal canal and external anal sphincter."}, {"q": "In the biological female, the bulbospongiosus muscle acts to:", "opts": ["Constrict the vaginal orifice and compress the greater vestibular gland", "Compress the clitoris", "Expel semen from the urethra", "Support the perineal body"], "ans": 0, "note": "Female bulbospongiosus: constricts the vaginal orifice and compresses Bartholin's gland."}, {"q": "In the biological male, the bulbospongiosus muscle acts to:", "opts": ["Expel urine/semen from the urethra", "Constrict the vaginal orifice", "Compress the clitoris", "Elevate the pelvic floor"], "ans": 0, "note": "Male bulbospongiosus empties the urethra of urine/semen."}, {"q": "The ischiocavernosus muscle acts to:", "opts": ["Compress the crus of the penis or clitoris", "Constrict the vaginal orifice", "Elevate the anorectal junction", "Expel semen"], "ans": 0, "note": "It compresses the crus to maintain erection."}, {"q": "The superficial transverse perineal muscle acts to:", "opts": ["Support the perineal body", "Compress the clitoris", "Constrict the vaginal orifice", "Elevate the pelvic floor"], "ans": 0, "note": "It stabilizes the central perineal body/tendon."}, {"q": "The structures named in question 14 of the anal triangle are the anal canal and the external anal sphincter, the latter being under:", "opts": ["Voluntary (skeletal) control", "Involuntary (smooth) control", "No control", "Hormonal control only"], "ans": 0, "note": "External anal sphincter = skeletal muscle, voluntary; internal = smooth, involuntary."}]}, {"id": "I", "title": "Digestive System", "questions": [{"q": "Name the organs of the GI tract in order:", "opts": ["Oral cavity, pharynx, esophagus, stomach, small intestine, large intestine, anal canal", "Esophagus, stomach, pharynx, small intestine, large intestine", "Oral cavity, esophagus, stomach, liver, small intestine, anal canal", "Pharynx, stomach, small intestine, pancreas, large intestine"], "ans": 0, "note": "The continuous alimentary tube from mouth to anus."}, {"q": "The accessory digestive organs include the teeth, tongue, salivary glands, liver, gallbladder, and:", "opts": ["Pancreas", "Stomach", "Small intestine", "Esophagus"], "ans": 0, "note": "Accessories aid digestion but food doesn't pass through them (except mouth structures)."}, {"q": "The general function of the digestive system described as 'food in the mouth' is:", "opts": ["Ingestion", "Absorption", "Defecation", "Propulsion"], "ans": 0, "note": "Ingestion = taking food into the mouth."}, {"q": "The structure(s) dividing the abdominal cavity into 4 quadrants intersect at the:", "opts": ["Umbilicus (median + transumbilical planes)", "Xiphoid process", "Pubic symphysis", "Iliac crest"], "ans": 0, "note": "Two perpendicular planes crossing at the umbilicus give the four quadrants."}, {"q": "The purpose of dividing the abdominal cavity into quadrants is to:", "opts": ["Give clinicians quick vocabulary to localize organs/pain", "Separate the peritoneal cavities", "Define embryonic gut regions", "Mark vertebral levels"], "ans": 0, "note": "Quadrants/regions are a clinical shorthand for location."}, {"q": "The liver and gallbladder are found predominantly in which quadrant?", "opts": ["Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)", "Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)"], "ans": 0, "note": "Liver + gallbladder = RUQ."}, {"q": "The stomach and spleen are found predominantly in which quadrant?", "opts": ["Left upper quadrant (LUQ)", "Right upper quadrant (RUQ)", "Left lower quadrant (LLQ)", "Right lower quadrant (RLQ)"], "ans": 0, "note": "Stomach and spleen = LUQ."}, {"q": "The appendix is found predominantly in which quadrant?", "opts": ["Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)", "Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)"], "ans": 0, "note": "Appendix = RLQ (McBurney's point)."}, {"q": "List the 4 layers/tunics of the GI tract wall from inner to outer:", "opts": ["Mucosa, submucosa, muscularis externa, serosa", "Serosa, muscularis, submucosa, mucosa", "Mucosa, muscularis, submucosa, serosa", "Submucosa, mucosa, serosa, muscularis"], "ans": 0, "note": "Lumen → mucosa → submucosa → muscularis externa → serosa."}, {"q": "The peritoneum is defined as:", "opts": ["A serous membrane lining the abdominopelvic cavity", "A muscular layer of the gut wall", "The lining of blood vessels", "A cartilage sheet"], "ans": 0, "note": "Serous membrane with parietal and visceral layers."}, {"q": "Parietal peritoneum lines the ___, while visceral peritoneum covers the ___:", "opts": ["Cavity wall; organs", "Organs; cavity wall", "Blood vessels; nerves", "Diaphragm; lungs"], "ans": 0, "note": "Parietal = wall; visceral = organ surface."}, {"q": "An intraperitoneal organ is one that is:", "opts": ["Wrapped in peritoneum and mobile within the cavity", "Behind the peritoneum, fixed to the back wall", "Outside the abdominal cavity", "Located in the thorax"], "ans": 0, "note": "Intraperitoneal = suspended by mesentery; retroperitoneal = fixed behind."}, {"q": "Which of the following is an intraperitoneal organ?", "opts": ["Stomach", "Kidneys", "Pancreas (most of it)", "Ascending colon"], "ans": 0, "note": "Intraperitoneal: stomach, jejunum, ileum, transverse & sigmoid colon, liver, spleen."}, {"q": "Which of the following is a retroperitoneal organ?", "opts": ["Kidneys", "Stomach", "Transverse colon", "Spleen"], "ans": 0, "note": "Retroperitoneal: kidneys, pancreas, duodenum (2-4), ascending & descending colon."}, {"q": "A mesentery is defined as a:", "opts": ["Double peritoneal layer suspending an organ from the body wall", "Single serous membrane on the gut lumen", "Muscular sphincter", "Fold of the diaphragm"], "ans": 0, "note": "Two peritoneal sheets carrying vessels/nerves to an organ."}, {"q": "The three segments of the pharynx from superior to inferior are the nasopharynx, oropharynx, and:", "opts": ["Laryngopharynx", "Esophagus", "Larynx", "Trachea"], "ans": 0, "note": "Naso- (air only), oro- (air + food), laryngo- (air + food)."}, {"q": "A primary function of the esophagus is to:", "opts": ["Move the bolus by peristalsis and secrete mucus for lubrication", "Absorb nutrients", "Produce digestive enzymes", "Store bile"], "ans": 0, "note": "It transports and lubricates; no absorption/enzymes."}, {"q": "The esophagus lies in which position relative to the thoracic/descending aorta?", "opts": ["Anterior to the aorta", "Posterior to the aorta", "Lateral to the aorta only", "Inferior to the aorta"], "ans": 0, "note": "The esophagus runs anterior to the descending thoracic aorta."}, {"q": "The esophagus passes through the diaphragm at the esophageal hiatus, guarded by the:", "opts": ["Lower esophageal sphincter", "Pyloric sphincter", "Ileocecal valve", "Upper esophageal sphincter"], "ans": 0, "note": "The LES (cardiac sphincter) controls entry into the stomach at T10."}, {"q": "The semifluid product that exits the stomach into the duodenum is called:", "opts": ["Chyme", "Bolus", "Bile", "Chyle"], "ans": 0, "note": "Bolus (mouth) → chyme (stomach) → chyle (lymph fat)."}, {"q": "The regions of the stomach are the cardia, fundus, body, pylorus, and the two:", "opts": ["Curvatures (lesser and greater)", "Sphincters only", "Rugae", "Omenta"], "ans": 0, "note": "Lesser and greater curvatures define its right and left borders."}, {"q": "The pyloric sphincter functions to:", "opts": ["Control the release of chyme into the duodenum", "Prevent reflux into the esophagus", "Regulate flow into the large intestine", "Release bile"], "ans": 0, "note": "It meters chyme from stomach to duodenum."}, {"q": "The rugae of the stomach are folds that function to:", "opts": ["Allow the stomach to distend and increase surface area", "Secrete bile", "Absorb nutrients", "Grind bone"], "ans": 0, "note": "Rugae flatten out as the stomach fills."}, {"q": "The stomach has a unique third muscularis layer that allows churning:", "opts": ["The inner oblique layer", "An extra longitudinal layer", "A cartilage ring", "A serous layer"], "ans": 0, "note": "The stomach adds an oblique layer (inner) for mechanical churning."}, {"q": "Chemical (enzymatic) digestion after the small intestine:", "opts": ["Does not occur — no enzymatic reaction in the large intestine", "Increases in the large intestine", "Occurs only in the rectum", "Occurs in the anal canal"], "ans": 0, "note": "Enzymatic digestion is essentially complete by the end of the small intestine."}, {"q": "The final segment of the small intestine is the ileum, which meets the large intestine at the:", "opts": ["Ileocecal valve/junction (into the cecum)", "Pyloric sphincter", "Duodenojejunal flexure", "Anal canal"], "ans": 0, "note": "Ileum → ileocecal valve → cecum."}, {"q": "True or False: Both the duodenum and the pancreas are retroperitoneal.", "opts": ["True", "False", "Only the duodenum is", "Only the pancreas is"], "ans": 0, "note": "STANDARD ANATOMY = TRUE. The duodenum (parts 2-4) and pancreas (head/neck/body) are (secondarily) retroperitoneal; only the pancreatic tail is intraperitoneal. NOTE: your worksheet was marked 'False' — flag this with Dr. DeAngelo, but the textbook answer is True."}, {"q": "The substances that enter at the major duodenal papilla are:", "opts": ["Bile and pancreatic juice", "Chyme and mucus", "Gastric acid and bile", "Saliva and bile"], "ans": 0, "note": "The hepatopancreatic ampulla delivers bile + pancreatic juice here."}, {"q": "The three surface features that identify the large intestine are haustra, omental (epiploic) appendages, and:", "opts": ["Teniae coli", "Rugae", "Villi", "Plicae circulares"], "ans": 0, "note": "Teniae coli, haustra, omental appendages are unique to the large intestine."}, {"q": "List the segments of the large intestine from proximal to distal:", "opts": ["Cecum, ascending, transverse, descending, sigmoid colon", "Sigmoid, descending, transverse, ascending, cecum", "Cecum, transverse, ascending, sigmoid, descending", "Ascending, cecum, transverse, descending, sigmoid"], "ans": 0, "note": "Cecum → ascending → transverse → descending → sigmoid → rectum."}, {"q": "The first segment of the large intestine is the cecum, into which open the ileum and the:", "opts": ["Appendix", "Sigmoid colon", "Duodenum", "Jejunum"], "ans": 0, "note": "The ileum and the vermiform appendix open into the cecum."}, {"q": "Compare the external and internal anal sphincters:", "opts": ["External is skeletal/voluntary; internal is smooth/involuntary", "External is smooth/involuntary; internal is skeletal", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "External = skeletal (voluntary); internal = smooth (involuntary)."}, {"q": "Of the liver's general functions, the one relating specifically to digestion of nutrients is:", "opts": ["Bile production", "Detoxification", "Glycogen storage", "Vitamin storage"], "ans": 0, "note": "Bile aids fat digestion; the others aren't direct digestion roles."}, {"q": "The function of bile is to:", "opts": ["Emulsify fats into small droplets so lipase can work (no enzymes itself)", "Enzymatically digest proteins", "Neutralize saliva", "Absorb water"], "ans": 0, "note": "Bile emulsifies — it has no digestive enzymes of its own."}, {"q": "The gallbladder functions to:", "opts": ["Store and concentrate bile, then release it to the duodenum", "Produce bile", "Produce insulin", "Filter blood"], "ans": 0, "note": "It stores/concentrates liver-made bile and releases it on demand."}, {"q": "The biliary tree order from the liver is: right & left hepatic ducts → common hepatic duct → ___ → bile duct:", "opts": ["Cystic duct", "Pancreatic duct", "Ureter", "Hepatic vein"], "ans": 0, "note": "The cystic duct (from the gallbladder) joins the common hepatic duct to form the bile duct."}, {"q": "The pancreas has two general functions:", "opts": ["Exocrine (digestive enzymes) and endocrine (hormones)", "Storage and detoxification", "Filtration and secretion", "Bile production and storage"], "ans": 0, "note": "Exocrine acini make enzymes; islets make insulin/glucagon."}, {"q": "The two ducts of the pancreas are the main pancreatic duct (of Wirsung) and the:", "opts": ["Accessory pancreatic duct (of Santorini)", "Cystic duct", "Common hepatic duct", "Bile duct"], "ans": 0, "note": "Main duct (Wirsung) + accessory duct (Santorini)."}, {"q": "EMBRYONIC GUT TUBE — The foregut gives rise to the esophagus, stomach, proximal duodenum, liver, gallbladder, and pancreas. Its supplying artery is the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Inferior mesenteric artery", "Common iliac artery"], "ans": 0, "note": "Foregut = celiac trunk."}, {"q": "EMBRYONIC GUT TUBE — The midgut (distal duodenum through proximal 2/3 of the transverse colon) is supplied by the:", "opts": ["Superior mesenteric artery", "Celiac trunk", "Inferior mesenteric artery", "Splenic artery"], "ans": 0, "note": "Midgut = SMA."}, {"q": "EMBRYONIC GUT TUBE — The hindgut (distal 1/3 transverse colon through the rectum) is supplied by the:", "opts": ["Inferior mesenteric artery", "Superior mesenteric artery", "Celiac trunk", "Internal iliac artery"], "ans": 0, "note": "Hindgut = IMA."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to BOTH the foregut and midgut is the:", "opts": ["Vagus nerve", "Pelvic splanchnic nerves", "Greater splanchnic nerve", "Lumbar splanchnic nerves"], "ans": 0, "note": "Vagus = parasympathetic to foregut + midgut; pelvic splanchnics serve the hindgut."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to the hindgut is the:", "opts": ["Pelvic splanchnic nerves", "Vagus nerve", "Greater splanchnic nerve", "Phrenic nerve"], "ans": 0, "note": "Hindgut parasympathetics = pelvic splanchnic nerves (S2-S4)."}, {"q": "EMBRYONIC GUT TUBE — The source of sympathetic nerves to the foregut is the:", "opts": ["Greater splanchnic nerve", "Lesser splanchnic nerve", "Lumbar splanchnic nerve", "Vagus nerve"], "ans": 0, "note": "Foregut sympathetics = greater splanchnic; midgut = lesser splanchnic; hindgut = lumbar splanchnic."}]}, {"id": "J", "title": "Urinary System", "questions": [{"q": "Name the organs of the urinary system:", "opts": ["Kidneys, ureters, urinary bladder, urethra", "Kidneys, bladder, urethra, prostate", "Kidneys, ureters, bladder, rectum", "Ureters, bladder, urethra, nephron"], "ans": 0, "note": "Two kidneys, two ureters, one bladder, one urethra."}, {"q": "The general functions of the urinary system include waste removal and:", "opts": ["Fluid and electrolyte balance", "Bile production", "Gas exchange", "Hormone digestion"], "ans": 0, "note": "Filtration, waste excretion, fluid/electrolyte/pH balance, blood pressure regulation."}, {"q": "The structures that enter and exit the kidney at the hilum are the renal artery, renal vein, and:", "opts": ["Ureter (renal pelvis)", "Aorta", "Inferior vena cava", "Adrenal gland"], "ans": 0, "note": "Renal artery in, renal vein and ureter out."}, {"q": "The renal cortex is the:", "opts": ["Outer region of the kidney", "Inner region containing the pyramids", "Hollow collecting space", "Fibrous outer capsule"], "ans": 0, "note": "Cortex = outer; medulla = inner (pyramids)."}, {"q": "The renal medulla contains the:", "opts": ["Renal pyramids", "Renal cortex", "Renal capsule", "Renal artery only"], "ans": 0, "note": "Pyramids (and columns between them) make up the medulla."}, {"q": "The nephron is best defined as the:", "opts": ["Functional unit of the kidney", "Outer covering of the kidney", "Storage sac for urine", "Blood supply of the kidney"], "ans": 0, "note": "Each kidney has ~1 million nephrons."}, {"q": "Compared to a cortical nephron, a juxtamedullary nephron has a:", "opts": ["Long nephron loop extending deep into the medulla", "Short loop staying in the cortex", "No glomerulus", "No collecting duct"], "ans": 0, "note": "Juxtamedullary nephrons concentrate urine via long loops."}, {"q": "The nephron structures in order of filtrate flow are: renal corpuscle → PCT → nephron loop → ___ → collecting duct:", "opts": ["Distal convoluted tubule (DCT)", "Proximal convoluted tubule", "Renal pelvis", "Ureter"], "ans": 0, "note": "Corpuscle → PCT → loop → DCT → collecting duct."}, {"q": "As urine exits the kidney it passes through the renal papilla and moves toward the:", "opts": ["Minor calyx → major calyx → renal pelvis → ureter", "Ureter → renal pelvis → calyces", "Cortex → capsule → ureter", "Collecting duct → glomerulus"], "ans": 0, "note": "Papilla → minor calyx → major calyx → renal pelvis → ureter."}, {"q": "The trigone is a triangular region of the bladder defined by the openings of the two ureters and the:", "opts": ["Urethra", "Renal pelvis", "Collecting ducts", "Renal artery"], "ans": 0, "note": "Two ureteric orifices + internal urethral orifice form the trigone."}, {"q": "The urinary bladder functions to:", "opts": ["Store urine", "Filter blood", "Produce urine", "Concentrate bile"], "ans": 0, "note": "It's a distensible storage sac."}, {"q": "The type of epithelium lining the bladder is transitional epithelium, which is important because it:", "opts": ["Allows the bladder to stretch", "Secretes enzymes", "Absorbs nutrients", "Filters blood"], "ans": 0, "note": "Transitional (urothelium) accommodates distension."}, {"q": "The muscularis (middle layer) of the bladder is known as the:", "opts": ["Detrusor muscle", "Trigone", "Rugae", "Trabeculae carneae"], "ans": 0, "note": "The detrusor contracts to expel urine."}, {"q": "Compare the internal and external urethral sphincters:", "opts": ["Internal is smooth/involuntary; external is skeletal/voluntary", "Internal is skeletal/voluntary; external is smooth", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "Internal = smooth (involuntary); external = skeletal (voluntary)."}, {"q": "List the segments of the biological male urethra:", "opts": ["Prostatic, membranous (intermediate), spongy (penile)", "Spongy, prostatic, membranous", "Membranous, spongy, prostatic", "Prostatic, penile, renal"], "ans": 0, "note": "Prostatic → membranous → spongy (penile)."}, {"q": "The arterial supply for the kidney is the:", "opts": ["Renal artery", "Gonadal artery", "Common iliac artery", "Superior mesenteric artery"], "ans": 0, "note": "Renal artery in, renal vein out."}, {"q": "The bladder receives parasympathetic motor innervation that:", "opts": ["Contracts the detrusor to empty the bladder", "Relaxes the detrusor to store urine", "Has no effect on the bladder", "Filters the blood"], "ans": 0, "note": "Parasympathetic = micturition (detrusor contracts, internal sphincter relaxes)."}]}, {"id": "K", "title": "Reproductive System", "questions": [{"q": "The perineum in both sexes includes the external genitalia and the region between the thighs bounded by the:", "opts": ["Pubic symphysis, ischial tuberosities, and coccyx", "Iliac crests and umbilicus", "Xiphoid and pubis", "Sacrum and femur"], "ans": 0, "note": "Same diamond as the pelvic floor perineum."}, {"q": "Define the terms gonad and gamete:", "opts": ["Gonad = sex organ producing gametes; gamete = sex cell (sperm/egg)", "Gonad = sex cell; gamete = sex organ", "Both mean sex hormone", "Both mean reproductive duct"], "ans": 0, "note": "Gonads (ovary/testis) produce gametes (ova/sperm)."}, {"q": "The term 'homologue' refers to structures that:", "opts": ["Arise from the same embryonic tissue in males and females", "Perform the same function only", "Are the same size", "Are found only in one sex"], "ans": 0, "note": "Homologues share embryonic origin (e.g., clitoris/penis)."}, {"q": "List the general structure of the ovary:", "opts": ["Outer cortex with follicles, inner medulla with vessels", "Seminiferous tubules and epididymis", "Cortex, medulla, and calyces", "Lobes and lactiferous ducts"], "ans": 0, "note": "Cortex houses follicles; medulla has vessels/nerves."}, {"q": "Place the ovarian follicles in order of development:", "opts": ["Primordial → primary → secondary → mature (Graafian)", "Mature → secondary → primary → primordial", "Primary → primordial → mature → secondary", "Secondary → primary → primordial → mature"], "ans": 0, "note": "Primordial → primary → secondary → mature (Graafian) → ovulation."}, {"q": "Compare a primary oocyte and a secondary oocyte:", "opts": ["Primary is arrested in meiosis I; secondary is arrested in meiosis II (released at ovulation)", "Primary is haploid; secondary is diploid", "Both are diploid", "Both complete meiosis before ovulation"], "ans": 0, "note": "The primary oocyte finishes meiosis I to form a secondary oocyte (arrested in meiosis II)."}, {"q": "The corpus luteum forms after ovulation and primarily produces:", "opts": ["Progesterone", "Testosterone", "Insulin", "Oxytocin"], "ans": 0, "note": "It secretes progesterone (and some estrogen) to maintain the endometrium."}, {"q": "List the regions of the uterine tube from the ovary toward the uterus:", "opts": ["Infundibulum → ampulla → isthmus → uterine part", "Isthmus → ampulla → infundibulum → uterine part", "Ampulla → infundibulum → uterine part → isthmus", "Uterine part → isthmus → ampulla → infundibulum"], "ans": 0, "note": "Infundibulum (fimbriae) → ampulla (fertilization) → isthmus → uterine part."}, {"q": "The fimbriae function to:", "opts": ["Sweep the ovulated oocyte into the uterine tube", "Produce progesterone", "Anchor the ovary to the uterus", "Secrete enzymes"], "ans": 0, "note": "Finger-like projections capture the oocyte."}, {"q": "The typical position of the uterus in the pelvis is:", "opts": ["Anteverted and anteflexed", "Retroverted and retroflexed", "Vertical and midline", "Inverted"], "ans": 0, "note": "Most commonly anteverted/anteflexed over the bladder."}, {"q": "List the regions of the uterus:", "opts": ["Fundus, body, cervix", "Cortex, medulla, hilum", "Infundibulum, ampulla, isthmus", "Head, neck, tail"], "ans": 0, "note": "Fundus (top), body (middle), cervix (neck into vagina)."}, {"q": "List the layers of the uterine wall from inner to outer:", "opts": ["Endometrium, myometrium, perimetrium", "Perimetrium, myometrium, endometrium", "Myometrium, endometrium, perimetrium", "Mucosa, submucosa, serosa"], "ans": 0, "note": "Endo- (inner, sheds), myo- (muscle), peri- (serous outer)."}, {"q": "The greater vestibular (Bartholin's) glands function to:", "opts": ["Secrete lubricating mucus into the vestibule", "Produce ova", "Produce progesterone", "Filter blood"], "ans": 0, "note": "They lubricate the vaginal vestibule."}, {"q": "The clitoris is the female homologue of the:", "opts": ["Penis", "Scrotum", "Prostate", "Epididymis"], "ans": 0, "note": "Clitoris ↔ penis (both erectile, same embryonic origin)."}, {"q": "The components of the mammary gland include lobes, lobules, alveoli, lactiferous sinus, suspensory ligaments, and:", "opts": ["Lactiferous ducts", "Seminiferous tubules", "Rugae", "Fimbriae"], "ans": 0, "note": "Alveoli → lactiferous ducts → lactiferous sinus → nipple; lobules group into lobes."}, {"q": "The dartos and cremaster muscles of the scrotum function to:", "opts": ["Regulate testicular temperature by raising/lowering the testes", "Produce sperm", "Secrete testosterone", "Transport semen"], "ans": 0, "note": "Dartos wrinkles the skin; cremaster elevates the testes for temperature control."}, {"q": "The spermatic cord contains the ductus deferens, testicular vessels, and:", "opts": ["Nerves and the cremaster muscle", "The epididymis", "The prostate", "The seminal vesicle"], "ans": 0, "note": "Ductus deferens, testicular artery/veins (pampiniform plexus), nerves, cremaster."}, {"q": "The interstitial (Leydig) cells of the testes produce which hormone?", "opts": ["Testosterone", "Progesterone", "Insulin", "Estrogen only"], "ans": 0, "note": "Leydig cells between the tubules secrete testosterone."}, {"q": "Spermatogenesis (sperm production) occurs in the:", "opts": ["Seminiferous tubules", "Epididymis", "Ductus deferens", "Prostate"], "ans": 0, "note": "Sperm are made in the seminiferous tubules of the testis."}, {"q": "The function of the epididymis is:", "opts": ["Sperm maturation and storage", "Sperm production", "Hormone secretion", "Semen expulsion"], "ans": 0, "note": "Sperm mature and are stored in the epididymis."}, {"q": "Place the ducts sperm pass through in order:", "opts": ["Seminiferous tubules → epididymis → ductus deferens → ejaculatory duct → urethra", "Epididymis → seminiferous tubules → urethra → ejaculatory duct", "Ductus deferens → epididymis → seminiferous tubules → urethra", "Seminiferous tubules → ejaculatory duct → epididymis → urethra"], "ans": 0, "note": "Tubules → epididymis → ductus (vas) deferens → ejaculatory duct → urethra."}, {"q": "The function of the ductus (vas) deferens is to:", "opts": ["Transport sperm from the epididymis toward the urethra", "Produce sperm", "Store bile", "Secrete testosterone"], "ans": 0, "note": "It propels sperm during emission."}, {"q": "The ejaculatory duct joins the urethra within the:", "opts": ["Prostatic urethra", "Membranous urethra", "Spongy urethra", "Epididymis"], "ans": 0, "note": "The ejaculatory ducts open into the prostatic urethra."}, {"q": "Does semen always contain sperm?", "opts": ["No — it is mostly seminal fluid and may contain little/no sperm", "Yes, always in equal amounts", "Yes, semen is pure sperm", "No, semen never contains sperm"], "ans": 0, "note": "Semen is mostly gland secretions; sperm are a small fraction."}, {"q": "The accessory glands of the male reproductive system are the seminal vesicles, prostate, and:", "opts": ["Bulbourethral (Cowper's) glands", "Bartholin's glands", "Adrenal glands", "Thyroid gland"], "ans": 0, "note": "Seminal vesicles, prostate, bulbourethral glands."}, {"q": "Comparing the erectile tissues, the corpus spongiosum is the tissue that comprises the:", "opts": ["Glans (and surrounds the urethra)", "Two dorsal columns only", "Scrotum", "Testis"], "ans": 0, "note": "Corpus spongiosum surrounds the urethra and forms the glans; corpora cavernosa are the paired dorsal columns."}, {"q": "Comparing erection and ejaculation, erection is controlled by ___ and ejaculation by ___:", "opts": ["Parasympathetic; sympathetic", "Sympathetic; parasympathetic", "Both parasympathetic", "Both sympathetic"], "ans": 0, "note": "'Point and Shoot': Parasympathetic = erection (point), Sympathetic = ejaculation (shoot)."}, {"q": "The gonadal (ovarian or testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "They arise from the aorta near the renal arteries (gonads descend from there embryonically)."}, {"q": "The venous drainage differs by side: the right ovarian/testicular vein drains into the IVC, but the left drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Portal vein"], "ans": 0, "note": "Left gonadal vein → left renal vein → IVC (clinically relevant for varicocele)."}]}, {"id": "L", "title": "Endocrine System", "questions": [{"q": "Define homeostasis:", "opts": ["Maintenance of a stable internal environment", "Rapid cell division", "Production of gametes", "Breakdown of nutrients"], "ans": 0, "note": "Keeping internal conditions within a narrow range."}, {"q": "The two systems that communicate within the body to maintain homeostasis are the endocrine system and the:", "opts": ["Nervous system", "Digestive system", "Lymphatic system", "Urinary system"], "ans": 0, "note": "Nervous (fast, electrical) + endocrine (slower, chemical)."}, {"q": "The nervous system uses which chemicals for communication?", "opts": ["Neurotransmitters", "Hormones", "Enzymes", "Bile salts"], "ans": 0, "note": "Neurons release neurotransmitters across synapses."}, {"q": "The endocrine system uses which chemicals for communication?", "opts": ["Hormones", "Neurotransmitters", "Antibodies", "Electrolytes"], "ans": 0, "note": "Glands secrete hormones into the blood."}, {"q": "The two classifications of glands in the body are:", "opts": ["Exocrine and endocrine", "Serous and mucous only", "Sympathetic and parasympathetic", "Cortical and medullary"], "ans": 0, "note": "Exocrine use ducts; endocrine are ductless (into blood)."}, {"q": "The role of the hypothalamus in the endocrine system is to:", "opts": ["Link the nervous and endocrine systems and control the pituitary", "Produce insulin", "Filter blood", "Store bile"], "ans": 0, "note": "The hypothalamus regulates the pituitary via releasing hormones/neural links."}, {"q": "The role of the pituitary gland in the endocrine system is to:", "opts": ["Secrete hormones that regulate other endocrine glands", "Produce bile", "Filter blood", "Store urine"], "ans": 0, "note": "The 'master gland' directs thyroid, adrenal, gonads, etc."}, {"q": "The pancreas, an endocrine gland viewed in lab, secretes hormones that:", "opts": ["Regulate blood sugar (insulin and glucagon)", "Regulate calcium only", "Produce bile", "Filter blood"], "ans": 0, "note": "Islet cells: insulin (lowers) and glucagon (raises) blood glucose."}, {"q": "The role of the pancreas as an endocrine gland in lowering blood sugar after a meal is via:", "opts": ["Insulin", "Glucagon", "Cortisol", "Thyroxine"], "ans": 0, "note": "Insulin drives glucose into cells, lowering blood sugar."}, {"q": "Which of the following is an endocrine gland?", "opts": ["Thyroid gland", "Salivary gland", "Sweat gland", "Sebaceous gland"], "ans": 0, "note": "Endocrine: pituitary, thyroid, parathyroid, adrenal, pancreas, gonads, pineal, thymus. The others are exocrine."}]}]};
 const STORE_KEY = "trunk_hub_v1";
- 
+
 // ---- persistence ----
 function loadStore(){
   try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s) return s; }catch(e){}
@@ -244,18 +248,18 @@ function loadStore(){
 }
 function saveStore(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){} }
 let store = loadStore();
- 
+
 const SEC = {};
 DATA.sections.forEach(s=>SEC[s.id]=s);
 const IDS = DATA.sections.map(s=>s.id);
- 
+
 // ---- run state ----
 let run = null; // {label, mode, items:[{sid,qi}], pos, correct, answered, missedThisRun:[{sid,qi}]}
- 
+
 function qCount(sid){ return SEC[sid].questions.length; }
 function missedCount(sid){ return (store.missed[sid]||[]).length; }
 function totalMissed(){ return IDS.reduce((n,id)=>n+missedCount(id),0); }
- 
+
 // ---- overall + clearing scores ----
 function overallStats(){
   let scoredQ=0, weighted=0, secDone=0;
@@ -282,31 +286,31 @@ function clearAllScores(){
   saveStore();
   renderHub();
 }
- 
+
 // ---- hub rendering ----
 function renderHub(){
   // master
   const totalAll = IDS.reduce((n,id)=>n+qCount(id),0);
   document.getElementById('masterCount').textContent = totalAll;
- 
+
   // header = overall across sections you've actually scored (weighted by question count)
   const ov = overallStats();
   document.getElementById('masterPct').textContent = ov.overall+'%';
   document.getElementById('masterBar').style.width = ov.overall+'%';
   document.getElementById('secDone').textContent = ov.secDone;
   document.getElementById('secTotal').textContent = ov.totalSec;
- 
+
   // master card keeps the score from an actual full-slate run
   const mBest = store.best.MASTER;
   document.getElementById('masterScore').textContent = mBest==null?'\u2014':mBest+'%';
   document.getElementById('masterMini').style.width = (mBest==null?0:mBest)+'%';
- 
+
   const tm = totalMissed();
   const mm = document.getElementById('masterMiss');
   mm.textContent = tm+' in missed bank';
   mm.className = 'missflag'+(tm===0?' zero':'');
   document.getElementById('masterDrill').disabled = tm===0;
- 
+
   // sections
   const grid = document.getElementById('sectionGrid');
   grid.innerHTML='';
@@ -329,14 +333,18 @@ function renderHub(){
         <button class="btn exam">Exam</button>
         <button class="btn drill" ${mc===0?'disabled':''}>Missed</button>
       </div>
-      <div class="missflag ${mc===0?'zero':''}">${mc} in missed bank</div>`;
+      <div class="missrow">
+        <span class="missflag ${mc===0?'zero':''}">${mc} in missed bank</span>
+        <button class="copysec" ${mc===0?'disabled':''}>Copy missed</button>
+      </div>`;
     card.querySelector('.practice').onclick=()=>startRun(s.id,'practice',false);
     card.querySelector('.exam').onclick=()=>startRun(s.id,'exam',false);
     card.querySelector('.drill').onclick=()=>startRun(s.id,'practice',true);
     const cs=card.querySelector('.clearsec'); if(cs) cs.onclick=()=>clearSectionScore(s.id);
+    const cp=card.querySelector('.copysec'); if(cp) cp.onclick=()=>copySectionMissed(s.id,cp);
     grid.appendChild(card);
   });
- 
+
   // custom chips
   const cc = document.getElementById('customChips');
   cc.innerHTML='';
@@ -350,10 +358,10 @@ function renderHub(){
   });
 }
 let customSel = new Set();
- 
+
 // ---- shuffle ----
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
- 
+
 // ---- build item lists ----
 function itemsForSections(ids){
   let items=[];
@@ -365,7 +373,7 @@ function itemsMissed(ids){
   ids.forEach(id=>(store.missed[id]||[]).forEach(qi=>items.push({sid:id,qi})));
   return items;
 }
- 
+
 function startRun(target, mode, drill){
   let ids = target==='MASTER' ? IDS.slice() : [target];
   let items = drill ? itemsMissed(ids) : itemsForSections(ids);
@@ -382,7 +390,7 @@ function labelFor(target,drill){
   if(target==='MASTER') return (drill?'Drill missed \u00b7 ':'')+'Master \u2014 all sections';
   return (drill?'Drill missed \u00b7 ':'')+target+' \u00b7 '+SEC[target].title;
 }
- 
+
 function beginRun(items, mode, label, scoreTarget){
   run={ items:shuffle(items.slice()), pos:0, correct:0, answered:0, mode, label, scoreTarget,
         missedThisRun:[] };
@@ -391,7 +399,7 @@ function beginRun(items, mode, label, scoreTarget){
   document.getElementById('examNote').classList.toggle('hide', mode!=='exam');
   renderQuestion();
 }
- 
+
 function renderQuestion(){
   const it=run.items[run.pos];
   const q=SEC[it.sid].questions[it.qi];
@@ -401,7 +409,7 @@ function renderQuestion(){
   const live=document.getElementById('quizLive');
   if(run.mode==='practice'){ live.textContent = run.answered? Math.round(run.correct/run.answered*100)+'% \u00b7 '+run.correct+'/'+run.answered : ''; }
   else { live.textContent = (run.pos)+' / '+run.items.length+' answered'; }
- 
+
   // shuffle option order but track correct
   const order=shuffle(q.opts.map((t,i)=>({t,i})));
   const optsEl=document.getElementById('quizOpts');
@@ -419,7 +427,7 @@ function renderQuestion(){
   document.getElementById('quizNext').classList.add('hide');
   run._order=order; run._answered=false;
 }
- 
+
 function choose(vi, order, q){
   if(run._answered) return;
   run._answered=true;
@@ -434,7 +442,7 @@ function choose(vi, order, q){
   }
   // if right and it was in the missed bank, clear it
   if(isRight) removeMissed(it.sid, it.qi);
- 
+
   const btns=document.getElementById('quizOpts').querySelectorAll('.opt');
   if(run.mode==='practice'){
     btns.forEach((b,idx)=>{
@@ -462,13 +470,13 @@ function choose(vi, order, q){
     setTimeout(nextQuestion, 130);
   }
 }
- 
+
 function nextQuestion(){
   run.pos++;
   if(run.pos>=run.items.length){ finishRun(); return; }
   renderQuestion();
 }
- 
+
 function finishRun(){
   document.getElementById('quizBar').style.width='100%';
   const pct=Math.round(run.correct/run.items.length*100);
@@ -504,37 +512,75 @@ function finishRun(){
     wrap.innerHTML=html;
   }
 }
- 
+
 function drillFromResults(){
   const items=run.missedThisRun.slice();
   if(items.length===0) return;
   beginRun(items,'practice','Drill missed \u00b7 '+run.label, run.scoreTarget);
 }
- 
+
+// ---- copy helpers ----
+const LETTERS='ABCDEF';
+
+// One question, fully written out: stem, every option, the correct one, and the note.
+function formatMissedQ(sid,qi,n){
+  const q=SEC[sid].questions[qi];
+  let out=n+'. '+q.q+'\n';
+  q.opts.forEach((o,i)=>{
+    out+='   '+LETTERS[i]+') '+o+(i===q.ans?'   \u2190 correct':'')+'\n';
+  });
+  out+='   Answer: '+LETTERS[q.ans]+') '+q.opts[q.ans]+'\n';
+  if(q.note) out+='   Why: '+q.note+'\n';
+  return out;
+}
+
+function flashBtn(btn){
+  if(!btn) return;
+  const t=btn.textContent;
+  btn.textContent='Copied \u2713';
+  setTimeout(()=>{ btn.textContent=t; },1400);
+}
+
+function writeClip(text,btn){
+  const fallback=()=>{
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    ta.remove();
+    flashBtn(btn);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>flashBtn(btn)).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+
+// Hub: copy one section's saved missed bank, any time \u2014 not just after a run.
+function copySectionMissed(sid,btn){
+  const list=(store.missed[sid]||[]).slice().sort((a,b)=>a-b);
+  if(list.length===0) return;
+  let out='MISSED \u2014 Section '+sid+' \u00b7 '+SEC[sid].title+'\n'
+        + list.length+' question'+(list.length===1?'':'s')+' in the missed bank\n';
+  list.forEach((qi,i)=>{ out+='\n'+formatMissedQ(sid,qi,i+1); });
+  writeClip(out,btn);
+}
+
+// Results screen: copy what you missed on this run, grouped by section.
 function copyMissed(){
-  // group by section
   const bySec={};
   run.missedThisRun.forEach(m=>{ (bySec[m.sid]=bySec[m.sid]||[]).push(m.qi); });
   let out='MISSED \u2014 '+run.label+'\n';
   Object.keys(bySec).sort().forEach(sid=>{
     out+='\n== Section '+sid+' \u00b7 '+SEC[sid].title+' ==\n';
-    bySec[sid].forEach(qi=>{
-      const q=SEC[sid].questions[qi];
-      out+='\u2022 '+q.q+'\n    \u2192 '+q.opts[q.ans]+'\n';
-    });
+    bySec[sid].forEach((qi,i)=>{ out+='\n'+formatMissedQ(sid,qi,i+1); });
   });
-  const btn=document.getElementById('resCopy');
-  navigator.clipboard.writeText(out).then(()=>{
-    const t=btn.textContent; btn.textContent='Copied \u2713';
-    setTimeout(()=>btn.textContent=t,1400);
-  }).catch(()=>{
-    // fallback
-    const ta=document.createElement('textarea'); ta.value=out; document.body.appendChild(ta);
-    ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove();
-    const t=btn.textContent; btn.textContent='Copied \u2713'; setTimeout(()=>btn.textContent=t,1400);
-  });
+  writeClip(out,document.getElementById('resCopy'));
 }
- 
+
 // ---- missed bank ----
 function addMissed(sid,qi){
   const arr=store.missed[sid]=store.missed[sid]||[];
@@ -544,11 +590,11 @@ function removeMissed(sid,qi){
   if(!store.missed[sid]) return;
   store.missed[sid]=store.missed[sid].filter(x=>x!==qi);
 }
- 
+
 // ---- nav ----
 function show(id){ ['hub','quiz','results'].forEach(s=>document.getElementById(s).classList.toggle('hide',s!==id)); if(id==='hub'){renderHub();} window.scrollTo(0,0); }
 function quitToHub(){ saveStore(); run=null; show('hub'); }
- 
+
 // keyboard
 document.addEventListener('keydown',e=>{
   if(document.getElementById('quiz').classList.contains('hide')) return;
@@ -562,7 +608,7 @@ document.addEventListener('keydown',e=>{
     if(!nb.classList.contains('hide')) nb.click();
   }
 });
- 
+
 // init
 renderHub();
 </script>
