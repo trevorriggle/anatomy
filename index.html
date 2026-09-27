@@ -1,616 +1,510 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Trunk Unit Drill Hub &mdash; Thorax / Abdomen / Pelvis</title>
+<title>BIO 2301 Mega Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 :root{
-  --board:#14161a;
-  --board-2:#191c21;
-  --plate:#ece6d6;
-  --plate-edge:#cdbf9a;
-  --ink:#20201b;
-  --ink-soft:#5b564c;
-  --brass:#c69a3e;
-  --brass-deep:#8a6a24;
-  --crimson:#a83f2c;
-  --crimson-soft:#3a1f1a;
-  --patina:#4f8073;
-  --patina-soft:#17281f;
-  --slate:#7f858b;
-  --bone:#e7e1d3;
-  --line:#2c3037;
-  --good:#5b9a6f;
-  --bad:#bb5140;
+  --bg:#EDF0EA; --surface:#FAFBF7; --surface2:#E3E8E0; --ink:#17202A; --ink2:#4B5663; --ink3:#77818C;
+  --line:#CAD2C7; --grid:rgba(23,32,42,.055);
+  --k:#5E4396; --k-soft:#E6DFF2; --k-ink:#FFFFFF;
+  --na:#B86A00; --na-soft:#F8E8C9;
+  --good:#23734A; --good-soft:#DAEEE1; --bad:#B3342A; --bad-soft:#F5DDD9;
+  --shadow:0 1px 0 rgba(23,32,42,.04), 0 8px 24px -16px rgba(23,32,42,.25);
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#10131A; --surface:#171B24; --surface2:#1F2531; --ink:#E6E9EE; --ink2:#A4ADBA; --ink3:#7A8494;
+    --line:#2B3240; --grid:rgba(230,233,238,.045);
+    --k:#B49EE6; --k-soft:#272040; --k-ink:#14101F;
+    --na:#F0AD45; --na-soft:#3A2B12;
+    --good:#5CC48B; --good-soft:#15301F; --bad:#F07B6F; --bad-soft:#3A1B18;
+    --shadow:0 1px 0 rgba(0,0,0,.2), 0 10px 30px -18px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#10131A; --surface:#171B24; --surface2:#1F2531; --ink:#E6E9EE; --ink2:#A4ADBA; --ink3:#7A8494;
+  --line:#2B3240; --grid:rgba(230,233,238,.045);
+  --k:#B49EE6; --k-soft:#272040; --k-ink:#14101F;
+  --na:#F0AD45; --na-soft:#3A2B12;
+  --good:#5CC48B; --good-soft:#15301F; --bad:#F07B6F; --bad-soft:#3A1B18;
+  --shadow:0 1px 0 rgba(0,0,0,.2), 0 10px 30px -18px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{min-height:100%}
 body{
-  background:radial-gradient(ellipse at 15% -10%, #21252b 0%, transparent 55%), var(--board);
-  color:var(--bone);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;
-  padding-bottom:env(safe-area-inset-bottom);
+  background-color:var(--bg);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5;
+  -webkit-tap-highlight-color:transparent;
 }
-.disp{font-family:"Space Grotesk",Georgia,serif;}
-.mono{font-family:"Space Mono",ui-monospace,Menlo,Consolas,monospace;}
-button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:none;background:none;color:inherit}
-button:focus-visible,.opt:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
-.wrap{max-width:820px;margin:0 auto;padding:22px 16px 96px;}
+.wrap{max-width:1080px; margin:0 auto; padding-inline:16px; padding-block:20px 120px}
+button{font:inherit; color:inherit; cursor:pointer}
+button:focus-visible, input:focus-visible, summary:focus-visible, label:focus-within{outline:2px solid var(--k); outline-offset:2px}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3)}
 
 /* header */
-header.top{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px;}
-.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
-header.top h1{font-size:26px;line-height:1.12;margin:0 0 10px;font-weight:700}
-.masterbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
-.masterpct{font-size:34px;font-weight:700;font-family:"Space Mono";color:var(--brass)}
-.masterlabel{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
-.track{flex:1;min-width:160px;height:8px;background:#23262c;border-radius:6px;overflow:hidden}
-.track > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .4s}
+.mast{display:grid; grid-template-columns:1fr; gap:8px; padding-block:8px 20px}
+.mast h1{font-family:var(--display); font-weight:800; font-size:clamp(52px,11vw,104px); line-height:.86; letter-spacing:.005em; margin:0; text-transform:uppercase; text-wrap:balance}
+.mast h1 span{color:var(--k)}
+.mast p{margin:0; color:var(--ink2); max-width:60ch}
+.trace{width:100%; height:auto; display:block; margin-top:10px; overflow:visible}
+.trace .ax{stroke:var(--line); stroke-width:1}
+.trace .th{stroke:var(--na); stroke-width:1; stroke-dasharray:4 4}
+.trace .ln{fill:none; stroke:var(--k); stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round}
+.trace text{font-family:var(--mono); font-size:11px; fill:var(--ink3)}
+.trace .thl{fill:var(--na)}
+@media (prefers-reduced-motion:no-preference){
+  .trace .ln{stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 1.6s ease-out .2s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
 
-/* section grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
-.card{background:var(--board-2);border:1px solid var(--line);border-radius:10px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
-.card .tag{position:absolute;top:0;right:0;font-family:"Space Mono";font-size:38px;font-weight:700;color:#20242a;line-height:1;padding:6px 12px 0 0;letter-spacing:-.03em}
-.card h3{margin:0;font-size:15px;font-weight:600;padding-right:34px}
-.card .meta{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--slate)}
-.card .scorepct{font-family:"Space Mono";font-size:20px;font-weight:700;color:var(--bone)}
-.card .minibar{height:5px;background:#23262c;border-radius:4px;overflow:hidden}
-.card .minibar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .4s}
-.btnrow{display:flex;gap:7px;margin-top:2px}
-.btn{flex:1;text-align:center;font-size:12px;font-weight:600;padding:8px 6px;border-radius:7px;letter-spacing:.02em;border:1px solid transparent;transition:transform .06s,background .15s}
-.btn:active{transform:translateY(1px)}
-.btn.practice{background:#242830;color:var(--bone);border-color:#333944}
-.btn.practice:hover{background:#2b303a}
-.btn.exam{background:var(--crimson-soft);color:#e7b3a6;border-color:#5a2a20}
-.btn.exam:hover{background:#4a271f}
-.btn.drill{background:var(--patina-soft);color:#a7d2bf;border-color:#28453a}
-.btn.drill:hover{background:#1f3a2e}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.missflag{font-family:"Space Mono";font-size:11px;color:var(--crimson);}
-.missflag.zero{color:var(--slate);opacity:.6}
+/* summary strip */
+.strip{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-block:8px 16px}
+.stat{background:var(--surface); padding:14px 16px}
+.stat b{display:block; font-family:var(--display); font-weight:800; font-size:36px; line-height:1}
+.stat small{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3)}
+@media (max-width:640px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* master + custom cards span */
-.card.master{grid-column:1/-1;background:linear-gradient(180deg,#1b1f25,#15181d);border-color:#2f343c}
-.card.master .tag{color:#262b32}
-.card.wide{grid-column:1/-1}
-.subhead{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);margin:26px 0 10px}
+.actions{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px}
+.btn{border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:11px 16px; font-weight:700; min-height:46px; display:inline-flex; align-items:center; gap:8px}
+.btn:hover{border-color:var(--ink3)}
+.btn.primary{background:var(--k); border-color:var(--k); color:var(--k-ink)}
+.btn.na{background:var(--na-soft); border-color:transparent; color:var(--ink)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--bad)}
+.btn.armed{background:var(--bad); border-color:var(--bad); color:#fff}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.btn .ct{font-family:var(--mono); font-weight:500; font-size:12px; opacity:.8}
 
-/* custom chips */
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
-.chip{font-family:"Space Mono";font-size:13px;padding:7px 12px;border-radius:20px;border:1px solid #333944;background:#20242a;color:var(--slate)}
-.chip.on{background:var(--brass);color:#1a1408;border-color:var(--brass);font-weight:700}
+details.watch{background:var(--na-soft); border-radius:14px; padding:4px 16px; margin-block:4px 24px}
+details.watch summary{cursor:pointer; font-weight:700; padding:10px 0; list-style:none; display:flex; justify-content:space-between; gap:12px}
+details.watch summary::-webkit-details-marker{display:none}
+details.watch summary::after{content:"+"; font-family:var(--mono)}
+details.watch[open] summary::after{content:"−"}
+.watch ul{margin:0 0 12px; padding:0; list-style:none; display:grid; gap:10px}
+.watch li b{display:block}
+.watch li span{color:var(--ink2)}
+
+/* units */
+.unit{margin-top:28px}
+.unit-h{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:6px; margin-bottom:12px}
+.unit-h h2{font-family:var(--display); font-weight:800; font-size:32px; line-height:1; margin:0; text-transform:uppercase}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px}
+@media (max-width:420px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px; display:grid; gap:12px; box-shadow:var(--shadow)}
+.card.sel{border-color:var(--k); box-shadow:0 0 0 2px var(--k)}
+.card-top{display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center}
+.ring{width:54px; height:54px}
+.ring circle{fill:none; stroke-width:5}
+.ring .bgc{stroke:var(--surface2)}
+.ring text{font-family:var(--mono); font-size:13px; font-weight:500; fill:var(--ink)}
+.card h3{margin:0; font-size:17px; line-height:1.25}
+.meta{font-family:var(--mono); font-size:12px; color:var(--ink3); margin-top:2px}
+.pick{display:grid; place-items:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--line); cursor:pointer}
+.pick input{width:20px; height:20px; accent-color:var(--k); cursor:pointer}
+.card-btns{display:flex; flex-wrap:wrap; gap:6px}
+.card-btns .btn{min-height:40px; padding:8px 12px; font-size:14px}
+.chip{font-family:var(--mono); font-size:11px; padding:2px 7px; border-radius:99px; background:var(--surface2); color:var(--ink2); white-space:nowrap}
+.chip.bad{background:var(--bad-soft); color:var(--bad)}
+.chip.good{background:var(--good-soft); color:var(--good)}
+.chip.na{background:var(--na-soft); color:var(--na)}
+
+/* selection bar */
+.selbar{position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px)); background:var(--surface); border-top:1px solid var(--line); box-shadow:0 -10px 30px -20px rgba(0,0,0,.4); z-index:10}
+.selbar .in{max-width:1080px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.selbar .lbl{font-weight:700; margin-right:auto}
 
 /* quiz */
-.quizhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-.quizhead .where{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
-.quizhead .live{font-family:"Space Mono";font-size:13px;color:var(--slate)}
-.qtrack{height:6px;background:#23262c;border-radius:5px;overflow:hidden;margin-bottom:20px}
-.qtrack > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brass-deep),var(--brass));transition:width .3s}
-.plate{background:var(--plate);color:var(--ink);border-radius:12px;padding:22px 20px;box-shadow:0 1px 0 rgba(0,0,0,.4),0 14px 30px rgba(0,0,0,.4);position:relative}
-.plate::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;background:var(--crimson);border-radius:0 3px 3px 0}
-.qnum{font-family:"Space Mono";font-size:11px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:10px}
-.qtext{font-size:18px;font-weight:600;line-height:1.35;margin-bottom:18px;font-family:"Space Grotesk"}
-.opts{display:flex;flex-direction:column;gap:9px}
-.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:13px 14px;border-radius:9px;background:#f6f2e7;border:1.5px solid var(--plate-edge);font-size:15px;color:var(--ink);transition:background .12s,border-color .12s}
-.opt:hover:not(:disabled){background:#fbf8ef;border-color:var(--brass)}
-.opt .key{font-family:"Space Mono";font-weight:700;font-size:13px;color:var(--brass-deep);flex:none;width:16px}
-.opt.correct{background:#dcecdc;border-color:var(--good)}
-.opt.wrong{background:#f2d9d2;border-color:var(--bad)}
+.qtop{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px}
+.qtop .ttl{font-family:var(--display); font-weight:800; font-size:28px; line-height:1; text-transform:uppercase; margin-right:auto}
+.bar{height:6px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-bottom:18px}
+.bar i{display:block; height:100%; background:var(--k); transition:width .25s ease}
+.qcard{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:clamp(16px,4vw,28px); box-shadow:var(--shadow); max-width:780px; margin:0 auto}
+.qmeta{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px}
+.qtext{font-size:clamp(19px,2.6vw,23px); line-height:1.4; font-weight:700; margin:0 0 18px; text-wrap:pretty}
+.opts{display:grid; gap:10px}
+.opt{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:center; text-align:left; background:var(--bg); border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; min-height:58px; font-size:17px; line-height:1.35}
+.opt:hover:not(:disabled){border-color:var(--k)}
+.opt .key{font-family:var(--mono); font-size:13px; width:30px; height:30px; display:grid; place-items:center; border-radius:8px; background:var(--surface2); color:var(--ink2)}
+.opt.chosen{border-color:var(--k); background:var(--k-soft)}
+.opt.right{border-color:var(--good); background:var(--good-soft)}
+.opt.right .key{background:var(--good); color:var(--surface)}
+.opt.wrong{border-color:var(--bad); background:var(--bad-soft)}
+.opt.wrong .key{background:var(--bad); color:var(--surface)}
 .opt:disabled{cursor:default}
-.feedback{margin-top:16px;font-size:14.5px;line-height:1.5;padding:13px 15px;border-radius:9px;display:none}
-.feedback.show{display:block}
-.feedback.right{background:#dcecdc;color:#1f4a2e}
-.feedback.miss{background:#f2d9d2;color:#6d271a}
-.feedback b{font-weight:700}
-.feedback .note{display:block;margin-top:6px;color:var(--ink-soft);font-size:13.5px}
-.flag{margin-top:12px;font-family:"Space Mono";font-size:12.5px;background:#fff3cd;border:1px solid #e3c766;color:#6b5310;padding:10px 12px;border-radius:8px;display:none}
-.flag.show{display:block}
-.qbtns{display:flex;gap:10px;margin-top:20px}
-.bigbtn{padding:13px 20px;border-radius:9px;font-size:14px;font-weight:700;letter-spacing:.02em}
-.bigbtn.next{background:var(--brass);color:#1a1408;flex:1}
-.bigbtn.next:hover{background:#d4a848}
-.bigbtn.ghost{background:#20242a;color:var(--bone);border:1px solid #333944}
-.bigbtn.ghost:hover{background:#282d34}
-.exam-note{font-family:"Space Mono";font-size:11px;color:var(--slate);margin-top:12px;text-align:center}
+.fb{margin-top:16px; padding:14px 16px; border-radius:12px; background:var(--surface2)}
+.fb b{display:block; margin-bottom:2px}
+.fb.good b{color:var(--good)} .fb.bad b{color:var(--bad)}
+.qnav{display:flex; gap:8px; justify-content:space-between; align-items:center; margin-top:18px; flex-wrap:wrap}
+.hint{font-family:var(--mono); font-size:12px; color:var(--ink3)}
+@media (hover:none){.hint{display:none}}
 
 /* results */
-.results h2{font-family:"Space Grotesk";font-size:22px;margin:0 0 4px}
-.bigscore{font-family:"Space Mono";font-size:56px;font-weight:700;line-height:1;margin:10px 0}
-.bigscore.pass{color:var(--good)}
-.bigscore.mid{color:var(--brass)}
-.bigscore.low{color:var(--crimson)}
-.rtally{font-size:14px;color:var(--slate);margin-bottom:22px}
-.missblock{background:var(--board-2);border:1px solid var(--line);border-radius:10px;padding:4px 0;margin-bottom:20px}
-.missitem{padding:13px 16px;border-bottom:1px solid var(--line)}
-.missitem:last-child{border-bottom:none}
-.missitem .mq{font-size:14.5px;font-weight:600;margin-bottom:5px}
-.missitem .ma{font-size:13.5px;color:var(--good)}
-.missitem .mn{font-size:13px;color:var(--slate);margin-top:4px}
-.perfect{padding:24px 16px;text-align:center;color:var(--patina);font-size:15px}
+.res{max-width:780px; margin:0 auto; display:grid; gap:16px}
+.score{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:22px; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; box-shadow:var(--shadow)}
+.score .big{font-family:var(--display); font-weight:800; font-size:clamp(64px,14vw,112px); line-height:.85}
+.score h2{margin:0 0 4px; font-size:20px}
+.score p{margin:0; color:var(--ink2)}
+.breakdown{display:grid; gap:6px}
+.brow{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:8px 12px; background:var(--surface); border:1px solid var(--line); border-radius:10px}
+.miss{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+.miss p{margin:0 0 8px; font-weight:700}
+.miss .yours{color:var(--bad)} .miss .corr{color:var(--good)}
+.miss small{display:block; color:var(--ink2); margin-top:6px}
+.sech{font-family:var(--display); font-weight:800; font-size:24px; text-transform:uppercase; margin:8px 0 0}
 
-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-family:"Space Mono";font-size:11px;color:var(--slate);text-align:center;line-height:1.7}
-
-/* clear controls + overall */
-.clearall{flex:none;margin-left:auto;font-family:"Space Mono";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);background:#1c1f25;border:1px solid #2c3037;padding:8px 12px;border-radius:7px;transition:color .15s,border-color .15s,background .15s}
-.clearall:hover:not(:disabled){color:#e7b3a6;border-color:#5a2a20;background:var(--crimson-soft)}
-.clearall:disabled{opacity:.4;cursor:not-allowed}
-.scorewrap{display:flex;align-items:center;gap:9px}
-.clearsec{font-family:"Space Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:transparent;border:1px solid #2c3037;padding:4px 9px;border-radius:6px;line-height:1.3;transition:color .15s,border-color .15s}
-.clearsec:hover:not(:disabled){color:#e7b3a6;border-color:#5a2a20}
-.clearsec:disabled{opacity:.35;cursor:not-allowed}
-.missrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
-.copysec{font-family:"Space Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:transparent;border:1px solid #2c3037;padding:4px 9px;border-radius:6px;line-height:1.3;white-space:nowrap;transition:color .15s,border-color .15s}
-.copysec:hover:not(:disabled){color:#a7d2bf;border-color:#28453a}
-.copysec:disabled{opacity:.35;cursor:not-allowed}
-
-.hide{display:none!important}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* study */
+.study{max-width:860px; margin:0 auto}
+.search{width:100%; font:inherit; padding:12px 14px; border-radius:12px; border:1px solid var(--line); background:var(--surface); color:var(--ink); margin-bottom:16px}
+.sq{padding:12px 0; border-bottom:1px solid var(--line)}
+.sq p{margin:0 0 4px; font-weight:700}
+.sq .a{color:var(--k); font-weight:700}
+.sq small{display:block; color:var(--ink2)}
+.empty{color:var(--ink2); padding:16px 0}
 </style>
-</head>
-<body>
-<div class="wrap">
 
-  <!-- ===== HUB ===== -->
-  <section id="hub">
-    <header class="top">
-      <div class="eyebrow">BIO &middot; Concept Outline Drill</div>
-      <h1 class="disp">Trunk Unit &mdash; Thorax, Abdomen &amp; Pelvis</h1>
-      <div class="masterbar">
-        <span class="masterpct" id="masterPct">0%</span>
-        <div style="flex:1;min-width:160px">
-          <div class="masterlabel">Overall &middot; <span id="secDone">0</span>/<span id="secTotal">0</span> sections scored &middot; <span id="masterCount">0</span> questions</div>
-          <div class="track"><i id="masterBar"></i></div>
-        </div>
-        <button class="clearall" id="clearAllBtn" onclick="clearAllScores()">Clear all scores</button>
-      </div>
-    </header>
-
-    <div class="card master">
-      <div class="tag mono">&Sigma;</div>
-      <h3>Master &mdash; every section, A&ndash;L</h3>
-      <div class="meta"><span>Full-slate run</span><span class="scorepct" id="masterScore">&mdash;</span></div>
-      <div class="minibar"><i id="masterMini"></i></div>
-      <div class="btnrow">
-        <button class="btn practice" onclick="startRun('MASTER','practice',false)">Practice</button>
-        <button class="btn exam" onclick="startRun('MASTER','exam',false)">Exam</button>
-        <button class="btn drill" id="masterDrill" onclick="startRun('MASTER','practice',true)">Drill missed</button>
-      </div>
-      <div class="missflag zero" id="masterMiss">0 in missed bank</div>
-    </div>
-
-    <div class="subhead">Sections</div>
-    <div class="grid" id="sectionGrid"></div>
-
-    <div class="subhead">Custom practice &mdash; combine sections</div>
-    <div class="card wide">
-      <div class="chips" id="customChips"></div>
-      <div class="btnrow">
-        <button class="btn practice" style="flex:2" onclick="startCustom('practice')">Practice selected</button>
-        <button class="btn exam" style="flex:2" onclick="startCustom('exam')">Exam selected</button>
-      </div>
-    </div>
-
-    <footer>
-      Practice tells you right/wrong instantly &middot; Exam runs blind, misses revealed at the end<br>
-      Every miss drops into that section&rsquo;s bank &middot; drill missed until it empties &middot; scores persist on this device
-    </footer>
-  </section>
-
-  <!-- ===== QUIZ ===== -->
-  <section id="quiz" class="hide">
-    <div class="quizhead">
-      <span class="where" id="quizWhere">&mdash;</span>
-      <span class="live" id="quizLive"></span>
-    </div>
-    <div class="qtrack"><i id="quizBar"></i></div>
-    <div class="plate">
-      <div class="qnum mono" id="quizNum"></div>
-      <div class="qtext" id="quizText"></div>
-      <div class="opts" id="quizOpts"></div>
-      <div class="feedback" id="quizFeedback"></div>
-      <div class="flag" id="quizFlag"></div>
-    </div>
-    <div class="qbtns">
-      <button class="bigbtn ghost" onclick="quitToHub()">Quit</button>
-      <button class="bigbtn next hide" id="quizNext" onclick="nextQuestion()">Next</button>
-    </div>
-    <div class="exam-note hide" id="examNote">Exam mode &mdash; no feedback until the end.</div>
-  </section>
-
-  <!-- ===== RESULTS ===== -->
-  <section id="results" class="hide">
-    <div class="results">
-      <div class="quizhead"><span class="where" id="resWhere">&mdash;</span></div>
-      <div class="bigscore mono" id="resScore">0%</div>
-      <div class="rtally" id="resTally"></div>
-      <div id="resMissWrap"></div>
-      <div class="qbtns">
-        <button class="bigbtn ghost" onclick="quitToHub()">Back to hub</button>
-        <button class="bigbtn ghost" id="resCopy" onclick="copyMissed()">Copy missed</button>
-        <button class="bigbtn next" id="resDrill" onclick="drillFromResults()">Drill missed</button>
-      </div>
-    </div>
-  </section>
-
-</div>
+<div class="wrap" id="app"></div>
 
 <script>
-const DATA = {"sections": [{"id": "A", "title": "Skeleton of Thorax", "questions": [{"q": "The term 'osteocartilaginous' describes the thoracic cage because it is composed of:", "opts": ["Both bone and cartilage", "Bone only", "Cartilage and ligament", "Dense connective tissue only"], "ans": 0, "note": "Osteo = bone, cartilaginous = cartilage. The cage is ribs/sternum (bone) plus costal cartilage."}, {"q": "List the three sections of the sternum from superior to inferior:", "opts": ["Manubrium, body, xiphoid process", "Xiphoid, body, manubrium", "Manubrium, xiphoid, body", "Body, manubrium, xiphoid"], "ans": 0, "note": "Manubrium (top) → body (middle) → xiphoid process (bottom)."}, {"q": "The manubrium articulates with the clavicles, the 1st rib, and part of the:", "opts": ["2nd rib (at the sternal angle)", "3rd rib", "Xiphoid process only", "7th rib"], "ans": 0, "note": "The 2nd rib articulates at the manubriosternal junction (sternal angle), shared with the body."}, {"q": "The 1st rib articulates with the manubrium via:", "opts": ["Full costal cartilage", "A synovial joint only", "The sternal angle", "The xiphoid process"], "ans": 0, "note": "Rib 1 joins the manubrium through its complete costal cartilage."}, {"q": "The sternal angle is the joint between the manubrium and body, also called the:", "opts": ["Manubriosternal joint", "Xiphisternal joint", "Sternoclavicular joint", "Costochondral joint"], "ans": 0, "note": "It is a clinically key landmark used to locate the 2nd rib and for auscultation."}, {"q": "The sternal angle is clinically used to identify which rib?", "opts": ["The 2nd rib", "The 1st rib", "The 7th rib", "The 12th rib"], "ans": 0, "note": "Slide laterally from the sternal angle to find the 2nd costal cartilage/rib."}, {"q": "The body of the sternum articulates via costal cartilage with which ribs?", "opts": ["Ribs 2-7", "Ribs 1-5", "Ribs 8-12", "Ribs 3-10"], "ans": 0, "note": "The body shares rib 2 with the manubrium and takes ribs 3-7 (and part of 2)."}, {"q": "The xiphoid process is the inferior section of the sternum and serves as an attachment for the:", "opts": ["Diaphragm", "Trapezius", "Clavicle", "Scalenes"], "ans": 0, "note": "The xiphoid is a landmark and attachment point (diaphragm, some abdominal muscles)."}, {"q": "Ribs 1-7, which attach directly to the sternum by their own costal cartilage, are termed:", "opts": ["Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Vertebral (floating) ribs", "Costal ribs"], "ans": 0, "note": "True ribs attach directly to the sternum."}, {"q": "Ribs 8-10, which attach to the sternum indirectly via the cartilage above them, are termed:", "opts": ["Vertebrochondral (false) ribs", "Vertebrosternal (true) ribs", "Vertebral (floating) ribs", "Cervical ribs"], "ans": 0, "note": "False ribs share costal cartilage rather than attaching directly."}, {"q": "Ribs 11-12, which have no anterior sternal attachment, are termed:", "opts": ["Vertebral (floating) ribs", "Vertebrosternal (true) ribs", "Vertebrochondral (false) ribs", "Costal ribs"], "ans": 0, "note": "Floating ribs attach only posteriorly to vertebrae."}, {"q": "The head of a typical rib articulates with the:", "opts": ["Bodies of vertebrae (costal facets)", "Transverse process only", "Spinous process", "Costal cartilage of the rib above"], "ans": 0, "note": "The head joins vertebral bodies; the tubercle joins the transverse process."}, {"q": "The tubercle of a typical rib articulates with the:", "opts": ["Transverse process of a thoracic vertebra", "Vertebral body", "Spinous process", "Sternum"], "ans": 0, "note": "Tubercle → transverse process; head → vertebral body/bodies."}, {"q": "The costal groove on the inferior inner surface of a rib houses the:", "opts": ["Intercostal vein, artery, and nerve (VAN)", "Spinal cord", "Thoracic duct", "Vagus nerve"], "ans": 0, "note": "The neurovascular bundle runs in the costal groove: vein, artery, nerve top-to-bottom."}, {"q": "The head of Rib 1 is atypical because it articulates with:", "opts": ["T1 only (a single vertebra)", "T1 and T2", "C7 and T1", "T1 through T3"], "ans": 0, "note": "Rib 1's head joins only T1; typical ribs (2-9) join two vertebrae."}, {"q": "The head of a typical rib (e.g., Ribs 2-9) articulates with:", "opts": ["Two adjacent vertebrae and the disc between them", "One vertebra only", "The transverse process only", "The sternum"], "ans": 0, "note": "Typical rib heads span two vertebral bodies plus the intervertebral disc."}, {"q": "Ribs 11 and 12 are atypical posteriorly because their heads articulate with:", "opts": ["Their own single vertebra only (no tubercle articulation)", "Two vertebrae plus disc", "The transverse process", "T10 and T11"], "ans": 0, "note": "Floating ribs join only their own vertebra and lack a tubercle articulation."}, {"q": "Rib 1 is visibly unique because it is short, flat, sharply curved, and has grooves for the:", "opts": ["Subclavian vessels", "Vertebral artery", "Azygos vein", "Internal thoracic artery"], "ans": 0, "note": "The subclavian artery and vein grooves cross the superior surface of rib 1."}, {"q": "Ribs 11 and 12 are visibly unique because they:", "opts": ["Lack a neck and tubercle", "Have the longest necks", "Articulate with the sternum", "Have two facets on the head"], "ans": 0, "note": "Floating ribs are short and lack the neck/tubercle of typical ribs."}]}, {"id": "B", "title": "Muscles of Thorax", "questions": [{"q": "The diaphragm attaches bony to the xiphoid process, the lower six costal cartilages/ribs, and the:", "opts": ["L1-L3 vertebrae via crura", "T1-T4 vertebrae", "Manubrium", "Clavicles"], "ans": 0, "note": "The right and left crura anchor the diaphragm to the upper lumbar vertebrae."}, {"q": "The central tendon of the diaphragm is a:", "opts": ["Trefoil-shaped aponeurosis at the center", "Bony plate", "Muscular sphincter", "Cartilage disc"], "ans": 0, "note": "Muscle fibers converge on this leaf-shaped tendon."}, {"q": "The caval opening of the diaphragm at the T8 level transmits the:", "opts": ["Inferior vena cava", "Aorta", "Esophagus", "Thoracic duct"], "ans": 0, "note": "T8 = IVC. Mnemonic: vena cava has 8 letters."}, {"q": "The esophageal hiatus of the diaphragm at the T10 level transmits the esophagus and the:", "opts": ["Vagus nerves", "Thoracic duct", "Azygos vein", "Phrenic nerve"], "ans": 0, "note": "T10 = esophagus + vagal trunks. 'Esophagus' has 10 letters."}, {"q": "The aortic hiatus at the T12 level transmits the aorta, thoracic duct, and:", "opts": ["Azygos vein", "Vagus nerves", "Inferior vena cava", "Phrenic nerve"], "ans": 0, "note": "T12 = aorta + thoracic duct + azygos. 'Aortic hiatus' has 12 letters."}, {"q": "The 2 intercostal muscles that elevate the ribs for inspiration are the external intercostals and the:", "opts": ["Interchondral part of the internal intercostals", "Innermost intercostals", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "External intercostals + the interchondral (parasternal) internal intercostals aid inspiration."}, {"q": "The 2 intercostal muscles that depress the ribs for expiration are the internal intercostals and the:", "opts": ["Innermost intercostals", "External intercostals", "Scalenes", "Pectoralis minor"], "ans": 0, "note": "The interosseous internal intercostals plus innermost intercostals depress ribs."}, {"q": "The 3 accessory muscles for forced inhalation are the sternocleidomastoid, scalenes, and:", "opts": ["Pectoralis minor", "Rectus abdominis", "Transversus thoracis", "Serratus posterior inferior"], "ans": 0, "note": "SCM and scalenes lift the upper ribs/sternum; pec minor assists when arms are fixed."}, {"q": "The 2 thoracic muscles active in forced exhalation are the transversus thoracis and the:", "opts": ["Serratus posterior inferior", "Diaphragm", "Scalenes", "Sternocleidomastoid"], "ans": 0, "note": "These pull ribs down; abdominal muscles also drive forced expiration."}, {"q": "The nerve that controls contractions of the diaphragm is the:", "opts": ["Phrenic nerve (C3, C4, C5)", "Vagus nerve", "Intercostal nerves", "Thoracodorsal nerve"], "ans": 0, "note": "'C3, 4, 5 keep the diaphragm alive.'"}]}, {"id": "C", "title": "Heart", "questions": [{"q": "The fibrous pericardium functions to:", "opts": ["Anchor the heart and prevent overfilling", "Produce serous fluid", "Contract to pump blood", "Conduct electrical impulses"], "ans": 0, "note": "Tough outer sac: protection, anchoring, prevents overdistension."}, {"q": "The parietal serous pericardium is located:", "opts": ["Lining the inner surface of the fibrous pericardium", "Directly on the heart surface", "Between the two ventricles", "Around the great vessels only"], "ans": 0, "note": "Parietal layer lines the fibrous sac; visceral layer hugs the heart."}, {"q": "The visceral serous pericardium is located:", "opts": ["On the outer surface of the heart", "Lining the fibrous pericardium", "In the pericardial cavity as fluid", "Within the myocardium"], "ans": 0, "note": "It clings directly to the heart's surface."}, {"q": "The alternative name for the visceral serous pericardium is the:", "opts": ["Epicardium", "Endocardium", "Myocardium", "Parietal pericardium"], "ans": 0, "note": "Visceral serous pericardium = epicardium (the heart's outer layer)."}, {"q": "The pericardial cavity contains serous fluid whose function is to:", "opts": ["Reduce friction as the heart beats", "Oxygenate the myocardium", "Trigger the heartbeat", "Store calcium"], "ans": 0, "note": "The lubricating film lets the serous layers glide."}, {"q": "The three layers of the heart wall from outer to inner are:", "opts": ["Epicardium, myocardium, endocardium", "Endocardium, myocardium, epicardium", "Myocardium, epicardium, endocardium", "Pericardium, myocardium, endocardium"], "ans": 0, "note": "Epi- (outer), myo- (muscle), endo- (inner lining)."}, {"q": "Gap junctions in cardiac muscle function to:", "opts": ["Allow electrical signals to spread cell-to-cell", "Anchor cells mechanically only", "Store neurotransmitter", "Filter blood"], "ans": 0, "note": "Gap junctions let ions pass so the myocardium acts as a functional syncytium."}, {"q": "The 2 upper chambers of the heart are the:", "opts": ["Atria", "Ventricles", "Auricles", "Sinuses"], "ans": 0, "note": "Atria receive blood; ventricles pump it out."}, {"q": "The 2 lower chambers of the heart are the:", "opts": ["Ventricles", "Atria", "Auricles", "Vena cavae"], "ans": 0, "note": "Ventricles are the pumping chambers."}, {"q": "The tricuspid valve is located between the:", "opts": ["Right atrium and right ventricle", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Left ventricle and aorta"], "ans": 0, "note": "Right AV valve = tricuspid (3 cusps)."}, {"q": "The bicuspid valve, located between the left atrium and left ventricle, is also called the:", "opts": ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"], "ans": 0, "note": "Left AV valve = bicuspid = mitral."}, {"q": "The large artery carrying blood away from the right ventricle is the:", "opts": ["Pulmonary trunk", "Aorta", "Superior vena cava", "Coronary sinus"], "ans": 0, "note": "Right ventricle → pulmonary trunk → lungs."}, {"q": "The large artery carrying blood away from the left ventricle is the:", "opts": ["Aorta", "Pulmonary trunk", "Pulmonary vein", "Coronary artery"], "ans": 0, "note": "Left ventricle → aorta → body."}, {"q": "The pulmonary (semilunar) valve is located between the:", "opts": ["Right ventricle and pulmonary trunk", "Right atrium and right ventricle", "Left ventricle and aorta", "Left atrium and left ventricle"], "ans": 0, "note": "Guards the exit from the right ventricle."}, {"q": "The aortic (semilunar) valve is located between the:", "opts": ["Left ventricle and aorta", "Left atrium and left ventricle", "Right ventricle and pulmonary trunk", "Right atrium and right ventricle"], "ans": 0, "note": "Guards the exit from the left ventricle."}, {"q": "The right side of the heart carries which type of blood?", "opts": ["Deoxygenated blood", "Oxygenated blood", "Filtered blood", "Mixed blood only"], "ans": 0, "note": "Right side = deoxygenated (heads to lungs)."}, {"q": "The 3 structures that return blood to the right atrium are the SVC, IVC, and:", "opts": ["Coronary sinus", "Pulmonary veins", "Aorta", "Azygos vein"], "ans": 0, "note": "The coronary sinus drains the heart's own venous blood into the RA."}, {"q": "The left side of the heart carries which type of blood?", "opts": ["Oxygenated blood", "Deoxygenated blood", "Filtered blood", "Lymph"], "ans": 0, "note": "Left side = oxygenated (heads to body)."}, {"q": "The structures that return blood to the left atrium are the:", "opts": ["Four pulmonary veins", "Superior and inferior vena cava", "Coronary sinus", "Pulmonary arteries"], "ans": 0, "note": "Four pulmonary veins bring oxygenated blood from the lungs to the LA."}, {"q": "A key structural difference between an atrioventricular valve and a semilunar valve is that AV valves have:", "opts": ["Chordae tendineae anchoring them", "Three cusps always", "No cusps", "A muscular sphincter"], "ans": 0, "note": "AV valves attach to papillary muscles via chordae tendineae; semilunar valves do not."}, {"q": "Pectinate muscles are ridged muscle bundles found in the:", "opts": ["Atrial walls/auricles", "Ventricular walls", "Interventricular septum", "Great vessels"], "ans": 0, "note": "Pectinate muscle = atria; trabeculae carneae = ventricles."}, {"q": "Trabeculae carneae are the irregular muscular ridges found in the:", "opts": ["Ventricular walls", "Atrial walls", "Coronary sinus", "Aortic arch"], "ans": 0, "note": "Ridges of the ventricular myocardium."}, {"q": "The fossa ovalis is a depression in the interatrial septum that is the remnant of the:", "opts": ["Foramen ovale", "Ductus arteriosus", "Ligamentum arteriosum", "Coronary sinus"], "ans": 0, "note": "The fetal foramen ovale closes to become the fossa ovalis."}, {"q": "The SA node, the heart's pacemaker, is located in the wall of the:", "opts": ["Right atrium (near the SVC)", "Left ventricle", "Interventricular septum", "Aortic arch"], "ans": 0, "note": "SA node sits in the RA wall near the SVC opening."}, {"q": "Place the cardiac conduction components in the correct order from the SA node:", "opts": ["SA node → AV node → AV bundle → bundle branches → Purkinje fibers", "SA node → Purkinje fibers → AV node → bundle branches → AV bundle", "AV node → SA node → bundle branches → AV bundle → Purkinje fibers", "SA node → bundle branches → AV node → AV bundle → Purkinje fibers"], "ans": 0, "note": "SA → AV node → bundle of His → L/R bundle branches → Purkinje fibers."}, {"q": "The autonomic centers that regulate the heart are located in the brainstem's:", "opts": ["Medulla oblongata", "Cerebellum", "Thalamus", "Pons only"], "ans": 0, "note": "Cardiac (cardioacceleratory/cardioinhibitory) centers are in the medulla."}, {"q": "Sympathetic innervation of the heart has what effect?", "opts": ["Increases heart rate and contractility", "Decreases heart rate", "Has no effect on rate", "Stops the heart"], "ans": 0, "note": "Sympathetic = 'fight or flight' = faster, stronger beats."}, {"q": "Parasympathetic innervation (via the vagus nerve) of the heart has what effect?", "opts": ["Decreases heart rate", "Increases contractility", "Increases heart rate", "No effect on rate"], "ans": 0, "note": "Vagal 'rest and digest' slows the heart."}]}, {"id": "D", "title": "Cardiovascular Pathways", "questions": [{"q": "The contraction of the left ventricle is the driving force for which circulation?", "opts": ["Systemic circulation", "Pulmonary circulation", "Portal circulation", "Coronary circulation only"], "ans": 0, "note": "Left ventricle → systemic; right ventricle → pulmonary."}, {"q": "In systemic circulation, oxygen travels within systemic arteries and diffuses out at the:", "opts": ["Capillary beds", "Large arteries", "Venules only", "Aorta"], "ans": 0, "note": "Gas exchange happens in capillaries."}, {"q": "Systemic veins carry which blood back to the right side of the heart?", "opts": ["Less-oxygenated blood", "Fully oxygenated blood", "Lymph", "Filtered plasma"], "ans": 0, "note": "Systemic veins return deoxygenated blood to the RA."}, {"q": "The contraction of the right ventricle drives blood to the lungs; oxygenation then occurs in the:", "opts": ["Pulmonary capillary beds", "Systemic capillaries", "Left ventricle", "Aorta"], "ans": 0, "note": "Pulmonary capillaries surrounding alveoli."}, {"q": "Pulmonary veins are unusual because they carry oxygenated blood to the:", "opts": ["Left side of the heart", "Right side of the heart", "Lungs", "Systemic tissues"], "ans": 0, "note": "Pulmonary veins carry oxygenated blood (arteries carry deoxygenated) to the LA."}, {"q": "The left ventricular wall is thicker than the right because it must:", "opts": ["Generate higher pressure for systemic circulation", "Hold more blood", "Contract more slowly", "Pump against gravity only"], "ans": 0, "note": "Systemic circuit has far higher resistance than the pulmonary circuit."}, {"q": "The brachiocephalic trunk, a branch of the aortic arch, branches into the right common carotid and the:", "opts": ["Right subclavian artery", "Left subclavian artery", "Left common carotid", "Internal thoracic artery"], "ans": 0, "note": "Brachiocephalic → R subclavian + R common carotid."}, {"q": "The left common carotid and left subclavian arteries branch directly from the:", "opts": ["Aortic arch", "Brachiocephalic trunk", "Pulmonary trunk", "Descending aorta"], "ans": 0, "note": "On the left, both arise straight off the arch (no brachiocephalic on the left)."}, {"q": "The internal thoracic artery is a branch of the:", "opts": ["Subclavian artery", "Common carotid artery", "Celiac trunk", "Abdominal aorta"], "ans": 0, "note": "It descends behind the sternum from the subclavian."}, {"q": "The celiac trunk is an unpaired branch of the abdominal aorta that branches into the left gastric, splenic, and:", "opts": ["Common hepatic artery", "Superior mesenteric artery", "Renal artery", "Gonadal artery"], "ans": 0, "note": "Celiac trunk trifurcation: left gastric, splenic, common hepatic."}, {"q": "The superior mesenteric artery branches from the:", "opts": ["Abdominal aorta", "Celiac trunk", "Common iliac artery", "Splenic artery"], "ans": 0, "note": "SMA is an unpaired anterior branch of the abdominal aorta."}, {"q": "The renal arteries are paired branches of the:", "opts": ["Abdominal aorta", "Common iliac arteries", "Celiac trunk", "Superior mesenteric artery"], "ans": 0, "note": "Paired laterals to the kidneys."}, {"q": "The gonadal (ovarian/testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "Paired anterior branches just below the renal arteries."}, {"q": "The common iliac artery divides into the external iliac and:", "opts": ["Internal iliac artery", "Renal artery", "Femoral artery", "Gonadal artery"], "ans": 0, "note": "At the pelvic brim the common iliac splits into external + internal iliac."}, {"q": "The subclavian vein and internal jugular vein join to form the:", "opts": ["Brachiocephalic vein", "Superior vena cava", "Azygos vein", "Hemiazygos vein"], "ans": 0, "note": "Subclavian + IJ → brachiocephalic vein."}, {"q": "The right and left brachiocephalic veins unite to form the:", "opts": ["Superior vena cava", "Inferior vena cava", "Azygos vein", "Coronary sinus"], "ans": 0, "note": "Both brachiocephalic veins merge into the SVC."}, {"q": "The azygos vein drains the thoracic wall and empties into the:", "opts": ["Superior vena cava", "Inferior vena cava", "Left brachiocephalic vein", "Coronary sinus"], "ans": 0, "note": "The azygos arches over the right lung root into the SVC."}, {"q": "The hepatic veins drain the liver directly into the:", "opts": ["Inferior vena cava", "Hepatic portal vein", "Superior vena cava", "Splenic vein"], "ans": 0, "note": "Hepatic veins → IVC (distinct from the portal inflow)."}, {"q": "The renal veins drain the kidneys into the:", "opts": ["Inferior vena cava", "Superior vena cava", "Azygos vein", "Hepatic portal vein"], "ans": 0, "note": "Kidneys → renal veins → IVC."}, {"q": "The right gonadal vein drains into the IVC, but the left gonadal vein drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Azygos vein"], "ans": 0, "note": "Left gonadal → left renal vein → IVC (asymmetry worth remembering)."}]}, {"id": "E", "title": "Special Cardiovascular", "questions": [{"q": "A portal venous system is defined as one in which blood passes through:", "opts": ["Two capillary beds before returning to the heart", "One capillary bed only", "No capillary beds", "The lymphatic system first"], "ans": 0, "note": "Portal systems link two capillary beds in series."}, {"q": "The hepatic portal system specifically carries blood from the:", "opts": ["GI tract to the liver", "Liver to the heart", "Kidneys to the liver", "Spleen to the lungs"], "ans": 0, "note": "Nutrient-rich blood from the gut is filtered by the liver first."}, {"q": "Blood from an organ supplied by a branch of the superior mesenteric artery drains into the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Arterial supply and venous drainage usually mirror each other by name."}, {"q": "Blood from an organ supplied by a branch of the inferior mesenteric artery drains into the:", "opts": ["Inferior mesenteric vein", "Superior mesenteric vein", "Splenic vein", "Hepatic vein"], "ans": 0, "note": "IMA territory → IMV."}, {"q": "The two veins that combine to form the hepatic portal vein are the splenic vein and the:", "opts": ["Superior mesenteric vein", "Inferior mesenteric vein", "Hepatic vein", "Renal vein"], "ans": 0, "note": "Splenic v. + SMV = hepatic portal vein."}, {"q": "The inferior mesenteric vein typically connects to the:", "opts": ["Splenic vein", "Superior mesenteric vein directly", "Inferior vena cava", "Hepatic vein"], "ans": 0, "note": "The IMV usually joins the splenic vein en route to the portal vein."}, {"q": "'Porta hepatis' is another name for which opening of the liver?", "opts": ["The hilum", "The falciform ligament", "The bare area", "The caudate lobe"], "ans": 0, "note": "Porta hepatis = the liver's hilum, where vessels/ducts enter and exit."}, {"q": "At the porta hepatis, the common hepatic duct primarily:", "opts": ["Exits, carrying bile away from the liver", "Enters, carrying blood in", "Enters, carrying oxygen", "Exits, carrying lymph"], "ans": 0, "note": "Hepatic portal vein and hepatic artery enter; the common hepatic duct exits with bile."}, {"q": "Coronary arteries bring blood to the heart tissue itself and arise just above which valve?", "opts": ["Aortic (semilunar) valve", "Pulmonary valve", "Mitral valve", "Tricuspid valve"], "ans": 0, "note": "The coronary ostia sit in the aortic sinuses just above the aortic valve."}, {"q": "The two branches of the left coronary artery are the circumflex and the:", "opts": ["Anterior interventricular (LAD)", "Posterior interventricular", "Right marginal", "Coronary sinus"], "ans": 0, "note": "Left coronary → circumflex + anterior interventricular (LAD)."}, {"q": "The two branches of the right coronary artery are the right marginal and the:", "opts": ["Posterior interventricular", "Anterior interventricular", "Circumflex", "Left marginal"], "ans": 0, "note": "Right coronary → right marginal + posterior interventricular."}, {"q": "The coronary sinus functions to:", "opts": ["Collect venous blood from the heart wall", "Supply oxygen to the myocardium", "Pump blood to the lungs", "Store bile"], "ans": 0, "note": "It's the main venous drain of the heart."}, {"q": "The coronary sinus drains into which chamber?", "opts": ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], "ans": 0, "note": "Coronary sinus empties into the RA."}, {"q": "The fundamental difference between fetal and adult circulation is that in the fetus:", "opts": ["The lungs are largely bypassed", "The liver is bypassed only", "There is no heartbeat", "Blood does not carry oxygen"], "ans": 0, "note": "Fetal shunts route blood around the non-functional lungs."}, {"q": "The foramen ovale in the fetus is an opening that allows blood to pass:", "opts": ["From the right atrium to the left atrium", "From the left ventricle to the aorta", "Between the two ventricles", "From the aorta to the pulmonary trunk"], "ans": 0, "note": "It shunts blood RA→LA, bypassing the pulmonary circuit."}, {"q": "The ligamentum arteriosum is the adult remnant of the:", "opts": ["Ductus arteriosus", "Ductus venosus", "Foramen ovale", "Umbilical vein"], "ans": 0, "note": "The ductus arteriosus (pulmonary trunk↔aorta shunt) becomes this ligament."}, {"q": "In fetal circulation, the umbilical vein carries which blood, and in which direction?", "opts": ["Oxygenated blood toward the fetus", "Deoxygenated blood away from the fetus", "Oxygenated blood to the placenta", "Deoxygenated blood to the fetus"], "ans": 0, "note": "Umbilical VEIN = oxygenated, to the fetus; umbilical ARTERIES = deoxygenated, to placenta."}, {"q": "The foramen ovale becomes which structure after birth?", "opts": ["Fossa ovalis", "Ligamentum arteriosum", "Ligamentum teres", "Ligamentum venosum"], "ans": 0, "note": "Fetal → remnant: foramen ovale → fossa ovalis."}, {"q": "The ductus arteriosus becomes which structure after birth?", "opts": ["Ligamentum arteriosum", "Fossa ovalis", "Ligamentum teres (round ligament of liver)", "Medial umbilical ligaments"], "ans": 0, "note": "Ductus arteriosus → ligamentum arteriosum."}, {"q": "The umbilical vein becomes which structure after birth?", "opts": ["Ligamentum teres (round ligament of the liver)", "Ligamentum arteriosum", "Fossa ovalis", "Ligamentum venosum"], "ans": 0, "note": "Umbilical vein → ligamentum teres / round ligament of the liver."}, {"q": "The paired umbilical arteries become which structures after birth?", "opts": ["Medial umbilical ligaments", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Umbilical arteries → medial umbilical ligaments."}, {"q": "The ductus venosus becomes which structure after birth?", "opts": ["Ligamentum venosum", "Ligamentum teres", "Fossa ovalis", "Ligamentum arteriosum"], "ans": 0, "note": "Ductus venosus (bypassed the liver) → ligamentum venosum."}]}, {"id": "F", "title": "Lymphatic System", "questions": [{"q": "The three functions of the lymphatic system are immunity, fat absorption, and:", "opts": ["Fluid balance (returning interstitial fluid to blood)", "Gas exchange", "Hormone secretion", "Erythrocyte production"], "ans": 0, "note": "Fluid balance, immune defense, lipid absorption (lacteals)."}, {"q": "Lymphatic vessels are structurally like veins because they:", "opts": ["Have valves and carry fluid one-way toward the heart", "Carry blood away from the heart", "Have thick muscular walls", "Pulse with the heartbeat"], "ans": 0, "note": "One-way, low-pressure, valved vessels."}, {"q": "The fluid that travels through lymphatic vessels is called:", "opts": ["Lymph", "Plasma", "Serum", "Interstitial fluid"], "ans": 0, "note": "Once interstitial fluid enters a lymphatic vessel it is called lymph."}, {"q": "Place the fluid in order as it moves to and from the cardiovascular system:", "opts": ["Plasma → interstitial fluid → lymph → (back to plasma)", "Lymph → plasma → interstitial fluid", "Interstitial fluid → plasma → lymph", "Plasma → lymph → interstitial fluid"], "ans": 0, "note": "Plasma leaks out as interstitial fluid, is picked up as lymph, and returns to blood."}, {"q": "An organ is classified as lymphatic if it:", "opts": ["Contains large amounts of lymphatic tissue/lymphocytes", "Filters blood only", "Produces bile", "Secretes hormones"], "ans": 0, "note": "Lymphatic organs are built from reticular tissue housing lymphocytes."}, {"q": "The lymphatic organs include the spleen, thymus, tonsils, red bone marrow, and:", "opts": ["Lymph nodes", "Pancreas", "Liver", "Adrenal glands"], "ans": 0, "note": "Spleen, thymus, tonsils, marrow, nodes (and MALT)."}, {"q": "The only lymphatic organ capable of producing lymphocytes/WBCs is the:", "opts": ["Red bone marrow", "Spleen", "Tonsils", "Thymus"], "ans": 0, "note": "All blood cells, including lymphocytes, originate in red bone marrow."}, {"q": "The lymphatic structure that allows the maturation of T-lymphocytes is the:", "opts": ["Thymus", "Spleen", "Red bone marrow", "Lymph node"], "ans": 0, "note": "T cells mature in the thymus."}, {"q": "The 2 lymphatic ducts are the right lymphatic duct and the thoracic duct, which drains about:", "opts": ["75% of the body (into the left venous angle)", "25% of the body", "100% of the body", "50% of the body"], "ans": 0, "note": "Thoracic duct drains ~3/4 of the body; right lymphatic duct drains the right upper quadrant."}, {"q": "If lymphatic fluid is not picked up by lymphatic capillaries in the tissues, the result is:", "opts": ["Edema (tissue swelling)", "Dehydration", "Anemia", "Ischemia"], "ans": 0, "note": "Fluid accumulates in the interstitium as edema."}, {"q": "The spleen is located in the LUQ and filters blood; its arterial supply, the splenic artery, branches from the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Renal artery", "Inferior mesenteric artery"], "ans": 0, "note": "Splenic artery is a branch of the celiac trunk."}, {"q": "The primary function of a lymph node is to:", "opts": ["Filter lymph and mount immune responses", "Produce red blood cells", "Store bile", "Oxygenate blood"], "ans": 0, "note": "Nodes filter lymph and house lymphocytes/macrophages."}, {"q": "The vessels that carry lymph INTO a lymph node are the ___, and those carrying it OUT are the ___:", "opts": ["Afferent vessels; efferent vessels", "Efferent vessels; afferent vessels", "Arteries; veins", "Ducts; capillaries"], "ans": 0, "note": "Afferent = Arrive; Efferent = Exit."}]}, {"id": "G", "title": "Thoracic Cavity & Respiratory", "questions": [{"q": "The three subdivisions of the thoracic cavity are the two pleural cavities and the:", "opts": ["Mediastinum", "Pericardial cavity only", "Peritoneal cavity", "Abdominal cavity"], "ans": 0, "note": "Left + right pleural cavities flank the central mediastinum."}, {"q": "The border between the superior and inferior mediastinum is marked by the:", "opts": ["Sternal angle (T4/T5)", "Xiphoid process", "Jugular notch", "Diaphragm"], "ans": 0, "note": "A plane from the sternal angle to the T4/T5 disc divides the mediastinum."}, {"q": "The heart is found in which region of the mediastinum?", "opts": ["Middle mediastinum", "Superior mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The heart and pericardium define the middle mediastinum."}, {"q": "The thoracic aorta and esophagus are found in which region of the mediastinum?", "opts": ["Posterior mediastinum", "Middle mediastinum", "Anterior mediastinum", "Superior mediastinum only"], "ans": 0, "note": "Descending thoracic aorta, esophagus, azygos, thoracic duct = posterior."}, {"q": "The thymus gland is found primarily in which mediastinal region(s)?", "opts": ["Superior/anterior mediastinum", "Posterior mediastinum", "Middle mediastinum", "Pleural cavity"], "ans": 0, "note": "The thymus sits in the anterior/superior mediastinum behind the sternum."}, {"q": "The aortic arch is found in which region of the mediastinum?", "opts": ["Superior mediastinum", "Middle mediastinum", "Posterior mediastinum", "Anterior mediastinum"], "ans": 0, "note": "The arch lies in the superior mediastinum."}, {"q": "The trachea belongs to which body system?", "opts": ["Respiratory system", "Digestive system", "Lymphatic system", "Cardiovascular system"], "ans": 0, "note": "The trachea conducts air (respiratory)."}, {"q": "The esophagus belongs to which body system?", "opts": ["Digestive system", "Respiratory system", "Cardiovascular system", "Nervous system"], "ans": 0, "note": "The esophagus moves food (digestive)."}, {"q": "The thoracic duct belongs to which body system?", "opts": ["Lymphatic system", "Cardiovascular system", "Digestive system", "Respiratory system"], "ans": 0, "note": "The thoracic duct is the body's largest lymphatic vessel."}, {"q": "The vagus nerve and phrenic nerve belong to which body system?", "opts": ["Nervous system", "Cardiovascular system", "Respiratory system", "Lymphatic system"], "ans": 0, "note": "Both are nerves (nervous system)."}, {"q": "The azygos vein, aortic arch, and brachiocephalic vein all belong to which body system?", "opts": ["Cardiovascular system", "Lymphatic system", "Respiratory system", "Nervous system"], "ans": 0, "note": "All are blood vessels (cardiovascular)."}, {"q": "The three layers of the pericardium from outer to inner are:", "opts": ["Fibrous, parietal serous, visceral serous (epicardium)", "Visceral serous, parietal serous, fibrous", "Endocardium, myocardium, epicardium", "Parietal, visceral, myocardium"], "ans": 0, "note": "Fibrous sac → parietal serous lining → visceral serous (epicardium) on the heart."}, {"q": "The visceral pleura adheres to the:", "opts": ["Outer surface of the lungs", "Inner surface of the thoracic wall", "Diaphragm only", "Mediastinum"], "ans": 0, "note": "Visceral pleura hugs the lung; parietal pleura lines the thoracic wall."}, {"q": "The parietal pleura adheres to the:", "opts": ["Inner surface of the thoracic wall", "Outer surface of the lungs", "Surface of the heart", "Trachea"], "ans": 0, "note": "Parietal = chest wall; visceral = lung surface; pleural cavity between them."}, {"q": "Compared to the left lung, the right lung is unique in that it has:", "opts": ["Three lobes and a horizontal fissure", "Two lobes and a cardiac notch", "A lingula", "No fissures"], "ans": 0, "note": "Right lung: 3 lobes, oblique + horizontal fissures. Left: 2 lobes, cardiac notch, lingula."}, {"q": "The cardiac notch and the lingula are features unique to the:", "opts": ["Left lung", "Right lung", "Both lungs equally", "Neither lung"], "ans": 0, "note": "The left lung is indented by the heart (cardiac notch) and has the lingula."}, {"q": "The nose and mouth are connected posteriorly by the:", "opts": ["Nasal cavity/pharynx", "Trachea", "Esophagus", "Larynx"], "ans": 0, "note": "Air and food pathways meet in the pharynx."}, {"q": "Inhaled air is filtered, warmed, and moistened primarily in the:", "opts": ["Nasal cavity", "Trachea", "Bronchi", "Alveoli"], "ans": 0, "note": "The nasal conchae/mucosa condition incoming air."}, {"q": "The nasopharynx and laryngopharynx are connected by the:", "opts": ["Oropharynx", "Nasal cavity", "Larynx", "Esophagus"], "ans": 0, "note": "Pharyngeal regions top-to-bottom: naso-, oro-, laryngopharynx."}, {"q": "The larynx opens inferiorly into the:", "opts": ["Trachea", "Esophagus", "Nasopharynx", "Primary bronchi"], "ans": 0, "note": "Larynx → trachea → bronchi."}, {"q": "The cricoid cartilage of the larynx is best described as:", "opts": ["A complete ring of cartilage", "A leaf-shaped flap", "The Adam's apple", "A pair of vocal folds"], "ans": 0, "note": "The cricoid is the only complete cartilage ring of the airway."}, {"q": "The carina is the ridge at the point where the trachea:", "opts": ["Divides into the primary bronchi", "Meets the larynx", "Enters the lung hilum", "Branches into alveoli"], "ans": 0, "note": "The carina marks the tracheal bifurcation."}, {"q": "The thyroid cartilage of the larynx is commonly known as the:", "opts": ["Adam's apple", "Cricoid ring", "Epiglottis", "Carina"], "ans": 0, "note": "The thyroid cartilage forms the laryngeal prominence."}, {"q": "The hilus (hilum) of the lung is the:", "opts": ["Indentation where vessels/bronchi enter the lung", "Apex of the lung", "Base resting on the diaphragm", "Cardiac notch"], "ans": 0, "note": "The root structures pass through the hilum."}]}, {"id": "H", "title": "Abdominopelvic Muscles", "questions": [{"q": "The 3 specific components of the levator ani muscle are the pubococcygeus, iliococcygeus, and:", "opts": ["Puborectalis", "Coccygeus", "Bulbospongiosus", "Ischiocavernosus"], "ans": 0, "note": "Levator ani = pubococcygeus + iliococcygeus + puborectalis."}, {"q": "The pubococcygeus muscle acts to:", "opts": ["Support the pelvic viscera and compress the urethra/vagina", "Sling around the anorectal junction", "Compress the crus of the penis", "Expel urine from the urethra"], "ans": 0, "note": "It supports pelvic organs and helps close the urethra/vagina."}, {"q": "The iliococcygeus muscle acts to:", "opts": ["Elevate the pelvic floor", "Constrict the vaginal orifice", "Compress the clitoris", "Support the perineal body"], "ans": 0, "note": "It lifts and supports the pelvic floor."}, {"q": "The puborectalis muscle acts to:", "opts": ["Sling around the anorectal junction to maintain continence", "Elevate the pelvic floor only", "Compress the greater vestibular gland", "Support the crus of the penis"], "ans": 0, "note": "Its sling raises the anorectal junction and preserves fecal continence."}, {"q": "The bony landmarks of the perineum include the pubic symphysis, ischial tuberosities, coccyx, and:", "opts": ["Ischiopubic rami", "Iliac crest", "Sacral promontory", "Xiphoid process"], "ans": 0, "note": "Diamond boundaries: pubic symphysis, ischiopubic rami, ischial tuberosities, sacrotuberous ligaments, coccyx."}, {"q": "The perineum can be subdivided into two triangles:", "opts": ["The urogenital triangle and the anal triangle", "The pelvic and abdominal triangles", "The superior and inferior triangles", "The femoral and inguinal triangles"], "ans": 0, "note": "A line between the ischial tuberosities splits it into UG (anterior) and anal (posterior)."}, {"q": "Three muscles present in the urogenital triangle of BOTH sexes are the ischiocavernosus, bulbospongiosus, and:", "opts": ["Superficial transverse perineal", "Levator ani", "Coccygeus", "Puborectalis"], "ans": 0, "note": "Ischiocavernosus, bulbospongiosus, superficial transverse perineal are common to both."}, {"q": "The muscle structures of the anal triangle include the anal canal and the:", "opts": ["External anal sphincter", "Bulbospongiosus", "Ischiocavernosus", "Deep transverse perineal"], "ans": 0, "note": "The anal triangle contains the anal canal and external anal sphincter."}, {"q": "In the biological female, the bulbospongiosus muscle acts to:", "opts": ["Constrict the vaginal orifice and compress the greater vestibular gland", "Compress the clitoris", "Expel semen from the urethra", "Support the perineal body"], "ans": 0, "note": "Female bulbospongiosus: constricts the vaginal orifice and compresses Bartholin's gland."}, {"q": "In the biological male, the bulbospongiosus muscle acts to:", "opts": ["Expel urine/semen from the urethra", "Constrict the vaginal orifice", "Compress the clitoris", "Elevate the pelvic floor"], "ans": 0, "note": "Male bulbospongiosus empties the urethra of urine/semen."}, {"q": "The ischiocavernosus muscle acts to:", "opts": ["Compress the crus of the penis or clitoris", "Constrict the vaginal orifice", "Elevate the anorectal junction", "Expel semen"], "ans": 0, "note": "It compresses the crus to maintain erection."}, {"q": "The superficial transverse perineal muscle acts to:", "opts": ["Support the perineal body", "Compress the clitoris", "Constrict the vaginal orifice", "Elevate the pelvic floor"], "ans": 0, "note": "It stabilizes the central perineal body/tendon."}, {"q": "The structures named in question 14 of the anal triangle are the anal canal and the external anal sphincter, the latter being under:", "opts": ["Voluntary (skeletal) control", "Involuntary (smooth) control", "No control", "Hormonal control only"], "ans": 0, "note": "External anal sphincter = skeletal muscle, voluntary; internal = smooth, involuntary."}]}, {"id": "I", "title": "Digestive System", "questions": [{"q": "Name the organs of the GI tract in order:", "opts": ["Oral cavity, pharynx, esophagus, stomach, small intestine, large intestine, anal canal", "Esophagus, stomach, pharynx, small intestine, large intestine", "Oral cavity, esophagus, stomach, liver, small intestine, anal canal", "Pharynx, stomach, small intestine, pancreas, large intestine"], "ans": 0, "note": "The continuous alimentary tube from mouth to anus."}, {"q": "The accessory digestive organs include the teeth, tongue, salivary glands, liver, gallbladder, and:", "opts": ["Pancreas", "Stomach", "Small intestine", "Esophagus"], "ans": 0, "note": "Accessories aid digestion but food doesn't pass through them (except mouth structures)."}, {"q": "The general function of the digestive system described as 'food in the mouth' is:", "opts": ["Ingestion", "Absorption", "Defecation", "Propulsion"], "ans": 0, "note": "Ingestion = taking food into the mouth."}, {"q": "The structure(s) dividing the abdominal cavity into 4 quadrants intersect at the:", "opts": ["Umbilicus (median + transumbilical planes)", "Xiphoid process", "Pubic symphysis", "Iliac crest"], "ans": 0, "note": "Two perpendicular planes crossing at the umbilicus give the four quadrants."}, {"q": "The purpose of dividing the abdominal cavity into quadrants is to:", "opts": ["Give clinicians quick vocabulary to localize organs/pain", "Separate the peritoneal cavities", "Define embryonic gut regions", "Mark vertebral levels"], "ans": 0, "note": "Quadrants/regions are a clinical shorthand for location."}, {"q": "The liver and gallbladder are found predominantly in which quadrant?", "opts": ["Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)", "Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)"], "ans": 0, "note": "Liver + gallbladder = RUQ."}, {"q": "The stomach and spleen are found predominantly in which quadrant?", "opts": ["Left upper quadrant (LUQ)", "Right upper quadrant (RUQ)", "Left lower quadrant (LLQ)", "Right lower quadrant (RLQ)"], "ans": 0, "note": "Stomach and spleen = LUQ."}, {"q": "The appendix is found predominantly in which quadrant?", "opts": ["Right lower quadrant (RLQ)", "Left lower quadrant (LLQ)", "Right upper quadrant (RUQ)", "Left upper quadrant (LUQ)"], "ans": 0, "note": "Appendix = RLQ (McBurney's point)."}, {"q": "List the 4 layers/tunics of the GI tract wall from inner to outer:", "opts": ["Mucosa, submucosa, muscularis externa, serosa", "Serosa, muscularis, submucosa, mucosa", "Mucosa, muscularis, submucosa, serosa", "Submucosa, mucosa, serosa, muscularis"], "ans": 0, "note": "Lumen → mucosa → submucosa → muscularis externa → serosa."}, {"q": "The peritoneum is defined as:", "opts": ["A serous membrane lining the abdominopelvic cavity", "A muscular layer of the gut wall", "The lining of blood vessels", "A cartilage sheet"], "ans": 0, "note": "Serous membrane with parietal and visceral layers."}, {"q": "Parietal peritoneum lines the ___, while visceral peritoneum covers the ___:", "opts": ["Cavity wall; organs", "Organs; cavity wall", "Blood vessels; nerves", "Diaphragm; lungs"], "ans": 0, "note": "Parietal = wall; visceral = organ surface."}, {"q": "An intraperitoneal organ is one that is:", "opts": ["Wrapped in peritoneum and mobile within the cavity", "Behind the peritoneum, fixed to the back wall", "Outside the abdominal cavity", "Located in the thorax"], "ans": 0, "note": "Intraperitoneal = suspended by mesentery; retroperitoneal = fixed behind."}, {"q": "Which of the following is an intraperitoneal organ?", "opts": ["Stomach", "Kidneys", "Pancreas (most of it)", "Ascending colon"], "ans": 0, "note": "Intraperitoneal: stomach, jejunum, ileum, transverse & sigmoid colon, liver, spleen."}, {"q": "Which of the following is a retroperitoneal organ?", "opts": ["Kidneys", "Stomach", "Transverse colon", "Spleen"], "ans": 0, "note": "Retroperitoneal: kidneys, pancreas, duodenum (2-4), ascending & descending colon."}, {"q": "A mesentery is defined as a:", "opts": ["Double peritoneal layer suspending an organ from the body wall", "Single serous membrane on the gut lumen", "Muscular sphincter", "Fold of the diaphragm"], "ans": 0, "note": "Two peritoneal sheets carrying vessels/nerves to an organ."}, {"q": "The three segments of the pharynx from superior to inferior are the nasopharynx, oropharynx, and:", "opts": ["Laryngopharynx", "Esophagus", "Larynx", "Trachea"], "ans": 0, "note": "Naso- (air only), oro- (air + food), laryngo- (air + food)."}, {"q": "A primary function of the esophagus is to:", "opts": ["Move the bolus by peristalsis and secrete mucus for lubrication", "Absorb nutrients", "Produce digestive enzymes", "Store bile"], "ans": 0, "note": "It transports and lubricates; no absorption/enzymes."}, {"q": "The esophagus lies in which position relative to the thoracic/descending aorta?", "opts": ["Anterior to the aorta", "Posterior to the aorta", "Lateral to the aorta only", "Inferior to the aorta"], "ans": 0, "note": "The esophagus runs anterior to the descending thoracic aorta."}, {"q": "The esophagus passes through the diaphragm at the esophageal hiatus, guarded by the:", "opts": ["Lower esophageal sphincter", "Pyloric sphincter", "Ileocecal valve", "Upper esophageal sphincter"], "ans": 0, "note": "The LES (cardiac sphincter) controls entry into the stomach at T10."}, {"q": "The semifluid product that exits the stomach into the duodenum is called:", "opts": ["Chyme", "Bolus", "Bile", "Chyle"], "ans": 0, "note": "Bolus (mouth) → chyme (stomach) → chyle (lymph fat)."}, {"q": "The regions of the stomach are the cardia, fundus, body, pylorus, and the two:", "opts": ["Curvatures (lesser and greater)", "Sphincters only", "Rugae", "Omenta"], "ans": 0, "note": "Lesser and greater curvatures define its right and left borders."}, {"q": "The pyloric sphincter functions to:", "opts": ["Control the release of chyme into the duodenum", "Prevent reflux into the esophagus", "Regulate flow into the large intestine", "Release bile"], "ans": 0, "note": "It meters chyme from stomach to duodenum."}, {"q": "The rugae of the stomach are folds that function to:", "opts": ["Allow the stomach to distend and increase surface area", "Secrete bile", "Absorb nutrients", "Grind bone"], "ans": 0, "note": "Rugae flatten out as the stomach fills."}, {"q": "The stomach has a unique third muscularis layer that allows churning:", "opts": ["The inner oblique layer", "An extra longitudinal layer", "A cartilage ring", "A serous layer"], "ans": 0, "note": "The stomach adds an oblique layer (inner) for mechanical churning."}, {"q": "Chemical (enzymatic) digestion after the small intestine:", "opts": ["Does not occur — no enzymatic reaction in the large intestine", "Increases in the large intestine", "Occurs only in the rectum", "Occurs in the anal canal"], "ans": 0, "note": "Enzymatic digestion is essentially complete by the end of the small intestine."}, {"q": "The final segment of the small intestine is the ileum, which meets the large intestine at the:", "opts": ["Ileocecal valve/junction (into the cecum)", "Pyloric sphincter", "Duodenojejunal flexure", "Anal canal"], "ans": 0, "note": "Ileum → ileocecal valve → cecum."}, {"q": "True or False: Both the duodenum and the pancreas are retroperitoneal.", "opts": ["True", "False", "Only the duodenum is", "Only the pancreas is"], "ans": 0, "note": "STANDARD ANATOMY = TRUE. The duodenum (parts 2-4) and pancreas (head/neck/body) are (secondarily) retroperitoneal; only the pancreatic tail is intraperitoneal. NOTE: your worksheet was marked 'False' — flag this with Dr. DeAngelo, but the textbook answer is True."}, {"q": "The substances that enter at the major duodenal papilla are:", "opts": ["Bile and pancreatic juice", "Chyme and mucus", "Gastric acid and bile", "Saliva and bile"], "ans": 0, "note": "The hepatopancreatic ampulla delivers bile + pancreatic juice here."}, {"q": "The three surface features that identify the large intestine are haustra, omental (epiploic) appendages, and:", "opts": ["Teniae coli", "Rugae", "Villi", "Plicae circulares"], "ans": 0, "note": "Teniae coli, haustra, omental appendages are unique to the large intestine."}, {"q": "List the segments of the large intestine from proximal to distal:", "opts": ["Cecum, ascending, transverse, descending, sigmoid colon", "Sigmoid, descending, transverse, ascending, cecum", "Cecum, transverse, ascending, sigmoid, descending", "Ascending, cecum, transverse, descending, sigmoid"], "ans": 0, "note": "Cecum → ascending → transverse → descending → sigmoid → rectum."}, {"q": "The first segment of the large intestine is the cecum, into which open the ileum and the:", "opts": ["Appendix", "Sigmoid colon", "Duodenum", "Jejunum"], "ans": 0, "note": "The ileum and the vermiform appendix open into the cecum."}, {"q": "Compare the external and internal anal sphincters:", "opts": ["External is skeletal/voluntary; internal is smooth/involuntary", "External is smooth/involuntary; internal is skeletal", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "External = skeletal (voluntary); internal = smooth (involuntary)."}, {"q": "Of the liver's general functions, the one relating specifically to digestion of nutrients is:", "opts": ["Bile production", "Detoxification", "Glycogen storage", "Vitamin storage"], "ans": 0, "note": "Bile aids fat digestion; the others aren't direct digestion roles."}, {"q": "The function of bile is to:", "opts": ["Emulsify fats into small droplets so lipase can work (no enzymes itself)", "Enzymatically digest proteins", "Neutralize saliva", "Absorb water"], "ans": 0, "note": "Bile emulsifies — it has no digestive enzymes of its own."}, {"q": "The gallbladder functions to:", "opts": ["Store and concentrate bile, then release it to the duodenum", "Produce bile", "Produce insulin", "Filter blood"], "ans": 0, "note": "It stores/concentrates liver-made bile and releases it on demand."}, {"q": "The biliary tree order from the liver is: right & left hepatic ducts → common hepatic duct → ___ → bile duct:", "opts": ["Cystic duct", "Pancreatic duct", "Ureter", "Hepatic vein"], "ans": 0, "note": "The cystic duct (from the gallbladder) joins the common hepatic duct to form the bile duct."}, {"q": "The pancreas has two general functions:", "opts": ["Exocrine (digestive enzymes) and endocrine (hormones)", "Storage and detoxification", "Filtration and secretion", "Bile production and storage"], "ans": 0, "note": "Exocrine acini make enzymes; islets make insulin/glucagon."}, {"q": "The two ducts of the pancreas are the main pancreatic duct (of Wirsung) and the:", "opts": ["Accessory pancreatic duct (of Santorini)", "Cystic duct", "Common hepatic duct", "Bile duct"], "ans": 0, "note": "Main duct (Wirsung) + accessory duct (Santorini)."}, {"q": "EMBRYONIC GUT TUBE — The foregut gives rise to the esophagus, stomach, proximal duodenum, liver, gallbladder, and pancreas. Its supplying artery is the:", "opts": ["Celiac trunk", "Superior mesenteric artery", "Inferior mesenteric artery", "Common iliac artery"], "ans": 0, "note": "Foregut = celiac trunk."}, {"q": "EMBRYONIC GUT TUBE — The midgut (distal duodenum through proximal 2/3 of the transverse colon) is supplied by the:", "opts": ["Superior mesenteric artery", "Celiac trunk", "Inferior mesenteric artery", "Splenic artery"], "ans": 0, "note": "Midgut = SMA."}, {"q": "EMBRYONIC GUT TUBE — The hindgut (distal 1/3 transverse colon through the rectum) is supplied by the:", "opts": ["Inferior mesenteric artery", "Superior mesenteric artery", "Celiac trunk", "Internal iliac artery"], "ans": 0, "note": "Hindgut = IMA."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to BOTH the foregut and midgut is the:", "opts": ["Vagus nerve", "Pelvic splanchnic nerves", "Greater splanchnic nerve", "Lumbar splanchnic nerves"], "ans": 0, "note": "Vagus = parasympathetic to foregut + midgut; pelvic splanchnics serve the hindgut."}, {"q": "EMBRYONIC GUT TUBE — The source of parasympathetic nerves to the hindgut is the:", "opts": ["Pelvic splanchnic nerves", "Vagus nerve", "Greater splanchnic nerve", "Phrenic nerve"], "ans": 0, "note": "Hindgut parasympathetics = pelvic splanchnic nerves (S2-S4)."}, {"q": "EMBRYONIC GUT TUBE — The source of sympathetic nerves to the foregut is the:", "opts": ["Greater splanchnic nerve", "Lesser splanchnic nerve", "Lumbar splanchnic nerve", "Vagus nerve"], "ans": 0, "note": "Foregut sympathetics = greater splanchnic; midgut = lesser splanchnic; hindgut = lumbar splanchnic."}]}, {"id": "J", "title": "Urinary System", "questions": [{"q": "Name the organs of the urinary system:", "opts": ["Kidneys, ureters, urinary bladder, urethra", "Kidneys, bladder, urethra, prostate", "Kidneys, ureters, bladder, rectum", "Ureters, bladder, urethra, nephron"], "ans": 0, "note": "Two kidneys, two ureters, one bladder, one urethra."}, {"q": "The general functions of the urinary system include waste removal and:", "opts": ["Fluid and electrolyte balance", "Bile production", "Gas exchange", "Hormone digestion"], "ans": 0, "note": "Filtration, waste excretion, fluid/electrolyte/pH balance, blood pressure regulation."}, {"q": "The structures that enter and exit the kidney at the hilum are the renal artery, renal vein, and:", "opts": ["Ureter (renal pelvis)", "Aorta", "Inferior vena cava", "Adrenal gland"], "ans": 0, "note": "Renal artery in, renal vein and ureter out."}, {"q": "The renal cortex is the:", "opts": ["Outer region of the kidney", "Inner region containing the pyramids", "Hollow collecting space", "Fibrous outer capsule"], "ans": 0, "note": "Cortex = outer; medulla = inner (pyramids)."}, {"q": "The renal medulla contains the:", "opts": ["Renal pyramids", "Renal cortex", "Renal capsule", "Renal artery only"], "ans": 0, "note": "Pyramids (and columns between them) make up the medulla."}, {"q": "The nephron is best defined as the:", "opts": ["Functional unit of the kidney", "Outer covering of the kidney", "Storage sac for urine", "Blood supply of the kidney"], "ans": 0, "note": "Each kidney has ~1 million nephrons."}, {"q": "Compared to a cortical nephron, a juxtamedullary nephron has a:", "opts": ["Long nephron loop extending deep into the medulla", "Short loop staying in the cortex", "No glomerulus", "No collecting duct"], "ans": 0, "note": "Juxtamedullary nephrons concentrate urine via long loops."}, {"q": "The nephron structures in order of filtrate flow are: renal corpuscle → PCT → nephron loop → ___ → collecting duct:", "opts": ["Distal convoluted tubule (DCT)", "Proximal convoluted tubule", "Renal pelvis", "Ureter"], "ans": 0, "note": "Corpuscle → PCT → loop → DCT → collecting duct."}, {"q": "As urine exits the kidney it passes through the renal papilla and moves toward the:", "opts": ["Minor calyx → major calyx → renal pelvis → ureter", "Ureter → renal pelvis → calyces", "Cortex → capsule → ureter", "Collecting duct → glomerulus"], "ans": 0, "note": "Papilla → minor calyx → major calyx → renal pelvis → ureter."}, {"q": "The trigone is a triangular region of the bladder defined by the openings of the two ureters and the:", "opts": ["Urethra", "Renal pelvis", "Collecting ducts", "Renal artery"], "ans": 0, "note": "Two ureteric orifices + internal urethral orifice form the trigone."}, {"q": "The urinary bladder functions to:", "opts": ["Store urine", "Filter blood", "Produce urine", "Concentrate bile"], "ans": 0, "note": "It's a distensible storage sac."}, {"q": "The type of epithelium lining the bladder is transitional epithelium, which is important because it:", "opts": ["Allows the bladder to stretch", "Secretes enzymes", "Absorbs nutrients", "Filters blood"], "ans": 0, "note": "Transitional (urothelium) accommodates distension."}, {"q": "The muscularis (middle layer) of the bladder is known as the:", "opts": ["Detrusor muscle", "Trigone", "Rugae", "Trabeculae carneae"], "ans": 0, "note": "The detrusor contracts to expel urine."}, {"q": "Compare the internal and external urethral sphincters:", "opts": ["Internal is smooth/involuntary; external is skeletal/voluntary", "Internal is skeletal/voluntary; external is smooth", "Both are smooth/involuntary", "Both are skeletal/voluntary"], "ans": 0, "note": "Internal = smooth (involuntary); external = skeletal (voluntary)."}, {"q": "List the segments of the biological male urethra:", "opts": ["Prostatic, membranous (intermediate), spongy (penile)", "Spongy, prostatic, membranous", "Membranous, spongy, prostatic", "Prostatic, penile, renal"], "ans": 0, "note": "Prostatic → membranous → spongy (penile)."}, {"q": "The arterial supply for the kidney is the:", "opts": ["Renal artery", "Gonadal artery", "Common iliac artery", "Superior mesenteric artery"], "ans": 0, "note": "Renal artery in, renal vein out."}, {"q": "The bladder receives parasympathetic motor innervation that:", "opts": ["Contracts the detrusor to empty the bladder", "Relaxes the detrusor to store urine", "Has no effect on the bladder", "Filters the blood"], "ans": 0, "note": "Parasympathetic = micturition (detrusor contracts, internal sphincter relaxes)."}]}, {"id": "K", "title": "Reproductive System", "questions": [{"q": "The perineum in both sexes includes the external genitalia and the region between the thighs bounded by the:", "opts": ["Pubic symphysis, ischial tuberosities, and coccyx", "Iliac crests and umbilicus", "Xiphoid and pubis", "Sacrum and femur"], "ans": 0, "note": "Same diamond as the pelvic floor perineum."}, {"q": "Define the terms gonad and gamete:", "opts": ["Gonad = sex organ producing gametes; gamete = sex cell (sperm/egg)", "Gonad = sex cell; gamete = sex organ", "Both mean sex hormone", "Both mean reproductive duct"], "ans": 0, "note": "Gonads (ovary/testis) produce gametes (ova/sperm)."}, {"q": "The term 'homologue' refers to structures that:", "opts": ["Arise from the same embryonic tissue in males and females", "Perform the same function only", "Are the same size", "Are found only in one sex"], "ans": 0, "note": "Homologues share embryonic origin (e.g., clitoris/penis)."}, {"q": "List the general structure of the ovary:", "opts": ["Outer cortex with follicles, inner medulla with vessels", "Seminiferous tubules and epididymis", "Cortex, medulla, and calyces", "Lobes and lactiferous ducts"], "ans": 0, "note": "Cortex houses follicles; medulla has vessels/nerves."}, {"q": "Place the ovarian follicles in order of development:", "opts": ["Primordial → primary → secondary → mature (Graafian)", "Mature → secondary → primary → primordial", "Primary → primordial → mature → secondary", "Secondary → primary → primordial → mature"], "ans": 0, "note": "Primordial → primary → secondary → mature (Graafian) → ovulation."}, {"q": "Compare a primary oocyte and a secondary oocyte:", "opts": ["Primary is arrested in meiosis I; secondary is arrested in meiosis II (released at ovulation)", "Primary is haploid; secondary is diploid", "Both are diploid", "Both complete meiosis before ovulation"], "ans": 0, "note": "The primary oocyte finishes meiosis I to form a secondary oocyte (arrested in meiosis II)."}, {"q": "The corpus luteum forms after ovulation and primarily produces:", "opts": ["Progesterone", "Testosterone", "Insulin", "Oxytocin"], "ans": 0, "note": "It secretes progesterone (and some estrogen) to maintain the endometrium."}, {"q": "List the regions of the uterine tube from the ovary toward the uterus:", "opts": ["Infundibulum → ampulla → isthmus → uterine part", "Isthmus → ampulla → infundibulum → uterine part", "Ampulla → infundibulum → uterine part → isthmus", "Uterine part → isthmus → ampulla → infundibulum"], "ans": 0, "note": "Infundibulum (fimbriae) → ampulla (fertilization) → isthmus → uterine part."}, {"q": "The fimbriae function to:", "opts": ["Sweep the ovulated oocyte into the uterine tube", "Produce progesterone", "Anchor the ovary to the uterus", "Secrete enzymes"], "ans": 0, "note": "Finger-like projections capture the oocyte."}, {"q": "The typical position of the uterus in the pelvis is:", "opts": ["Anteverted and anteflexed", "Retroverted and retroflexed", "Vertical and midline", "Inverted"], "ans": 0, "note": "Most commonly anteverted/anteflexed over the bladder."}, {"q": "List the regions of the uterus:", "opts": ["Fundus, body, cervix", "Cortex, medulla, hilum", "Infundibulum, ampulla, isthmus", "Head, neck, tail"], "ans": 0, "note": "Fundus (top), body (middle), cervix (neck into vagina)."}, {"q": "List the layers of the uterine wall from inner to outer:", "opts": ["Endometrium, myometrium, perimetrium", "Perimetrium, myometrium, endometrium", "Myometrium, endometrium, perimetrium", "Mucosa, submucosa, serosa"], "ans": 0, "note": "Endo- (inner, sheds), myo- (muscle), peri- (serous outer)."}, {"q": "The greater vestibular (Bartholin's) glands function to:", "opts": ["Secrete lubricating mucus into the vestibule", "Produce ova", "Produce progesterone", "Filter blood"], "ans": 0, "note": "They lubricate the vaginal vestibule."}, {"q": "The clitoris is the female homologue of the:", "opts": ["Penis", "Scrotum", "Prostate", "Epididymis"], "ans": 0, "note": "Clitoris ↔ penis (both erectile, same embryonic origin)."}, {"q": "The components of the mammary gland include lobes, lobules, alveoli, lactiferous sinus, suspensory ligaments, and:", "opts": ["Lactiferous ducts", "Seminiferous tubules", "Rugae", "Fimbriae"], "ans": 0, "note": "Alveoli → lactiferous ducts → lactiferous sinus → nipple; lobules group into lobes."}, {"q": "The dartos and cremaster muscles of the scrotum function to:", "opts": ["Regulate testicular temperature by raising/lowering the testes", "Produce sperm", "Secrete testosterone", "Transport semen"], "ans": 0, "note": "Dartos wrinkles the skin; cremaster elevates the testes for temperature control."}, {"q": "The spermatic cord contains the ductus deferens, testicular vessels, and:", "opts": ["Nerves and the cremaster muscle", "The epididymis", "The prostate", "The seminal vesicle"], "ans": 0, "note": "Ductus deferens, testicular artery/veins (pampiniform plexus), nerves, cremaster."}, {"q": "The interstitial (Leydig) cells of the testes produce which hormone?", "opts": ["Testosterone", "Progesterone", "Insulin", "Estrogen only"], "ans": 0, "note": "Leydig cells between the tubules secrete testosterone."}, {"q": "Spermatogenesis (sperm production) occurs in the:", "opts": ["Seminiferous tubules", "Epididymis", "Ductus deferens", "Prostate"], "ans": 0, "note": "Sperm are made in the seminiferous tubules of the testis."}, {"q": "The function of the epididymis is:", "opts": ["Sperm maturation and storage", "Sperm production", "Hormone secretion", "Semen expulsion"], "ans": 0, "note": "Sperm mature and are stored in the epididymis."}, {"q": "Place the ducts sperm pass through in order:", "opts": ["Seminiferous tubules → epididymis → ductus deferens → ejaculatory duct → urethra", "Epididymis → seminiferous tubules → urethra → ejaculatory duct", "Ductus deferens → epididymis → seminiferous tubules → urethra", "Seminiferous tubules → ejaculatory duct → epididymis → urethra"], "ans": 0, "note": "Tubules → epididymis → ductus (vas) deferens → ejaculatory duct → urethra."}, {"q": "The function of the ductus (vas) deferens is to:", "opts": ["Transport sperm from the epididymis toward the urethra", "Produce sperm", "Store bile", "Secrete testosterone"], "ans": 0, "note": "It propels sperm during emission."}, {"q": "The ejaculatory duct joins the urethra within the:", "opts": ["Prostatic urethra", "Membranous urethra", "Spongy urethra", "Epididymis"], "ans": 0, "note": "The ejaculatory ducts open into the prostatic urethra."}, {"q": "Does semen always contain sperm?", "opts": ["No — it is mostly seminal fluid and may contain little/no sperm", "Yes, always in equal amounts", "Yes, semen is pure sperm", "No, semen never contains sperm"], "ans": 0, "note": "Semen is mostly gland secretions; sperm are a small fraction."}, {"q": "The accessory glands of the male reproductive system are the seminal vesicles, prostate, and:", "opts": ["Bulbourethral (Cowper's) glands", "Bartholin's glands", "Adrenal glands", "Thyroid gland"], "ans": 0, "note": "Seminal vesicles, prostate, bulbourethral glands."}, {"q": "Comparing the erectile tissues, the corpus spongiosum is the tissue that comprises the:", "opts": ["Glans (and surrounds the urethra)", "Two dorsal columns only", "Scrotum", "Testis"], "ans": 0, "note": "Corpus spongiosum surrounds the urethra and forms the glans; corpora cavernosa are the paired dorsal columns."}, {"q": "Comparing erection and ejaculation, erection is controlled by ___ and ejaculation by ___:", "opts": ["Parasympathetic; sympathetic", "Sympathetic; parasympathetic", "Both parasympathetic", "Both sympathetic"], "ans": 0, "note": "'Point and Shoot': Parasympathetic = erection (point), Sympathetic = ejaculation (shoot)."}, {"q": "The gonadal (ovarian or testicular) arteries branch from the:", "opts": ["Abdominal aorta", "Internal iliac artery", "Renal artery", "Common iliac artery"], "ans": 0, "note": "They arise from the aorta near the renal arteries (gonads descend from there embryonically)."}, {"q": "The venous drainage differs by side: the right ovarian/testicular vein drains into the IVC, but the left drains into the:", "opts": ["Left renal vein", "Inferior vena cava directly", "Splenic vein", "Portal vein"], "ans": 0, "note": "Left gonadal vein → left renal vein → IVC (clinically relevant for varicocele)."}]}, {"id": "L", "title": "Endocrine System", "questions": [{"q": "Define homeostasis:", "opts": ["Maintenance of a stable internal environment", "Rapid cell division", "Production of gametes", "Breakdown of nutrients"], "ans": 0, "note": "Keeping internal conditions within a narrow range."}, {"q": "The two systems that communicate within the body to maintain homeostasis are the endocrine system and the:", "opts": ["Nervous system", "Digestive system", "Lymphatic system", "Urinary system"], "ans": 0, "note": "Nervous (fast, electrical) + endocrine (slower, chemical)."}, {"q": "The nervous system uses which chemicals for communication?", "opts": ["Neurotransmitters", "Hormones", "Enzymes", "Bile salts"], "ans": 0, "note": "Neurons release neurotransmitters across synapses."}, {"q": "The endocrine system uses which chemicals for communication?", "opts": ["Hormones", "Neurotransmitters", "Antibodies", "Electrolytes"], "ans": 0, "note": "Glands secrete hormones into the blood."}, {"q": "The two classifications of glands in the body are:", "opts": ["Exocrine and endocrine", "Serous and mucous only", "Sympathetic and parasympathetic", "Cortical and medullary"], "ans": 0, "note": "Exocrine use ducts; endocrine are ductless (into blood)."}, {"q": "The role of the hypothalamus in the endocrine system is to:", "opts": ["Link the nervous and endocrine systems and control the pituitary", "Produce insulin", "Filter blood", "Store bile"], "ans": 0, "note": "The hypothalamus regulates the pituitary via releasing hormones/neural links."}, {"q": "The role of the pituitary gland in the endocrine system is to:", "opts": ["Secrete hormones that regulate other endocrine glands", "Produce bile", "Filter blood", "Store urine"], "ans": 0, "note": "The 'master gland' directs thyroid, adrenal, gonads, etc."}, {"q": "The pancreas, an endocrine gland viewed in lab, secretes hormones that:", "opts": ["Regulate blood sugar (insulin and glucagon)", "Regulate calcium only", "Produce bile", "Filter blood"], "ans": 0, "note": "Islet cells: insulin (lowers) and glucagon (raises) blood glucose."}, {"q": "The role of the pancreas as an endocrine gland in lowering blood sugar after a meal is via:", "opts": ["Insulin", "Glucagon", "Cortisol", "Thyroxine"], "ans": 0, "note": "Insulin drives glucose into cells, lowering blood sugar."}, {"q": "Which of the following is an endocrine gland?", "opts": ["Thyroid gland", "Salivary gland", "Sweat gland", "Sebaceous gland"], "ans": 0, "note": "Endocrine: pituitary, thyroid, parathyroid, adrenal, pancreas, gonads, pineal, thymus. The others are exocrine."}]}]};
-const STORE_KEY = "trunk_hub_v1";
+const UNITS=[{"name":"Cells & Membranes","deck":"Homeostasis & membrane transport","cats":["homeo","transport","osmo"]},{"name":"Neurophysiology","deck":"Nervous system · Nervous physiology pt 2","cats":["org","neuron","rmp","ap","synapse","nt"]},{"name":"Senses to Pain","deck":"Senses to pain · Parts A & B","cats":["receptors","optics","retina","hearing","balance","chem","pain"]}];
+const CATS={"homeo":{"name":"Homeostasis & the Membrane","q":[["Blood sugar rises after a meal, insulin is released, and blood sugar drops back to normal. What kind of mechanism is this?","Negative feedback",["Positive feedback","Feedforward control","A conditioned reflex"],"The response reversed the original change. Reversal = negative feedback."],["Contractions during childbirth keep getting stronger until the baby is delivered. What kind of mechanism is this?","Positive feedback",["Negative feedback","Set point correction","Receptor desensitization"],"The response amplifies the change and stops only when a specific outcome (delivery) is reached."],["Which two systems regulate and coordinate the body to maintain homeostasis?","Nervous and endocrine",["Nervous and muscular","Endocrine and digestive","Immune and lymphatic"],"The deck names the nervous and endocrine systems as the regulators of homeostasis."],["Most homeostatic control in the body relies on which mechanism?","Negative feedback",["Positive feedback","Voluntary control","Learned reflexes"],"Negative feedback is the default because it keeps variables near their set point."],["Reflexes are generally described as:","Unlearned and involuntary",["Learned and voluntary","Learned and involuntary","Unlearned and voluntary"],"Reflexes are unpremeditated, unlearned and involuntary. Many happen without conscious awareness."],["In a reflex, which component detects the change in the environment?","Receptor",["Effector","Control center","Motor neuron"],"The receptor senses the stimulus. The effector carries out the response."],["In a reflex, which component is the muscle or gland that carries out the response?","Effector",["Receptor","Integrating center","Afferent pathway"],"Effectors are muscles or glands that produce the response."],["Why does the body use positive feedback so rarely?","It amplifies change until an endpoint",["It needs far more ATP than negative","It only runs through the endocrine system","It can only regulate body temperature"],"Positive feedback pushes a change further. It is only safe when there is a built-in finish line."],["Your temperature rises, you start sweating, and your temperature falls. In this loop, sweating is the:","The response that reverses it",["The stimulus that starts it","The set point it defends","The receptor sensing heat"],"Sweating is the effector response that brings temperature back down."],["The fluid mosaic model describes the plasma membrane as:","Proteins floating in a phospholipid bilayer",["A rigid wall of stacked cellulose fibers","A single sheet of cholesterol molecules","Proteins sandwiched between water layers"],"The bilayer is fluid and proteins drift within it like tiles in a mosaic."],["In the phospholipid bilayer, how do the heads and tails behave?","Heads hydrophilic, tails hydrophobic",["Heads hydrophobic, tails hydrophilic","Heads and tails both hydrophilic","Heads and tails both hydrophobic"],"Heads face the water on both sides. Tails hide in the middle, away from water."],["Growth hormone affects a cell by binding to which part of the plasma membrane?","Membrane receptors",["Membrane antigens","Phospholipid tails","Cholesterol molecules"],"Receptors let the membrane bind hormones, neurotransmitters, autocrine and paracrine chemicals."],["ABO and Rh blood typing depends on which feature of the plasma membrane?","Surface antigens",["Carrier proteins","Leak channels","Receptor enzymes"],"Specific membrane antigens are what blood and tissue typing detect."],["What does selectively permeable mean for the plasma membrane?","It controls what enters and leaves",["It lets every molecule pass freely","It blocks all water from crossing","It lets only ions cross the membrane"],"The membrane selects what crosses, which is essential for homeostasis and cell survival.",1],["In the body, water is the:","Solvent",["Solute","Solution","Suspension"],"Water is the body's solvent. Dissolved particles are solutes. Together they make a solution.",1],["A solute that is able to cross the membrane is called a:","Penetrating solute",["Nonpenetrating solute","Ionizing solute","Nonionizing solute"],"If it can cross, it's penetrating. If it can't, it's nonpenetrating.",1]]},"transport":{"name":"Membrane Transport","q":[["What defines passive transport?","No ATP; moves down the gradient",["Uses ATP; moves down the gradient","No ATP; moves against the gradient","Uses ATP; moves against the gradient"],"Passive transport costs no energy and always runs from high to low concentration.",1],["Which of these is NOT a form of passive transport?","Sodium-potassium pump",["Osmosis","Facilitated diffusion","Filtration"],"The Na+/K+ pump spends ATP, so it's active. The rest are passive.",1],["Side A has 6 Na+ and side B has 2 Na+, and the membrane is permeable to Na+. When does net diffusion stop?","When both sides reach 4",["When side B reaches 6","When side A reaches 0","When both sides reach 8"],"Diffusion runs until equilibrium: the total (8) splits evenly, 4 and 4.",1],["Which setup diffuses faster?","Side A 6, side B 2",["Side A 6, side B 5","Both at the same rate","Neither will diffuse"],"A bigger concentration difference (steeper gradient) means a faster rate.",1],["Sodium and glucose face the same concentration gradient. Which diffuses faster?","Sodium, because it's smaller",["Glucose, because it's larger","Both at exactly the same rate","Glucose, because it holds energy"],"Smaller, lighter particles diffuse faster.",1],["Which change would SLOW the rate of diffusion?","A larger molecule size",["A steeper gradient","More open channels","Higher lipid solubility"],"Size, gradient, solubility and channel/carrier number all set the rate. Bigger = slower."],["Why does glucose need protein carriers (facilitated diffusion) to cross the membrane?","It is too large to cross on its own",["It must move against its gradient","It needs ATP to enter the cell","It is repelled by the lipid tails"],"Glucose is a larger molecule, so carriers help it through. It still moves down its gradient.",1],["In facilitated diffusion, what happens if the membrane has more carriers?","Diffusion speeds up",["Diffusion slows down","Diffusion stops","Diffusion reverses"],"More carriers means more glucose can cross at once.",1],["What is the key difference between facilitated diffusion and active transport?","Active moves uphill using ATP",["Active uses no carrier protein","Facilitated moves uphill using ATP","Facilitated only moves water"],"Both use carrier proteins. Active transport goes against the gradient and costs ATP."],["What does one cycle of the sodium-potassium pump move?","3 Na+ out and 2 K+ in",["2 Na+ out and 3 K+ in","3 K+ out and 2 Na+ in","2 K+ out and 3 Na+ in"],"Three sodium leave, two potassium enter, one ATP spent.",1],["The sodium-potassium pump maintains which distribution?","High Na+ outside, high K+ inside",["High Na+ inside, high K+ outside","High Na+ and K+ both inside","Equal Na+ and K+ everywhere"],"Sodium is kept outside and potassium inside. Everything in the nerve unit depends on this."],["What is the first step of the sodium-potassium pump cycle?","Cytoplasmic Na+ binds the pump",["Extracellular K+ binds the pump","The phosphate group is released","K+ is released into the cell"],"Na+ binding from inside stimulates phosphorylation by ATP, which starts the cycle."],["What causes the pump protein to change shape and expel Na+?","Phosphorylation by ATP",["Binding of glucose","Release of potassium","Water pressure on the cell"],"ATP adds a phosphate, the protein changes shape, and Na+ is pushed outside."],["Exocytosis is best described as:","Vesicles releasing large materials out",["Channels letting small ions flow in","Water leaving the cell by osmosis","Carriers bringing glucose into cells"],"A vesicle fuses with the plasma membrane and spills its contents outside."],["When you have a cold, your cells release mucus using:","Exocytosis",["Endocytosis","Osmosis","Filtration"],"The deck's example: mucus is packaged in vesicles and released by exocytosis."],["Bulk transport (like exocytosis) is classified as:","Active transport",["Passive transport","Simple diffusion","Osmosis"],"Moving vesicles takes energy, so bulk transport is active.",1],["A poison disables every Na+/K+ pump in a neuron. What happens over time?","Gradients run down; it can't fire",["Sodium piles up outside the cell","Leak channels hold the gradients","The cell bursts within seconds"],"Leak channels slowly erase the gradients. Only the pump restores them."],["Filtration is classified as which type of transport?","Passive",["Active","Bulk","Pump-driven"],"Filtration uses pressure, not ATP, so it's passive.",1]]},"osmo":{"name":"Osmosis, Osmolarity & Tonicity","q":[["Osmosis is the movement of:","Water across a membrane",["Solutes across a membrane","Ions through membrane pumps","Proteins through channels"],"Osmosis is water following its own concentration gradient."],["During osmosis, water moves toward the side with:","More solute",["Less solute","More ATP","Lower pressure"],"Water moves toward the higher solute concentration."],["The membrane is NOT permeable to a solute. How is equilibrium reached?","Water moves across",["The solute moves across","Pumps move the solute","Nothing moves at all"],"If solutes can't move, water does the moving instead. That's osmosis.",1],["A 1 M solution of NaCl has an osmolarity of:","2 Osm",["1 Osm","3 Osm","0.5 Osm"],"NaCl splits into Na+ and Cl-, two particles."],["A 1 M solution of MgCl2 has an osmolarity of:","3 Osm",["2 Osm","1 Osm","4 Osm"],"MgCl2 splits into Mg2+ + 2 Cl-, three particles."],["A 1 M solution of glucose has an osmolarity of:","1 Osm",["2 Osm","3 Osm","0.5 Osm"],"Glucose doesn't ionize. It stays one particle."],["Why does NaCl count double in osmolarity compared to glucose?","It splits into two particles",["Its molecules weigh twice as much","It carries a double electric charge","It pulls water from both sides"],"Osmolarity counts dissolved particles, not molecules."],["Which of these is an ionizing solute?","Sodium chloride",["Glucose (C6H12O6)","Sucrose (table sugar)","Urea (CO(NH2)2)"],"Salts, acids and bases ionize. Sucrose, glucose and urea do not."],["The normal osmolarity inside a cell is about:","0.3 Osm (300 mOsm)",["0.1 Osm (100 mOsm)","0.6 Osm (600 mOsm)","3.0 Osm (3000 mOsm)"],"300 mOsm = 0.3 Osm is the body's normal value.",1],["A cell at 0.3 Osm is placed in a 0.1 Osm solution. What happens?","It swells and may lyse",["It shrinks and crenates","Nothing changes at all","It pumps out solutes"],"More solute inside, so water rushes in.",1],["A cell at 0.3 Osm is placed in a 0.1 Osm solution. That solution is:","Hypotonic",["Hypertonic","Isotonic","Hyperosmolar"],"Lower solute outside = hypotonic (hypoosmolar).",1],["A cell at 0.3 Osm is placed in a 0.6 Osm solution. What happens?","Water leaves and it crenates",["Water enters and it lyses","No net water movement","Solutes enter and it swells"],"More solute outside pulls water out, so the cell shrinks (crenates). Hypertonic.",1],["Crenation means the cell:","Shrinks",["Bursts","Swells","Divides"],"Crenate = shrivel. Lyse = burst."],["A cell at 0.3 Osm is placed in a 0.3 Osm solution. The solution is:","Isotonic",["Hypotonic","Hypertonic","Hypoosmolar"],"Same osmolarity on both sides = no net water movement.",1],["Tonicity describes:","A solution's effect on cell volume",["The total particle count in solution","How fast ions diffuse across","ATP used by membrane pumps"],"Tonicity is the effect osmolarity has on the cell's membrane tone via water movement."],["About what is 0.15 M NaCl relative to a normal cell?","Isotonic",["Hypotonic","Hypertonic","Pure water"],"0.15 M × 2 particles = 0.3 Osm, the same as the cell."],["In a hypotonic solution, where are solutes more concentrated?","Inside the cell",["Outside the cell","Equal on both sides","Inside the membrane"],"Hypotonic outside means the cell holds more solutes, so water flows in.",1],["When water moves into or out of a cell, it exerts:","Pressure on the membrane",["Charge on the membrane","Heat on the membrane","No force at all"],"The deck: water movement exerts a pressure on the membrane. That's the basis of tonicity."]]},"org":{"name":"Nervous System Organization","q":[["What are the nervous system's three functions, in order?","Sensory input, integration, motor output",["Integration, sensory input, motor output","Motor output, integration, sensory input","Sensory input, motor output, integration"],"Sense the change, process it, respond."],["The central nervous system consists of:","Brain and spinal cord",["Brain and cranial nerves","Spinal cord and spinal nerves","Cranial and spinal nerves"],"CNS = brain + spinal cord. Everything else is PNS.",1],["The peripheral nervous system consists of:","Cranial and spinal nerves",["Brain and spinal cord","Spinal cord and brainstem","Brainstem and cerebrum"],"PNS is everything outside the brain and spinal cord.",1],["Afferent (sensory) nerves carry signals:","From receptors to the CNS",["From the CNS to effectors","Between the two hemispheres","Only within the spinal cord"],"Afferent = arriving at the CNS.",1],["Efferent (motor) nerves carry signals:","From the CNS to effectors",["From receptors to the CNS","Between two interneurons","From glands to the brain"],"Efferent = exiting the CNS.",1],["Somatic motor nerves signal which tissue?","Skeletal muscle",["Cardiac muscle","Smooth muscle","Glands"],"Somatic = skeletal muscle, voluntary.",1],["Autonomic motor nerves signal which tissues?","Cardiac, smooth muscle, and glands",["Skeletal muscle only","Skeletal and cardiac muscle","Skin, joints, and special senses"],"Autonomic = involuntary targets.",1],["The sympathetic division is known as:","Fight or flight",["Rest and digest","Voluntary movement","Sensory integration"],"Sympathetic ramps the body up for stress.",1],["The parasympathetic division is known as:","Rest and digest",["Fight or flight","Voluntary movement","Pain perception"],"Parasympathetic calms the body down.",1],["Signals from the skin, muscles, joints, and special senses travel on:","Somatic sensory nerves",["Visceral sensory nerves","Autonomic motor nerves","Somatic motor nerves"],"Somatic sensory = from the body wall and special senses."],["Signals from internal body organs travel on:","Visceral sensory nerves",["Somatic sensory nerves","Somatic motor nerves","Parasympathetic nerves"],"Visceral = organs."],["Which of these divisions is under voluntary control?","Somatic motor",["Sympathetic","Parasympathetic","Visceral sensory"],"Only somatic motor output (to skeletal muscle) is voluntary."],["Effector organs are:","Muscles and glands",["Receptors and nerves","Brain and spinal cord","Dendrites and axons"],"Motor output activates effectors: muscles or glands."],["A loud bang makes your heart race. Which division drives the racing heart?","Sympathetic",["Parasympathetic","Somatic motor","Visceral sensory"],"Heart = autonomic. Racing = fight or flight = sympathetic."],["After a big meal your digestion speeds up and heart rate slows. Which division is in charge?","Parasympathetic",["Sympathetic","Somatic motor","Somatic sensory"],"Rest and digest."]]},"neuron":{"name":"Neurons, Glia & Regeneration","q":[["Dendrites carry signals:","Toward the cell body",["Away from the cell body","Between two axons","Into the synaptic cleft"],"Dendrites receive. Axons send."],["The axon carries signals:","Away from the cell body",["Toward the cell body","Into the dendrites","Around the cell body"],"The axon is the single long conducting fiber that sends impulses away.",1],["The axon hillock is:","Where the axon arises and APs start",["Where neurotransmitter is stored","Where dendrites receive input","The gap between myelin segments"],"The cone-shaped region of the cell body where the axon begins and APs are triggered.",1],["What is the job of the axon terminals?","Store and release neurotransmitter",["Generate graded potentials","House the nucleus and organelles","Insulate the axon"],"Terminals hold vesicles full of neurotransmitter.",1],["The signals conducted along dendrites are:","Graded potentials",["Action potentials","Saltatory impulses","Refractory spikes"],"Dendrites carry graded potentials, which can be excitatory or inhibitory."],["Which three traits describe neurons?","Long-lived, amitotic, high metabolism",["Short-lived, mitotic, low metabolism","Long-lived, mitotic, low metabolism","Short-lived, amitotic, high metabolism"],"They live as long as you do, don't divide, and burn a lot of energy."],["Shortly after birth, neurons enter which phase of the cell cycle?","G0",["G1","S","M"],"G0 = out of the cycle. That's why neurons are amitotic."],["Which cells form the myelin sheath in the PNS?","Schwann cells",["Oligodendrocytes","Astrocytes","Microglia"],"PNS = Schwann. CNS = oligodendrocytes."],["Which cells form the myelin sheath in the CNS?","Oligodendrocytes",["Schwann cells","Satellite cells","Microglia"],"CNS myelin comes from oligodendrocytes."],["The gaps between segments of myelin are called:","Nodes of Ranvier",["Axon hillocks","Synaptic clefts","Telodendria"],"The AP jumps from node to node."],["A sensory neuron carries impulses:","From a receptor to the CNS",["From the CNS to an effector","Only within the CNS","From a gland to a muscle"],"Sensory = afferent."],["An interneuron:","Links sensory to motor within the CNS",["Carries receptor signals to the CNS","Carries CNS signals to a muscle","Carries gland signals to the CNS"],"Interneurons receive info in the CNS and pass it to motor neurons."],["How do neuroglia compare to neurons in number?","They outnumber neurons about 9 to 1",["They outnumber neurons about 2 to 1","They equal neurons in number","Neurons outnumber them 9 to 1"],"Glia make up about half the brain's mass and outnumber neurons 9:1."],["How many types of neuroglia are there, and where?","Six: 4 in the CNS, 2 in the PNS",["Four: 2 in the CNS, 2 in the PNS","Six: 3 in the CNS, 3 in the PNS","Eight: 4 in the CNS, 4 in the PNS"],"Six types total, four central and two peripheral."],["Wallerian degeneration is:","The distal axon breaking down after a cut",["The proximal stump growing a new cone","Myelin re-forming around a regrown axon","A glial scar sealing off a CNS injury"],"After a cut, everything distal to the injury degenerates and is cleaned up."],["After a PNS axon is cut, which cells clean up the debris?","Schwann cells and macrophages",["Oligodendrocytes and astrocytes","Microglia and ependymal cells","Satellite cells and neurons"],"Schwann cells and macrophages phagocytize the broken axon and myelin."],["A regenerating PNS axon grows at about:","1 mm per day",["1 cm per day","1 mm per hour","1 cm per week"],"The growth cone creeps along at roughly 1 mm/day."],["How do Schwann cells help a cut PNS axon regrow?","Form guide cords and release NGF",["Form a glial scar over the gap","Release growth-blocking proteins","Divide into new neurons"],"They build a path for the sprout and release nerve growth factor."],["Why does CNS regeneration mostly fail?","A glial scar and inhibitory myelin",["Schwann cells crowd in too fast","Neurons divide out of control","CNS axons have no cell body"],"Dead oligodendrocytes are replaced by a scar, and nearby myelin inhibits growth."],["A PNS axon is cut very close to the cell body. What's the likely outcome?","The whole neuron may die",["The axon regrows even faster","Only the myelin is affected","The dendrites take over"],"Damage near the cell body can kill the entire neuron."],["The profuse branches at the end of an axon are called:","Telodendria",["Dendrites","Nodes of Ranvier","Axon hillocks"],"Telodendria end in the bulb-shaped boutons (terminals)."]]},"rmp":{"name":"Resting Membrane Potential","q":[["What is the resting membrane potential of a neuron?","−70 mV",["−55 mV","+30 mV","0 mV"],"At rest, the inside is 70 mV more negative than the outside.",1],["At rest, how are Na+ and K+ distributed?","More K+ inside, more Na+ outside",["More Na+ inside, more K+ outside","Equal Na+ and K+ on both sides","More Cl- inside, more K+ outside"],"Potassium inside, sodium outside.",1],["The main solutes in the extracellular fluid are:","Sodium and chloride",["Potassium and proteins","Calcium and phosphate","Glucose and urea"],"ECF is salty: Na+ and Cl-. ICF holds K+ and negative proteins."],["Why is the inside of a resting neuron negative?","K+ leaks out and anion proteins stay in",["Na+ leaks in faster than K+ leaks out","Chloride is pumped into the cell","Calcium floods the cytoplasm"],"More positive charge leaves (K+) than enters (Na+), and trapped proteins are negative.",1],["At rest, how permeable is the membrane to Na+ and K+?","Freely to K+, slightly to Na+",["Freely to Na+, slightly to K+","Equally to Na+ and K+","Not permeable to either one"],"K+ leaks out faster than Na+ leaks in."],["Potassium leak channels are:","Always open",["Open only at threshold","Open only with a ligand","Open only when repolarizing"],"Leak (passive) channels are always open."],["What role does the Na+/K+ pump play in the RMP?","It sets up and maintains the gradients",["It generates the action potential spike","It opens the voltage-gated channels","It releases neurotransmitter"],"The pump moves back exactly what leaks and actually establishes the gradients."],["A neuron at rest, with charge separated across the membrane, is described as:","Polarized",["Depolarized","Repolarized","Hyperpolarized"],"Resting = polarized.",1],["Ligand-gated channels open in response to:","A chemical binding",["A voltage change","Mechanical stretch","A temperature change"],"Ligand = chemical, like a neurotransmitter.",1],["Where are ligand-gated channels mainly found on a neuron?","Dendrites and cell body",["Along the axon","At the nodes of Ranvier","Inside the myelin"],"Chemical signals arrive at the dendrites and cell body.",1],["Where are voltage-gated channels mainly found on a neuron?","Along the axon",["Only on the dendrites","Only on the cell body","Only in glial cells"],"Voltage-gated Na+ channels start at the axon hillock and run down the axon.",1],["Ions moving along an electrical gradient move toward:","Opposite charge",["Like charge","Higher concentration","Lower temperature"],"Chemical gradient = high to low concentration. Electrical = toward opposite charge."],["Membrane potential is measured in:","Millivolts",["Milligrams","Milliosmoles","Millimeters"],"Electrical potential is in volts or millivolts."],["In a resting neuron, the two gates of a voltage-gated Na+ channel are:","Activation closed, inactivation open",["Activation open, inactivation closed","Both gates open","Both gates closed"],"At rest the activation gate is shut but the inactivation gate is ready."],["An electrochemical gradient combines differences in:","Concentration and charge",["Pressure and temperature","ATP and ADP levels","Solvent and solute volume"],"Ions follow both their concentration gradient and the electrical pull."],["Which statement about the RMP is true?","Every signal depends on it",["It only exists in muscle","It is positive inside","Chloride pumps create it"],"No RMP, no graded potential, no action potential."]]},"ap":{"name":"Graded & Action Potentials","q":[["A graded potential is:","Local, brief, and fades with distance",["Carried the full axon without fading","All-or-none once it hits threshold","Found only at the axon terminals"],"Graded potentials are decremental and travel only short distances."],["Depolarization means the membrane potential becomes:","More positive",["More negative","Exactly zero","Stuck at rest"],"Toward positive = depolarization."],["Hyperpolarization means the membrane potential becomes:","More negative than rest",["More positive than rest","Exactly −55 mV","Exactly +30 mV"],"Toward negative (below −70) = hyperpolarization."],["What is threshold for firing an action potential?","−55 mV",["−70 mV","+30 mV","−90 mV"],"At −55 mV, voltage-gated Na+ channels open at the axon hillock.",1],["How much does a graded potential need to depolarize the membrane to reach threshold?","About 15 to 20 mV",["About 2 to 5 mV","About 70 mV","About 100 mV"],"−70 to −55 is 15 mV. The deck rounds it to 20 mV or more."],["What is the peak voltage of an action potential?","+30 mV",["0 mV","−55 mV","+70 mV"],"The membrane swings from −70 all the way to +30.",1],["Which ion movement drives the depolarization phase?","Na+ rushing in",["K+ rushing out","Cl- rushing in","Ca2+ rushing out"],"Na+ gates open, K+ gates stay closed.",1],["Which ion movement drives the repolarization phase?","K+ rushing out",["Na+ rushing in","Cl- rushing out","Ca2+ rushing in"],"At +30, voltage-gated K+ channels open and potassium leaves.",1],["Why is there a brief hyperpolarization (undershoot) after repolarization?","K+ gates close slowly",["Na+ gates reopen","The pump shuts off","Cl- floods the cell"],"Potassium keeps leaving a little too long."],["Which is the positive feedback loop inside an action potential?","Na+ entry opens more Na+ channels",["K+ exit closes the Na+ channels","The pump restores the gradients","Refractory periods block firing"],"Sodium entry depolarizes, which opens more channels, which lets in more sodium."],["All-or-none means:","At threshold, a full AP fires",["AP size matches stimulus size","Every stimulus causes an AP","The AP fades with distance"],"Below threshold nothing fires. At threshold the full AP fires every time."],["What is the correct order of AP phases?","Rest, depolarize, repolarize, hyperpolarize",["Rest, repolarize, depolarize, hyperpolarize","Depolarize, rest, hyperpolarize, repolarize","Rest, hyperpolarize, depolarize, repolarize"],"1 rest, 2 depolarization, 3 repolarization, 4 hyperpolarization."],["Summation can occur with:","Graded potentials",["Action potentials","Refractory periods","Myelin segments"],"Graded potentials can add up if they arrive before the previous one dies away."],["Where is an action potential generated?","At the axon hillock",["At the dendrite tips","At the axon terminal","In the synaptic cleft"],"The hillock is the trigger zone."],["The rapid Na+ phase of an action potential lasts about:","1 millisecond",["1 second","10 seconds","1 minute"],"The explosive rising phase lasts about 1 ms."],["What does the Na+ channel's inactivation gate do?","Shuts Na+ out right after opening",["Lets Na+ leak in during rest","Pumps Na+ back out of the cell","Holds K+ inside the axon"],"It shuts sodium entry down right after it starts."],["Why does an action potential travel in only one direction?","The area behind it is refractory",["Dendrites block backward flow","K+ channels sit on one side only","Myelin is thicker at one end"],"Na+ gates close behind the impulse, so it can only move forward."],["During the absolute refractory period:","No stimulus can trigger an AP",["A strong stimulus can trigger one","The cell is fully at rest","The cell sits exactly at threshold"],"The Na+ channels are inactivated. Nothing gets through."],["During the relative refractory period:","Only a stronger stimulus fires one",["No stimulus can trigger an AP","Any normal stimulus will fire one","The pump must finish its cycle"],"The membrane is hyperpolarized, so it takes extra to reach threshold."],["What do refractory periods do overall?","Cap APs per unit time",["Speed up conduction","Make each AP stronger","Allow backward travel"],"They cap the firing rate."],["Saltatory conduction means:","The impulse jumps node to node",["The impulse regenerates everywhere","The impulse travels backward","The impulse skips the axon hillock"],"Myelin forces current to cross only at the nodes."],["In a myelinated axon, voltage-gated Na+ channels are concentrated:","At the nodes of Ranvier",["Under the myelin sheath","On the dendrites","Evenly along the axon"],"That's why the AP can only regenerate at the nodes."],["Which fibers conduct fastest?","A fibers",["B fibers","C fibers","All at the same speed"],"A fibers are large and myelinated."],["C fibers are:","Unmyelinated and slow",["Myelinated and fastest","Myelinated and medium","Unmyelinated and fastest"],"The AP regenerates at every segment in a wave, which is slow."],["B fibers are:","Small myelinated fibers to viscera and ANS",["Large myelinated fibers to skeletal muscle","Unmyelinated fibers carrying slow pain","Large unmyelinated fibers from joints"],"Myelinated but thinner than A, so slower. Found in visceral and autonomic nerves."],["A fibers are found in:","Nerves to skeletal muscles and joints",["Nerves from the viscera to the CNS","Autonomic nerves to smooth muscle","Unmyelinated dendrites"],"Large diameter myelinated nerves supplying skeletal muscle, joints, and large sensory nerves."],["Unlike a graded potential, an action potential:","Doesn't fade with distance",["Can be inhibitory","Occurs on the dendrites","Can add up by summation"],"APs regenerate as they travel, so they don't fade."],["What would happen if ALL voltage-gated Na+ channels were blocked?","No action potentials could fire",["APs would fire more often","Only repolarization would stop","APs would fire in reverse"],"No sodium entry, no depolarization, no AP. This is how local anesthetics work."],["After an action potential, which way does the pump move ions?","Na+ out and K+ in",["Na+ in and K+ out","Both Na+ and K+ in","Both Na+ and K+ out"],"Heads up: the pump pushes the sodium that came in back OUT and pulls potassium back IN.",1],["Which kind of channel opens when the membrane at the hillock hits −55 mV?","Voltage-gated Na+ channels",["Ligand-gated Na+ channels","Leak K+ channels","Mechanically gated channels"],"Ligand-gated channels start the graded potential. Voltage-gated channels take over at threshold.",1]]},"synapse":{"name":"Synaptic Transmission","q":[["A synapse is:","Where one neuron affects another cell",["The gap between myelin segments","Where the axon leaves the cell body","The membrane wrapping the axon"],"The junction between two neurons, or a neuron and an effector."],["The presynaptic neuron:","Carries the impulse toward the synapse",["Receives the signal after the synapse","Is a glial cell at the synapse","Is always a muscle cell"],"Pre = before. Post = after.",1],["The postsynaptic cell can be:","A neuron, muscle, or gland",["Only another neuron","Only a skeletal muscle cell","Only a gland cell"],"Anything receiving the signal across the cleft."],["When the AP reaches the axon terminal, which channels open to trigger release?","Voltage-gated Ca2+ channels",["Ligand-gated K+ channels","Leak Na+ channels","Voltage-gated Cl- channels"],"Calcium floods in and acts as the messenger for release.",1],["What does the calcium surge do in the axon terminal?","Makes vesicles fuse and release NT",["Repolarizes the axon terminal","Breaks down NT in the cleft","Opens K+ channels postsynaptically"],"Ca2+ causes vesicles to migrate, fuse with the membrane, and release neurotransmitter."],["Neurotransmitter leaves the axon terminal by:","Exocytosis",["Endocytosis","Osmosis","Active pumping"],"Vesicles fuse with the membrane and spill their contents."],["How does neurotransmitter cross the synaptic cleft?","Diffusion",["Active transport","Axonal transport","Saltatory conduction"],"It simply diffuses across the gap."],["The postsynaptic density is:","The area packed with receptors",["The vesicle cluster in the terminal","The myelin at the synapse","An enzyme layer in the cleft"],"The spot on the postsynaptic membrane with a high density of receptor proteins."],["An EPSP is mainly caused by:","Na+ entering the cell",["K+ leaving the cell","Cl- entering the cell","Ca2+ leaving the cell"],"Positive charge in = depolarization = excitatory."],["An IPSP is caused by:","K+ exit or Cl- entry",["Na+ entry or Ca2+ entry","Na+ entry or K+ entry","Ca2+ exit or Na+ entry"],"Losing positive or gaining negative charge hyperpolarizes the cell."],["A neurotransmitter opens ligand-gated K+ channels on the postsynaptic cell. What's the result?","Hyperpolarization (IPSP)",["Depolarization (EPSP)","An immediate action potential","No change in voltage"],"K+ leaving makes the inside more negative, which inhibits.",1],["Temporal summation is:","One spot, hit again and again fast",["Many different spots hit at once","One single very strong stimulus","Two stimuli canceling each other"],"Same location, stacked over time."],["Spatial summation is:","Many spots stimulated at once",["One spot stimulated over and over","A stimulus that comes from glia","One single subthreshold stimulus"],"Different locations, same moment."],["A convergent circuit is:","Many presynaptic cells onto one",["One presynaptic cell onto many","One cell onto exactly one other","Two cells firing in a loop"],"Converge = come together onto one cell."],["A divergent circuit is:","One presynaptic cell onto many",["Many presynaptic cells onto one","Two cells firing in a loop","Two cells canceling each other"],"Diverge = branch out to many cells."],["Which is NOT a way neurotransmitter is cleared from the synapse?","Exocytosis into the cleft",["Reuptake into the terminal","Diffusion away from receptors","Breakdown by an enzyme"],"Exocytosis releases NT. The other three end the signal."],["Reuptake is:","Pumping NT back into the presynaptic cell",["Diffusion of NT into the postsynaptic cell","Breakdown of NT by enzymes in the cleft","Binding of NT to postsynaptic receptors"],"Reuptake actively carries NT back to the neuron that released it.",1],["What decides whether a synapse is excitatory or inhibitory?","The NT and the receptor it binds",["The width of the synaptic cleft","The length of the axon","The amount of myelin"],"Different receptors for the same chemical can produce different responses."],["The strength of the postsynaptic graded potential depends on:","How much NT is bound",["How long the axon is","How many Schwann cells there are","How fast the pump runs"],"More NT bound = bigger graded potential = better odds of an AP."],["Electrical synapses are relatively rare except in:","Cardiac and smooth muscle",["Skeletal muscle fibers","The retina's rods and cones","The spinal cord's gray matter"],"Most synapses are chemical. Electrical ones show up in cardiac and smooth muscle."],["Channel-linked receptors produce responses that are:","Fast and direct",["Slow and indirect","Slow and direct","Fast but need a G protein"],"The receptor is the channel, so the effect is immediate."],["G protein-linked receptors produce responses that are:","Slow and indirect",["Fast and direct","Fast and brief","Slow and direct"],"They rely on a G protein to activate a second messenger."],["Which is a G protein-linked receptor?","Muscarinic ACh receptor",["Nicotinic ACh receptor","GABA channel receptor","Glycine channel receptor"],"Muscarinic, substance P, NE and E use G proteins."],["Which pair uses excitatory channel-linked receptors?","Nicotinic ACh and glutamate",["GABA and glycine","Muscarinic ACh and NE","Substance P and epinephrine"],"These let Na+, K+ and Ca2+ pass to depolarize."],["Which pair uses inhibitory channel-linked receptors?","GABA and glycine",["Nicotinic ACh and glutamate","Norepinephrine and epinephrine","Dopamine and serotonin"],"These let K+ and Cl- pass to hyperpolarize."],["Receptor desensitization helps explain:","Why drugs can lose their effect",["Why NT diffuses across the cleft","Why APs are all-or-none","Why myelin speeds conduction"],"Receptors can become less responsive over time."],["The second messenger in a G protein pathway is activated by:","The G protein",["The neurotransmitter directly","Calcium in the cleft","The Na+/K+ pump"],"NT binds receptor, receptor activates G protein, G protein activates the second messenger."],["Which order describes chemical synaptic transmission?","AP, Ca2+ in, NT released, NT binds receptor",["Ca2+ in, AP, NT binds receptor, NT released","NT released, AP, Ca2+ in, NT binds receptor","AP, NT binds receptor, Ca2+ in, NT released"],"Electrical signal, calcium trigger, release, binding."]]},"nt":{"name":"Neurotransmitters & Drugs","q":[["An agonist is a drug that:","Binds and mimics the NT",["Binds and blocks the NT","Blocks NT reuptake","Blocks the breakdown enzyme"],"Agonists produce the same response as the natural NT.",1],["An antagonist is a drug that:","Binds but doesn't activate",["Binds and activates the receptor","Increases NT release","Speeds up NT breakdown"],"It occupies the receptor so the real NT can't bind.",1],["How do SSRIs work?","They block serotonin reuptake",["They mimic serotonin at receptors","They block serotonin receptors","They destroy serotonin enzymes"],"Blocking reuptake leaves serotonin in the synaptic cleft longer.",1],["What does a synaptic enzyme inhibitor do?","Prolongs the NT's time at the synapse",["Shortens the NT's time at the synapse","Blocks the NT from being released","Destroys postsynaptic receptors"],"Without the enzyme, NT sticks around longer.",1],["Which enzyme breaks down acetylcholine?","Acetylcholinesterase",["Monoamine oxidase","Dopa decarboxylase","Carbonic anhydrase"],"AChE clears ACh from the synapse."],["Sarin gas works by:","Inhibiting acetylcholinesterase",["Blocking nicotinic receptors","Mimicking dopamine","Blocking Na+ channels"],"ACh builds up with nothing to break it down."],["What is the result of sarin exposure?","Spasms, then paralysis",["Immediate full relaxation","Heightened pain sensitivity","Loss of vision only"],"ACh floods the synapse, receptors desensitize, and muscles stop responding."],["Where are nicotinic ACh receptors found?","Skeletal muscle (neuromuscular junction)",["Only on parasympathetic target organs","On sympathetic sweat glands only","On retinal photoreceptors"],"Nicotinic = skeletal muscle, fast, excitatory.",1],["Where are muscarinic ACh receptors found?","Parasympathetic targets",["Skeletal muscle fibers","Sensory nerve endings","Motor neuron myelin"],"Heads up: muscarinic receptors are on heart, smooth muscle and glands, not skeletal muscle.",1],["Muscarinic receptors are which type?","G protein-linked",["Channel-linked","Voltage-gated","Leak channels"],"That makes their effects slower. They can excite or inhibit (they slow the heart)."],["Which NT is released at parasympathetic targets?","Acetylcholine",["Norepinephrine","Dopamine","Substance P"],"Parasympathetic endings release ACh onto muscarinic receptors.",1],["In Alzheimer's disease, which neurons are the first to die?","Cholinergic neurons",["Dopaminergic neurons","Serotonergic neurons","Adrenergic neurons"],"Neurons that release ACh die first in the prefrontal and motor areas."],["A drug to help Alzheimer's patients with low ACh would most likely:","Inhibit acetylcholinesterase",["Block muscarinic receptors","Block nicotinic receptors","Speed up ACh reuptake"],"Slowing ACh breakdown keeps more of it at the synapse."],["Which three are catecholamines?","Epinephrine, norepinephrine, dopamine",["Serotonin, histamine, acetylcholine","Glutamate, GABA, glycine","Endorphins, substance P, dopamine"],"The first three biogenic amines are catecholamines."],["Biogenic amines are synthesized from:","Amino acids",["Fatty acids","Nucleotides","Cholesterol"],"Small molecules built from amino acids."],["Norepinephrine is also called:","Noradrenaline",["Adrenaline","Acetylcholine","Dopamine"],"Epinephrine = adrenaline. Norepinephrine = noradrenaline.",1],["MAO inhibitors work by:","Slowing breakdown of NE and E",["Blocking adrenergic receptors","Mimicking serotonin","Blocking ACh release"],"They sustain these NTs at the synapse."],["Epinephrine and norepinephrine act on which receptors?","Alpha and beta (adrenergic)",["Nicotinic and muscarinic","Mu and delta (opioid)","D1 and D2 (dopamine)"],"Adrenergic receptors are G protein-linked.",1],["Stimulating alpha receptors in arterioles causes:","Vasoconstriction and higher BP",["Vasodilation and lower BP","Bronchodilation in the lungs","A slower heart rate"],"Alpha squeezes vessels."],["Stimulating alpha receptors in the iris causes:","Mydriasis (dilation)",["Miosis (constriction)","Lens flattening","Tear production"],"Sympathetic = dilated pupils."],["Stimulating beta receptors in the heart causes:","Faster rate and stronger force",["Slower rate and weaker force","Constricted coronary vessels","A complete stop"],"Beta ramps the heart up."],["Stimulating beta receptors in the bronchioles causes:","Bronchodilation",["Bronchoconstriction","Mucus secretion","No effect"],"Open airways for fight or flight."],["Beta stimulation of skeletal muscle vessels causes vasodilation. What does that do to BP?","Slightly lowers it",["Sharply raises it","Stops blood flow","Has no effect"],"It partly offsets the alpha vasoconstriction."],["In Parkinson's disease, which neurons die?","Dopamine neurons in the basal nuclei",["ACh neurons in the prefrontal cortex","Serotonin neurons in the brainstem","Glutamate neurons in the cerebellum"],"The brain ends up with almost no dopamine."],["L-DOPA helps Parkinson's patients because it acts as a:","Dopamine agonist",["Dopamine antagonist","Serotonin reuptake inhibitor","MAO inhibitor"],"It stimulates dopamine receptors even without dopamine neurons."],["Schizophrenia is traditionally treated with:","Dopamine antagonists",["Dopamine agonists","Serotonin agonists","AChE inhibitors"],"They turn down an overactive dopamine system."],["Serotonin is made from which amino acid?","Tryptophan",["Tyrosine","Glutamine","Choline"],"Tryptophan → serotonin."],["What is serotonin's general effect?","Excites motor paths, inhibits sensory paths",["Inhibits motor paths, excites sensory paths","Excites both motor and sensory paths","Inhibits both motor and sensory paths"],"Excitatory on muscle pathways, inhibitory on sensation."],["Glutamate is:","Excitatory; shapes learning and memory",["Inhibitory; calms the nervous system","Excitatory; carries only pain signals","Inhibitory; controls the sleep cycle"],"The main excitatory NT for learning and memory."],["Why is glutamate dangerous after a stroke?","Excess release kills nearby neurons",["Too little blocks memory forming","It blocks oxygen delivery","It forms glial scars"],"Dying neurons dump glutamate, which is toxic to thousands of neighbors."],["Substance P is:","A pain-signaling neuropeptide",["A natural painkilling opioid","A skeletal muscle relaxant","A mood-stabilizing amine"],"A string of amino acids that carries pain signals."],["Endorphins and enkephalins:","Inhibit substance P and reduce pain",["Boost substance P and increase pain","Excite pain receptors directly","Block dopamine receptors"],"Natural opiates behind the runner's high."],["Morphine relieves pain because it:","It binds the endorphin receptors",["It blocks the endorphin receptors","It breaks down substance P","It mimics acetylcholine"],"Opiates attach to the natural opiate receptors."],["According to the slides, cocaine increases pleasure by:","Acting like dopamine in the brain",["Blocking serotonin receptors","Inhibiting acetylcholinesterase","Blocking dopamine receptors"],"The slide frames it as mimicking dopamine. Real mechanism: it blocks dopamine reuptake."],["Why are the long-term effects of nervous system drugs hard to predict?","Feedback pushes back on the change",["Drugs never reach the synapse","Receptor numbers never change","Neurons divide to replace damage"],"The body adjusts synthesis, release, reuptake and receptors to push back."],["Sweating, pupil dilation and a pounding heart are driven by which NTs?","Epinephrine and norepinephrine",["Acetylcholine and glycine","Serotonin and glutamate plus GABA","Endorphins and enkephalins"],"Fight or flight runs on adrenaline and noradrenaline.",1]]},"receptors":{"name":"Sensory Receptors","q":[["Sensation is:","Sensory info that reaches consciousness",["All sensory info the body receives","The motor output after a stimulus","Any reflex that happens without thought"],"We aren't aware of all sensory input. What we are aware of is sensation."],["Sensory receptors generate which type of potential?","Graded (receptor) potentials",["Action potentials directly","Refractory potentials","Hormonal potentials"],"They travel a short distance to the trigger zone."],["Which are the special senses?","Sight, hearing, balance, smell, taste",["Touch, pain, heat, cold, and pressure","Pain, pressure, position, and touch","Hunger, thirst, fatigue, and balance"],"Special sense receptors sit in restricted regions."],["Which are general (somatic) senses?","Touch, pressure, temperature, pain",["Sight, hearing, and equilibrium","Smell and taste only","Hunger, thirst and fatigue"],"General senses are spread through the body."],["Special sense receptors are found:","In restricted regions",["Spread across the whole body","Only within the skin","Only in the viscera"],"Eyes, ears, nose, tongue."],["Nociceptors respond to:","Tissue-damaging stimuli",["Light and color","Blood pressure changes","Airborne chemicals"],"Noci = harm. They detect pain."],["Baroreceptors respond to:","Pressure changes",["Light","Temperature","Tissue damage"],"Baro = pressure, like in blood vessels."],["Proprioceptors respond to:","Body position",["Pain","Light levels","Taste"],"They tell you where your limbs are."],["Photoreceptors respond to:","Light",["Pressure","Chemicals","Temperature"],"Rods and cones."],["Exteroceptors respond to:","Stimuli outside the body",["Internal organ changes","Body position","Blood chemistry"],"Extero = outside."],["Interoceptors respond to:","Internal organ changes",["Stimuli outside the body","Light","Sound"],"Intero = inside."],["Chemoreceptors respond to:","Chemicals",["Light","Heat","Pressure"],"Taste, smell and blood chemistry."],["Thermoreceptors respond to:","Temperature",["Pressure","Light","Stretch"],"Heat and cold."],["Most special sense receptors are:","Hair-like cells",["Free nerve endings","Encapsulated endings","Glial cells"],"Hair cells show up in hearing, balance, and taste."],["What do sensory receptors do?","Turn stimuli into impulses",["Turn impulses into movement","Turn hormones into signals","Turn light into heat"],"They convert environmental information into nerve impulses."]]},"optics":{"name":"Vision: Optics & Focusing","q":[["Refraction is:","Bending of light",["Bouncing of light","Absorption of light","Scattering of light"],"Light bends when it enters a medium of different density."],["Most of the light reaching our eyes arrives by:","Reflection",["Refraction","Emission","Absorption"],"It bounces off objects into our eyes."],["When light enters a denser medium, it:","Slows down",["Speeds up","Stays the same","Stops completely"],"Speed changes at the boundary cause the bending."],["A convex lens:","Converges light to a focal point",["Spreads light rays apart","Reflects all of the light","Absorbs all of the light rays"],"Convex brings rays together."],["A concave lens:","Spreads light rays apart",["Converges light to a point","Reflects all of the light","Focuses light on the retina"],"Concave extends the focal distance."],["Which three points bend light in the eye?","Cornea, entering lens, leaving lens",["Cornea, iris, and the retina","Pupil, lens, and the optic nerve","Sclera, choroid, and the retina"],"Light passes cornea, aqueous humor, lens, vitreous humor, then retina."],["In dim light, the pupil:","Dilates via sympathetic fibers",["Constricts via parasympathetic fibers","Dilates via parasympathetic fibers","Constricts via sympathetic fibers"],"More light needed = mydriasis = sympathetic."],["In bright light, the pupil:","Constricts via parasympathetic fibers",["Dilates via sympathetic fibers","Constricts via sympathetic fibers","Dilates via parasympathetic fibers"],"Less light needed = miosis = parasympathetic."],["A cholinergic drug (acts like ACh) would make the pupil:","Constrict",["Dilate","Stay the same","Flatten"],"ACh stimulates parasympathetic = miosis."],["An adrenergic drug (acts like epinephrine) would make the pupil:","Dilate",["Constrict","Stay the same","Bulge"],"Epi stimulates sympathetic = mydriasis."],["For near vision, the lens becomes:","Rounder as the ciliary muscle contracts",["Flatter as the ciliary muscle relaxes","Rounder as the ciliary muscle relaxes","Flatter as the ciliary muscle contracts"],"Contracting the ciliary muscle lets the lens bulge."],["For near vision, the suspensory ligaments:","Relax",["Tighten","Tear","Stay the same"],"Less tension lets the elastic lens round up."],["Which three things happen together when you focus up close?","Accommodation, pupil constriction, convergence",["Lens flattening, pupil dilation, divergence","Accommodation, pupil dilation, divergence","Lens flattening, constriction, convergence"],"Round lens, small pupil, eyes turn in."],["Near focusing is driven by which fibers?","Oculomotor parasympathetics",["Oculomotor sympathetics","Optic nerve sensory fibers","Trigeminal motor fibers"],"CN III parasympathetics constrict the pupil and ciliary muscle."],["The more spherical the lens, the more it:","Bends light, shortening the focal point",["Bends light, lengthening the focal point","Lets light pass straight through","Reflects light back out"],"Rounder = more convergent."],["For the normal eye, the far point of vision is:","20 feet",["2 feet","200 feet","6 inches"],"Beyond 20 ft no accommodation is needed."],["When you look at something far away:","Ciliary muscle relaxes and the lens flattens",["Ciliary muscle contracts and the lens rounds","Ligaments relax and the lens rounds","Pupil constricts and the eyes converge"],"Relaxed ciliary, tight ligaments, flat lens, less bending."],["When looking far away, the pupil is controlled by:","Sympathetic fibers, causing dilation",["Parasympathetic fibers, causing dilation","Sympathetic fibers, causing constriction","Parasympathetic fibers, causing constriction"],"Distance vision = sympathetic, mydriasis."],["Presbyopia is caused by:","The lens losing elasticity",["An irregularly curved cornea","A missing cone opsin type","Damage to the optic tract"],"The lens can't bulge, so near objects blur."],["The near point of vision in young people is about:","2 to 4 inches",["2 to 4 feet","20 feet","10 feet"],"It stretches toward 2 to 4 feet with age."],["What does 20/200 vision mean?","You see at 20 ft what normal eyes see at 200 ft",["You see at 200 ft what normal eyes see at 20 ft","You have perfect vision at 20 feet","You see ten times better than normal"],"Snellen charts compare to the 20 ft standard."],["Astigmatism is caused by:","Uneven curvature of the cornea or lens",["The lens losing elasticity with age","A missing type of cone opsin","A damaged optic chiasma"],"Light focuses unevenly, blurring part of the image."],["Depth perception requires:","Two working eyes",["One working eye","Cones only","Rods only"],"Binocular vision combines two slightly different images."],["Why is 20 feet the standard for eye charts?","The eye needs no accommodation there",["The fovea is 20 mm across","Cones stop working beyond 20 feet","Rods take over beyond 20 feet"],"It's the distance our eyes are built for at rest."]]},"retina":{"name":"Vision: Retina & Pathways","q":[["What is the order of cells a visual signal passes through in the retina?","Photoreceptors, bipolar cells, ganglion cells",["Ganglion cells, bipolar cells, photoreceptors","Bipolar cells, photoreceptors, ganglion cells","Photoreceptors, ganglion cells, bipolar cells"],"Photoreceptors absorb, bipolar cells relay, ganglion cells send it out."],["The optic nerve is made of the axons of:","Ganglion cells",["Bipolar cells","Rod cells","Cone cells"],"Ganglion axons leave the eye as the optic nerve."],["The fovea centralis contains:","Cones only",["Rods only","Rods and cones equally","No photoreceptors"],"Focus light here for the sharpest vision."],["The macula lutea is:","A cone-dense spot around the fovea",["The blind spot at the optic disc","The rod-rich peripheral retina","The center of the lens"],"The yellow spot, dense in cones, few rods."],["In the peripheral retina:","Rods outnumber cones",["Only cones are found","No photoreceptors exist","Rods and cones are equal"],"Outside the macula, rods dominate."],["Rods are used for:","Dim light and night vision",["Color vision in bright light","Sharp central detail","Detecting motion only"],"Rods are 10x more light-sensitive than cones."],["Cones are used for:","Color and detail in bright light",["Night vision in very dim light","Peripheral vision and nothing else","Seeing shapes in total darkness"],"Cones need bright light."],["The photopigment in rods is:","Rhodopsin",["Iodopsin","Melanin","Photopsin"],"Rhodopsin = scotopsin + retinal."],["Rhodopsin is made of:","Scotopsin and cis-retinal",["Photopsin and cis-retinal","Scotopsin and trans-retinal","Photopsin and trans-retinal"],"The opsin protein plus the light-absorbing chromophore."],["When a photon hits retinal, it:","Changes from cis to trans form",["Changes from trans to cis form","Binds more tightly to scotopsin","Splits into two opsins"],"Trans-retinal no longer fits scotopsin, so rhodopsin splits."],["Bleaching of the pigment refers to:","Rhodopsin splitting after light",["Cones dying from too much light","The pupil dilating in darkness","The lens flattening for distance"],"That split leads to the receptor potential."],["Retinal is chemically related to:","Vitamin A",["Vitamin D","Vitamin C","Vitamin K"],"A vitamin A derivative."],["The photopigment in cones is:","Iodopsin",["Rhodopsin","Scotopsin","Melanopsin"],"Iodopsin = photopsin + cis-retinal."],["The three forms of photopsin are sensitive to:","Blue, green, and red",["Blue, yellow, and red","Red, yellow, and violet","Green, violet, and orange"],"Overlap between them gives the in-between colors."],["Why is color blindness more common in males?","The genes are on the X chromosome",["Males have fewer rods in the retina","Males produce less vitamin A","Males have a smaller fovea"],"Males have one X, so one faulty gene shows up."],["The most common type of color blindness is:","Red-green",["Blue-yellow","Total color loss","Violet only"],"Caused by a missing opsin type."],["Light adaptation (dark to bright) takes about:","60 seconds",["20 to 30 minutes","5 hours","1 second"],"Rods are inhibited and cones activated quickly."],["Dark adaptation (bright to dark) takes about:","20 to 30 minutes",["60 seconds","About 5 hours","About 2 seconds"],"Much slower. Rod pigments need time to recover."],["The optic chiasma is where:","Some optic nerve fibers cross over",["The optic nerve leaves the eyeball","The blind spot sits on the retina","Visual signals reach the cortex"],"Medial fibers cross to the other side."],["Each optic tract contains fibers from:","Lateral half of one eye, medial of the other",["The lateral halves of both eyes, combined","The medial halves of both eyes, combined","All of one eye and none of the other one"],"That regroups the visual field by side."],["The left optic tract carries information from:","The right half of the visual field",["The left half of the visual field","The left eye only","The right eye only"],"Each tract carries the opposite visual field."],["A lesion of the LEFT OPTIC NERVE causes:","Loss of vision in the left eye",["Loss of the right visual field","Loss of the left visual field","Blindness in both eyes"],"Before the chiasma, damage affects one whole eye."],["A lesion of the LEFT OPTIC TRACT causes:","Loss of the right visual field in both eyes",["Loss of all vision in the left eye","Loss of the left visual field in both eyes","Loss of all vision in the right eye"],"After the chiasma, damage affects one half of the field in both eyes."],["The direct pupillary reflex is:","The lit eye's pupil constricting",["The opposite pupil constricting","Both pupils dilating","The lens bulging in light"],"Direct = the eye the light is in."],["The consensual pupillary reflex is:","Constricting when light hits the other eye",["Constricting when light hits that eye","Both pupils dilating together in darkness","The eyes converging on a near object"],"Consensual = the opposite eye responds too."],["The left optic nerve (CN II) is damaged. Light is shone into the LEFT eye. What happens?","Neither pupil constricts",["Both pupils constrict","Only the left pupil constricts","Only the right pupil constricts"],"The brain never gets the message, so there's no direct or consensual response."],["The left optic nerve (CN II) is damaged. Light is shone into the RIGHT eye. What happens?","Both pupils constrict",["Neither pupil constricts","Only the right pupil constricts","Only the left pupil constricts"],"The message gets in through the healthy eye. CN III still works on both sides."],["An abnormal pupillary reflex can be caused by:","Optic or oculomotor nerve damage",["Too much vitamin A in the diet","Nearsightedness","Red-green color blindness"],"Also brain death and depressants like barbiturates."],["Light is translated into electrical signals when:","Pigments absorb photons and start a cascade",["Ganglion cells absorb the light directly","The lens converts light into current","The iris passes light to the optic nerve"],"Absorption by rods and cones sets off the reactions that lead to an AP."]]},"hearing":{"name":"Hearing","q":[["Pitch is our perception of a sound's:","Frequency",["Amplitude","Duration","Speed"],"Higher frequency = higher pitch."],["Loudness is our perception of a sound's:","Amplitude",["Frequency","Wavelength","Duration"],"Taller waves = louder."],["Frequency is measured in:","Hertz",["Decibels","Millivolts","Newtons"],"Hz = waves per second."],["What is the human range of hearing?","20 to 20,000 Hz",["200 to 2,000 Hz","1 to 1,000 Hz","20 to 200,000 Hz"],"Most sensitive between 1000 and 4000 Hz."],["The human ear is most sensitive to sounds between:","1,000 and 4,000 Hz",["20 and 200 Hz","10,000 and 20,000 Hz","200 and 500 Hz"],"The sweet spot of human hearing."],["Why is there no sound in a vacuum?","There are no molecules to vibrate",["Sound travels too fast to hear","The pressure is too high","Light cancels out the waves"],"Sound is molecules being set into vibration."],["Pitch discrimination is mainly due to:","Basilar membrane shape",["The size of the pinna","The eustachian tube","The number of ossicles"],"Different regions of the membrane respond to different frequencies."],["Which fibers of the basilar membrane respond to high-pitched sounds?","Short fibers near the base",["Long fibers near the base","Short fibers near the apex","Long fibers near the apex"],"Short = high, near the oval window. Long = low, near the apex."],["Loudness is measured on which scale?","Decibels, a logarithmic scale",["Hertz, a linear scale","Decibels, a linear scale","Hertz, a logarithmic scale"],"The range is huge: pin drop to steam whistle is a trillion-fold."],["Hearing loss becomes likely with frequent exposure above:","90 dB",["50 dB","20 dB","200 dB"],"0 to 85 dB causes no hair cell damage."],["Normal conversation is about:","50 dB",["70 dB","120 dB","10 dB"],"A noisy restaurant is 70, a rock concert 120."],["A rock concert is about:","120 dB",["50 dB","70 dB","200 dB"],"The pain threshold is 130 to 140 dB."],["The two factors in noise-induced hearing loss are:","Intensity and duration",["Pitch and ear canal shape","Age and eye color","Earwax and pinna size"],"How loud and for how long."],["How does the ear tell loud sounds from soft ones?","Faster APs, more hair cells, loud-only cells",["Longer fibers, fewer cells, slower APs","Bigger eardrum, more wax, wider canal","More ossicles, a larger cochlea, less fluid"],"Three methods of loudness discrimination."],["What is the correct path of sound?","Pinna, canal, tympanic membrane, ossicles, oval window",["Pinna, ossicles, canal, oval window, tympanic membrane","Canal, oval window, ossicles, tympanic membrane, cochlea","Pinna, tympanic membrane, oval window, ossicles, canal"],"Out to in: air, membrane, bones, fluid."],["What is the order of the ossicles from eardrum inward?","Malleus, incus, stapes",["Stapes, incus, malleus","Incus, malleus, stapes","Malleus, stapes, incus"],"Hammer, anvil, stirrup."],["The ossicles amplify vibrations about 15 to 20 times because:","Fluid is harder to move than air",["The eardrum is too thick","The cochlea is filled with air","Sound slows down in bone"],"Extra force is needed to set the inner ear fluid moving."],["The eustachian (auditory) tube:","Equalizes pressure in the middle ear",["Drains fluid from the cochlea","Holds the hair cells","Connects to the semicircular canals"],"Equal pressure lets the eardrum vibrate freely. Pop!"],["The organ of Corti sits on the:","Basilar membrane",["Tectorial membrane","Tympanic membrane","Oval window"],"About 20,000 hair cells."],["The stereocilia of cochlear hair cells touch against the:","Tectorial membrane",["Basilar membrane","Tympanic membrane","Round window"],"Vibration bends them against the tectorial membrane."],["Bending the hair cells' stereocilia:","Opens mechanically gated channels",["Closes all ion channels","Releases calcium carbonate crystals","Triggers vesicle exocytosis in the stapes"],"That produces the receptor (graded) potential."],["Auditory signals leave the cochlea on the:","Cochlear branch of CN VIII",["Vestibular branch of CN VIII","Facial nerve (CN VII)","Optic nerve (CN II)"],"Vestibulocochlear nerve, cochlear branch."],["Conduction deafness happens when:","Sound can't reach the inner ear",["Hair cells are torn by loud noise","The auditory cortex is damaged","CN VIII has been cut"],"Wax, a ruptured eardrum, otosclerosis, otitis media."],["Otosclerosis is when:","The stapes fuses in place",["The eardrum is perforated","The hair cells are torn","Earwax blocks the canal"],"An age-related cause of conduction deafness."],["Neural (sensorineural) deafness results from:","Hair cell-to-cortex damage",["Impacted earwax in the canal","A ruptured eardrum","Fluid in the middle ear"],"Often gradual, or from loud noise tearing the cilia."],["Where is the receptor (graded) potential formed in hearing?","In the hair cells",["In the malleus","In the tympanic membrane","In the auditory cortex"],"The hair cells are the transducers."]]},"balance":{"name":"Equilibrium","q":[["The vestibular system takes input from:","Inner ear, eyes, proprioceptors",["The inner ear, working alone","Vision, working alone","Cochlea, taste, and smell"],"Three sources combine for balance."],["The semicircular canals detect:","Rotation (dynamic equilibrium)",["Linear motion (static equilibrium)","Sound frequency","Head position at rest only"],"They sense angular acceleration."],["The vestibule (utricle and saccule) detects:","Gravity and linear motion",["Rotation of the head","Sound loudness and pitch","Changes in light levels"],"Static equilibrium: up and down, back and forth."],["The maculae are found in the:","Utricle and saccule",["Semicircular canals","Cochlea","Middle ear"],"One in each sac wall."],["Otoliths are made of:","Calcium carbonate crystals",["Sodium chloride crystals","Protein fibers","Cartilage chips"],"Tiny stones on the otolithic membrane."],["The otolithic membrane slides over the hair cells when:","Head starts or stops in a line",["The head spins in a circle","A loud sound enters the ear","Bright light hits the retina"],"Linear acceleration."],["The crista ampullaris is found in:","The ampulla of each canal",["The saccule of the vestibule","The organ of Corti","The tympanic cavity"],"The receptor for rotation."],["The cupula is:","A gel mass over the crista",["A stone layer on the maculae","A membrane over the organ of Corti","The opening of the eustachian tube"],"Fluid pushes the cupula, which bends the hair cells."],["Vestibular hair cells have:","Many stereocilia and one kinocilium",["One stereocilium and many kinocilia","Only kinocilia","Only microvilli"],"The single kinocilium is a true cilium."],["Balance signals travel on the:","Vestibular branch of CN VIII",["Cochlear branch of CN VIII","Oculomotor nerve (CN III)","Trigeminal nerve (CN V)"],"Vestibulocochlear nerve, vestibular branch."],["Vestibular nystagmus is:","Eye drifting and jumping with rotation",["Ringing in the ears after noise","Loss of balance from middle ear fluid","Pupil dilation during spinning"],"The eyes drift opposite the spin, then jump."],["Why do you feel vertigo right after you stop spinning?","Canal fluid and eyes keep moving",["Otoliths fall off the membrane","The eustachian tube pops","Hair cells stop firing completely"],"The eyes keep moving after the rotation ends."],["An elevator starting to go up is detected mainly by the:","Maculae",["Crista ampullaris","Organ of Corti","Retina"],"Vertical linear acceleration."],["Spinning in an office chair is detected mainly by the:","Crista ampullaris",["Maculae","Organ of Corti","Tympanic membrane"],"Rotational acceleration."],["Why are there three semicircular canals?","One for each plane of head motion",["One each for pitch, volume, and tone","One each for light, sound, and touch","Two for balance and one for hearing"],"Nodding yes, shaking no, and tilting ear to shoulder."]]},"chem":{"name":"Taste & Smell","q":[["Taste buds are found mainly in projections on the tongue called:","Lingual papillae",["Olfactory hairs","Crista ampullaris","Maculae"],"About 10,000 taste buds, mostly on the tongue."],["Each taste bud contains which three cell types?","Supporting, receptor, and basal cells",["Rods, cones, and ganglion cells","Hair, supporting, and otolith cells","Bipolar, basal, and glial cells"],"40 to 60 epithelial cells per bud."],["Basal cells in a taste bud:","Regenerate the receptor cells",["Detect sweet tastes only","Send impulses to the brain","Secrete saliva"],"They're the replacement crew."],["Taste receptor cells are replaced about every:","7 to 10 days",["7 to 10 months","24 hours","7 to 10 years"],"They shed constantly."],["Taste receptor cells convert chemicals into:","Receptor (graded) potentials",["Action potentials directly","Hormones","Mechanical vibrations"],"Specialized ciliated epithelial cells do the transduction."],["Which is one of the basic taste qualities?","Umami",["Spicy","Cooling","Metallic"],"Savory. Spicy is actually pain."],["Most taste buds respond to:","Two or three taste qualities",["Only one taste quality","All taste qualities equally","No specific quality"],"They aren't one-flavor specialists."],["Saccharin is an example of a substance that:","Tastes sweet, then bitter",["Tastes sour, then salty","Has no taste at all","Tastes only umami"],"Flavor can change as it moves through the mouth."],["Animals instinctively avoid which taste?","Bitter",["Sweet","Salty","Umami"],"Bitter often signals poison."],["About how much of taste is actually smell?","80 percent",["20 percent","50 percent","5 percent"],"Smell complements taste heavily."],["What role does nasal mucus play in smell?","It dissolves odor molecules",["It blocks all odor molecules","It amplifies sound waves","It carries impulses to the brain"],"Odor chemicals must dissolve before receptors detect them."],["Olfactory receptor cells have which structures?","Olfactory hairs (cilia)",["Stereocilia and a kinocilium","Rods and cones","Otoliths"],"Thin dendrites end in a knob with cilia."],["About how many chemicals can we distinguish by smell?","10,000",["100","1,000,000","400,000"],"400,000 is the hearing number."],["Primary odors may be as few as:","7",["2","100","1,000"],"Floral, musky, camphorous, peppermint, pungent, putrid... or up to 30."],["What makes olfaction unique among the senses (per the slides)?","It ends in the limbic system",["It uses no receptors at all","It is carried by CN VIII","It uses rhodopsin to detect odors"],"The deck says it terminates in the limbic system without reaching cortical areas."],["Taste and smell both use which type of receptor?","Chemoreceptors",["Mechanoreceptors","Photoreceptors","Thermoreceptors"],"Both detect dissolved chemicals."]]},"pain":{"name":"Pain","q":[["What is the purpose of pain?","Warn of tissue damage",["Improve fine motor coordination","Regulate body temperature","Speed up muscle recovery"],"It has important protective value."],["Nociceptors are:","Free nerve endings",["Encapsulated receptors","Hair cells","Photoreceptors"],"Bare endings woven through tissues and organs."],["Which stimuli activate nociceptors?","Damaging force, heat, or chemicals",["Light touch and gentle vibration","Sound waves louder than 90 dB","Small changes in blood pressure"],"Mechanical deformation, excess heat, and chemical mediators."],["Bradykinin is:","A potent pain chemical released after damage",["A natural painkiller released by the brain","A neurotransmitter for voluntary movement","A hormone that lowers blood pressure"],"Enzymes release it when tissue is damaged."],["Bradykinin release leads to:","More mediators and more pain",["Immediate numbness of the area","Endorphin release that stops pain","Constriction of nearby vessels"],"It recruits other mediators and fires more receptors."],["Prostaglandins are involved in:","Inflammation, pain, and fever",["Vision, hearing, and balance","Learning and memory","Muscle contraction only"],"Produced when white cells flood a damaged site."],["Lactic acid causes muscle pain because:","Its low pH fires free nerve endings",["It blocks all sodium channels","It releases endorphins into muscle","It raises muscle temperature"],"That's the burn."],["Lactic acid is produced when muscles burn glucose:","Without oxygen",["With extra oxygen","With extra ATP","Without any glucose"],"Anaerobic metabolism."],["The lateral spinothalamic tract is:","Faster and well localized; pain and temp",["Slower and poorly localized; visceral pain","Motor only; voluntary movement","Sensory only; vision"],"The deck's fast, well localized pain pathway."],["According to the slides, the dorsal column system:","Is slower and carries visceral pain",["Is faster and carries temperature","Carries only voluntary motor signals","Carries only visual information"],"Also carries somatic touch and position sense."],["Both pain pathways relay through the:","Thalamus to the parietal lobe",["Cerebellum to the frontal lobe","Brainstem to the occipital lobe","Limbic system only"],"The somatosensory cortex is in the parietal lobe."],["Pain pathways send collaterals to the reticular activating system, which:","Boosts alertness",["Blocks incoming pain","Controls fine movement","Processes color vision"],"That's why pain wakes you up."],["Referred pain is:","Organ pain felt on the body surface",["Pain spreading out from a skin cut","Pain felt only during sleep","Pain blocked by endorphins"],"Classic example: heart pain felt in the left arm."],["How do endorphins reduce pain?","They inhibit pain transmission",["They kill the nociceptors","They block all sensory nerves","They raise prostaglandin levels"],"Natural opiates that reduce perception."],["Acupuncture and acupressure may reduce pain by:","Releasing endorphins",["Blocking sodium channels","Destroying nociceptors","Raising bradykinin levels"],"They tap into the natural opiate pathway."],["An analgesic is a drug that:","Relieves pain but not consciousness",["Removes all sensation in the body","Causes complete unconsciousness","Blocks only the sense of touch"],"Aspirin, acetaminophen, ibuprofen."],["An anesthetic is a drug that:","Causes loss of sensation",["Only lowers a fever","Only reduces inflammation","Increases pain sensitivity"],"In part or all of the body."],["Which of these is an analgesic?","Ibuprofen",["Bradykinin","Substance P","Histamine"],"The other three cause pain."],["Which neuropeptide carries pain signals and is inhibited by endorphins?","Substance P",["Glutamate","Dopamine","Acetylcholine"],"Endorphins inhibit substance P."],["Which of these chemicals stimulates nociceptors?","Histamine",["Endorphin","Enkephalin","Acetaminophen"],"Histamine, bradykinin, cytokines and prostaglandins all trigger pain."]]}};
+const WATCHOUTS=[["Muscarinic ≠ skeletal muscle","Your notes put muscarinic receptors at the skeletal muscle synapse. Nicotinic receptors are at skeletal muscle. Muscarinic receptors sit on parasympathetic targets (heart, smooth muscle, glands). They're G protein-linked, and they can inhibit too: they slow the heart."],["The pump pushes sodium OUT","Your notes say the cell 'needs sodium IN' after the AP. It's the opposite: sodium flooded in during depolarization, so the pump moves 3 Na+ out and 2 K+ back in."],["SSRIs keep serotonin in the cleft","They block reuptake, so serotonin stays in the synaptic cleft longer. They don't hold it on the membrane."],["Cocaine on the slides","The slide calls cocaine a dopamine mimic (agonist). The real mechanism is blocking dopamine reuptake. The hub follows the slide. Answer however Shaheen frames it."],["Spellings for written answers","Ligand-gated (not legon), acetylcholine, muscarinic, norepinephrine = noradrenaline (not more adrenaline)."]];
 
-// ---- persistence ----
-function loadStore(){
-  try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s) return s; }catch(e){}
-  return {best:{}, missed:{}}; // best: {A: pct}, missed: {A:[qidx,...]}
-}
-function saveStore(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){} }
-let store = loadStore();
-
-const SEC = {};
-DATA.sections.forEach(s=>SEC[s.id]=s);
-const IDS = DATA.sections.map(s=>s.id);
-
-// ---- run state ----
-let run = null; // {label, mode, items:[{sid,qi}], pos, correct, answered, missedThisRun:[{sid,qi}]}
-
-function qCount(sid){ return SEC[sid].questions.length; }
-function missedCount(sid){ return (store.missed[sid]||[]).length; }
-function totalMissed(){ return IDS.reduce((n,id)=>n+missedCount(id),0); }
-
-// ---- overall + clearing scores ----
-function overallStats(){
-  let scoredQ=0, weighted=0, secDone=0;
-  IDS.forEach(id=>{
-    const b=store.best[id];
-    if(b!=null){ const qn=qCount(id); secDone++; scoredQ+=qn; weighted+=b*qn; }
+(function(){
+const KEY = "bio2301-megahub-v1";
+const ALL_IDS = [];
+const BYID = {};
+Object.entries(CATS).forEach(([cid, c]) => {
+  c.q.forEach((x, i) => {
+    const id = cid + "-" + i;
+    const item = { id, cat: cid, q: x[0], a: x[1], d: x[2], e: x[3], n: !!x[4] };
+    BYID[id] = item; ALL_IDS.push(id);
   });
-  return { overall: scoredQ? Math.round(weighted/scoredQ):0, secDone, scoredQ, totalSec:IDS.length };
-}
-function hasAnyScore(){
-  return store.best.MASTER!=null || IDS.some(id=>store.best[id]!=null);
-}
-function clearSectionScore(sid){
-  if(!confirm('Reset Section '+sid+' \u2014 '+SEC[sid].title+'?\n\nClears its saved score and empties its missed-question bank.')) return;
-  delete store.best[sid];
-  delete store.missed[sid];
-  saveStore();
-  renderHub();
-}
-function clearAllScores(){
-  if(!confirm('Reset EVERYTHING \u2014 every section plus the master run?\n\nClears all saved scores and empties every missed-question bank.')) return;
-  store.best={};
-  store.missed={};
-  saveStore();
-  renderHub();
+  c.ids = c.q.map((_, i) => cid + "-" + i);
+});
+
+let store = { cats: {} };
+function load(){ try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.cats) store = s; } catch(e){} }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+function cs(cid){ if (!store.cats[cid]) store.cats[cid] = { best: null, last: null, missed: [] }; return store.cats[cid]; }
+load();
+
+const app = document.getElementById("app");
+const selected = new Set();
+let session = null;
+let view = "hub";
+let studyScope = null;
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c])); }
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function allMissed(){ return Object.keys(CATS).flatMap(c => cs(c).missed); }
+function tone(p){ return p == null ? "var(--line)" : p >= 100 ? "var(--k)" : p >= 90 ? "var(--good)" : p >= 70 ? "var(--na)" : "var(--bad)"; }
+
+function ring(p){
+  const r = 22, C = 2 * Math.PI * r, v = p == null ? 0 : p;
+  return `<svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bgc" cx="27" cy="27" r="${r}"></circle>
+  <circle cx="27" cy="27" r="${r}" stroke="${tone(p)}" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - v / 100)}" stroke-linecap="round" transform="rotate(-90 27 27)"></circle>
+  <text x="27" y="31.5" text-anchor="middle">${p == null ? "—" : p + "%"}</text></svg>`;
 }
 
-// ---- hub rendering ----
+/* ---------- HUB ---------- */
+const TRACE = `<svg class="trace" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-label="Action potential trace from −70 to +30 millivolts">
+  <line class="ax" x1="44" y1="118" x2="1000" y2="118"></line>
+  <line class="th" x1="44" y1="100" x2="1000" y2="100"></line>
+  <line class="ax" x1="44" y1="16" x2="1000" y2="16"></line>
+  <text x="0" y="20">+30</text><text x="0" y="122">−70</text><text class="thl" x="0" y="98">−55</text>
+  <path class="ln" d="M44 118 L150 118 C180 118 190 108 205 100 L218 100 C226 60 232 22 240 16 C250 14 258 70 268 120 C274 132 290 128 305 122 C330 118 380 118 420 118 L520 118 C540 118 548 108 560 101 L566 104 C574 110 580 116 600 118 L700 118 C720 118 726 110 738 100 L748 100 C756 60 762 22 770 16 C780 14 788 70 798 120 C804 132 820 128 835 122 C860 118 920 118 1000 118"></path>
+</svg>`;
+
 function renderHub(){
-  // master
-  const totalAll = IDS.reduce((n,id)=>n+qCount(id),0);
-  document.getElementById('masterCount').textContent = totalAll;
+  view = "hub";
+  const cats = Object.keys(CATS);
+  const bests = cats.map(c => cs(c).best).filter(v => v != null);
+  const overall = bests.length ? Math.round(bests.reduce((a, b) => a + b, 0) / cats.length) : 0;
+  const cleared = cats.filter(c => cs(c).best === 100).length;
+  const missed = allMissed().length;
+  const noteIds = ALL_IDS.filter(id => BYID[id].n);
 
-  // header = overall across sections you've actually scored (weighted by question count)
-  const ov = overallStats();
-  document.getElementById('masterPct').textContent = ov.overall+'%';
-  document.getElementById('masterBar').style.width = ov.overall+'%';
-  document.getElementById('secDone').textContent = ov.secDone;
-  document.getElementById('secTotal').textContent = ov.totalSec;
+  let h = `<header class="mast">
+    <div class="eyebrow">BIO 2301 · Human Physiology · Exam prep</div>
+    <h1>Mega <span>Hub</span></h1>
+    <p>Every deck from homeostasis through pain, plus your lecture notes. ${ALL_IDS.length} questions in ${cats.length} drillable sections. Answers shuffle every run.</p>
+    ${TRACE}
+  </header>
+  <div class="strip">
+    <div class="stat"><b class="mono">${overall}%</b><small>Overall mastery</small></div>
+    <div class="stat"><b class="mono">${cleared}/${cats.length}</b><small>Sections at 100%</small></div>
+    <div class="stat"><b class="mono">${missed}</b><small>In missed bucket</small></div>
+    <div class="stat"><b class="mono">${ALL_IDS.length}</b><small>Total questions</small></div>
+  </div>
+  <div class="actions">
+    <button class="btn primary" data-act="all-practice">Practice everything <span class="ct">${ALL_IDS.length}</span></button>
+    <button class="btn" data-act="all-exam">Full exam <span class="ct">${ALL_IDS.length}</span></button>
+    <button class="btn na" data-act="all-missed" ${missed ? "" : "disabled"}>Drill all missed <span class="ct">${missed}</span></button>
+    <button class="btn" data-act="notes">From my notes <span class="ct">${noteIds.length}</span></button>
+    <button class="btn ghost" data-act="study-all">Study sheet</button>
+    <button class="btn ghost danger" data-act="reset-all" id="reset-all">Reset everything</button>
+  </div>
+  <details class="watch"><summary>Watch-outs from your notes</summary><ul>
+    ${WATCHOUTS.map(w => `<li><b>${esc(w[0])}</b><span>${esc(w[1])}</span></li>`).join("")}
+  </ul></details>`;
 
-  // master card keeps the score from an actual full-slate run
-  const mBest = store.best.MASTER;
-  document.getElementById('masterScore').textContent = mBest==null?'\u2014':mBest+'%';
-  document.getElementById('masterMini').style.width = (mBest==null?0:mBest)+'%';
-
-  const tm = totalMissed();
-  const mm = document.getElementById('masterMiss');
-  mm.textContent = tm+' in missed bank';
-  mm.className = 'missflag'+(tm===0?' zero':'');
-  document.getElementById('masterDrill').disabled = tm===0;
-
-  // sections
-  const grid = document.getElementById('sectionGrid');
-  grid.innerHTML='';
-  DATA.sections.forEach(s=>{
-    const best = store.best[s.id];
-    const mc = missedCount(s.id);
-    const card = document.createElement('div');
-    card.className='card';
-    card.innerHTML = `
-      <div class="tag mono">${s.id}</div>
-      <h3>${s.title}</h3>
-      <div class="meta"><span>${qCount(s.id)} questions</span>
-        <span class="scorewrap">
-          <span class="scorepct">${best==null?'\u2014':best+'%'}</span>
-          <button class="clearsec">Clear</button>
-        </span></div>
-      <div class="minibar"><i style="width:${best==null?0:best}%"></i></div>
-      <div class="btnrow">
-        <button class="btn practice">Practice</button>
-        <button class="btn exam">Exam</button>
-        <button class="btn drill" ${mc===0?'disabled':''}>Missed</button>
-      </div>
-      <div class="missrow">
-        <span class="missflag ${mc===0?'zero':''}">${mc} in missed bank</span>
-        <button class="copysec" ${mc===0?'disabled':''}>Copy missed</button>
-      </div>`;
-    card.querySelector('.practice').onclick=()=>startRun(s.id,'practice',false);
-    card.querySelector('.exam').onclick=()=>startRun(s.id,'exam',false);
-    card.querySelector('.drill').onclick=()=>startRun(s.id,'practice',true);
-    const cs=card.querySelector('.clearsec'); if(cs) cs.onclick=()=>clearSectionScore(s.id);
-    const cp=card.querySelector('.copysec'); if(cp) cp.onclick=()=>copySectionMissed(s.id,cp);
-    grid.appendChild(card);
-  });
-
-  // custom chips
-  const cc = document.getElementById('customChips');
-  cc.innerHTML='';
-  IDS.forEach(id=>{
-    const chip=document.createElement('button');
-    chip.className='chip'+(customSel.has(id)?' on':'');
-    chip.textContent=id;
-    chip.title=SEC[id].title;
-    chip.onclick=()=>{ customSel.has(id)?customSel.delete(id):customSel.add(id); renderHub(); };
-    cc.appendChild(chip);
-  });
-}
-let customSel = new Set();
-
-// ---- shuffle ----
-function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
-
-// ---- build item lists ----
-function itemsForSections(ids){
-  let items=[];
-  ids.forEach(id=>SEC[id].questions.forEach((q,qi)=>items.push({sid:id,qi})));
-  return items;
-}
-function itemsMissed(ids){
-  let items=[];
-  ids.forEach(id=>(store.missed[id]||[]).forEach(qi=>items.push({sid:id,qi})));
-  return items;
-}
-
-function startRun(target, mode, drill){
-  let ids = target==='MASTER' ? IDS.slice() : [target];
-  let items = drill ? itemsMissed(ids) : itemsForSections(ids);
-  if(items.length===0) return;
-  beginRun(items, mode, labelFor(target,drill), target);
-}
-function startCustom(mode){
-  if(customSel.size===0){ alert('Pick at least one section to combine.'); return; }
-  const ids=[...customSel];
-  const items=itemsForSections(ids);
-  beginRun(items, mode, 'Custom \u00b7 '+ids.join(' '), ids.length===IDS.length?'MASTER':null);
-}
-function labelFor(target,drill){
-  if(target==='MASTER') return (drill?'Drill missed \u00b7 ':'')+'Master \u2014 all sections';
-  return (drill?'Drill missed \u00b7 ':'')+target+' \u00b7 '+SEC[target].title;
-}
-
-function beginRun(items, mode, label, scoreTarget){
-  run={ items:shuffle(items.slice()), pos:0, correct:0, answered:0, mode, label, scoreTarget,
-        missedThisRun:[] };
-  show('quiz');
-  document.getElementById('quizWhere').textContent=label;
-  document.getElementById('examNote').classList.toggle('hide', mode!=='exam');
-  renderQuestion();
-}
-
-function renderQuestion(){
-  const it=run.items[run.pos];
-  const q=SEC[it.sid].questions[it.qi];
-  document.getElementById('quizBar').style.width=((run.pos)/run.items.length*100)+'%';
-  document.getElementById('quizNum').textContent=`Question ${run.pos+1} of ${run.items.length} \u2014 Section ${it.sid}`;
-  document.getElementById('quizText').textContent=q.q;
-  const live=document.getElementById('quizLive');
-  if(run.mode==='practice'){ live.textContent = run.answered? Math.round(run.correct/run.answered*100)+'% \u00b7 '+run.correct+'/'+run.answered : ''; }
-  else { live.textContent = (run.pos)+' / '+run.items.length+' answered'; }
-
-  // shuffle option order but track correct
-  const order=shuffle(q.opts.map((t,i)=>({t,i})));
-  const optsEl=document.getElementById('quizOpts');
-  optsEl.innerHTML='';
-  const keys=['A','B','C','D','E','F'];
-  order.forEach((o,vi)=>{
-    const b=document.createElement('button');
-    b.className='opt';
-    b.innerHTML=`<span class="key mono">${keys[vi]}</span><span>${o.t}</span>`;
-    b.onclick=()=>choose(vi,order,q);
-    optsEl.appendChild(b);
-  });
-  const fb=document.getElementById('quizFeedback'); fb.className='feedback'; fb.textContent='';
-  const fl=document.getElementById('quizFlag'); fl.className='flag'; fl.textContent='';
-  document.getElementById('quizNext').classList.add('hide');
-  run._order=order; run._answered=false;
-}
-
-function choose(vi, order, q){
-  if(run._answered) return;
-  run._answered=true;
-  run.answered++;
-  const it=run.items[run.pos];
-  const chosen=order[vi].i;
-  const isRight=chosen===q.ans;
-  if(isRight){ run.correct++; }
-  else{
-    run.missedThisRun.push({sid:it.sid, qi:it.qi});
-    addMissed(it.sid, it.qi);
-  }
-  // if right and it was in the missed bank, clear it
-  if(isRight) removeMissed(it.sid, it.qi);
-
-  const btns=document.getElementById('quizOpts').querySelectorAll('.opt');
-  if(run.mode==='practice'){
-    btns.forEach((b,idx)=>{
-      b.disabled=true;
-      if(order[idx].i===q.ans) b.classList.add('correct');
-      else if(idx===vi) b.classList.add('wrong');
+  UNITS.forEach(u => {
+    const n = u.cats.reduce((a, c) => a + CATS[c].ids.length, 0);
+    h += `<section class="unit"><div class="unit-h"><h2>${esc(u.name)}</h2><span class="eyebrow">${esc(u.deck)} · ${n} Qs</span></div><div class="grid">`;
+    u.cats.forEach(cid => {
+      const c = CATS[cid], s = cs(cid), m = s.missed.length;
+      const nn = c.ids.filter(id => BYID[id].n).length;
+      h += `<article class="card ${selected.has(cid) ? "sel" : ""}">
+        <div class="card-top">${ring(s.best)}
+          <div><h3>${esc(c.name)}</h3>
+            <div class="meta">${c.ids.length} Qs · best ${s.best == null ? "—" : s.best + "%"} · last ${s.last == null ? "—" : s.last + "%"}</div>
+          </div>
+          <label class="pick" title="Add to a custom mix"><input type="checkbox" id="pick-${cid}" data-pick="${cid}" ${selected.has(cid) ? "checked" : ""} aria-label="Add ${esc(c.name)} to mix"></label>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${m ? `<span class="chip bad">${m} missed</span>` : s.best === 100 ? `<span class="chip good">Cleared</span>` : ""}
+          ${nn ? `<span class="chip na">${nn} from notes</span>` : ""}
+        </div>
+        <div class="card-btns">
+          <button class="btn primary" data-act="cat-practice" data-cat="${cid}">Practice</button>
+          <button class="btn" data-act="cat-exam" data-cat="${cid}">Exam</button>
+          <button class="btn" data-act="cat-study" data-cat="${cid}">Study</button>
+          ${m ? `<button class="btn na" data-act="cat-missed" data-cat="${cid}">Missed ${m}</button>` : ""}
+          <button class="btn ghost danger" data-act="cat-reset" data-cat="${cid}">Reset</button>
+        </div>
+      </article>`;
     });
-    const fb=document.getElementById('quizFeedback');
-    fb.classList.add('show', isRight?'right':'miss');
-    fb.innerHTML = (isRight?'<b>Correct.</b> ':'<b>Not quite.</b> Correct answer: <b>'+q.opts[q.ans]+'</b>')
-      + (q.note?'<span class="note">'+q.note+'</span>':'');
-    // special flag for the retroperitoneal T/F discrepancy
-    if(q.note && q.note.indexOf('flag this')>-1){
-      const fl=document.getElementById('quizFlag');
-      fl.classList.add('show');
-      fl.textContent='\u26A0 Answer-key conflict: your worksheet was marked differently. Confirm with Dr. DeAngelo.';
-    }
-    document.getElementById('quizLive').textContent=Math.round(run.correct/run.answered*100)+'% \u00b7 '+run.correct+'/'+run.answered;
-    document.getElementById('quizNext').classList.remove('hide');
-    document.getElementById('quizNext').textContent = run.pos+1>=run.items.length?'See results':'Next';
-    document.getElementById('quizNext').focus();
-  } else {
-    // exam: no feedback, auto-advance
-    btns.forEach(b=>b.disabled=true);
-    setTimeout(nextQuestion, 130);
-  }
-}
-
-function nextQuestion(){
-  run.pos++;
-  if(run.pos>=run.items.length){ finishRun(); return; }
-  renderQuestion();
-}
-
-function finishRun(){
-  document.getElementById('quizBar').style.width='100%';
-  const pct=Math.round(run.correct/run.items.length*100);
-  // update best score for the scoreTarget (only for full-section or master non-drill runs, but we store best seen)
-  if(run.scoreTarget){
-    const prev=store.best[run.scoreTarget];
-    if(prev==null || pct>prev) store.best[run.scoreTarget]=pct;
-  }
-  saveStore();
-  // results view
-  show('results');
-  document.getElementById('resWhere').textContent=run.label;
-  const sc=document.getElementById('resScore');
-  sc.textContent=pct+'%';
-  sc.className='bigscore mono '+(pct>=90?'pass':pct>=75?'mid':'low');
-  document.getElementById('resTally').textContent=`${run.correct} of ${run.items.length} correct \u00b7 ${run.items.length-run.correct} missed`;
-  const wrap=document.getElementById('resMissWrap');
-  if(run.missedThisRun.length===0){
-    wrap.innerHTML='<div class="perfect">Clean run &mdash; nothing dropped into the missed bank.</div>';
-    document.getElementById('resDrill').classList.add('hide');
-    document.getElementById('resCopy').classList.add('hide');
-  } else {
-    document.getElementById('resDrill').classList.remove('hide');
-    document.getElementById('resCopy').classList.remove('hide');
-    let html='<div class="missblock">';
-    run.missedThisRun.forEach(m=>{
-      const q=SEC[m.sid].questions[m.qi];
-      html+=`<div class="missitem"><div class="mq">[${m.sid}] ${q.q}</div>
-        <div class="ma">\u2192 ${q.opts[q.ans]}</div>
-        ${q.note?'<div class="mn">'+q.note+'</div>':''}</div>`;
-    });
-    html+='</div>';
-    wrap.innerHTML=html;
-  }
-}
-
-function drillFromResults(){
-  const items=run.missedThisRun.slice();
-  if(items.length===0) return;
-  beginRun(items,'practice','Drill missed \u00b7 '+run.label, run.scoreTarget);
-}
-
-// ---- copy helpers ----
-const LETTERS='ABCDEF';
-
-// One question, fully written out: stem, every option, the correct one, and the note.
-function formatMissedQ(sid,qi,n){
-  const q=SEC[sid].questions[qi];
-  let out=n+'. '+q.q+'\n';
-  q.opts.forEach((o,i)=>{
-    out+='   '+LETTERS[i]+') '+o+(i===q.ans?'   \u2190 correct':'')+'\n';
+    h += `</div></section>`;
   });
-  out+='   Answer: '+LETTERS[q.ans]+') '+q.opts[q.ans]+'\n';
-  if(q.note) out+='   Why: '+q.note+'\n';
-  return out;
+
+  if (selected.size){
+    const n = [...selected].reduce((a, c) => a + CATS[c].ids.length, 0);
+    h += `<div class="selbar"><div class="in"><span class="lbl">${selected.size} section${selected.size > 1 ? "s" : ""} · ${n} Qs</span>
+      <button class="btn primary" data-act="mix-practice">Practice mix</button>
+      <button class="btn" data-act="mix-exam">Exam mix</button>
+      <button class="btn ghost" data-act="mix-clear">Clear</button></div></div>`;
+  }
+  app.innerHTML = h;
 }
 
-function flashBtn(btn){
-  if(!btn) return;
-  const t=btn.textContent;
-  btn.textContent='Copied \u2713';
-  setTimeout(()=>{ btn.textContent=t; },1400);
-}
-
-function writeClip(text,btn){
-  const fallback=()=>{
-    const ta=document.createElement('textarea');
-    ta.value=text;
-    ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); }catch(e){}
-    ta.remove();
-    flashBtn(btn);
+/* ---------- SESSION ---------- */
+function start(mode, ids, title, fullCats){
+  if (!ids.length) return;
+  session = {
+    mode, title, fullCats: fullCats || [],
+    items: shuffle(ids).map(id => {
+      const b = BYID[id];
+      const opts = shuffle([b.a, ...b.d]);
+      return { id, opts, correct: opts.indexOf(b.a) };
+    }),
+    i: 0, picks: [], locked: false
   };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>flashBtn(btn)).catch(fallback);
-  } else {
-    fallback();
+  view = "quiz"; renderQuiz(); window.scrollTo(0, 0);
+}
+
+function renderQuiz(){
+  const s = session, it = s.items[s.i], b = BYID[it.id];
+  const pick = s.picks[s.i];
+  const answered = s.mode === "practice" && pick != null;
+  const done = s.picks.filter(p => p != null).length;
+  const right = s.items.reduce((a, x, i) => a + (s.picks[i] === x.correct ? 1 : 0), 0);
+  const pct = Math.round((s.i) / s.items.length * 100);
+
+  let opts = it.opts.map((o, k) => {
+    let cls = "opt";
+    if (s.mode === "practice" && answered){
+      if (k === it.correct) cls += " right"; else if (k === pick) cls += " wrong";
+    } else if (pick === k) cls += " chosen";
+    return `<button class="${cls}" data-opt="${k}" ${answered ? "disabled" : ""}><span class="key">${k + 1}</span><span>${esc(o)}</span></button>`;
+  }).join("");
+
+  let fb = "";
+  if (answered){
+    const ok = pick === it.correct;
+    fb = `<div class="fb ${ok ? "good" : "bad"}"><b>${ok ? "Correct." : "Not quite. Answer: " + esc(b.a)}</b>${esc(b.e)}</div>`;
   }
+  const last = s.i === s.items.length - 1;
+  const canNext = pick != null;
+
+  app.innerHTML = `<div class="qtop">
+      <div class="ttl">${esc(s.title)}</div>
+      <span class="chip">${s.mode === "practice" ? "Practice" : "Exam"}</span>
+      ${s.mode === "practice" ? `<span class="chip good mono">${right}/${done} right</span>` : ""}
+      <button class="btn ghost" data-act="quit">Quit</button>
+    </div>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="qcard">
+      <div class="qmeta"><span class="eyebrow">Q ${s.i + 1} of ${s.items.length}</span><span class="chip">${esc(CATS[b.cat].name)}</span>${b.n ? `<span class="chip na">From your notes</span>` : ""}</div>
+      <p class="qtext">${esc(b.q)}</p>
+      <div class="opts">${opts}</div>
+      ${fb}
+      <div class="qnav"><span class="hint">Keys 1–4 to answer · Enter for next</span>
+        <button class="btn primary" data-act="next" ${canNext ? "" : "disabled"}>${last ? "Finish" : "Next"}</button></div>
+    </div>`;
 }
 
-// Hub: copy one section's saved missed bank, any time \u2014 not just after a run.
-function copySectionMissed(sid,btn){
-  const list=(store.missed[sid]||[]).slice().sort((a,b)=>a-b);
-  if(list.length===0) return;
-  let out='MISSED \u2014 Section '+sid+' \u00b7 '+SEC[sid].title+'\n'
-        + list.length+' question'+(list.length===1?'':'s')+' in the missed bank\n';
-  list.forEach((qi,i)=>{ out+='\n'+formatMissedQ(sid,qi,i+1); });
-  writeClip(out,btn);
+function choose(k){
+  const s = session; if (!s) return;
+  if (s.mode === "practice" && s.picks[s.i] != null) return;
+  s.picks[s.i] = k;
+  if (s.mode === "practice") track(s.items[s.i], k);
+  renderQuiz();
 }
 
-// Results screen: copy what you missed on this run, grouped by section.
-function copyMissed(){
-  const bySec={};
-  run.missedThisRun.forEach(m=>{ (bySec[m.sid]=bySec[m.sid]||[]).push(m.qi); });
-  let out='MISSED \u2014 '+run.label+'\n';
-  Object.keys(bySec).sort().forEach(sid=>{
-    out+='\n== Section '+sid+' \u00b7 '+SEC[sid].title+' ==\n';
-    bySec[sid].forEach((qi,i)=>{ out+='\n'+formatMissedQ(sid,qi,i+1); });
+function track(it, k){
+  const b = BYID[it.id], c = cs(b.cat);
+  const idx = c.missed.indexOf(it.id);
+  if (k === it.correct){ if (idx > -1) c.missed.splice(idx, 1); }
+  else if (idx === -1) c.missed.push(it.id);
+  save();
+}
+
+function next(){
+  const s = session; if (!s || s.picks[s.i] == null) return;
+  if (s.i < s.items.length - 1){ s.i++; renderQuiz(); window.scrollTo(0, 0); }
+  else finish();
+}
+
+function finish(){
+  const s = session;
+  if (s.mode === "exam") s.items.forEach((it, i) => track(it, s.picks[i]));
+  const per = {};
+  s.items.forEach((it, i) => {
+    const cat = BYID[it.id].cat; per[cat] = per[cat] || { r: 0, t: 0 };
+    per[cat].t++; if (s.picks[i] === it.correct) per[cat].r++;
   });
-  writeClip(out,document.getElementById('resCopy'));
+  s.fullCats.forEach(cat => {
+    if (!per[cat]) return;
+    const p = Math.round(per[cat].r / per[cat].t * 100), c = cs(cat);
+    c.last = p; c.best = c.best == null ? p : Math.max(c.best, p);
+  });
+  save();
+  s.per = per; view = "results"; renderResults(); window.scrollTo(0, 0);
 }
 
-// ---- missed bank ----
-function addMissed(sid,qi){
-  const arr=store.missed[sid]=store.missed[sid]||[];
-  if(!arr.includes(qi)) arr.push(qi);
-}
-function removeMissed(sid,qi){
-  if(!store.missed[sid]) return;
-  store.missed[sid]=store.missed[sid].filter(x=>x!==qi);
+function renderResults(){
+  const s = session;
+  const right = s.items.filter((it, i) => s.picks[i] === it.correct).length;
+  const pct = Math.round(right / s.items.length * 100);
+  const misses = s.items.map((it, i) => ({ it, pick: s.picks[i] })).filter(x => x.pick !== x.it.correct);
+  const verdict = pct === 100 ? "Clean sweep. That section is locked in." : pct >= 90 ? "Close. Clean up the misses and run it again." : pct >= 70 ? "Getting there. Drill the misses, then rerun." : "Rough run. Hit Study first, then drill.";
+  const cats = Object.keys(s.per);
+  let h = `<div class="res">
+    <div class="qtop"><div class="ttl">${esc(s.title)}</div><span class="chip">${s.mode === "practice" ? "Practice" : "Exam"} results</span></div>
+    <div class="score"><div class="big mono" style="color:${tone(pct)}">${pct}%</div>
+      <div><h2>${right} of ${s.items.length} correct</h2><p>${verdict}</p>
+      ${s.fullCats.length ? "" : `<p class="eyebrow" style="margin-top:6px">Drill runs don't change section scores</p>`}</div></div>
+    <div class="actions">
+      ${misses.length ? `<button class="btn na" data-act="retry-miss">Drill these ${misses.length} misses</button>` : ""}
+      <button class="btn primary" data-act="again">Run it again</button>
+      <button class="btn" data-act="home">Back to hub</button>
+    </div>`;
+  if (cats.length > 1){
+    h += `<h3 class="sech">By section</h3><div class="breakdown">` + cats.map(c => {
+      const p = Math.round(s.per[c].r / s.per[c].t * 100);
+      return `<div class="brow"><span>${esc(CATS[c].name)}</span><span class="mono" style="color:${tone(p)}">${s.per[c].r}/${s.per[c].t} · ${p}%</span></div>`;
+    }).join("") + `</div>`;
+  }
+  if (misses.length){
+    h += `<h3 class="sech">What you missed</h3>` + misses.map(({ it, pick }) => {
+      const b = BYID[it.id];
+      return `<div class="miss"><p>${esc(b.q)}</p>
+        <div class="yours">You: ${esc(it.opts[pick])}</div>
+        <div class="corr">Answer: ${esc(b.a)}</div>
+        <small>${esc(b.e)}</small></div>`;
+    }).join("");
+  }
+  h += `</div>`;
+  app.innerHTML = h;
+  session.missIds = misses.map(x => x.it.id);
 }
 
-// ---- nav ----
-function show(id){ ['hub','quiz','results'].forEach(s=>document.getElementById(s).classList.toggle('hide',s!==id)); if(id==='hub'){renderHub();} window.scrollTo(0,0); }
-function quitToHub(){ saveStore(); run=null; show('hub'); }
+/* ---------- STUDY ---------- */
+function renderStudy(catIds, q){
+  view = "study"; studyScope = catIds;
+  const term = (q || "").trim().toLowerCase();
+  let body = "";
+  catIds.forEach(cid => {
+    const rows = CATS[cid].ids.map(id => BYID[id]).filter(b => !term || (b.q + " " + b.a + " " + b.e).toLowerCase().includes(term));
+    if (!rows.length) return;
+    body += `<h3 class="sech">${esc(CATS[cid].name)}</h3>` + rows.map(b => `<div class="sq"><p>${esc(b.q)}${b.n ? ` <span class="chip na">notes</span>` : ""}</p><div class="a">${esc(b.a)}</div><small>${esc(b.e)}</small></div>`).join("");
+  });
+  const title = catIds.length === 1 ? CATS[catIds[0]].name : "Study sheet";
+  const results = body || `<p class="empty">Nothing matches "${esc(q)}".</p>`;
+  if (document.getElementById("study-body")){ document.getElementById("study-body").innerHTML = results; return; }
+  app.innerHTML = `<div class="study">
+    <div class="qtop"><div class="ttl">${esc(title)}</div>
+      ${catIds.length === 1 ? `<button class="btn primary" data-act="cat-practice" data-cat="${catIds[0]}">Practice this</button>` : ""}
+      <button class="btn ghost" data-act="home">Back to hub</button></div>
+    <input class="search" id="study-search" type="search" placeholder="Search questions, answers, explanations" autocomplete="off">
+    <div id="study-body">${results}</div></div>`;
+  window.scrollTo(0, 0);
+}
 
-// keyboard
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('quiz').classList.contains('hide')) return;
-  if(!run) return;
-  if(['1','2','3','4','5','6'].includes(e.key) && !run._answered){
-    const idx=parseInt(e.key)-1;
-    const opts=document.getElementById('quizOpts').querySelectorAll('.opt');
-    if(opts[idx]) opts[idx].click();
-  } else if(e.key==='Enter' && run._answered && run.mode==='practice'){
-    const nb=document.getElementById('quizNext');
-    if(!nb.classList.contains('hide')) nb.click();
+/* ---------- EVENTS ---------- */
+const armed = {};
+function arm(btn, key, run){
+  if (armed[key]){ clearTimeout(armed[key]); delete armed[key]; run(); return; }
+  btn.classList.add("armed"); btn.textContent = "Tap again to reset";
+  armed[key] = setTimeout(() => { delete armed[key]; if (view === "hub") renderHub(); }, 3000);
+}
+
+app.addEventListener("click", e => {
+  const o = e.target.closest("[data-opt]"); if (o){ choose(+o.dataset.opt); return; }
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const act = b.dataset.act, cid = b.dataset.cat;
+  const cats = Object.keys(CATS);
+  switch (act){
+    case "all-practice": start("practice", ALL_IDS, "Everything", cats); break;
+    case "all-exam": start("exam", ALL_IDS, "Full exam", cats); break;
+    case "all-missed": start("practice", allMissed(), "All missed"); break;
+    case "notes": start("practice", ALL_IDS.filter(id => BYID[id].n), "From my notes"); break;
+    case "study-all": renderStudy(cats); break;
+    case "reset-all": arm(b, "all", () => { store = { cats: {} }; save(); selected.clear(); renderHub(); }); break;
+    case "cat-practice": start("practice", CATS[cid].ids, CATS[cid].name, [cid]); break;
+    case "cat-exam": start("exam", CATS[cid].ids, CATS[cid].name, [cid]); break;
+    case "cat-study": renderStudy([cid]); break;
+    case "cat-missed": start("practice", cs(cid).missed, CATS[cid].name + ": missed"); break;
+    case "cat-reset": arm(b, cid, () => { store.cats[cid] = { best: null, last: null, missed: [] }; save(); renderHub(); }); break;
+    case "mix-practice": case "mix-exam": {
+      const list = cats.filter(c => selected.has(c));
+      start(act === "mix-practice" ? "practice" : "exam", list.flatMap(c => CATS[c].ids), "Custom mix", list); break;
+    }
+    case "mix-clear": selected.clear(); renderHub(); break;
+    case "next": next(); break;
+    case "quit": session = null; renderHub(); window.scrollTo(0, 0); break;
+    case "home": session = null; renderHub(); window.scrollTo(0, 0); break;
+    case "again": start(session.mode, session.items.map(x => x.id), session.title, session.fullCats); break;
+    case "retry-miss": start("practice", session.missIds, session.title + ": misses"); break;
   }
 });
 
-// init
+app.addEventListener("change", e => {
+  const p = e.target.closest("[data-pick]"); if (!p) return;
+  const cid = p.dataset.pick;
+  p.checked ? selected.add(cid) : selected.delete(cid);
+  const y = window.scrollY; renderHub(); window.scrollTo(0, y);
+});
+
+app.addEventListener("input", e => {
+  if (e.target.id === "study-search") renderStudy(studyScope, e.target.value);
+});
+
+document.addEventListener("keydown", e => {
+  if (view !== "quiz" || !session) return;
+  if (e.target.tagName === "INPUT") return;
+  if (["1","2","3","4"].includes(e.key)) { e.preventDefault(); choose(+e.key - 1); }
+  else if (e.key === "Enter") { e.preventDefault(); next(); }
+});
+
 renderHub();
+})();
 </script>
-</body>
-</html>
