@@ -1,3 +1,6 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BIO 2301 Mega Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,8 +177,92 @@ details.watch[open] summary::after{content:"−"}
 .sq .a{color:var(--k); font-weight:700}
 .sq small{display:block; color:var(--ink2)}
 .empty{color:var(--ink2); padding:16px 0}
+
+[hidden]{display:none !important}
+.tab.ct-tab.on{background:var(--k); color:var(--k-ink)}
+.primer .pr, .study .pr{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:clamp(14px,3vw,22px); margin-block:14px; box-shadow:var(--shadow)}
+.pr h3{font-family:var(--display); font-weight:800; font-size:26px; text-transform:uppercase; margin:0 0 12px; line-height:1}
+.pr p{margin:0 0 10px}
+.mn{display:grid; gap:2px; border-left:4px solid var(--k); background:var(--k-soft); border-radius:0 10px 10px 0; padding:10px 14px; margin-top:10px}
+.mn b{font-size:16px}
+.mn span{color:var(--ink2)}
+.tblw{overflow-x:auto; margin-inline:-4px}
+.tbl{width:100%; border-collapse:collapse; font-size:15px}
+.tbl th{text-align:left; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); padding:6px 8px; border-bottom:2px solid var(--line)}
+.tbl td{padding:8px; border-bottom:1px solid var(--line); vertical-align:top}
+.dg{width:100%; height:auto; display:block; margin-block:6px 4px; overflow:visible}
+.dg .lb{font-family:var(--mono); font-size:13px; fill:var(--ink)}
+.dg .lb.sm{font-size:11.5px; fill:var(--ink2)}
+.dg .k{fill:var(--k)} .dg .na{fill:var(--na)} .dg .bad{fill:var(--bad)}
+.dg .gl{stroke:var(--line); stroke-width:1}
+.dg .th{stroke:var(--na); stroke-dasharray:5 5}
+.dg .ln{fill:none; stroke:var(--k); stroke-width:3; stroke-linejoin:round}
+.dg .ref{fill:var(--bad-soft)} .dg .ref2{fill:var(--na-soft)}
+.dg .pt{fill:var(--k)} .dg .pn{fill:var(--k-ink); font-family:var(--mono); font-size:13px; text-anchor:middle; font-weight:500}
+.dg .ax{fill:var(--k-soft); stroke:var(--k)}
+.dg .term{fill:var(--k-soft); stroke:var(--k); stroke-width:2}
+.dg .ves{fill:var(--na-soft); stroke:var(--na); stroke-width:2}
+.dg .ch{fill:var(--k)}
+.dg .nt{r:4px; fill:var(--na)}
+.dg .post{fill:var(--surface2); stroke:var(--line); stroke-width:2}
+.dg .psd{fill:var(--k)}
+.dg .arr{fill:none; stroke:var(--ink2); stroke-width:2; marker-end:url(#ah)}
+.dg path.arr.na{stroke:var(--na)}
+.dg .hl{fill:none; stroke:var(--bad); stroke-width:3; stroke-dasharray:6 4}
+.dg .nd{fill:var(--surface2); stroke:var(--ink2); stroke-width:2}
+.dg circle.nd.k{fill:var(--k)}
+.dg .bm{fill:url(#bmg); stroke:var(--ink2); stroke-width:1.5}
+.dg .gel{fill:var(--k-soft); stroke:var(--k)}
+.dg .oto{fill:var(--na); stroke:var(--surface); stroke-width:1}
+.dg .hair{stroke:var(--ink2); stroke-width:2; fill:none}
+.dg .hc{fill:var(--surface2); stroke:var(--ink2)}
+.dg .cup{fill:var(--k-soft); stroke:var(--k); stroke-width:2}
+.dg .eye{fill:var(--surface2); stroke:var(--ink2); stroke-width:2}
+.dg .fib{fill:none; stroke-width:4; stroke-linecap:round; opacity:.85}
+.dg path.fib.k{stroke:var(--k)} .dg path.fib.na{stroke:var(--na)}
+.dg.narrow{max-width:420px; margin-inline:auto}
+.dg .chx{fill:var(--surface2); stroke:var(--ink3); stroke-dasharray:4 3}
+.dg .x{stroke:var(--bad); stroke-width:6; stroke-linecap:round}
+.dg .wv{fill:none; stroke:var(--k); stroke-width:1.6; stroke-linejoin:round}
+.dg path.wv.na{stroke:var(--na)} .dg path.wv.bd{stroke:var(--bad)}
+.dg .bx{fill:var(--surface2); stroke:var(--ink2); stroke-width:1.5}
+.dg rect.bx.k{fill:var(--k-soft); stroke:var(--k)}
+.dg .fb{fill:none; stroke:var(--bad); stroke-width:2; stroke-dasharray:6 5; marker-end:url(#ahb)}
+.seg{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px}
+.sbtn{border:1px solid var(--line); background:var(--bg); border-radius:10px; padding:8px 12px; min-height:40px; font-weight:700; font-size:14px}
+.sbtn.on{background:var(--k); border-color:var(--k); color:var(--k-ink)}
+.stepbox{background:var(--surface2); border-radius:12px; padding:12px 14px; margin-top:6px}
+.stepbox p{margin:0}
+.flow{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:8px}
+.fs{background:var(--surface2); border-radius:12px; padding:12px; display:grid; gap:6px; position:relative}
+.fs b{font-family:var(--display); font-weight:800; font-size:20px; text-transform:uppercase}
+.fs span{font-size:14px; color:var(--ink2)}
+.tag{font-style:normal; font-family:var(--mono); font-size:11px; padding:1px 6px; border-radius:99px; background:var(--surface); white-space:nowrap}
+.tag.k{color:var(--k)} .tag.bad{color:var(--bad)} .tag.na{color:var(--na)}
+.two{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px}
+.card2{background:var(--surface2); border-radius:12px; padding:12px}
+.card2 h4{margin:0 0 6px; font-size:16px}
+.card2 p{margin:0; font-size:15px; color:var(--ink2)}
+.scale{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:6px}
+.scale div{background:var(--good-soft); border-radius:10px; padding:8px 10px; display:grid}
+.scale div.bad{background:var(--bad-soft)}
+.scale b{font-family:var(--mono)} .scale span{font-size:13px; color:var(--ink2)}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.gc{background:var(--surface2); border-radius:12px; padding:12px; display:grid; gap:2px}
+.gc small{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink3)}
+.gc b{font-family:var(--display); font-weight:800; font-size:26px}
+.gc span{font-size:14px; color:var(--ink2)}
+.box{width:100%; min-height:140px; font-family:var(--mono); font-size:12px; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--bg); color:var(--ink); margin-bottom:10px}
+.hint2{color:var(--bad); margin:0}
+.toast{position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); background:var(--ink); color:var(--bg); padding:12px 18px; border-radius:12px; font-weight:700; opacity:0; pointer-events:none; transition:.2s; z-index:50}
+.toast.on{opacity:1; transform:translate(-50%,0)}
 </style>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="fill:var(--ink2)"/></marker>
+<marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--bad)"/></marker>
+<linearGradient id="bmg" x1="0" x2="1"><stop offset="0" style="stop-color:var(--k)"/><stop offset="1" style="stop-color:var(--na)"/></linearGradient>
+</defs></svg>
 <div class="wrap" id="app"></div>
 
 <script>
@@ -332,6 +419,612 @@ const LAB_WATCHOUTS=[
 
 </script>
 <script>
+/* ================= CRUNCH TIME ================= */
+(function(){
+function wave(freq, amp, w, h, y0){ // smooth-ish EEG trace
+  let d = "M0 " + y0, seed = freq * 7 + amp;
+  for (let x = 2; x <= w; x += 2){
+    seed = (seed * 9301 + 49297) % 233280;
+    const j = (seed / 233280 - .5) * amp * .12;
+    const y = y0 + Math.sin(x / w * Math.PI * 2 * freq) * amp + j;
+    d += " L" + x + " " + y.toFixed(1);
+  }
+  return d;
+}
+function spikes(n, amp, w, y0, seedStart){ // EMG burst
+  let d = "M0 " + y0, seed = seedStart, x = 0;
+  const step = w / n;
+  for (let i = 0; i < n; i++){
+    seed = (seed * 9301 + 49297) % 233280; const r = seed / 233280;
+    x += step * (.6 + r * .8);
+    if (x > w) break;
+    const a = amp * (.55 + r * .45);
+    d += " L" + (x - 2).toFixed(1) + " " + y0 + " L" + x.toFixed(1) + " " + (y0 - a).toFixed(1) + " L" + (x + 2).toFixed(1) + " " + (y0 + a * .8).toFixed(1) + " L" + (x + 4).toFixed(1) + " " + y0;
+  }
+  return d + " L" + w + " " + y0;
+}
+
+const MN = (t, b) => `<div class="mn"><b>${t}</b><span>${b}</span></div>`;
+
+/* ---------- PRIMERS ---------- */
+const P = {};
+
+P.ct_ap = `
+<section class="pr"><h3>The action potential, one picture</h3>
+<svg class="dg" viewBox="0 0 640 300" role="img" aria-label="Action potential with four phases">
+  <line class="gl" x1="60" y1="40" x2="630" y2="40"/><text class="lb" x="8" y="44">+30</text>
+  <line class="gl" x1="60" y1="120" x2="630" y2="120"/><text class="lb" x="22" y="124">0</text>
+  <line class="th" x1="60" y1="200" x2="630" y2="200"/><text class="lb na" x="8" y="204">−55</text>
+  <line class="gl" x1="60" y1="230" x2="630" y2="230"/><text class="lb" x="8" y="234">−70</text>
+  <rect class="ref" x="172" y="20" width="78" height="255" rx="6"/><text class="lb sm" x="176" y="290">absolute</text>
+  <rect class="ref2" x="250" y="20" width="95" height="255" rx="6"/><text class="lb sm" x="262" y="290">relative</text>
+  <path class="ln" d="M60 230 L120 230 C140 230 150 212 172 200 C182 150 192 50 205 40 C218 34 232 140 250 230 C258 262 280 258 300 248 C320 238 335 230 360 230 L630 230"/>
+  <circle class="pt" cx="90" cy="230" r="12"/><text class="pn" x="90" y="235">1</text>
+  <circle class="pt" cx="182" cy="120" r="12"/><text class="pn" x="182" y="125">2</text>
+  <circle class="pt" cx="235" cy="120" r="12"/><text class="pn" x="235" y="125">3</text>
+  <circle class="pt" cx="290" cy="268" r="12"/><text class="pn" x="290" y="273">4</text>
+  <text class="lb" x="380" y="70">1 Rest: −70, leak channels + pump</text>
+  <text class="lb k" x="380" y="96">2 Depolarize: Na⁺ gates open, Na⁺ IN</text>
+  <text class="lb na" x="380" y="122">3 Repolarize: K⁺ gates open, K⁺ OUT</text>
+  <text class="lb" x="380" y="148">4 Undershoot: K⁺ gates close slowly</text>
+  <text class="lb sm" x="380" y="180">Below −55: nothing fires. At −55: full AP.</text>
+</svg>
+${MN("Sodium Surges, Potassium Pulls back", "Na⁺ in makes the spike go UP. K⁺ out brings it back DOWN. The pump cleans up afterward: 3 Na⁺ out, 2 K⁺ in.")}
+${MN("Graded vs action", "Graded = local, any size, fades with distance, can sum. Action = all-or-none, always +30, regenerates so it never fades.")}
+${MN("Hyper = over-negative", "Depolarize = toward positive. Hyperpolarize = more negative than −70 (past rest, the 'over' direction).")}
+${MN("Refractory", "Absolute: Na⁺ channels inactivated, NOTHING fires. Relative: cell is hyperpolarized, only a stronger stimulus fires one.")}
+</section>
+<section class="pr"><h3>Fiber types: A, B, C = fast to slow</h3>
+<table class="tbl"><thead><tr><th>Fiber</th><th>Build</th><th>Speed</th><th>Goes to</th></tr></thead><tbody>
+<tr><td><b>A</b></td><td>Large, myelinated</td><td>Fastest</td><td>Skeletal muscle, joints, big sensory nerves</td></tr>
+<tr><td><b>B</b></td><td>Small, myelinated</td><td>Medium</td><td>Viscera and autonomic (ANS) nerves</td></tr>
+<tr><td><b>C</b></td><td>Unmyelinated</td><td>Slowest</td><td>Slow pain, regenerates at every segment</td></tr>
+</tbody></table>
+${MN("A = Athletes, B = Behind the scenes, C = Crawling", "A runs your skeletal muscles. B quietly runs your guts and ANS. C has no myelin, so it crawls.")}
+</section>
+<section class="pr"><h3>Glia you missed</h3>
+${MN("PNS has Schwann (both have an S)", "Schwann cells = PNS myelin. Oligodendrocytes = CNS myelin. After a PNS cut, Schwann cells build guide cords and release NGF (nerve growth factor).")}
+${MN("Nodes of Ranvier", "The bare gaps between myelin. The AP regenerates only there, so it jumps node to node (saltatory).")}
+${MN("9 to 1", "Glia outnumber neurons about 9:1 and make up about half the brain's mass.")}
+</section>`;
+
+P.ct_syn = `
+<section class="pr"><h3>Synapse, step by step</h3>
+<div class="seg" role="group" aria-label="Step">
+  ${[1,2,3,4,5,6,7].map(n => `<button class="sbtn ${n===1?"on":""}" data-act="show" data-g="syn" data-k="${n}">${n}</button>`).join("")}
+</div>
+<svg class="dg" viewBox="0 0 600 340" role="img" aria-label="Chemical synapse">
+  <rect class="ax" x="275" y="0" width="50" height="48"/>
+  <rect class="term" x="140" y="38" width="320" height="122" rx="60"/>
+  <text class="lb sm" x="20" y="62">presynaptic terminal</text>
+  <circle class="ves" cx="225" cy="90" r="15"/><circle class="ves" cx="270" cy="118" r="15"/><circle class="ves" cx="340" cy="92" r="15"/><circle class="ves" cx="380" cy="122" r="15"/>
+  <circle class="ves" cx="300" cy="150" r="13"/>
+  <rect class="ch" x="438" y="128" width="12" height="34" rx="3"/><text class="lb sm k" x="458" y="150">Ca²⁺</text>
+  <text class="lb sm" x="40" y="192">synaptic cleft</text>
+  <circle class="nt" cx="292" cy="178" r="4"/><circle class="nt" cx="310" cy="190" r="4"/><circle class="nt" cx="280" cy="198" r="4"/><circle class="nt" cx="322" cy="176" r="4"/>
+  <rect class="post" x="110" y="215" width="380" height="115" rx="22"/>
+  <rect class="psd" x="235" y="212" width="130" height="8" rx="4"/>
+  <text class="lb sm" x="130" y="320">postsynaptic cell (neuron, muscle, or gland)</text>
+  <path class="arr" d="M300 228 L300 270"/><text class="lb sm k" x="310" y="258">Na⁺ in = EPSP</text>
+  <path class="arr na" d="M190 175 C160 150 170 120 190 110"/><text class="lb sm na" x="96" y="140">reuptake</text>
+  <text class="lb sm na" x="398" y="200">enzyme ✂</text>
+  <g data-g="syn" data-k="1"><circle class="hl" cx="300" cy="22" r="22"/></g>
+  <g data-g="syn" data-k="2" hidden><circle class="hl" cx="444" cy="145" r="26"/></g>
+  <g data-g="syn" data-k="3" hidden><circle class="hl" cx="300" cy="150" r="24"/></g>
+  <g data-g="syn" data-k="4" hidden><circle class="hl" cx="300" cy="187" r="30"/></g>
+  <g data-g="syn" data-k="5" hidden><rect class="hl" x="228" y="204" width="144" height="24" rx="10"/></g>
+  <g data-g="syn" data-k="6" hidden><circle class="hl" cx="300" cy="250" r="30"/></g>
+  <g data-g="syn" data-k="7" hidden><circle class="hl" cx="180" cy="140" r="34"/><circle class="hl" cx="430" cy="196" r="28"/></g>
+</svg>
+<div class="stepbox">
+  <p data-g="syn" data-k="1"><b>1. AP arrives</b> at the axon terminal of the <b>presynaptic</b> neuron (pre = before the gap).</p>
+  <p data-g="syn" data-k="2" hidden><b>2. Voltage-gated Ca²⁺ channels open.</b> Calcium rushes IN. Calcium is the messenger for release.</p>
+  <p data-g="syn" data-k="3" hidden><b>3. Ca²⁺ makes vesicles fuse</b> with the membrane and spill NT: <b>exocytosis</b>. This STARTS the signal.</p>
+  <p data-g="syn" data-k="4" hidden><b>4. NT diffuses</b> across the cleft. No pump, no ATP, just drifting.</p>
+  <p data-g="syn" data-k="5" hidden><b>5. NT binds receptors</b> crowded into the <b>postsynaptic density</b>.</p>
+  <p data-g="syn" data-k="6" hidden><b>6. Channels open.</b> Na⁺ in = EPSP (excite). K⁺ out or Cl⁻ in = IPSP (inhibit, hyperpolarize).</p>
+  <p data-g="syn" data-k="7" hidden><b>7. Signal ends</b> three ways: reuptake, enzyme breakdown, diffusion away. Exocytosis is NOT one of them.</p>
+</div>
+${MN("EPSP vs IPSP", "Positive charge IN (Na⁺) = Excite. Positive OUT (K⁺) or negative IN (Cl⁻) = Inhibit.")}
+</section>
+<section class="pr"><h3>Circuits</h3>
+<svg class="dg" viewBox="0 0 600 170" role="img" aria-label="Convergent and divergent circuits">
+  <text class="lb" x="40" y="20">CONvergent: many → one</text>
+  <circle class="nd" cx="60" cy="50" r="12"/><circle class="nd" cx="60" cy="90" r="12"/><circle class="nd" cx="60" cy="130" r="12"/>
+  <path class="arr" d="M72 50 L218 88"/><path class="arr" d="M72 90 L218 90"/><path class="arr" d="M72 130 L218 92"/>
+  <circle class="nd k" cx="232" cy="90" r="14"/>
+  <text class="lb" x="340" y="20">DIVergent: one → many</text>
+  <circle class="nd k" cx="360" cy="90" r="14"/>
+  <path class="arr" d="M374 88 L528 50"/><path class="arr" d="M374 90 L528 90"/><path class="arr" d="M374 92 L528 130"/>
+  <circle class="nd" cx="540" cy="50" r="12"/><circle class="nd" cx="540" cy="90" r="12"/><circle class="nd" cx="540" cy="130" r="12"/>
+</svg>
+${MN("CONverge = CONcentrate, DIVerge = DIVide", "Many rods feeding one bipolar cell is convergent. One motor neuron branching to many muscle fibers is divergent.")}
+</section>
+<section class="pr"><h3>G protein pathway &amp; desensitization</h3>
+${MN("NT → receptor → G protein → second messenger", "The G protein is the middleman that activates the second messenger. Middleman = slower, indirect.")}
+${MN("Desensitization", "Receptors flooded long enough stop responding as strongly. That's why a drug can lose its effect over time.")}
+</section>`;
+
+P.ct_rec = `
+<section class="pr"><h3>Neurotransmitter receptors, side by side</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Receptor</th><th>Binds</th><th>Where</th><th>Type</th><th>Effect</th></tr></thead><tbody>
+<tr><td><b>Nicotinic</b></td><td>ACh</td><td>Skeletal muscle (NMJ)</td><td>Channel: fast</td><td>Excites, muscle contracts</td></tr>
+<tr><td><b>Muscarinic</b></td><td>ACh</td><td>Parasympathetic targets: heart, smooth muscle, glands</td><td>G protein: slow</td><td>Excites OR inhibits (slows the heart)</td></tr>
+<tr><td><b>Alpha (α)</b></td><td>NE, E</td><td>Arterioles, iris</td><td>G protein</td><td>Vasoconstriction, ↑BP; pupil dilates</td></tr>
+<tr><td><b>Beta (β)</b></td><td>NE, E</td><td>Heart, bronchioles, skeletal muscle vessels</td><td>G protein</td><td>↑HR and force; bronchodilation; vasodilation (BP dips slightly)</td></tr>
+<tr><td><b>Glutamate</b></td><td>Glutamate</td><td>CNS</td><td>Channel: fast</td><td>Excites (Na⁺, K⁺, Ca²⁺)</td></tr>
+<tr><td><b>GABA, glycine</b></td><td>GABA, glycine</td><td>CNS</td><td>Channel: fast</td><td>Inhibits (K⁺, Cl⁻)</td></tr>
+</tbody></table></div>
+${MN("Nicotinic = NMJ", "Both start with N. Skeletal muscle, fast, excitatory.")}
+${MN("Muscarinic = Mellow", "The rest-and-digest side. G protein, slow. It's why vagus nerve ACh slows the heart.")}
+${MN("Alpha = Arteries squeeze", "Alpha constricts arterioles (BP up) and dilates the pupil.")}
+${MN("Beta = Beat and Breathe", "Beta speeds the heartbeat and opens the bronchioles. Beta blockers slow the heart. Asthma inhalers hit beta.")}
+${MN("GABA and Glycine = Go to sleep", "The two inhibitory channel receptors. Everything else on this list that's channel-linked excites.")}
+${MN("Channel vs G protein", "Channel-linked: the receptor IS the door, so fast and direct. G protein-linked: there's a middleman, so slow and indirect.")}
+</section>
+<section class="pr"><h3>Sensory receptors</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Receptor</th><th>Detects</th><th>Memory hook</th></tr></thead><tbody>
+<tr><td>Photoreceptor</td><td>Light</td><td>Photo = light (rods, cones)</td></tr>
+<tr><td>Chemoreceptor</td><td>Chemicals</td><td>Taste, smell, blood chemistry</td></tr>
+<tr><td>Thermoreceptor</td><td>Temperature</td><td>Thermo-stat</td></tr>
+<tr><td>Nociceptor</td><td>Tissue damage (pain)</td><td>Noci = noxious. Free nerve endings</td></tr>
+<tr><td>Baroreceptor</td><td>Pressure</td><td>Barometer: blood vessel stretch</td></tr>
+<tr><td>Proprioceptor</td><td>Body position</td><td>Proper position of your limbs</td></tr>
+<tr><td>Exteroceptor / Interoceptor</td><td>Outside world / internal organs</td><td>Exterior / interior</td></tr>
+</tbody></table></div>
+${MN("Special vs general", "Special senses (sight, hearing, balance, smell, taste) live in RESTRICTED regions and mostly use hair-like cells. General senses (touch, pressure, temp, pain) are spread all over.")}
+</section>`;
+
+P.ct_drug = `
+<section class="pr"><h3>Pin every drug to a synapse step</h3>
+<div class="flow">
+  <div class="fs"><b>Release</b><span>NT leaves the terminal</span></div>
+  <div class="fs"><b>Bind receptor</b><span><i class="tag k">Agonist</i> mimics NT: L-DOPA (dopamine), morphine (endorphin receptors)<br><i class="tag bad">Antagonist</i> blocks: schizophrenia drugs (dopamine)</span></div>
+  <div class="fs"><b>Reuptake</b><span><i class="tag na">Block it</i> → NT stays longer: SSRIs (serotonin). Slides call cocaine a dopamine mimic.</span></div>
+  <div class="fs"><b>Breakdown</b><span><i class="tag na">Block the enzyme</i> → NT stays longer: AChE inhibitors (Alzheimer's drugs, sarin), MAOIs (NE and E)</span></div>
+</div>
+${MN("Block the cleanup = MORE signal", "Reuptake blockers and enzyme inhibitors both leave more NT in the cleft for longer. Same outcome, different step.")}
+${MN("Agonist = Acts like it. Antagonist = Against it.", "An antagonist binds the receptor but doesn't activate it, so the real NT can't get in.")}
+</section>
+<section class="pr"><h3>Disease → NT → treatment</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Condition</th><th>What's wrong</th><th>Treatment logic</th></tr></thead><tbody>
+<tr><td><b>Alzheimer's</b></td><td>Cholinergic (ACh) neurons die first</td><td>AChE inhibitor: slow ACh breakdown</td></tr>
+<tr><td><b>Parkinson's</b></td><td>Dopamine neurons in basal nuclei die</td><td>L-DOPA: dopamine agonist</td></tr>
+<tr><td><b>Schizophrenia</b></td><td>Overactive dopamine</td><td>Dopamine antagonist</td></tr>
+<tr><td><b>Depression</b></td><td>Low serotonin / NE</td><td>SSRIs, MAOIs</td></tr>
+<tr><td><b>Sarin</b></td><td>AChE blocked, ACh floods</td><td>Spasms, then receptors desensitize → paralysis</td></tr>
+</tbody></table></div>
+${MN("Parkinson's = Pushing dopamine back in", "Too little dopamine → give an agonist. Schizophrenia is the mirror image: too much → give an antagonist.")}
+</section>
+<section class="pr"><h3>NT cheat sheet</h3>
+${MN("Glutamate", "Main excitatory NT, learning and memory. Too much after a stroke kills neighbors.")}
+${MN("Serotonin", "Made from tryptophan. Excites MOTOR paths, inhibits SENSORY paths.")}
+${MN("Substance P vs endorphins", "Substance P carries pain. Endorphins/enkephalins inhibit substance P. Morphine binds the endorphin receptors (agonist).")}
+${MN("Nor- = noradrenaline", "Epinephrine = adrenaline. NORepinephrine = NORadrenaline. Keep the 'nor' together.")}
+</section>`;
+
+P.ct_hear = `
+<section class="pr"><h3>Path of sound: tap through it</h3>
+<div class="seg" role="group" aria-label="Step">
+  ${["Pinna","Canal","Eardrum","Malleus","Incus","Stapes","Oval window","Cochlea fluid","Hair cells","CN VIII"].map((s,i)=>`<button class="sbtn ${i===0?"on":""}" data-act="show" data-g="ear" data-k="${i}">${i+1}. ${s}</button>`).join("")}
+</div>
+<div class="stepbox">
+  <p data-g="ear" data-k="0"><b>Pinna</b> funnels sound waves (vibrating air molecules) into the ear. No molecules, no sound: that's why space is silent.</p>
+  <p data-g="ear" data-k="1" hidden><b>Ear canal</b> carries the waves to the eardrum.</p>
+  <p data-g="ear" data-k="2" hidden><b>Tympanic membrane</b> (eardrum) vibrates. The <b>eustachian tube</b> equalizes middle ear pressure so it can vibrate freely. Plane ear pop = eustachian tube.</p>
+  <p data-g="ear" data-k="3" hidden><b>Malleus</b> (hammer) is attached to the eardrum. First ossicle.</p>
+  <p data-g="ear" data-k="4" hidden><b>Incus</b> (anvil) is the middle ossicle.</p>
+  <p data-g="ear" data-k="5" hidden><b>Stapes</b> (stirrup) pushes on the oval window. Fused stapes = <b>otosclerosis</b> = conductive deafness.</p>
+  <p data-g="ear" data-k="6" hidden><b>Oval window.</b> Ossicles amplified the vibration 15–20× by now, because <b>fluid is harder to move than air.</b></p>
+  <p data-g="ear" data-k="7" hidden><b>Cochlear fluid</b> moves and vibrates the <b>basilar membrane</b>. Where it vibrates most = pitch.</p>
+  <p data-g="ear" data-k="8" hidden><b>Hair cells</b> (organ of Corti, on the basilar membrane) bend their stereocilia against the <b>tectorial membrane</b>. This is where the <b>receptor potential</b> forms.</p>
+  <p data-g="ear" data-k="9" hidden><b>Cochlear branch of CN VIII</b> carries the signal to the brain.</p>
+</div>
+${MN("My Ice Skates", "Malleus, Incus, Stapes: outside in. Hammer hits anvil, anvil hits stirrup.")}
+</section>
+<section class="pr"><h3>Pitch lives on the basilar membrane</h3>
+<svg class="dg" viewBox="0 0 600 170" role="img" aria-label="Uncoiled basilar membrane">
+  <polygon class="bm" points="50,72 560,40 560,120 50,92"/>
+  <text class="lb k" x="40" y="62">BASE</text><text class="lb" x="40" y="118">short, stiff</text><text class="lb k" x="40" y="140">20,000 Hz: HIGH</text>
+  <text class="lb na" x="505" y="30">APEX</text><text class="lb" x="480" y="140">long, floppy</text><text class="lb na" x="470" y="160">20 Hz: LOW</text>
+  <text class="lb sm" x="200" y="160">oval window is at the base</text>
+</svg>
+${MN("Short = squeaky, long = low", "Short fibers at the base (near the oval window) = high pitch. Long fibers at the apex = low pitch. Like guitar strings.")}
+</section>
+<section class="pr"><h3>The numbers they'll ask</h3>
+<div class="scale">
+  <div><b>50 dB</b><span>Conversation</span></div><div><b>70 dB</b><span>Noisy restaurant</span></div><div><b>85 dB</b><span>Safe up to here</span></div><div class="bad"><b>90 dB+</b><span>Damage likely if frequent</span></div><div class="bad"><b>120 dB</b><span>Rock concert</span></div><div class="bad"><b>130–140</b><span>Pain threshold</span></div>
+</div>
+${MN("Range 20 to 20,000 Hz. Sweet spot 1,000–4,000 Hz.", "Decibels are LOGARITHMIC because the loudness range is enormous: pin drop to steam whistle is a trillion-fold.")}
+${MN("How louder works (3 ways)", "Hair cells fire APs faster, MORE hair cells activate, and loud-only hair cells kick in. The fibers don't change length.")}
+${MN("Conductive vs neural", "Conductive = sound can't GET IN (wax, eardrum, otosclerosis, fluid). Neural = hair cells to cortex damaged.")}
+</section>`;
+
+P.ct_bal = `
+<section class="pr"><h3>Two balance systems</h3>
+<div class="two">
+  <div class="card2"><h4>Vestibule (utricle + saccule)</h4>
+  <svg class="dg" viewBox="0 0 260 150" role="img" aria-label="Macula with otoliths">
+    <rect class="gel" x="20" y="40" width="220" height="45" rx="8"/>
+    ${[40,62,84,106,128,150,172,194,216].map(x=>`<circle class="oto" cx="${x}" cy="38" r="7"/>`).join("")}
+    ${[45,80,115,150,185,215].map(x=>`<path class="hair" d="M${x} 115 L${x} 70 M${x+6} 115 L${x+6} 76 M${x-6} 115 L${x-6} 78"/><rect class="hc" x="${x-12}" y="112" width="24" height="26" rx="5"/>`).join("")}
+    <text class="lb sm" x="22" y="18">otoliths = CaCO₃ stones</text>
+  </svg>
+  <p><b>Macula</b> → otolithic membrane slides when you move in a <b>straight line</b> or tilt. Gravity, elevators, a car speeding up.</p></div>
+  <div class="card2"><h4>Semicircular canals</h4>
+  <svg class="dg" viewBox="0 0 260 150" role="img" aria-label="Crista ampullaris with cupula">
+    <path class="cup" d="M60 120 C60 30 200 30 200 120 Z"/>
+    ${[80,110,140,170].map(x=>`<path class="hair" d="M${x} 130 L${x} 80 M${x+6} 130 L${x+6} 88"/><rect class="hc" x="${x-10}" y="125" width="22" height="22" rx="5"/>`).join("")}
+    <path class="arr na" d="M20 60 C40 40 60 40 70 50"/><text class="lb sm" x="8" y="30">fluid swirls</text>
+    <text class="lb sm" x="150" y="22">cupula (gel)</text>
+  </svg>
+  <p><b>Crista ampullaris</b> in each ampulla. Fluid pushes the <b>cupula</b> when you <b>rotate</b>. Spinning chair, head shake.</p></div>
+</div>
+${MN("Stones slide, water swirls", "Maculae (stones) = straight-line motion. Crista (fluid + cupula) = rotation.")}
+${MN("Maculae = Moving straight. Crista = Circles.", "Elevator going up? Maculae. Office chair spin? Crista.")}
+${MN("Kinocilium = the King", "Vestibular hair cells have MANY stereocilia and ONE tall kinocilium, the only true cilium.")}
+</section>`;
+
+P.ct_vis = `
+<section class="pr"><h3>Visual pathway: pick a lesion</h3>
+<div class="seg" role="group" aria-label="Lesion">
+  <button class="sbtn on" data-act="show" data-g="les" data-k="none">No damage</button>
+  <button class="sbtn" data-act="show" data-g="les" data-k="nerve">Left optic NERVE</button>
+  <button class="sbtn" data-act="show" data-g="les" data-k="tract">Left optic TRACT</button>
+</div>
+<svg class="dg narrow" viewBox="0 0 400 380" role="img" aria-label="Optic nerves, chiasma and tracts">
+  <rect class="chx" x="168" y="178" width="64" height="30" rx="8"/>
+  <circle class="eye" cx="130" cy="60" r="42"/><circle class="eye" cx="270" cy="60" r="42"/>
+  <text class="lb" x="118" y="14">L eye</text><text class="lb" x="258" y="14">R eye</text>
+  <text class="lb sm" x="40" y="70">lateral</text><text class="lb sm" x="150" y="118">medial</text>
+  <path class="fib k" d="M100 92 C108 150 172 172 186 196 L128 340"/>
+  <path class="fib na" d="M156 96 C170 150 192 172 200 192 L258 340"/>
+  <path class="fib k" d="M244 96 C230 150 208 172 200 192 L142 340"/>
+  <path class="fib na" d="M300 92 C292 150 228 172 214 196 L272 340"/>
+  <text class="lb sm" x="20" y="150">optic nerve</text><text class="lb sm" x="240" y="198">chiasma</text>
+  <text class="lb sm" x="40" y="300">L optic tract</text><text class="lb sm" x="282" y="300">R optic tract</text>
+  <text class="lb sm k" x="70" y="364">carries RIGHT field</text><text class="lb sm na" x="232" y="364">carries LEFT field</text>
+  <g data-g="les" data-k="nerve" hidden><path class="x" d="M108 128 L148 158 M148 128 L108 158"/></g>
+  <g data-g="les" data-k="tract" hidden><path class="x" d="M148 252 L188 282 M188 252 L148 282"/></g>
+</svg>
+<div class="stepbox">
+  <p data-g="les" data-k="none"><b>Medial fibers cross</b> at the chiasma. So each tract = lateral half of one eye + medial half of the other = the OPPOSITE visual field.</p>
+  <p data-g="les" data-k="nerve" hidden><b>Before the chiasma:</b> one whole eye goes dark. Left optic nerve cut = total loss in the LEFT EYE.</p>
+  <p data-g="les" data-k="tract" hidden><b>After the chiasma:</b> half the world goes dark in BOTH eyes. Left tract cut = loss of the RIGHT visual field in both eyes.</p>
+</div>
+${MN("Nerve = one eye. Tract = opposite half, both eyes.", "Before the cross it's about an eye. After the cross it's about a side of the world.")}
+</section>
+<section class="pr"><h3>Pupillary reflexes</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Damage</th><th>Light in left eye</th><th>Light in right eye</th></tr></thead><tbody>
+<tr><td>Nothing</td><td>Both constrict</td><td>Both constrict</td></tr>
+<tr><td><b>Left CN II</b> (sensory, can't SEE)</td><td>Neither constricts</td><td>Both constrict</td></tr>
+<tr><td><b>Left CN III</b> (motor, can't SQUEEZE)</td><td>Only right constricts</td><td>Only right constricts</td></tr>
+</tbody></table></div>
+${MN("Direct vs consensual", "Direct = the eye you shine light into. Consensual = the other eye joins in. CN II broken = the message never gets in. CN III broken = that pupil never obeys.")}
+</section>
+<section class="pr"><h3>Retina in one line</h3>
+${MN("Photo → Bipolar → Ganglion (Please Be Good)", "Photoreceptors catch light, bipolar cells relay, ganglion cell axons ARE the optic nerve.")}
+${MN("Fovea = cones only", "Look straight at something for detail: light lands on the cone-only fovea. Rods rule the periphery.")}
+${MN("Rhodopsin = scotopsin + cis-retinal", "Light flips cis-retinal to TRANS. Trans doesn't fit scotopsin, so rhodopsin splits (bleaching). Scotopsin is the rod protein; photopsin is in cones.")}
+</section>
+<section class="pr"><h3>Lenses &amp; near focus</h3>
+${MN("conCAVE caves out, spreads light", "Concave spreads rays apart. Convex converges them to a point.")}
+${MN("Reading = ciliary contracts, ligaments relax, lens rounds", "Suspensory ligaments RELAX for near vision so the elastic lens can bulge.")}
+</section>`;
+
+P.ct_misc = `
+<section class="pr"><h3>Odds &amp; ends you missed</h3>
+${MN("Pump: 3 out, 2 in, 1 ATP", "Starts with cytoplasmic Na⁺ binding the pump. ATP phosphorylates it, it changes shape, Na⁺ goes out.")}
+${MN("Hypo = 'below' outside", "Hypotonic solution = fewer solutes OUTSIDE, so more solute INSIDE the cell, water rushes in, cell swells/lyses. 0.1 Osm vs a 0.3 Osm cell = hypotonic.")}
+${MN("Salts ionize, sugars don't", "NaCl, KCl, acids and bases split into ions. Glucose, sucrose and urea stay whole.")}
+${MN("PNS = cranial + spinal nerves", "CNS is only brain + spinal cord. Every nerve, cranial included, is PNS.")}
+${MN("Taste buds", "Live on lingual papillae. Three cells: supporting, receptor, basal (basal cells regenerate the receptors every 7–10 days).")}
+${MN("Pain chemicals vs painkillers", "Histamine, bradykinin, prostaglandins STIMULATE nociceptors. Ibuprofen, aspirin, acetaminophen are analgesics.")}
+</section>`;
+
+P.ct_l13 = `
+<section class="pr"><h3>Lab 1: vitals</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Category</th><th>Systolic</th><th></th><th>Diastolic</th></tr></thead><tbody>
+<tr><td>Normal</td><td>&lt;120</td><td>and</td><td>&lt;80</td></tr>
+<tr><td>Elevated</td><td>120–129</td><td>and</td><td>&lt;80</td></tr>
+<tr><td>Hypertension stage 1</td><td>130–139</td><td>or</td><td>80–89</td></tr>
+<tr><td>Hypertension stage 2</td><td>≥140</td><td>or</td><td>≥90</td></tr>
+</tbody></table></div>
+${MN("Pulse deficit = ECG rate − pulse rate", "The ECG counts every electrical beat. Weak beats don't push enough blood to feel at the wrist, so the ECG reads higher.")}
+${MN("Korotkoff: first sound = systolic, sound gone = diastolic", "Auscultation (listening) gets both and is more accurate. Palpation (feeling) only estimates systolic.")}
+</section>
+<section class="pr"><h3>Lab 2: diffusion &amp; tonicity</h3>
+${MN("Facilitated diffusion rate = gradient + carrier count", "More carriers = faster. Every carrier busy = transport maximum, rate flattens.")}
+<div class="tblw"><table class="tbl"><thead><tr><th>Cell in…</th><th>Water</th><th>Result</th></tr></thead><tbody>
+<tr><td>Hypotonic (e.g. pure water)</td><td>Rushes IN</td><td>Swells, lyses</td></tr>
+<tr><td>Isotonic</td><td>No net move</td><td>No change</td></tr>
+<tr><td>Hypertonic</td><td>Leaves</td><td>Crenates</td></tr>
+<tr><td>300 mOsm NON-penetrating</td><td>No net move</td><td>No change (isotonic)</td></tr>
+<tr><td>300 mOsm PENETRATING</td><td>Follows solute in</td><td>Swells (acts hypotonic)</td></tr>
+</tbody></table></div>
+${MN("Only solutes that can't get in count for tonicity", "Same osmolarity, different tonicity: a penetrating solute walks in and drags water with it.")}
+</section>
+<section class="pr"><h3>Lab 3: cranial nerves</h3>
+<div class="tblw"><table class="tbl"><thead><tr><th>Nerve</th><th>Lab test</th></tr></thead><tbody>
+<tr><td>I Olfactory</td><td>Smell coffee</td></tr>
+<tr><td>II Optic</td><td>Snellen chart, sensing light</td></tr>
+<tr><td>III Oculomotor</td><td>Pupil constriction (motor), most eye movement</td></tr>
+<tr><td>IV Trochlear</td><td>Superior oblique (SO4)</td></tr>
+<tr><td>V Trigeminal</td><td>Facial touch, clench jaw, corneal reflex SENSORY</td></tr>
+<tr><td>VI Abducens</td><td>Lateral rectus: eye moves OUTWARD (LR6)</td></tr>
+<tr><td>VII Facial</td><td>Facial expression, corneal reflex MOTOR (blink)</td></tr>
+<tr><td>VIII Vestibulocochlear</td><td>Hearing, balance, Weber test</td></tr>
+<tr><td>IX + X</td><td>Gag reflex</td></tr>
+<tr><td>XI Accessory</td><td>Shrug shoulders</td></tr>
+<tr><td>XII Hypoglossal</td><td>Stick out tongue</td></tr>
+</tbody></table></div>
+${MN("LR6 SO4, the rest are 3", "Lateral rectus = VI, superior oblique = IV. Left eye can't look left = left abducens (VI).")}
+${MN("Corneal reflex = V feels, VII blinks", "Trigeminal senses the touch, facial closes the lids.")}
+${MN("Weber: Neural = Never in the bad ear. Conductive = Cranks up in the bad ear.", "Sensorineural loss lateralizes to the GOOD ear. Conductive loss sounds louder in the BAD ear.")}
+${MN("Myopia = My eyes see near", "Nearsighted: distance is blurry. Snellen is read from 20 ft, so it catches myopia best.")}
+</section>`;
+
+P.ct_l4 = () => `
+<section class="pr"><h3>The four waves</h3>
+<svg class="dg" viewBox="0 0 620 300" role="img" aria-label="Beta, alpha, theta and delta waves">
+  <text class="lb k" x="0" y="34">BETA 14–30 Hz</text><path class="wv" d="${wave(22,6,440,0,30)}" transform="translate(170 0)"/>
+  <text class="lb" x="0" y="104">ALPHA 8–13 Hz</text><path class="wv" d="${wave(10,13,440,0,100)}" transform="translate(170 0)"/>
+  <text class="lb" x="0" y="174">THETA 4–7 Hz</text><path class="wv" d="${wave(5,20,440,0,170)}" transform="translate(170 0)"/>
+  <text class="lb na" x="0" y="254">DELTA &lt;4 Hz</text><path class="wv na" d="${wave(2,32,440,0,250)}" transform="translate(170 0)"/>
+</svg>
+<div class="tblw"><table class="tbl"><thead><tr><th>Wave</th><th>State</th><th>Look</th></tr></thead><tbody>
+<tr><td><b>Beta</b></td><td>Alert, focused, thinking (this exam)</td><td>Fastest, smallest, desynchronized</td></tr>
+<tr><td><b>Alpha</b></td><td>Awake, relaxed, eyes CLOSED</td><td>Medium, rhythmic</td></tr>
+<tr><td><b>Theta</b></td><td>Drowsy, light sleep (NREM 1)</td><td>Slower, bigger</td></tr>
+<tr><td><b>Delta</b></td><td>Deep sleep</td><td>Slowest, biggest, most synchronized</td></tr>
+</tbody></table></div>
+${MN("Busy, Awake-resting, Tired, Dead asleep", "B-A-T-D: fast to slow. Beta, Alpha, Theta, Delta.")}
+${MN("Slower = bigger = more in sync", "Huge amplitude needs huge numbers of neurons firing together. That's why delta is the most synchronized.")}
+${MN("Alpha block", "Open the eyes and alpha vanishes: cortical neurons desynchronize to process input. Close the eyes and visual input to the occipital lobe drops, so alpha rises.")}
+${MN("Match the lobe to the task", "Occipital = vision, so visual stimulation raises occipital beta. Frontal = problem solving, so mental math raises frontal beta.")}
+</section>`;
+
+P.ct_l5 = `
+<section class="pr"><h3>Lab 5: memory</h3>
+<div class="two">
+  <div class="card2"><h4>Chunking = clump</h4><p>Group items into bigger meaningful units. 0356789 → 035-6789. Each short-term slot holds a chunk instead of one item, so you get around the limit without new slots.</p></div>
+  <div class="card2"><h4>Chaining = story</h4><p>Link items into one story or image. Banana, sunrise, chair → a banana on a chair watching the sunrise. Each item cues the next.</p></div>
+</div>
+${MN("7 ± 2", "Short-term memory holds about 5 to 9 items. Past ~7, sequences get hard.")}
+${MN("Hippocampus = memory's save button", "It consolidates new long-term memories. Moving info to long-term is helped by rehearsal and meaningful association.")}
+${MN("Active learning = retrieving, not rereading", "Quizzing yourself (this hub) beats rereading or highlighting. Chunk facts, chain sequences (like AP phases), self-test, space it out.")}
+</section>`;
+
+P.ct_l6 = () => `
+<section class="pr"><h3>Lab 6: EMG</h3>
+<svg class="dg" viewBox="0 0 620 330" role="img" aria-label="EMG traces">
+  <text class="lb" x="0" y="44">Light grip</text><path class="wv" d="${spikes(12,14,430,40,3)}" transform="translate(180 0)"/>
+  <text class="lb k" x="0" y="124">Hard grip</text><path class="wv" d="${spikes(40,34,430,120,7)}" transform="translate(180 0)"/>
+  <text class="lb na" x="0" y="204">Myopathy</text><text class="lb sm" x="0" y="222">(muscle disease)</text><path class="wv na" d="${spikes(42,10,430,200,11)}" transform="translate(180 0)"/>
+  <text class="lb bad" x="0" y="284">Neuropathy</text><text class="lb sm" x="0" y="302">(nerve damage)</text><path class="wv bd" d="${spikes(7,44,430,280,5)}" transform="translate(180 0)"/>
+</svg>
+${MN("EMG = skeletal muscle electricity", "Electro-MYO-graphy. ECG is the heart, EEG is the brain.")}
+${MN("More force = recruit more motor units, fire them faster", "So amplitude AND frequency go up: taller, more tightly packed spikes. Less force: amplitude drops.")}
+${MN("Myopathy = Mini & Many", "Weak fibers make small spikes, so lots of units fire to compensate: LOW amplitude, HIGH frequency.")}
+${MN("Neuropathy = big & lonely", "Fewer motor units survive and the survivors grow: HIGH amplitude, LOW frequency. Brachial plexus damage = this pattern.")}
+${MN("Using EMG clinically", "Track amplitude, frequency and integrated EMG. Compare before vs after a treatment. Your two arms may not need the same EMG for the same force.")}
+</section>`;
+
+P.ct_l7 = `
+<section class="pr"><h3>Thyroid axis</h3>
+<svg class="dg" viewBox="0 0 560 300" role="img" aria-label="Thyroid hormone axis with negative feedback">
+  <rect class="bx" x="40" y="20" width="200" height="50" rx="10"/><text class="lb" x="70" y="51">Hypothalamus</text>
+  <rect class="bx" x="40" y="125" width="200" height="50" rx="10"/><text class="lb" x="58" y="156">Anterior pituitary</text>
+  <rect class="bx k" x="40" y="230" width="200" height="50" rx="10"/><text class="lb" x="104" y="261">Thyroid</text>
+  <path class="arr" d="M140 70 L140 122"/><text class="lb k" x="150" y="102">TRH</text>
+  <path class="arr" d="M140 175 L140 227"/><text class="lb k" x="150" y="207">TSH</text>
+  <path class="arr" d="M240 255 L330 255"/><text class="lb k" x="262" y="246">T4</text>
+  <rect class="bx" x="336" y="230" width="190" height="50" rx="10"/><text class="lb sm" x="350" y="252">Body: ↑ metabolic rate</text><text class="lb sm" x="350" y="270">(free T4 = active form)</text>
+  <path class="fb" d="M300 255 C380 200 330 60 245 45"/><path class="fb" d="M300 255 C340 210 300 160 245 150"/>
+  <text class="lb sm bad" x="380" y="120">− negative feedback</text><text class="lb sm bad" x="380" y="138">high T4 shuts off TRH and TSH</text>
+</svg>
+${MN("Primary = the thyroid itself. Secondary = the pituitary.", "Primary is where the hormone is made. Secondary is one step up the chain.")}
+</section>
+<section class="pr"><h3>The 2×2 that answers everything</h3>
+<div class="grid2">
+  <div class="gc"><small>Primary HYPO</small><b>T4 ↓ TSH ↑</b><span>Gland failing, pituitary shouting</span></div>
+  <div class="gc"><small>Secondary HYPO</small><b>T4 ↓ TSH ↓</b><span>Pituitary not shouting at all</span></div>
+  <div class="gc"><small>Primary HYPER</small><b>T4 ↑ TSH ↓</b><span>Gland overproducing, feedback silences TSH</span></div>
+  <div class="gc"><small>Secondary HYPER</small><b>T4 ↑ TSH ↑</b><span>Pituitary overdriving a healthy gland</span></div>
+</div>
+${MN("Secondary = Same direction. Primary = oPposite.", "If T4 and TSH move TOGETHER, it's secondary. If they move OPPOSITE, it's primary.")}
+${MN("TSH injection test", "Secondary hypo: the gland is healthy, so T4 rises to NORMAL after a TSH shot (looks like a normal subject). Primary hypo: the gland is broken, so no rise. Hyperthyroid: already near max, barely rises.")}
+${MN("Why the simulator couldn't tell hyper types apart", "It only measured free T4. Both hyper types have high T4. With T4 AND TSH you'd need no injections at all.")}
+</section>`;
+
+/* ---------- QUESTIONS (new angles) ---------- */
+const CT = {
+"ct_ap":{"name":"Action Potentials & Neurons","refs":["ap-0","ap-2","ap-3","ap-7","ap-17","ap-24","ap-25","ap-26","neuron-7","neuron-9","neuron-12","neuron-17"],"q":[
+["Which feature belongs to a graded potential but NOT an action potential?","Its size changes with stimulus strength",["It is all-or-none once triggered","It regenerates along the whole axon","It always peaks at exactly +30 mV"],"Graded potentials scale with the stimulus. Action potentials are always the same size."],
+["The membrane goes from −70 mV to −82 mV. That is:","Hyperpolarization",["Depolarization","Repolarization","Reaching threshold"],"More negative than rest = hyperpolarization."],
+["A graded potential brings the axon hillock from −70 to −60 mV. What happens?","No AP; it's short of −55",["A full AP fires right away","A smaller, partial AP fires","The cell hyperpolarizes to −90"],"Threshold is −55. All-or-none: below it, nothing."],
+["Right after the spike peaks at +30 mV, which channels open?","Voltage-gated K⁺; K⁺ flows out",["Voltage-gated Na⁺; Na⁺ flows in","Ligand-gated Cl⁻; Cl⁻ flows in","Leak Na⁺ channels; Na⁺ flows out"],"Potassium leaving brings the membrane back down: repolarization."],
+["Why can't even a huge stimulus fire a second AP during the absolute refractory period?","Na⁺ channels are inactivated",["K⁺ channels are all locked shut","The pump has run out of ATP","Threshold has moved to +30 mV"],"The inactivation gates are closed, so no sodium can enter no matter what."],
+["A nerve carrying autonomic signals to the stomach most likely uses:","B fibers",["A fibers","C fibers","None; it uses glia"],"B = small myelinated fibers to viscera and the ANS."],
+["A nerve to your quadriceps (skeletal muscle) mainly uses:","A fibers",["B fibers","C fibers","Only unmyelinated fibers"],"A = large myelinated fibers for skeletal muscle and joints."],
+["A signal crosses a meter-long axon with no loss in size. That's because it's:","An AP regenerating as it goes",["A graded potential spreading out","A graded potential summing up","An IPSP traveling passively"],"APs regenerate at each patch of membrane, so they never fade."],
+["Multiple sclerosis destroys CNS myelin. Which cells are being lost?","Oligodendrocytes",["Schwann cells","Satellite cells","Microglia"],"CNS myelin comes from oligodendrocytes. Schwann cells are PNS."],
+["In saltatory conduction, the AP regenerates only at the:","Nodes of Ranvier",["Schwann cell nuclei","Axon terminals","Middle of each myelin segment"],"The bare gaps between myelin are where the Na⁺ channels cluster."],
+["Roughly how many glial cells are there for each neuron?","About 9",["About 1","About 2","About 100"],"Glia outnumber neurons about 9 to 1."],
+["What do Schwann cells release to help a cut PNS axon regrow?","Nerve growth factor (NGF)",["Acetylcholine","Growth-blocking myelin","Glial scar proteins"],"They also form guide cords for the sprouting axon."]
+]},
+"ct_syn":{"name":"Synapses","refs":["synapse-1","synapse-2","synapse-4","synapse-5","synapse-6","synapse-7","synapse-9","synapse-10","synapse-13","synapse-14","synapse-15","synapse-25","synapse-26"],"q":[
+["At a synapse, the neuron that RELEASES the neurotransmitter is the:","Presynaptic neuron",["Postsynaptic neuron","Postsynaptic density","Effector cell"],"Pre = before the gap. It sends; the postsynaptic cell receives."],
+["A motor neuron synapses on a skeletal muscle fiber. The muscle fiber is the:","Postsynaptic cell",["Presynaptic cell","Synaptic cleft","Axon terminal"],"Anything receiving the signal (neuron, muscle, gland) is postsynaptic."],
+["A drug blocks voltage-gated Ca²⁺ channels in the axon terminal. What happens?","Vesicles don't release NT",["NT is released twice as fast","Postsynaptic receptors are destroyed","The AP can't reach the terminal"],"No calcium entry, no vesicle fusion, no release."],
+["What triggers vesicles to fuse with the terminal membrane?","Calcium entering the terminal",["Sodium leaving the terminal","Potassium entering the terminal","Glucose binding the vesicle"],"Ca²⁺ is the messenger for exocytosis."],
+["NT gets from the presynaptic membrane to the receptors by:","Simple diffusion across the cleft",["Being pumped across with ATP","Riding along the axon","Jumping from node to node"],"No energy needed. It drifts across the gap."],
+["Where on the postsynaptic membrane are receptors most concentrated?","The postsynaptic density",["The axon hillock","A node of Ranvier","Inside a vesicle"],"The postsynaptic density is the receptor-packed patch facing the terminal."],
+["Cl⁻ channels open on the postsynaptic membrane. The result is:","An IPSP",["An EPSP","An immediate action potential","No change in voltage"],"Negative charge coming in hyperpolarizes = inhibitory."],
+["An IPSP makes the postsynaptic cell:","Less likely to fire",["More likely to fire","Fire an AP right away","Permanently unable to fire"],"It pushes the membrane away from threshold."],
+["Signals from 10 rods all feed into one bipolar cell. This is:","Convergent",["Divergent","Reverberating","Serial"],"Many onto one = convergent."],
+["One motor neuron branches to signal 50 muscle fibers. This circuit is:","Divergent",["Convergent","Reverberating","Serial"],"One onto many = divergent."],
+["Which process STARTS the synaptic signal rather than ending it?","Exocytosis of vesicles",["Reuptake into the terminal","Breakdown by an enzyme","Diffusion away from receptors"],"Reuptake, enzymes and diffusion all end the signal."],
+["A drug works for weeks, then needs a higher dose for the same effect. One cause:","Receptor desensitization",["More myelin on the axon","A wider synaptic cleft","Faster action potentials"],"Receptors exposed long enough respond less strongly."],
+["In a G protein pathway, what's the correct order?","NT → receptor → G protein → second messenger",["NT → G protein → receptor → second messenger","Second messenger → G protein → receptor → NT","Receptor → NT → second messenger → G protein"],"The G protein is the middleman that activates the second messenger."]
+]},
+"ct_rec":{"name":"Receptor Types","refs":["synapse-22","synapse-23","synapse-24","nt-7","nt-8","nt-9","nt-17","nt-18","nt-19","nt-20","nt-21","receptors-4","receptors-13"],"q":[
+["A drug blocks nicotinic receptors. Which tissue is most affected?","Skeletal muscle",["The heart's pacemaker","Bronchiole smooth muscle","The iris"],"Nicotinic = neuromuscular junction. Blocking them paralyzes skeletal muscle."],
+["Atropine blocks muscarinic receptors. What happens to heart rate?","It rises",["It falls","It stops","No change"],"Muscarinic receptors are the parasympathetic brake on the heart. Block the brake and the rate climbs."],
+["Muscarinic receptors respond more slowly than nicotinic ones because they:","Work through a G protein",["Sit farther from the axon","Only let Cl⁻ through","Are found only on glia"],"G protein + second messenger = indirect and slow."],
+["A beta blocker would cause:","Slower, weaker heartbeat",["Faster, stronger heartbeat","Bronchodilation","Pupil dilation"],"Beta receptors speed the heart. Block them and it slows."],
+["Asthma inhalers open the airways by stimulating:","Beta receptors in bronchioles",["Alpha receptors in arterioles","Nicotinic receptors","Muscarinic receptors"],"Beta = breathe: bronchodilation."],
+["A decongestant shrinks swollen nasal vessels by stimulating:","Alpha receptors",["Beta receptors","Muscarinic receptors","GABA receptors"],"Alpha = arteries squeeze (vasoconstriction)."],
+["Your pupils dilate when you're scared. Which receptors?","Alpha receptors in the iris",["Beta receptors in the iris","Muscarinic receptors","Nicotinic receptors"],"Sympathetic NE/E on alpha receptors = mydriasis."],
+["GABA opens Cl⁻ channels. The postsynaptic cell:","Hyperpolarizes (IPSP)",["Depolarizes (EPSP)","Fires an AP at once","Doesn't change at all"],"GABA and glycine are the inhibitory channel-linked pair."],
+["Glutamate binds its channel-linked receptor. Expect:","Fast depolarization (EPSP)",["Slow hyperpolarization","A G protein cascade","No electrical change"],"Glutamate, like nicotinic ACh, uses excitatory channels."],
+["Which pair are BOTH G protein-linked?","Muscarinic and beta adrenergic",["Nicotinic and glutamate","GABA and glycine","Nicotinic and muscarinic"],"Muscarinic, alpha and beta receptors all use G proteins."],
+["A receptor in the carotid artery senses stretch from blood pressure. It's a:","Baroreceptor",["Chemoreceptor","Nociceptor","Proprioceptor"],"Baro = pressure."],
+["Receptors in muscles and tendons that tell the brain where your limbs are:","Proprioceptors",["Nociceptors","Interoceptors","Thermoreceptors"],"Proprio = your own position."],
+["Unlike general senses, special sense receptors are:","Clustered in specific organs",["Spread all through the skin","Found only in the viscera","Always free nerve endings"],"Eyes, ears, nose, tongue: restricted regions."],
+["Which senses rely on hair-like receptor cells?","Hearing and balance",["Touch and pain","Temperature and pressure","Sight and smell"],"Hair cells in the cochlea and vestibular system (the slides add taste too)."]
+]},
+"ct_drug":{"name":"Drugs & Neurotransmitters","refs":["nt-1","nt-2","nt-3","nt-6","nt-11","nt-12","nt-15","nt-16","nt-23","nt-24","nt-25","nt-27","nt-28","nt-31","nt-32"],"q":[
+["Schizophrenia drugs bind dopamine receptors without activating them. They are:","Antagonists",["Agonists","Reuptake inhibitors","Enzyme inhibitors"],"Bind but don't activate = antagonist."],
+["After taking an SSRI, serotonin in the cleft:","Sticks around longer",["Is destroyed faster","Is never released","Is pumped into the postsynaptic cell"],"Reuptake is blocked, so serotonin stays in the cleft."],
+["Blocking the enzyme that breaks down a neurotransmitter will:","Prolong and strengthen its effect",["End its effect immediately","Block its release","Block its receptors"],"No cleanup crew = more NT for longer."],
+["Why does sarin eventually cause paralysis instead of endless contraction?","Flooded receptors desensitize",["ACh runs out instantly","Muscles lose all their calcium","Sarin blocks nicotinic receptors"],"ACh piles up, receptors stop responding, muscles quit."],
+["Alzheimer's drugs that block acetylcholinesterase help because:","More ACh survives at the synapse",["They block ACh receptors","They grow new cholinergic neurons","They replace dopamine"],"Cholinergic neurons die first, so make the remaining ACh last longer."],
+["Adrenaline is another name for:","Epinephrine",["Norepinephrine","Acetylcholine","Dopamine"],"NORepinephrine = NORadrenaline. Plain epinephrine = adrenaline."],
+["MAO inhibitors raise synaptic levels of which NTs (per the slides)?","Norepinephrine and epinephrine",["Acetylcholine and glycine","GABA and glutamate","Substance P and endorphins"],"MAO breaks down NE and E. Inhibit it and they stay."],
+["Parkinson's disease damages dopamine neurons in the:","Basal nuclei",["Hippocampus","Cerebellum","Occipital lobe"],"The brain ends up with almost no dopamine."],
+["Why give L-DOPA in Parkinson's?","It acts like dopamine on its receptors",["It blocks dopamine receptors","It slows ACh breakdown","It blocks serotonin reuptake"],"It's a dopamine agonist."],
+["Too much dopamine activity is traditionally linked to:","Schizophrenia",["Parkinson's disease","Alzheimer's disease","Sarin poisoning"],"Treated with dopamine antagonists."],
+["Which NT excites motor pathways but inhibits sensory pathways?","Serotonin",["GABA","Glutamate","Substance P"],"Serotonin: made from tryptophan, excites motor, inhibits sensory."],
+["Which NT is most tied to learning and memory?","Glutamate",["GABA","Glycine","Substance P"],"The main excitatory NT, and toxic in excess after a stroke."],
+["Runner's high pain relief comes from endorphins inhibiting:","Substance P",["Dopamine","Acetylcholine","Glutamate reuptake"],"Substance P carries pain. Endorphins shut it down."],
+["Morphine is best described as a(n):","Agonist at endorphin receptors",["Antagonist at endorphin receptors","Serotonin reuptake inhibitor","Acetylcholinesterase inhibitor"],"It binds the natural opiate receptors and activates them."],
+["SSRIs and MAOIs both end up:","Leaving more NT at the synapse",["Blocking receptors completely","Stopping NT release","Speeding NT breakdown"],"Different steps (reuptake vs breakdown), same outcome."]
+]},
+"ct_hear":{"name":"Hearing","refs":["hearing-3","hearing-4","hearing-7","hearing-8","hearing-9","hearing-11","hearing-13","hearing-14","hearing-15","hearing-16","hearing-17","hearing-19","hearing-23","hearing-25"],"q":[
+["A dog whistle at 30,000 Hz is:","Above the human hearing range",["Inside our most sensitive range","Below the human hearing range","Right at the pain threshold"],"Humans hear 20 to 20,000 Hz."],
+["Which tone is the human ear MOST sensitive to?","2,000 Hz",["50 Hz","15,000 Hz","25,000 Hz"],"The sweet spot is 1,000 to 4,000 Hz."],
+["Hair cells near the APEX of the cochlea respond best to:","Low-pitched sounds",["High-pitched sounds","Only very loud sounds","Head rotation"],"Long, floppy fibers at the apex = low pitch."],
+["Why is loudness measured on a logarithmic scale?","The loudness range is enormous",["Pitch changes logarithmically","Decibels measure frequency","Hair cells only count in tens"],"Pin drop to steam whistle is a trillion-fold range."],
+["Which sound would put your hair cells at risk with frequent exposure?","100 dB",["50 dB","30 dB","70 dB"],"Damage risk starts above about 90 dB. Up to 85 dB is safe."],
+["Order these from quietest to loudest:","Conversation, restaurant, rock concert",["Restaurant, conversation, rock concert","Rock concert, restaurant, conversation","Conversation, rock concert, restaurant"],"50 dB, 70 dB, 120 dB."],
+["A sound gets louder. Which does NOT happen?","Basilar fibers get longer",["Hair cells fire faster","More hair cells activate","Loud-only hair cells activate"],"Fiber length is fixed. It's about firing rate and number of cells."],
+["Right after the stapes, vibration passes into the:","Oval window",["Tympanic membrane","Malleus","Ear canal"],"Stapes pushes on the oval window, which moves the cochlear fluid."],
+["Which ossicle is attached to the eardrum?","Malleus",["Incus","Stapes","Cochlea"],"My Ice Skates: Malleus is first."],
+["Without the ossicles' amplification, sound reaching the cochlea would:","Be too weak to move the fluid",["Be louder than normal","Shift to a higher pitch","Stay exactly the same"],"Fluid is harder to move than air, so the ossicles boost force 15–20×."],
+["Your ears pop on a plane. Which structure is working?","Eustachian tube",["Cochlea","Semicircular canals","Oval window"],"It equalizes middle ear pressure with the outside."],
+["Hair cell stereocilia bend when they're pushed against the:","Tectorial membrane",["Tympanic membrane","Oval window","Round window"],"Basilar membrane moves up, cilia bend against the tectorial membrane, channels open."],
+["A patient's stapes is fused to the oval window. The hearing loss is:","Conductive (otosclerosis)",["Neural, from hair cell damage","Sensorineural, from noise","Caused by a cut CN VIII"],"Sound can't get through the middle ear = conductive."],
+["Which cell converts vibration into an electrical signal?","Hair cell in the organ of Corti",["The malleus","The tympanic membrane","The eustachian tube"],"Hair cells are the transducers: the receptor potential forms there."]
+]},
+"ct_bal":{"name":"Equilibrium","refs":["balance-3","balance-5","balance-7","balance-8","balance-12"],"q":[
+["A car accelerates forward from a stoplight. Which receptor fires?","Maculae",["Crista ampullaris","Organ of Corti","Cupula of the cochlea"],"Straight-line acceleration = maculae."],
+["Where would you find otoliths?","On the otolithic membrane over the maculae",["Inside the cupula of each canal","Along the basilar membrane","In the tympanic cavity"],"Stones slide (maculae), water swirls (canals)."],
+["During a spin, canal fluid lags behind and pushes on the:","Cupula",["Otolithic membrane","Tectorial membrane","Oval window"],"The cupula sits over the crista ampullaris."],
+["The single tallest true cilium on a vestibular hair cell is the:","Kinocilium",["Stereocilium","Microvillus","Cupula"],"Many stereocilia, one kinocilium (the king)."],
+["The utricle and saccule together make up the:","Vestibule",["Cochlea","Ampulla","Crista"],"The vestibule holds the maculae for static equilibrium."]
+]},
+"ct_vis":{"name":"Vision","refs":["retina-0","retina-1","retina-2","retina-8","retina-9","retina-19","retina-22","retina-23","retina-25","optics-4","optics-11"],"q":[
+["Bipolar cells pass the visual signal from photoreceptors to:","Ganglion cells",["Rods","The lens","The optic chiasma"],"Photo → Bipolar → Ganglion."],
+["Cutting which cells' axons would sever the optic nerve?","Ganglion cells",["Bipolar cells","Cones","Rods"],"Ganglion axons ARE the optic nerve."],
+["Why do you look straight at something to see fine detail?","Light lands on the cone-only fovea",["Rods are packed at the center","The blind spot is sharpest","The lens is thickest there"],"The fovea has only cones: sharpest vision."],
+["Rhodopsin's protein part is called:","Scotopsin",["Photopsin","Retinal","Iodopsin"],"Rhodopsin = scotopsin + cis-retinal. Photopsin is in cones."],
+["What does a photon do to retinal?","Flips it from cis to trans",["Flips it from trans to cis","Binds it tighter to scotopsin","Splits it into two opsins"],"Trans-retinal no longer fits, so rhodopsin splits (bleaching)."],
+["The RIGHT optic tract carries fibers from:","Right eye lateral half + left eye medial half",["Both eyes' lateral halves","Both eyes' medial halves","The right eye only"],"Medial fibers cross. Each tract = one lateral + other medial."],
+["A lesion of the RIGHT optic tract causes loss of:","The left visual field in both eyes",["All vision in the right eye","The right visual field in both eyes","All vision in both eyes"],"Tract = opposite half of the world, in both eyes."],
+["Light in the right eye; the LEFT pupil also constricts. That's the:","Consensual reflex",["Direct reflex","Accommodation reflex","Convergence reflex"],"Consensual = the other eye joins in."],
+["Right optic nerve damaged; light shone into the LEFT eye. Result?","Both pupils constrict",["Neither pupil constricts","Only the left constricts","Only the right constricts"],"The healthy left eye sends the message. Both CN IIIs work."],
+["Right optic nerve damaged; light shone into the RIGHT eye. Result?","Neither pupil constricts",["Both pupils constrict","Only the left constricts","Only the right constricts"],"The message never gets in, so nothing responds."],
+["Which lens bends light rays outward, away from each other?","Concave",["Convex","A rounded lens","The cornea"],"Concave caves out and spreads light."],
+["While you read a book, the suspensory ligaments are:","Relaxed, so the lens rounds up",["Tight, so the lens flattens","Torn, so the lens bulges","Contracted, pulling the iris"],"Ciliary muscle contracts, ligaments relax, lens rounds for near vision."]
+]},
+"ct_misc":{"name":"Odds & Ends","refs":["transport-9","transport-11","osmo-7","osmo-10","osmo-16","org-2","chem-0","chem-1","pain-17","pain-19"],"q":[
+["The Na⁺/K⁺ pump cycle begins when:","Na⁺ binds it from inside the cell",["K⁺ binds it from outside the cell","ATP is released from the pump","The phosphate falls off"],"Cytoplasmic Na⁺ binds first, then ATP phosphorylates the pump."],
+["After the pump runs once, the cell has gained:","2 K⁺ and lost 3 Na⁺",["3 K⁺ and lost 2 Na⁺","2 Na⁺ and lost 3 K⁺","3 Na⁺ and lost 2 K⁺"],"3 out, 2 in, 1 ATP."],
+["Which of these ionizes in water?","Potassium chloride",["Glucose","Sucrose","Urea"],"Salts ionize. Sugars and urea don't."],
+["A cell sits in a solution with fewer solutes than its cytoplasm. The cell will:","Swell",["Shrink","Stay the same","Pump water out"],"Hypotonic: more solute inside pulls water in."],
+["Cranial nerves are part of the:","Peripheral nervous system",["Central nervous system","Brainstem","Cerebrum"],"CNS is only the brain and spinal cord."],
+["The bumps on the tongue that hold taste buds are:","Lingual papillae",["Olfactory hairs","Maculae","Crista ampullaris"],"About 10,000 taste buds, mostly on papillae."],
+["Which taste bud cells replace the receptor cells?","Basal cells",["Supporting cells","Ganglion cells","Hair cells"],"Basal cells regenerate receptors every 7–10 days."],
+["Which is NOT an analgesic?","Bradykinin",["Aspirin","Ibuprofen","Acetaminophen"],"Bradykinin causes pain. The others relieve it."],
+["Histamine's role in pain is to:","Stimulate nociceptors",["Block nociceptors","Release endorphins","Inhibit substance P"],"Histamine, bradykinin and prostaglandins all trigger pain."]
+]},
+"ct_l13":{"name":"Labs 1–3 Fixes","refs":["lab1-0","lab1-1","lab1-9","lab1-10","lab1-15","lab1-17","lab2-3","lab2-8","lab2-11","lab2-12","lab2-13","lab3-2","lab3-4","lab3-6","lab3-7","lab3-9","lab3-13","lab3-19"],"q":[
+["ECG heart rate is 80; palpated pulse is 72. The pulse deficit is:","8 bpm",["152 bpm","72 bpm","0.9 bpm"],"ECG rate minus pulse rate."],
+["Which blood pressure reading counts as hypertension?","134/86",["118/76","110/70","119/79"],"130/80 or higher is stage 1."],
+["Which blood pressure is normal?","114/74",["128/78","136/84","142/92"],"Normal is below 120/80."],
+["Palpation alone can give you:","An estimate of systolic only",["Both systolic and diastolic","Diastolic only","Exact mean pressure"],"That's why auscultation is more accurate."],
+["When the Korotkoff sounds disappear, the gauge reads:","Diastolic pressure",["Systolic pressure","Pulse pressure","Mean arterial pressure"],"First sound = systolic. Last sound = diastolic."],
+["Two cells, same glucose gradient, but cell B has twice the carriers. Cell B's rate is:","Higher",["The same","Lower","Zero"],"Facilitated diffusion depends on gradient AND carrier count."],
+["A red blood cell is dropped into pure water. It will:","Swell and lyse",["Crenate","Stay the same","Shrink slowly"],"Pure water is the ultimate hypotonic solution."],
+["A cell sits in 300 mOsm urea (a penetrating solute). It will:","Swell, and may lyse",["Not change at all","Crenate","Shrink"],"Urea walks in and water follows."],
+["A cell sits in 300 mOsm sucrose, which can't cross the membrane. It will:","Not change",["Swell and lyse","Crenate","Shrink, then swell"],"Non-penetrating at matching osmolarity = isotonic."],
+["A student reads her phone fine but the board is blurry. She has:","Myopia",["Hyperopia","Presbyopia","Astigmatism only"],"Nearsighted: near is fine, far is blurry."],
+["A Snellen chart read from 20 feet mainly tests:","Distance vision",["Near vision","Color vision","Peripheral vision"],"Distance vision, which is what myopia ruins."],
+["Light in either eye: the left pupil never constricts, the right always does. Damaged nerve?","Left oculomotor (CN III)",["Left optic (CN II)","Right optic (CN II)","Right oculomotor (CN III)"],"Light is sensed fine (CN II works) but the left pupil can't obey."],
+["In the corneal reflex, the facial nerve's job is to:","Close the eyelids",["Sense the touch","Move the eye outward","Constrict the pupil"],"V senses, VII blinks."],
+["The RIGHT eye can't look toward the right. Damaged nerve?","Right abducens (CN VI)",["Right trochlear (CN IV)","Left abducens (CN VI)","Right optic (CN II)"],"Moving an eye outward = lateral rectus = VI."],
+["Weber test: the hum lateralizes to the LEFT ear, and the right ear has a deficit. Type of loss?","Sensorineural in the right ear",["Conductive in the right ear","Sensorineural in the left ear","Conductive in the left ear"],"Neural loss: sound goes to the GOOD ear."],
+["Weber test: the hum is LOUDER in the bad right ear. Type of loss?","Conductive in the right ear",["Sensorineural in the right ear","Sensorineural in the left ear","No hearing loss"],"Conductive: cranks up in the bad ear."],
+["Which nerve lets you chew and feel touch on your face?","Trigeminal (CN V)",["Facial (CN VII)","Hypoglossal (CN XII)","Accessory (CN XI)"],"V = facial sensation and chewing muscles."]
+]},
+"ct_l4":{"name":"Lab 4 · EEG","refs":["lab4-0","lab4-2","lab4-3","lab4-6","lab4-7","lab4-8","lab4-9","lab4-10","lab4-11","lab4-12","lab4-14"],"q":[
+["What brain wave pattern do you expect while taking this exam?","Beta",["Alpha","Theta","Delta"],"Alert and focused = beta."],
+["A relaxed subject with eyes closed opens their eyes. Alpha:","Decreases (alpha block)",["Increases sharply","Turns into delta","Doesn't change"],"Visual input desynchronizes the cortex."],
+["Order the waves from fastest to slowest:","Beta, alpha, theta, delta",["Alpha, beta, delta, theta","Delta, theta, alpha, beta","Theta, beta, alpha, delta"],"B-A-T-D: Busy, Awake-resting, Tired, Dead asleep."],
+["Big, slow EEG waves mean neurons are firing:","Together, in sync",["Independently","Not at all","Randomly but faster"],"Huge amplitude needs synchronized firing."],
+["Theta appearing on a sleep study means the subject is:","Drowsy or in light sleep",["Fully alert","In the deepest sleep","Doing mental math"],"Theta = 4–7 Hz, early sleep."],
+["An electrode over the back of the head records mostly the:","Occipital lobe (vision)",["Frontal lobe (planning)","Temporal lobe (hearing)","Cerebellum (balance)"],"Back of the head = occipital = vision."],
+["Delta waves are:","Under 4 Hz",["8 to 13 Hz","14 to 30 Hz","4 to 7 Hz"],"Slowest and biggest."],
+["Alpha waves are:","8 to 13 Hz",["Under 4 Hz","14 to 30 Hz","4 to 7 Hz"],"Awake, relaxed, eyes closed."],
+["Going from deep sleep to alert focus, brain waves get:","Faster, smaller, less synchronized",["Slower, larger, more synchronized","Faster, larger, more synchronized","Slower, smaller, less synchronized"],"Delta → theta → alpha → beta."]
+]},
+"ct_l5":{"name":"Lab 5 · Memory","refs":["lab5-0","lab5-1","lab5-2","lab5-3","lab5-4","lab5-5","lab5-7","lab5-8","lab5-9","lab5-10"],"q":[
+["Remembering 18005550199 as 1-800-555-0199 is:","Chunking",["Chaining","Rote repetition","Spacing"],"Grouping items into bigger units = chunking."],
+["Remembering a grocery list by picturing the items in one silly story is:","Chaining",["Chunking","Rote repetition","Highlighting"],"Linking items into a story = chaining."],
+["A list of 15 random digits is hard to hold in short-term memory because:","It's past the ~7 item limit",["Digits can't be memorized","Long-term memory is full","The hippocampus ignores numbers"],"Short-term memory holds about 7 ± 2 items."],
+["Which is NOT active learning?","Rereading highlighted notes",["Taking practice quizzes","Explaining it out loud","Drawing the pathway from memory"],"Active learning means retrieving and using info."],
+["Damage to which structure would block forming NEW long-term memories?","Hippocampus",["Cerebellum","Medulla oblongata","Occipital lobe"],"The hippocampus consolidates new memories."],
+["Chunking works because each short-term memory slot can hold:","A meaningful group",["Only one digit","Unlimited items","Only images"],"Same number of slots, more information per slot."]
+]},
+"ct_l6":{"name":"Lab 6 · EMG","refs":["lab6-0","lab6-1","lab6-3","lab6-4","lab6-7","lab6-9","lab6-12","lab6-13","lab6-14"],"q":[
+["You switch from a light grip to a hard grip. The EMG shows:","Larger amplitude, higher frequency",["Smaller amplitude, lower frequency","A flat line","No change at all"],"More units recruited, firing faster."],
+["Which test records skeletal muscle electrical activity?","EMG",["ECG","EEG","Blood pressure cuff"],"ECG = heart, EEG = brain, EMG = skeletal muscle."],
+["The nerve to a patient's biceps was injured. Expect EMG:","High amplitude, low frequency",["Low amplitude, high frequency","Low amplitude, low frequency","Completely normal"],"Neuropathy: fewer, bigger surviving motor units."],
+["Muscular dystrophy (a muscle disease) shows EMG with:","Low amplitude, high frequency",["High amplitude, low frequency","High amplitude, high frequency","No electrical activity"],"Myopathy: mini spikes, many of them."],
+["Recruiting more motor units does what to force?","Increases it",["Decreases it","Stops it","Has no effect"],"More units contracting = more force."],
+["To see whether a physical therapy program helped, you'd compare EMG:","Before and after treatment",["Only after treatment","Against an ECG","Between two random people"],"A before-and-after comparison shows the change."]
+]},
+"ct_l7":{"name":"Lab 7 · Endocrine","refs":["lab7-0","lab7-1","lab7-2","lab7-3","lab7-5","lab7-6","lab7-7","lab7-8","lab7-9","lab7-11","lab7-12","lab7-13","lab7-15","lab7-16"],"q":[
+["T4 high, TSH high. Diagnosis?","Secondary hyperthyroidism",["Primary hyperthyroidism","Primary hypothyroidism","Secondary hypothyroidism"],"Same direction = secondary. Both up = hyper."],
+["T4 low, TSH high. Diagnosis?","Primary hypothyroidism",["Secondary hypothyroidism","Primary hyperthyroidism","Secondary hyperthyroidism"],"Opposite directions = primary. T4 low = hypo."],
+["T4 low, TSH low. Diagnosis?","Secondary hypothyroidism",["Primary hypothyroidism","Primary hyperthyroidism","Secondary hyperthyroidism"],"Same direction = secondary. T4 low = hypo."],
+["T4 high, TSH low. Diagnosis?","Primary hyperthyroidism",["Secondary hyperthyroidism","Primary hypothyroidism","Secondary hypothyroidism"],"Opposite = primary. T4 high = hyper."],
+["A TSH injection does NOT raise a hypothyroid patient's T4. The problem is in the:","Thyroid gland",["Anterior pituitary","Hypothalamus","Posterior pituitary"],"The gland can't respond, so it's primary."],
+["The anterior pituitary sends which hormone to the thyroid?","TSH",["TRH","T4","ACTH"],"TRH → TSH → T4."],
+["The hypothalamus starts the thyroid axis by releasing:","TRH",["TSH","T4","Cortisol"],"Thyrotropin-releasing hormone."],
+["High T4 shutting down TRH and TSH is an example of:","Negative feedback",["Positive feedback","Feedforward control","Receptor desensitization"],"The product turns off its own production."],
+["Someone with hyperthyroidism has a metabolic rate that is:","Higher than normal",["Lower than normal","Exactly normal","Zero"],"Thyroid hormone raises metabolic rate."],
+["If you could measure both free T4 and TSH, you could diagnose all four conditions:","Without any TSH injections",["Only with TSH injections","Only for hypothyroidism","Only for hyperthyroidism"],"The T4 + TSH pair separates all four."]
+]}
+};
+
+Object.entries(CT).forEach(([k, v]) => { v.primer = P[k]; v.crunch = true; });
+Object.assign(CATS, CT);
+UNITS.push(
+  {"name":"Neuro Hit List","deck":"Your misses · neurons, synapses, receptors, drugs","cats":["ct_ap","ct_syn","ct_rec","ct_drug"],"tab":"crunch"},
+  {"name":"Senses Hit List","deck":"Your misses · hearing, balance, vision, the rest","cats":["ct_hear","ct_bal","ct_vis","ct_misc"],"tab":"crunch"},
+  {"name":"Lab Hit List","deck":"Your misses · labs 1–7","cats":["ct_l13","ct_l4","ct_l5","ct_l6","ct_l7"],"tab":"crunch"}
+);
+window.CT_WATCHOUTS = [
+  ["How to use Crunch Time","Open the Primer first. Then Practice. Red chips are questions you actually missed; 'New angle' questions test the same idea a different way so you can't just memorize the answer's position."],
+  ["Scores here are separate","Crunch Time has its own scores and missed buckets. Your Lecture and Lab numbers don't move when you drill here."],
+  ["Copy all missed","Copies every missed question in all three tabs, with the answer you picked, so you can paste it straight into chat."]
+];
+})();
+
+</script>
+<script>
 (function(){
 const KEY = "bio2301-megahub-v1";
 const ALL_IDS = [];
@@ -344,13 +1037,23 @@ Object.entries(CATS).forEach(([cid, c]) => {
   });
   c.ids = c.q.map((_, i) => cid + "-" + i);
 });
+Object.entries(CATS).forEach(([cid, c]) => {
+  if (!c.refs) return;
+  const extra = c.refs.filter(r => BYID[r]).map(r => {
+    const id = cid + "~" + r;
+    BYID[id] = Object.assign({}, BYID[r], { id, cat: cid, src: r });
+    ALL_IDS.push(id); return id;
+  });
+  c.ids = extra.concat(c.ids);
+});
 
 let store = { cats: {} };
 function load(){ try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.cats) store = s; } catch(e){} }
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
 function cs(cid){ if (!store.cats[cid]) store.cats[cid] = { best: null, last: null, missed: [] }; return store.cats[cid]; }
 load();
-let tab = store.tab === "lab" ? "lab" : "lecture";
+const TABS = ["lecture", "lab", "crunch"];
+let tab = TABS.includes(store.tab) ? store.tab : "lecture";
 function tabUnits(t){ return UNITS.filter(u => (u.tab || "lecture") === (t || tab)); }
 function tabCats(t){ return tabUnits(t).flatMap(u => u.cats); }
 function tabIds(t){ return tabCats(t).flatMap(c => CATS[c].ids); }
@@ -387,6 +1090,7 @@ function renderHub(){
   const cats = tabCats();
   const IDS = tabIds();
   const isLab = tab === "lab";
+  const isCT = tab === "crunch";
   const bests = cats.map(c => cs(c).best).filter(v => v != null);
   const overall = bests.length ? Math.round(bests.reduce((a, b) => a + b, 0) / cats.length) : 0;
   const cleared = cats.filter(c => cs(c).best === 100).length;
@@ -395,12 +1099,12 @@ function renderHub(){
 
   const tabBtn = (t, label) => `<button class="tab ${tab === t ? "on" : ""}" data-act="tab" data-tab="${t}" aria-pressed="${tab === t}">${label}<span class="ct">${tabIds(t).length}</span></button>`;
   let h = `<header class="mast">
-    <div class="eyebrow">BIO 2301 · Human Physiology · ${isLab ? "Lab exam prep" : "Exam prep"}</div>
-    <h1>Mega <span>Hub</span></h1>
-    <p>${isLab ? "Every post-lab from Lab 1 (vital measurements) through Lab 7 (endocrinology)" : "Every deck from homeostasis through pain, plus your lecture notes"}. ${IDS.length} questions in ${cats.length} drillable sections. Answers shuffle every run.</p>
+    <div class="eyebrow">BIO 2301 · Human Physiology · ${isCT ? "Crunch Time · built from your misses" : isLab ? "Lab exam prep" : "Exam prep"}</div>
+    <h1>${isCT ? "Crunch <span>Time</span>" : "Mega <span>Hub</span>"}</h1>
+    <p>${isCT ? "Every question you missed in Lecture and Lab, plus new angles on the same ideas. Open each Primer before you drill" : isLab ? "Every post-lab from Lab 1 (vital measurements) through Lab 7 (endocrinology)" : "Every deck from homeostasis through pain, plus your lecture notes"}. ${IDS.length} questions in ${cats.length} drillable sections. Answers shuffle every run.</p>
     ${TRACE}
   </header>
-  <nav class="tabs" aria-label="Exam">${tabBtn("lecture", "Lecture Exam")}${tabBtn("lab", "Lab Exam")}</nav>
+  <nav class="tabs" aria-label="Exam">${tabBtn("lecture", "Lecture Exam")}${tabBtn("lab", "Lab Exam")}${tabBtn("crunch", "Crunch Time")}</nav>
   <div class="strip">
     <div class="stat"><b class="mono">${overall}%</b><small>Overall mastery</small></div>
     <div class="stat"><b class="mono">${cleared}/${cats.length}</b><small>Sections at 100%</small></div>
@@ -415,8 +1119,12 @@ function renderHub(){
     <button class="btn ghost" data-act="study-all">Study sheet</button>
     <button class="btn ghost danger" data-act="reset-all" id="reset-all">Reset everything</button>
   </div>
-  <details class="watch"><summary>${isLab ? "Watch-outs from your post-labs" : "Watch-outs from your notes"}</summary><ul>
-    ${(isLab ? LAB_WATCHOUTS : WATCHOUTS).map(w => `<li><b>${esc(w[0])}</b><span>${esc(w[1])}</span></li>`).join("")}
+  <div class="actions">
+    <button class="btn" data-act="copy-missed">Copy all missed <span class="ct">${totalMissedAll()}</span></button>
+    <button class="btn ghost" data-act="transfer">Export / import progress</button>
+  </div>
+  <details class="watch" ${isCT ? "open" : ""}><summary>${isCT ? "How Crunch Time works" : isLab ? "Watch-outs from your post-labs" : "Watch-outs from your notes"}</summary><ul>
+    ${(isCT ? CT_WATCHOUTS : isLab ? LAB_WATCHOUTS : WATCHOUTS).map(w => `<li><b>${esc(w[0])}</b><span>${esc(w[1])}</span></li>`).join("")}
   </ul></details>`;
 
   tabUnits().forEach(u => {
@@ -437,6 +1145,7 @@ function renderHub(){
           ${nn ? `<span class="chip na">${nn} from notes</span>` : ""}
         </div>
         <div class="card-btns">
+          ${c.primer ? `<button class="btn na" data-act="cat-primer" data-cat="${cid}">Primer</button>` : ""}
           <button class="btn primary" data-act="cat-practice" data-cat="${cid}">Practice</button>
           <button class="btn" data-act="cat-exam" data-cat="${cid}">Exam</button>
           <button class="btn" data-act="cat-study" data-cat="${cid}">Study</button>
@@ -505,7 +1214,7 @@ function renderQuiz(){
     </div>
     <div class="bar"><i style="width:${pct}%"></i></div>
     <div class="qcard">
-      <div class="qmeta"><span class="eyebrow">Q ${s.i + 1} of ${s.items.length}</span><span class="chip">${esc(CATS[b.cat].name)}</span>${b.n ? `<span class="chip na">From your notes</span>` : ""}</div>
+      <div class="qmeta"><span class="eyebrow">Q ${s.i + 1} of ${s.items.length}</span><span class="chip">${esc(CATS[b.cat].name)}</span>${b.n ? `<span class="chip na">From your notes</span>` : ""}${b.src ? `<span class="chip bad">Your miss</span>` : CATS[b.cat].crunch ? `<span class="chip">New angle</span>` : ""}</div>
       <p class="qtext">${esc(b.q)}</p>
       <div class="opts">${opts}</div>
       ${fb}
@@ -527,6 +1236,8 @@ function track(it, k){
   const idx = c.missed.indexOf(it.id);
   if (k === it.correct){ if (idx > -1) c.missed.splice(idx, 1); }
   else if (idx === -1) c.missed.push(it.id);
+  store.picks = store.picks || {};
+  if (k === it.correct) delete store.picks[it.id]; else store.picks[it.id] = it.opts[k];
   save();
 }
 
@@ -612,6 +1323,92 @@ function renderStudy(catIds, q){
   window.scrollTo(0, 0);
 }
 
+/* ---------- CRUNCH TIME VIEWS ---------- */
+function renderPrimer(cid){
+  view = "primer";
+  const c = CATS[cid];
+  const html = typeof c.primer === "function" ? c.primer() : c.primer;
+  app.innerHTML = `<div class="study primer">
+    <div class="qtop"><div class="ttl">${esc(c.name)}: primer</div>
+      <button class="btn primary" data-act="cat-practice" data-cat="${cid}">Practice this</button>
+      <button class="btn ghost" data-act="home">Back to hub</button></div>
+    ${html}
+    <div class="actions" style="margin-top:20px"><button class="btn primary" data-act="cat-practice" data-cat="${cid}">Got it. Practice</button><button class="btn ghost" data-act="home">Back to hub</button></div></div>`;
+  window.scrollTo(0, 0);
+}
+function showKey(b){
+  const g = b.dataset.g, k = b.dataset.k;
+  document.querySelectorAll(`[data-g="${g}"]`).forEach(el => {
+    if (el.dataset.act === "show") el.classList.toggle("on", el.dataset.k === k);
+    else if (el.dataset.k === k) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
+  });
+}
+function totalMissedAll(){ return TABS.reduce((a, t) => a + tabCats(t).reduce((x, c) => x + cs(c).missed.length, 0), 0); }
+function missedText(){
+  const out = [], picks = store.picks || {}; let n = 0;
+  [["lecture", "LECTURE EXAM"], ["lab", "LAB EXAM"], ["crunch", "CRUNCH TIME"]].forEach(([t, label]) => {
+    const lines = [];
+    tabCats(t).forEach(cid => {
+      const m = cs(cid).missed.filter(id => BYID[id]); if (!m.length) return;
+      lines.push(`## ${CATS[cid].name} (${m.length} missed)`);
+      m.forEach(id => { const b = BYID[id]; n++; lines.push(`- [${id}] ${b.q}\n  You picked: ${picks[id] || "not recorded"}\n  Answer: ${b.a}`); });
+    });
+    if (lines.length) out.push(`=== ${label} ===\n` + lines.join("\n"));
+  });
+  return { text: out.join("\n\n"), n };
+}
+function copyMissed(){
+  const { text, n } = missedText();
+  if (!n){ toast("Nothing missed. Suspicious, but nice."); return; }
+  copyText(`BIO 2301 misses (${n})\n\n` + text, `Copied ${n} misses`);
+}
+function copyText(t, msg){
+  const fallback = () => {
+    const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); let ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){}
+    ta.remove(); ok ? toast(msg) : showManual(t);
+  };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(() => toast(msg), fallback);
+  else fallback();
+}
+function showManual(t){
+  view = "transfer";
+  app.innerHTML = `<div class="study"><div class="qtop"><div class="ttl">Copy this</div><button class="btn ghost" data-act="home">Back to hub</button></div>
+    <p>This browser blocked automatic copying. Click in the box, select all, and copy.</p><textarea class="box" readonly style="min-height:320px">${esc(t)}</textarea></div>`;
+}
+function toast(m){
+  let el = document.getElementById("toast");
+  if (!el){ el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); document.body.appendChild(el); }
+  el.textContent = m; el.classList.add("on");
+  clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("on"), 2200);
+}
+function renderTransfer(){
+  view = "transfer";
+  const exp = JSON.stringify({ [KEY]: JSON.stringify(store) });
+  app.innerHTML = `<div class="study"><div class="qtop"><div class="ttl">Export / import</div><button class="btn ghost" data-act="home">Back to hub</button></div>
+    <section class="pr"><h3>Export from this computer</h3><p>Copy this, then email or text it to yourself.</p>
+      <textarea class="box" id="exp-box" readonly>${esc(exp)}</textarea>
+      <div class="actions"><button class="btn primary" data-act="do-export-copy">Copy progress</button></div></section>
+    <section class="pr"><h3>Import on this computer</h3><p>Paste an export (or last night's console dump). It replaces the scores saved here.</p>
+      <textarea class="box" id="imp-box" placeholder="Paste here"></textarea>
+      <div class="actions"><button class="btn primary" data-act="do-import">Import progress</button></div>
+      <p class="hint2" id="imp-msg"></p></section></div>`;
+  window.scrollTo(0, 0);
+}
+function doImport(){
+  const raw = (document.getElementById("imp-box").value || "").trim();
+  try {
+    let o = JSON.parse(raw);
+    if (o && o[KEY] !== undefined) o = typeof o[KEY] === "string" ? JSON.parse(o[KEY]) : o[KEY];
+    if (!o || typeof o.cats !== "object") throw 0;
+    store = o; if (!TABS.includes(store.tab)) store.tab = "lecture";
+    tab = store.tab; save(); selected.clear(); renderHub(); window.scrollTo(0, 0); toast("Progress imported");
+  } catch(e){
+    document.getElementById("imp-msg").textContent = "That doesn't look like a hub export. Paste the whole thing, brackets and all.";
+  }
+}
+
 /* ---------- EVENTS ---------- */
 const armed = {};
 function arm(btn, key, run){
@@ -627,7 +1424,7 @@ app.addEventListener("click", e => {
   const cats = tabCats();
   const IDS = tabIds();
   switch (act){
-    case "tab": tab = b.dataset.tab === "lab" ? "lab" : "lecture"; store.tab = tab; save(); selected.clear(); renderHub(); break;
+    case "tab": tab = TABS.includes(b.dataset.tab) ? b.dataset.tab : "lecture"; store.tab = tab; save(); selected.clear(); renderHub(); break;
     case "all-practice": start("practice", IDS, tab === "lab" ? "Lab: everything" : "Everything", cats); break;
     case "all-exam": start("exam", IDS, tab === "lab" ? "Full lab exam" : "Full exam", cats); break;
     case "all-missed": start("practice", allMissed(), "All missed"); break;
@@ -644,6 +1441,12 @@ app.addEventListener("click", e => {
       start(act === "mix-practice" ? "practice" : "exam", list.flatMap(c => CATS[c].ids), "Custom mix", list); break;
     }
     case "mix-clear": selected.clear(); renderHub(); break;
+    case "cat-primer": renderPrimer(cid); break;
+    case "show": showKey(b); break;
+    case "copy-missed": copyMissed(); break;
+    case "transfer": renderTransfer(); break;
+    case "do-export-copy": copyText(document.getElementById("exp-box").value, "Progress copied"); break;
+    case "do-import": doImport(); break;
     case "next": next(); break;
     case "quit": session = null; renderHub(); window.scrollTo(0, 0); break;
     case "home": session = null; renderHub(); window.scrollTo(0, 0); break;
