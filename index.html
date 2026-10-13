@@ -1025,6 +1025,43 @@ window.CT_WATCHOUTS = [
 
 </script>
 <script>
+/* ===== EAR ORDER (Crunch Time) ===== */
+CATS.ct_ear = {
+  name: "Ear Order",
+  crunch: true,
+  refs: ["hearing-14", "hearing-15"],
+  primer: `
+<section class="pr"><h3>Air → bones → fluid</h3>
+<div class="flow">
+  <div class="fs"><b>Outer ear</b><span><i class="tag k">AIR</i> catches the sound</span><span>1. Pinna<br>2. Ear canal<br>3. Tympanic membrane (eardrum)</span></div>
+  <div class="fs"><b>Middle ear</b><span><i class="tag na">BONES</i> amplify it 15–20×</span><span>4. Malleus (hammer)<br>5. Incus (anvil)<br>6. Stapes (stirrup)<br><small>+ eustachian tube: equalizes pressure</small></span></div>
+  <div class="fs"><b>Inner ear</b><span><i class="tag bad">FLUID</i> converts it</span><span>7. Oval window<br>8. Cochlea (basilar membrane)<br>9. Hair cells vs. tectorial membrane<br>10. CN VIII (cochlear branch)</span></div>
+</div>
+<div class="mn"><b>My Ice Skates</b><span>Malleus, Incus, Stapes, from the eardrum inward. Hammer hits anvil, anvil hits stirrup.</span></div>
+<div class="mn"><b>Why the bones?</b><span>Fluid is harder to move than air, so the ossicles amplify the push before the stapes hits the oval window.</span></div>
+<div class="mn"><b>Where does it become electricity?</b><span>The hair cells (organ of Corti). Stereocilia bend against the tectorial membrane, and that's the receptor potential.</span></div>
+<div class="mn"><b>Balance lives next door</b><span>Vestibule and semicircular canals are in the inner ear too. Same building, different department.</span></div>
+</section>`,
+  q: [
+    ["Which structure comes FIRST in the path of sound?", "Pinna", ["Tympanic membrane", "Malleus", "Oval window"], "Pinna funnels sound into the ear canal."],
+    ["What sits between the ear canal and the malleus?", "Tympanic membrane", ["Oval window", "Incus", "Cochlea"], "The eardrum is the wall between the outer and middle ear. The malleus is attached to it."],
+    ["Which ossicle is attached to the eardrum?", "Malleus", ["Incus", "Stapes", "Cochlea"], "My Ice Skates: Malleus first."],
+    ["Which ossicle is in the MIDDLE of the chain?", "Incus", ["Malleus", "Stapes", "Pinna"], "Malleus, Incus, Stapes. The anvil sits between hammer and stirrup."],
+    ["What does the stapes push on?", "The oval window", ["The tympanic membrane", "The eustachian tube", "The pinna"], "The stirrup is the last bone and presses on the oval window, the doorway into the fluid."],
+    ["Which order is correct?", "Eardrum, malleus, incus, stapes", ["Eardrum, stapes, incus, malleus", "Malleus, eardrum, incus, stapes", "Eardrum, incus, malleus, stapes"], "Outside in: eardrum, then My Ice Skates."],
+    ["The oval window opens into the:", "Cochlea (inner ear)", ["Ear canal", "Middle ear cavity", "Eustachian tube"], "Past the oval window is fluid: inner ear."],
+    ["Which list goes air, then bones, then fluid?", "Ear canal, ossicles, cochlea", ["Cochlea, ossicles, ear canal", "Ossicles, ear canal, cochlea", "Ear canal, cochlea, ossicles"], "Outer ear is air, middle ear is bones, inner ear is fluid."],
+    ["The ossicles are found in the:", "Middle ear", ["Outer ear", "Inner ear", "Cochlea"], "Middle ear = the three bones (plus the eustachian tube)."],
+    ["Which structure is in the middle ear and equalizes pressure?", "Eustachian tube", ["Oval window", "Semicircular canal", "Basilar membrane"], "Ears popping on a plane is the eustachian tube."],
+    ["Where is vibration turned into an electrical signal?", "Hair cells in the organ of Corti", ["The tympanic membrane", "The stapes", "The eustachian tube"], "Hair cells are the transducers."],
+    ["Hair cell stereocilia bend against the:", "Tectorial membrane", ["Tympanic membrane", "Oval window", "Otolithic membrane"], "Basilar membrane moves up, stereocilia hit the tectorial membrane."],
+    ["After the hair cells, the signal travels on:", "The cochlear branch of CN VIII", ["CN VII, the facial nerve", "The optic nerve", "The eustachian tube"], "Vestibulocochlear nerve, cochlear branch."],
+    ["Why do the ossicles amplify the vibration?", "Fluid is harder to move than air", ["Air is harder to move than fluid", "The eardrum is too thick", "The cochlea is outside the skull"], "The middle ear boosts force 15–20× so the push can move cochlear fluid."]
+  ]
+};
+UNITS.find(u => u.name === "Senses Hit List").cats.unshift("ct_ear");
+</script>
+<script>
 (function(){
 const KEY = "bio2301-megahub-v1";
 const ALL_IDS = [];
