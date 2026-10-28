@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1997,6 +1998,570 @@ W.heart = [
 
 </script>
 <script>
+/* ================= TAB 7 · CRUNCH TIME (built from the Oct 28 full run) ================= */
+(function(){
+const TRAP = rows => TBL(["You picked", "It's actually", "Why"], rows);
+const C = {};
+
+/* ---------- MUSCLE ---------- */
+C.ct_sarc = {"name":"The Sarcomere & Wrappings","primer":`
+<section class="pr"><h3>Hands and a pencil</h3>
+<p>Hold your hands out, fingertips pointing at each other. Your <b>fingers = thin filaments (actin)</b>. Your <b>wrists = Z lines</b>. A pencil floating between your fingertips = the <b>thick filament (myosin)</b>. Contraction = sliding your fingers together over the pencil.</p>
+${TBL(["Region", "What it is", "During contraction"], [
+  ["A band", "dArk. The whole length of the pencil (thick filament)", "Always the same. A for Always"],
+  ["I band", "lIght. Fingers only, no pencil", "Shrinks (wrists close in)"],
+  ["H zone", "The gap between fingertips, in the heart of the A band", "Disappears"],
+  ["Z line", "The wrists, in the middle of the I band", "Pulled closer together"]
+])}
+${MN("Pairs that live together", "H goes with A (dark middle). Z goes with I (light ends).")}
+${MN("Thin = actin + the two tropos", "Thin filament = actin, troponin, tropomyosin. Thick = myosin, the one with heads. Hollywood rule: actors are thin.")}
+${MN("-mere = unit", "A myofibril is a train of sarcomeres (the boxcars). Stripes come from how the filaments line up, not connective tissue.")}
+${MN("Triad = signal meets calcium", "1 T-tubule (brings the signal in) sandwiched by 2 terminal cisternae (SR pouches holding calcium). No Z lines in it.")}
+</section>
+<section class="pr"><h3>Wrappings, inside out</h3>
+${TBL(["Layer", "Wraps"], [["ENDOmysium", "Each fiber (innermost)"], ["PERImysium", "Each fascicle (the perimeter of a bundle)"], ["EPImysium", "The whole muscle (outer skin)"]])}
+${MN("Tendon = outer meets outer", "Only the outermost layer can reach the bone: the EPImysium extends past the muscle into the bone's periosteum.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["I bands are dark", "A bands are dark", "dArk = A. lIght = I"],
+  ["H zone is in the I band", "H zone is in the A band", "H is in the heart of A"],
+  ["Z line is in the H zone", "Z line is in the I band", "Z lines are the wrists, out in the light part"],
+  ["H zone stays the same", "H zone disappears", "It's a gap. Gaps close"],
+  ["A band shortens the most", "A band stays the same", "It's the pencil. Filaments never shrink"],
+  ["Thin filaments are myosin", "Thin filaments are actin", "Myosin is the thick one with heads"],
+  ["Regulators = calcium and ATPase", "Troponin and tropomyosin", "Look for the two tropo words"],
+  ["Myofibril = chain of fibers", "Chain of sarcomeres", "Fibers contain myofibrils, not the other way"],
+  ["Striations = connective tissue", "Arrangement of myofilaments", "The stripes are the overlap pattern"],
+  ["Triad = 2 T-tubules + 1 Z line", "1 T-tubule + 2 terminal cisternae", "No calcium storage in yours, so it can't be a triad"],
+  ["Perimysium wraps the whole muscle", "Each fascicle", "Epi = whole muscle. Peri = bundle"],
+  ["Endomysium fuses with cartilage", "Epimysium into periosteum", "The innermost layer can't reach the bone"]
+])}
+</section>`,
+"refs":["fiber-8","fiber-10","fiber-12","fiber-14","fiber-15","fiber-16","fiber-19","fiber-20","fiber-21","fiber-22","org-11","org-16"],
+"q":[
+["Which band contains ONLY thin filaments?","I band",["A band","H zone","M line"],"Light band = fingers only, no pencil."],
+["Which region equals the full length of the thick filament?","A band",["I band","H zone","Z line"],"The A band is the pencil."],
+["During contraction, the actin and myosin filaments themselves:","Stay the same length",["Both shorten","Only actin shortens","Only myosin shortens"],"They slide; only the gaps close."],
+["Troponin and tropomyosin are found on the:","Thin filament",["Thick filament","Z line","Sarcolemma"],"They ride on actin."],
+["Which connective tissue layer wraps a single fascicle?","Perimysium",["Endomysium","Epimysium","Periosteum"],"Peri = around the bundle."],
+["In a triad, the T-tubule is flanked by:","Two terminal cisternae of the SR",["Two Z lines","Two myofibrils","Two sarcomeres"],"Signal in the middle, calcium storage on both sides."],
+["Which region gets SHORTER (but doesn't vanish) during contraction?","I band",["A band","Thick filament","Thin filament"],"The wrists close in on the pencil."]
+]};
+
+C.ct_slide = {"name":"Sliding Filament","primer":`
+<section class="pr"><h3>Key in, tarp off, grab, pull, let go</h3>
+${TBL(["Character", "Its ONE job"], [
+  ["Calcium", "Unlocks. Binds troponin. Only at the very start"],
+  ["Troponin", "Turns. It's the switch: changes shape and drags tropomyosin. Stays attached"],
+  ["Tropomyosin", "Covers. The tarp over the binding sites on actin. The blocker at rest"],
+  ["Actin", "The rope. The myosin binding sites (handholds) are on actin"],
+  ["Myosin heads", "Grab actin (that's a crossbridge) and pull toward the center"],
+  ["ATP", "Lets go. 1 ATP per detachment"],
+  ["Z lines", "Get pulled closer together"]
+])}
+${MN("tropoMYOSIN blocks MYOSIN, troponIN lets Ca IN", "Tropomyosin covers the myosin sites. Troponin is where calcium binds.")}
+${MN("Rowing, not one pull", "Each head grabs, pulls, lets go and re-cocks many times per contraction.")}
+${MN("If calcium looks like the answer, check the question", "Calcium is only the answer to 'what starts it' or 'what binds troponin.' It never blocks, never detaches, never comes after the tarp is off.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Troponin blocks the sites", "Tropomyosin blocks them", "Troponin is the switch. Tropomyosin is the tarp"],
+  ["Troponin binds the myosin head", "Changes shape, moves tropomyosin", "It turns the latch, nothing more"],
+  ["Actin is the Ca²⁺ switch", "Troponin is the switch", "Actin is just the rope"],
+  ["Binding sites are on the Z line", "On actin", "The handholds are on the rope"],
+  ["Crossbridge = T-tubule meets SR", "Myosin head attached to actin", "T-tubule + SR is a triad"],
+  ["After the tarp: SR releases Ca²⁺", "Heads grab actin", "Calcium came first. Next word is grab"],
+  ["2 ATP per detachment", "1", "One ATP, one let-go"],
+  ["Each head cycles once", "Many times", "Rowing"],
+  ["Z lines move apart", "Move closer together", "The sarcomere shortens Z to Z"]
+])}
+</section>`,
+"refs":["slide-1","slide-3","slide-4","slide-7","slide-8","slide-12","slide-15","slide-16","slide-17"],
+"q":[
+["In a relaxed muscle, tropomyosin's job is to:","Cover the myosin binding sites on actin",["Bind calcium","Split ATP","Anchor the Z lines"],"It's the tarp."],
+["Put in order: Ca²⁺ binds troponin → ? → myosin grabs actin","Tropomyosin slides off the binding sites",["ATP binds myosin","Z lines move apart","SR releases Ca²⁺"],"Key in, tarp off, grab."],
+["A crossbridge is formed when:","A myosin head binds actin",["Troponin binds calcium","ATP binds myosin","The SR releases calcium"],"Myosin on actin = crossbridge."],
+["With no ATP, a myosin head attached to actin will:","Stay stuck on (rigor)",["Detach normally","Bind calcium","Shorten the filament"],"ATP is for letting go."],
+["During the power stroke, actin is pulled toward the:","Center of the sarcomere",["Z lines","Sarcolemma","T-tubules"],"Toward the middle; the H zone closes."],
+["Which molecule is the 'key' that starts the whole sequence?","Calcium",["ATP","Actin","Tropomyosin"],"Calcium binds troponin first."]
+]};
+
+C.ct_nmj = {"name":"NMJ & E-C Coupling","primer":`
+<section class="pr"><h3>A doorbell that sets off the whole house</h3>
+${FLOW([["ACh", "Nerve ending (bouton) releases ACh into the cleft"], ["Na⁺ in", "ACh hits nicotinic receptors, Na⁺ rushes in"], ["EPP", "Small local blip: End Plate Potential"], ["AP", "Big enough EPP fires an action potential on the sarcolemma"], ["T-tubules", "Carry the AP deep inside"], ["SR", "Terminal cisternae release Ca²⁺"]])}
+${MN("The order", "ACh → EPP → AP → T-tubules → Ca²⁺. The EPP is the step right after ACh.")}
+${MN("Folded end plate = more buttons", "The folds increase surface area so there's room for more ACh receptors.")}
+${MN("E-C coupling = Electrical → Contraction", "The link between the AP on the sarcolemma and the filaments sliding.")}
+${MN("Relaxation costs ATP", "ATP releases the myosin heads AND runs the Ca²⁺-ATPase pump that puts calcium back in the SR. More calcium would do the opposite.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Boutons contain myoglobin", "Acetylcholine", "Myoglobin stores O₂ in muscle. The nerve ending holds ACh"],
+  ["Folds slow ACh diffusion", "Increase surface area", "More folds, more receptors"],
+  ["Ca²⁺ from the cleft rushes in", "Na⁺ rushes in", "Sodium, same as every action potential"],
+  ["E-C coupling = ACh and AChE", "Sarcolemma AP → filament sliding", "Excitation to Contraction"],
+  ["Ca²⁺ from the T-tubule lumen", "Terminal cisternae of the SR", "T-tubules carry the signal. The SR holds the calcium"],
+  ["Relaxation needs more calcium", "ATP", "Calcium starts contraction. ATP ends it"],
+  ["ACh → Ca²⁺-ATPase → AP", "ACh → EPP → AP", "The pump is part of shutting down, at the end"]
+])}
+</section>`,
+"refs":["nmj-3","nmj-5","nmj-6","nmj-9","nmj-11","nmj-12","nmj-18"],
+"q":[
+["Right after ACh binds nicotinic receptors on the end plate:","Na⁺ rushes in and forms the EPP",["Ca²⁺ leaves the SR","More ACh is made","The T-tubules fire"],"Doorbell → chime."],
+["Which structure stores and releases the calcium that triggers contraction?","Sarcoplasmic reticulum (terminal cisternae)",["T-tubules","Synaptic cleft","Motor neuron bouton"],"The vault."],
+["Relaxation needs ATP for:","Releasing myosin heads and pumping Ca²⁺ back into the SR",["Releasing ACh","Opening Na⁺ channels","Making new calcium"],"Two jobs, both cost ATP."],
+["More folds in the motor end plate means:","More room for ACh receptors",["Slower ACh breakdown","More calcium storage","A longer refractory period"],"Bigger surface, more buttons."],
+["The 'E' and 'C' in E-C coupling stand for:","Excitation and contraction",["Electrolyte and calcium","Enzyme and cAMP","End plate and cleft"],"Electrical event → mechanical contraction."],
+["Which comes LAST in this list?","Ca²⁺ released from the SR",["ACh released","End Plate Potential","AP spreads along the sarcolemma"],"ACh → EPP → AP → T-tubules → Ca²⁺."]
+]};
+
+/* ---------- PERFORMANCE ---------- */
+C.ct_energy = {"name":"Energy & Twitch","primer":`
+<section class="pr"><h3>ATP is the only currency</h3>
+${TBL(["Order", "Source", "Lasts / pays", "Money version"], [
+  ["1", "Stored ATP", "5–6 seconds", "Cash in your pocket"],
+  ["2", "Creatine phosphate", "~15 seconds. Turns ADP back into ATP", "Quick recharge"],
+  ["3", "Glycolysis (no O₂)", "2 ATP. Makes lactic acid", "Payday loan"],
+  ["4", "Aerobic (mitochondria, O₂)", "36 ATP. Ends as CO₂ + water", "Steady salary"]
+])}
+${MN("A-T-P = Tri-phosphate", "Spend one phosphate → A-D-P (Di) + P + energy.")}
+${MN("Fastest and smallest first", "You don't wait for your paycheck to buy a coffee: ATP → CP → glycolysis → aerobic.")}
+${MN("Acid lowers pH", "Lactic acid → lower pH → fatigue and pain. Never higher pH.")}
+</section>
+<section class="pr"><h3>Twitch: mechanical vs electrical</h3>
+${TBL(["Term", "Layer", "Means"], [
+  ["Relaxation period", "Mechanical", "The muscle physically loosens back to its uncontracted state"],
+  ["Refractory period", "Electrical", "Whether the cell can fire again yet"]
+])}
+${MN("Heart = long refractory, on purpose", "Skeletal recharges in ~0.005 s, so twitches stack. The heart's refractory period is much longer, so it must relax and refill.")}
+${MN("Complete = completely smooth", "Complete tetanus = no relaxation at all. Incomplete = still has dips.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["ATP → pyruvic acid + CO₂", "ADP + P + energy", "Pyruvic acid comes from glucose, not ATP"],
+  ["Creatine phosphate lasts 5–6 s", "~15 s", "5–6 s is stored ATP, the one before it"],
+  ["CP pumps Ca²⁺ out of the SR", "Converts ADP back to ATP", "It's the recharger"],
+  ["Aerobic yields 2 ATP", "36 ATP", "2 is glycolysis, the loan"],
+  ["Aerobic ends as pyruvic acid + myoglobin", "CO₂ and water", "Pyruvic acid is the input"],
+  ["Lactic acid raises pH", "Fatigue and pain (lower pH)", "Acid lowers pH"],
+  ["Order starting with glycolysis", "ATP → CP → glycolysis → aerobic", "Pocket, recharge, loan, salary"],
+  ["Returning to rest = refractory", "Relaxation period", "Refractory is electrical, not mechanical"],
+  ["Cardiac refractory is shorter", "Much longer", "So the heart can't lock up"],
+  ["No relaxation = incomplete", "Complete tetanus", "Complete = completely fused"]
+])}
+</section>`,
+"refs":["energy-1","energy-2","energy-3","energy-9","energy-10","energy-13","energy-20","twitch-6","twitch-12","twitch-16"],
+"q":[
+["Which energy source is used SECOND and lasts about 15 seconds?","Creatine phosphate",["Stored ATP","Glycolysis","Aerobic respiration"],"Pocket cash runs out, then the recharge."],
+["Splitting ATP for energy removes one:","Phosphate",["Glucose","Oxygen","Calcium"],"Tri → Di."],
+["Which pathway yields the MOST ATP?","Aerobic respiration",["Glycolysis","Creatine phosphate","Stored ATP"],"36 vs 2."],
+["Lactic acid builds up when:","There isn't enough O₂ for aerobic respiration",["Oxygen is plentiful","Stored ATP is full","Myoglobin is fully loaded"],"No O₂, pyruvic acid turns into lactic acid."],
+["The heart can't be tetanized because:","Its refractory period is long",["It has no calcium","It has no myosin","It's under voluntary control"],"It's forced to relax and refill."],
+["A tension tracing with wavy dips between stimuli is:","Incomplete tetanus",["Complete tetanus","A single twitch","Rigor"],"Still some relaxation."],
+["The relaxation period of a twitch is when:","The fiber physically returns to its uncontracted state",["The cell can't fire at all","Ca²⁺ is first released","Nothing has happened yet"],"Mechanical, not electrical."]
+]};
+
+C.ct_ftypes = {"name":"Fiber Types","primer":`
+<section class="pr"><h3>Two questions sort every fiber</h3>
+${TBL(["", "Speed (myosin ATPase)", "Fuel", "Color", "Built for"], [
+  ["Slow (Type I)", "LOW → 4× slower", "Oxidative (O₂)", "Red", "Marathons"],
+  ["Fast oxidative", "HIGH → 4× faster", "Oxidative: many mitochondria, lots of myoglobin, most blood flow", "Red", "Middle distance"],
+  ["Fast glycolytic", "HIGH → 4× faster", "Glycogen: few mitochondria", "WHITE", "Sprints"]
+])}
+${MN("Speed = ATPase", "How fast myosin splits ATP sets how fast it cycles. Always 4×. Not tendon length, not force.")}
+${MN("Slow is NOT weak", "Same force, different speed.")}
+${MN("Follow the oxygen", "Oxidative → needs to hold O₂ → myoglobin → red. Glycolytic → runs on glycogen → no need for myoglobin → white. Dark meat = legs that walk all day. White meat = breast for panicked flapping.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Fast fibers have low ATPase", "High ATPase", "Fast splitting = fast cycling"],
+  ["Slow fibers are much weaker", "Same force", "Her slide: same force, different speed"],
+  ["Speed set by tendon length", "Myosin ATPase activity", "It's the enzyme on the head"],
+  ["Slow = glycogen-only", "High oxidative capacity", "Slow = marathon = O₂"],
+  ["Fast oxidative = few mitochondria", "Many mitochondria + myoglobin", "Oxidative always means mitochondria and myoglobin"],
+  ["Fast glycolytic = low ATPase", "Few mitochondria, more glycogen", "Fast = high ATPase. Glycolytic = glycogen"],
+  ["White = slow Type I", "Fast glycolytic", "No myoglobin → white"],
+  ["Pale = more myoglobin", "Less myoglobin and blood", "Myoglobin is the red pigment"],
+  ["10× faster", "4×", "Always 4"]
+])}
+</section>`,
+"refs":["ftypes-1","ftypes-3","ftypes-4","ftypes-5","ftypes-6","ftypes-7","ftypes-8","ftypes-9","ftypes-13"],
+"q":[
+["The red color of muscle comes from:","Myoglobin",["Glycogen","Collagen","Calcium"],"Red pigment that holds O₂."],
+["Low myosin ATPase activity means a fiber:","Cycles crossbridges slowly",["Produces less force","Has no mitochondria","Is white"],"Speed, not strength."],
+["Which TWO fiber types are both oxidative?","Slow and fast oxidative",["Fast oxidative and fast glycolytic","Slow and fast glycolytic","Only fast glycolytic"],"Both red, both run on O₂."],
+["Chicken breast is white because its fibers are mostly:","Fast glycolytic, low in myoglobin",["Slow oxidative, high in myoglobin","Fast oxidative, high in blood flow","Cardiac muscle"],"Short panicked bursts."],
+["Which statement about slow vs fast fibers is TRUE?","Same force, slow fibers cycle 4× slower",["Slow fibers are weaker but faster","Slow fibers are stronger and faster","Slow fibers cycle 10× slower"],"Same force, different speed."],
+["A sprinter's explosive bursts rely mostly on:","Fast glycolytic fibers",["Slow oxidative fibers","Fibers with low ATPase","Smooth muscle"],"Fast and glycogen-fueled."]
+]};
+
+/* ---------- BRAIN & MOTOR ---------- */
+C.ct_brain = {"name":"Sleep, Memory & Language","primer":`
+<section class="pr"><h3>Sleep</h3>
+${TBL(["Fact", "Answer"], [
+  ["EEG arousal", "Shift into BETA (alert, concentrating)"],
+  ["Who regulates sleep", "RAS (reticular activating system) + hypothalamus"],
+  ["Sleepwalking, bedwetting", "NREM. REM paralyzes skeletal muscle, so you can't walk in REM"],
+  ["NREM chemistry", "Serotonin RISES, norepinephrine FALLS (NE keeps you alert)"]
+])}
+</section>
+<section class="pr"><h3>Memory</h3>
+${TBL(["", "Declarative", "Procedural"], [
+  ["Stores", "Facts, names, events ('Her name is Julie')", "Skills: how to do things"],
+  ["Structures", "Hippocampus, amygdala, diencephalon", "Sensorimotor cortex, basal nuclei, cerebellum (the movement crew)"]
+])}
+${MN("Emotion locks memories in", "Through NE, ACTH and vasopressin.")}
+</section>
+<section class="pr"><h3>Language</h3>
+${TBL(["Area", "Lobe", "Damage looks like"], [
+  ["Broca's", "Frontal", "Broken speech: understands everything, can't get words out"],
+  ["Wernicke's", "Temporal", "Wordy nonsense: fluent, makes no sense, can't follow instructions"]
+])}
+${MN("Right hemisphere = nonverbal", "Emotion in a tone of voice, visual patterns. Left = language and verbal memory.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["EEG arousal = alpha", "Beta", "Alpha = relaxed, eyes closed"],
+  ["Sleep: cerebellum and pons", "RAS and hypothalamus", "Cerebellum is balance"],
+  ["Sleepwalking in REM", "NREM", "REM paralyzes you"],
+  ["NREM: serotonin falls, NE rises", "Serotonin rises, NE falls", "NE keeps you awake, so it drops"],
+  ["'Her name is Julie' = procedural", "Declarative", "Names and events = facts"],
+  ["Procedural = hippocampus crew", "Cerebellum, basal nuclei, sensorimotor cortex", "Skills use the movement team"],
+  ["Memory chemicals = melatonin, GABA...", "NE, ACTH, vasopressin", "The stress/emotion chemicals"],
+  ["Understands, can't form words = Wernicke's", "Broca's", "Broca = broken speech"],
+  ["Fluent nonsense = Broca's", "Wernicke's", "Wernicke = wordy nonsense"],
+  ["Broca's handles comprehension", "No, only speaking", "Broca builds, Wernicke understands"],
+  ["Tone-of-voice emotion = Broca's", "Right hemisphere", "Nonverbal = right"]
+])}
+</section>`,
+"refs":["sleep-5","sleep-12","sleep-18","sleep-19","memory-5","memory-8","memory-16","lang-6","lang-7","lang-12","lang-15"],
+"q":[
+["Sleepwalking can't happen in REM because:","Skeletal muscles are paralyzed in REM",["The brain is silent in REM","Delta waves block movement","The RAS is switched off"],"So it happens in NREM."],
+["As you drift into NREM sleep, which neurotransmitter drops?","Norepinephrine",["Serotonin","Melatonin","GABA"],"NE maintains alertness."],
+["A student concentrating hard on a math problem shows mostly:","Beta waves",["Alpha waves","Theta waves","Delta waves"],"Beta = EEG arousal."],
+["Knowing HOW to tie your shoes is:","Procedural memory (cerebellum, basal nuclei)",["Declarative memory (hippocampus)","Short-term memory only","Retrograde memory"],"Skill memory."],
+["Emotional events are remembered better because of:","NE, ACTH and vasopressin",["Melatonin and serotonin","Insulin and glucagon","Histamine and GABA"],"Emotional-state chemicals consolidate memory."],
+["Damage to Broca's area typically produces:","Halting speech with good comprehension",["Fluent speech that makes no sense","Loss of vision","Tremor at rest"],"Broken speech."],
+["Damage to Wernicke's area typically produces:","Fluent speech that makes no sense",["Slow, effortful speech with good comprehension","Tongue paralysis","Loss of balance"],"Wordy nonsense."]
+]};
+
+C.ct_motor = {"name":"Motor Control","primer":`
+<section class="pr"><h3>Two highways down</h3>
+${TBL(["", "Pyramidal = corticospinal", "Extrapyramidal"], [
+  ["Starts in", "Primary motor cortex (pyramidal cells), precentral gyrus, posterior frontal lobe", "Brainstem nuclei (vestibular, olive, reticular formation, RED NUCLEUS) + basal nuclei"],
+  ["Does", "Voluntary, precise movement", "Posture, balance, walking"],
+  ["Name hints", "cortico-", "rubro-, vestibulo-, reticulo-, tecto-"]
+])}
+${MN("Purkinje is a heart word", "Purkinje fibers are in the heart's conduction system. In Motor they're always the decoy. The conscious-control neurons are PYRAMIDAL cells.")}
+${MN("Pre = motor, post = sensory", "PREcentral gyrus = primary motor cortex. Postcentral = touch.")}
+</section>
+<section class="pr"><h3>Brakes vs steering</h3>
+${TBL(["", "Basal nuclei = brakes", "Cerebellum = steering"], [
+  ["Tremor", "AT REST (hand shakes in her lap)", "INTENTION: worse approaching the target (finger-to-nose)"],
+  ["Also", "Bradykinesia (slow), poor posture", "Unstable gait, can't start/stop smoothly"],
+  ["Disease / spot", "Parkinson's, substantia nigra", "Cerebellar disease"]
+])}
+</section>
+<section class="pr"><h3>Romberg and cranial nerves</h3>
+${MN("The stool", "Balance needs any 2 of 3: eyes, proprioceptors, vestibular. Steady eyes open AND closed = NEGATIVE (normal). Sways eyes closed = positive. Test only works with a working cerebellum.")}
+${MN("9 of 12 are motor", "The 3 that aren't: I smell, II sight, VIII hearing/balance. XI Accessory = shrugging and turning the head.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Motor areas in the occipital lobe", "Posterior frontal lobe", "Just in front of the central sulcus"],
+  ["Primary motor = postcentral", "Precentral gyrus", "Pre = motor"],
+  ["Conscious control = Purkinje fibers", "Pyramidal cells", "Purkinje is the heart"],
+  ["Pyramidal axons = vestibulospinal", "Corticospinal", "Pyramidal = cortico"],
+  ["Extrapyramidal nucleus = precentral gyrus", "Red nucleus", "Extrapyramidal starts in the brainstem"],
+  ["NOT extrapyramidal = reticulospinal", "Corticospinal", "Look for cortico-"],
+  ["Extrapyramidal + primary motor cortex", "+ basal nuclei", "Brainstem + basal nuclei"],
+  ["Rest tremor = cerebellum", "Basal nuclei", "Brakes fail, car rolls while parked"],
+  ["Intention tremor = basal nuclei", "Cerebellum", "Steering fails while driving"],
+  ["Parkinson's = red nucleus", "Substantia nigra", "Red nucleus is extrapyramidal"],
+  ["Romberg needs no vision problem", "No cerebellar problem", "The cerebellum is the one on the stool"],
+  ["Steady both ways = invalid", "Negative Romberg", "Negative = normal"],
+  ["6 motor cranial nerves", "9", "12 minus the 3 senses"],
+  ["Shrugging = XII", "XI Accessory", "XII is the tongue/swallowing one"]
+])}
+</section>`,
+"refs":["mcortex-0","mcortex-2","mcortex-6","mcortex-7","mcortex-14","mcortex-15","mcortex-20","bgcb-4","bgcb-6","bgcb-13","bgcb-14","romberg-7","romberg-9","cnmotor-0","cnmotor-5"],
+"q":[
+["The corticospinal tract is the same thing as the:","Pyramidal tract",["Extrapyramidal tract","Rubrospinal tract","Vestibulospinal tract"],"Cortex to spinal cord."],
+["Purkinje fibers belong to the:","Heart's conduction system",["Primary motor cortex","Basal nuclei","Corticospinal tract"],"Never the answer in Motor."],
+["Damage to the substantia nigra causes:","Tremor at rest and bradykinesia",["Intention tremor","A positive Romberg","Broca's aphasia"],"Parkinson's."],
+["A positive Romberg means the patient:","Sways with eyes closed",["Stays steady with eyes closed","Can't stand even with eyes open","Has Parkinson's"],"Positive = the test found a problem."],
+["Shrugging your shoulders uses cranial nerve:","XI Accessory",["XII Hypoglossal","X Vagus","VII Facial"],"Head and neck."],
+["Which cranial nerves have NO motor function?","I, II and VIII",["III, IV and VI","V, VII and IX","X, XI and XII"],"Smell, sight, hearing/balance."],
+["The extrapyramidal tracts mainly control:","Posture, balance and walking",["Fine finger movements","Speech articulation","Heart rate"],"The scaffolding, not the surgeon's hands."]
+]};
+
+/* ---------- HEART ---------- */
+C.ct_press = {"name":"Blood Pressure","primer":`
+<section class="pr"><h3>The ladder only goes down</h3>
+<p>Blood only flows high → low, so pressure drops the whole way around the loop.</p>
+${TBL(["Spot", "Pressure"], [["Aorta (pump outlet)", "120"], ["Arterioles", "60"], ["Capillaries", "20"], ["Veins", "20"], ["Right atrium (finish line)", "0"]])}
+${MN("Aorta = Away, Atrium = Arriving", "Leaving the heart = highest. Coming home = nothing left.")}
+${MN("Veins can't push", "Venous pressure is only ~20, so venous return needs the respiratory and muscular pumps plus valves.")}
+</section>
+<section class="pr"><h3>MAP in two steps</h3>
+${MN("Gap ÷ 3, add to the bottom", "120/80 → gap 40 → 40÷3 ≈ 13 → 80 + 13 = 93. 150/90 → 60÷3 = 20 → 110. MAP always lands BETWEEN the two numbers.")}
+${MN("The seesaw", "BP = CO × R. BP drops → raise BOTH. BP rises → lower BOTH.")}
+</section>
+<section class="pr"><h3>Only four lower BP</h3>
+${TBL(["Lowers BP", "Raises BP"], [
+  ["Parasympathetic", "Sympathetic, epinephrine"],
+  ["Nitric oxide (NO pressure)", "Endothelin (low flow → squeeze)"],
+  ["Prostaglandin", "Thromboxane A (platelets, clamp the bleed)"],
+  ["ANF (made by the heart's atria; dumps Na⁺ + water)", "Aldosterone, ADH, renin-angiotensin (keep water)"]
+])}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Aorta 20", "120", "Pump outlet = highest"],
+  ["Arterioles 20", "60", "Half of 120"],
+  ["Capillaries 60", "20", "Most of the push is spent"],
+  ["Right atrium 120", "0", "Finish line"],
+  ["Veins 80", "20", "80 is diastolic, not a vein"],
+  ["MAP 120/80 = 40", "93", "40 is the gap. Add a third of it to 80"],
+  ["MAP 150/90 = 60", "110", "60 is the gap. 90 + 20"],
+  ["BP drops → lower both", "Raise both", "Push it back up"],
+  ["Venous return = high venous pressure", "Respiratory + muscular pumps", "Veins have almost no pressure"],
+  ["Endothelin = heart hormone, lowers", "Vasoconstrictor, raises", "Not on the four-lowerers list"],
+  ["Thromboxane dilates", "Constricts, raises", "Clamp the bleeding vessel"],
+  ["Prostaglandin raises viscosity", "Lowers BP (dilates)", "One of the four"],
+  ["ANF from the adrenal cortex", "Atria of the heart", "Atrial natriuretic factor"],
+  ["ANF releases ADH", "Excretes Na⁺ and water", "It's ADH's opposite"],
+  ["Both lower: endothelin + thromboxane", "NO and ANF", "Those two both raise"]
+])}
+</section>`,
+"refs":["bp-4","bp-5","bp-6","bp-7","bp-18","bp-19","bp-22","bpfx-4","bpfx-5","bpfx-14","bpfx-16","bpfx-17","bpfx-18","bpfx-19","bpfx-20"],
+"q":[
+["BP is 140/80. MAP is:","100 mmHg",["60 mmHg","110 mmHg","93 mmHg"],"Gap 60 ÷ 3 = 20, plus 80."],
+["BP is 110/70. MAP is about:","83 mmHg",["40 mmHg","90 mmHg","53 mmHg"],"Gap 40 ÷ 3 ≈ 13, plus 70. Must land between 70 and 110."],
+["Which spot has the LOWEST average pressure?","Right atrium (about 0)",["Aorta","Arterioles","Capillaries"],"The finish line."],
+["Pressure falls from about 120 to about 60 in the:","Arterioles",["Capillaries","Veins","Aorta"],"Narrow tubes, lots of friction."],
+["Which of these RAISES blood pressure?","Endothelin",["Nitric oxide","ANF","Prostaglandin"],"Not one of the four lowerers."],
+["Which of these LOWERS blood pressure?","Prostaglandin",["Thromboxane A","Endothelin","Angiotensin"],"Parasympathetic, NO, prostaglandin, ANF."],
+["ANF does the opposite of:","Aldosterone",["Epinephrine","Thyroxine","Endothelin"],"ANF dumps salt and water; aldosterone keeps them."],
+["If cardiac output rises, what keeps BP normal?","Resistance decreases",["Resistance increases","Heart rate increases","Blood volume increases"],"The seesaw."]
+]};
+
+C.ct_cycle = {"name":"Cardiac Cycle & Anatomy","primer":`
+<section class="pr"><h3>Doors that pressure pushes</h3>
+${MN("A door only cares about the two rooms beside it", "AV valve: atrium vs ventricle. Semilunar valve: ventricle vs artery. Pressure opens and closes them, not muscles.")}
+${TBL(["Event", "What happens"], [
+  ["Systole", "SQUEEZE. Blood is expelled. Pressure peaks ~120"],
+  ["Diastole", "RELAX and fill. Lasts longer (0.5 s of 0.8)"],
+  ["Lub (S1)", "AV valves close as the ventricles start squeezing. Start of systole. Louder and longer"],
+  ["Dup (S2)", "Semilunar valves close from backflow as ventricles relax. Short and sharp"]
+])}
+${MN("Sounds are always doors CLOSING", "Never opening.")}
+${MN("The cup", "EDV = Done filling (full). ESV = Scraps after the Squeeze. SV = EDV − ESV (the gulp). 130 − 60 = 70.")}
+${MN("Murmurs", "Stenosis = narrowed (like a stent fixes). Insufficiency = leaky, doesn't close sufficiently. Septal defect = hole in the wall.")}
+</section>
+<section class="pr"><h3>Blood and plumbing</h3>
+${MN("Blood = 55 + 45", "Plasma 55–60% (the majority). RBCs ~45% = the hematocrit (hema = blood, it measures the red part).")}
+${MN("Right = Respiration", "Right side → lungs. Lungs → pulmonary veins → LEFT atrium → body.")}
+${MN("Aortic arch, in order", "Brachiocephalic trunk (right side only: right subclavian + right common carotid) → left common carotid → left subclavian.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Diastole = contraction", "Relaxation and filling", "Systole = squeeze"],
+  ["Systole = relaxation", "Contraction, blood expelled", "S for squeeze"],
+  ["Papillary muscles close the AV valves", "Rising ventricular pressure", "Papillary muscles only stop flipping"],
+  ["Leftover = EDV", "ESV", "Scraps after the squeeze"],
+  ["SV = HR × EDV", "EDV − ESV", "Full minus scraps"],
+  ["Rising pressure closes semilunar", "Backflow as ventricles relax", "Blood falls back and snaps the cups shut"],
+  ["Start of systole = S2", "S1 (lub)", "Lub is the first door slam"],
+  ["S1 is shorter and sharper", "Louder and stronger", "That describes dup"],
+  ["Narrowed valve = insufficiency", "Stenosis", "Insufficiency = leaky"],
+  ["Plasma = 90%", "55–60%", "Plasma is 90% WATER; it's 55–60% of blood"],
+  ["Hematocrit = plasma", "Red blood cells", "Hema measures the red"],
+  ["Pulmonary veins → right atrium", "Left atrium", "Oxygenated blood goes left, to the body side"],
+  ["Brachiocephalic → left vessels", "Right subclavian + right carotid", "It's the right side only"]
+])}
+</section>`,
+"refs":["cycle-0","cycle-1","cycle-8","cycle-13","cycle-14","cycle-16","cycle-22","cycle-23","cycle-25","blood-5","blood-6","blood-18","blood-20"],
+"q":[
+["EDV is 130 mL and ESV is 60 mL. Stroke volume is:","70 mL",["190 mL","60 mL","2.2 mL"],"Full minus scraps."],
+["The 'dup' sound is caused by:","Semilunar valves closing",["AV valves closing","Semilunar valves opening","Atria contracting"],"Out-doors slamming."],
+["The AV valves close because:","Ventricular pressure rises above atrial pressure",["Papillary muscles pull them shut","The SA node fires","Blood flows back from the aorta"],"Pressure moves the doors."],
+["A leaky valve that lets blood flow backward is:","Insufficiency",["Stenosis","Septal defect","Fibrillation"],"Doesn't close sufficiently."],
+["About 45% of blood volume is made of:","Red blood cells",["Plasma","White blood cells","Platelets"],"That's the hematocrit."],
+["Oxygen-rich blood from the lungs enters the:","Left atrium",["Right atrium","Right ventricle","Aorta"],"Via the 4 pulmonary veins."],
+["The ventricles squeezing and ejecting blood is:","Systole",["Diastole","Isovolumetric relaxation","Passive filling"],"Squeeze."]
+]};
+
+C.ct_ctrl = {"name":"Heart Control & EKG","primer":`
+<section class="pr"><h3>Gas and brake</h3>
+${TBL(["", "Gas: sympathetic", "Brake: parasympathetic"], [
+  ["Chemical", "NE + epinephrine", "ACh (vagus)"],
+  ["Receptor", "β1 adrenergic", "Muscarinic"],
+  ["How", "Reaches threshold faster", "Opens K⁺ channels → more negative → slower to fire"]
+])}
+${MN("Press one, the other backs off", "Temporarily inhibited, not shut off forever.")}
+${MN("CO = SV × HR ≈ 5 L/min", "70 mL × ~72 bpm. 0.07 L is ONE beat (the stroke volume), not a minute.")}
+${MN("Ions", "Low Ca²⁺ → weak, depressed heart. High K⁺ → heart block, cardiac arrest. High Na⁺ → blocks Ca²⁺ entry.")}
+</section>
+<section class="pr"><h3>EKG red flags</h3>
+${TBL(["Finding", "Means"], [
+  ["Elevated ST", "Ischemia. ST = Starving Tissue (not enough O₂ right now)"],
+  ["Deep Q waves", "An OLD heart attack (previous infarction)"],
+  ["~300 bpm chaos", "Ventricular fibrillation"],
+  ["Long PR", "First-degree heart block"],
+  ["Long QT / short QT", "HypOcalcemia = lOng. Hyper = short"]
+])}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Resting CO = 0.07 L/min", "5.0 L/min", "0.07 L is one beat's stroke volume"],
+  ["Sympathetic receptor = α2", "β1", "β1 = the gas"],
+  ["ACh slows the heart by releasing Ca²⁺", "Opening K⁺ channels", "Potassium out → more negative → slower"],
+  ["Other division permanently off", "Temporarily inhibited", "You can't floor both pedals, but neither breaks"],
+  ["Low Ca²⁺ → spastic contractions", "Depresses the heart", "Spastic is HIGH calcium"],
+  ["High Na⁺ opens K⁺ channels", "Blocks Ca²⁺ entry", "Blocks contraction"],
+  ["Elevated ST = hypercalcemia", "Ischemia", "Starving Tissue"],
+  ["Deep Q = hypocalcemia", "Previous infarction", "Calcium shows up in QT, not Q"],
+  ["300 bpm chaos = heart block", "V-fib", "Heart block is a slow, delayed signal"]
+])}
+</section>`,
+"refs":["coreg-2","coreg-10","coreg-14","coreg-18","coreg-21","coreg-24","ekg-16","ekg-22","ekg-25"],
+"q":[
+["HR 70 bpm × SV 70 mL gives a cardiac output of about:","4.9 L/min",["70 L/min","0.14 L/min","140 mL/min"],"4,900 mL = 4.9 L."],
+["Parasympathetic ACh binds which receptor on the heart?","Muscarinic",["β1 adrenergic","Nicotinic","α2 adrenergic"],"Nicotinic is skeletal muscle."],
+["Opening K⁺ channels in pacemaker cells makes them:","Slower to reach threshold",["Fire faster","Release calcium","Contract harder"],"More negative, longer climb."],
+["Which EKG finding points to an OLD heart attack?","Deep Q waves",["Elevated ST segment","Long PR interval","Short QT interval"],"Elevated ST is happening now."],
+["Which EKG finding points to heart muscle starving for O₂ right now?","Elevated ST segment",["Deep Q waves","Long QT interval","A normal P wave"],"ST = Starving Tissue."],
+["High blood K⁺ is dangerous because it can cause:","Heart block and cardiac arrest",["Stronger contractions","A faster SA node","Higher stroke volume"],"Disrupts depolarization."],
+["About 0.07 L (70 mL) is the typical:","Stroke volume per beat",["Cardiac output per minute","Total blood volume","End-systolic volume"],"Multiply by HR to get CO."]
+]};
+
+/* ---------- ENDOCRINE ---------- */
+C.ct_glands = {"name":"Thyroid, Adrenal & Pituitary","primer":`
+<section class="pr"><h3>Thyroid = thermostat</h3>
+${TBL(["", "HYPO (too little)", "HYPER / Graves' (too much)"], [
+  ["Feel", "Slow, cold, heavy", "Fast, hot, wired"],
+  ["Signs", "Weight gain, cold, slow heart, constipation, MYXEDEMA, ENLARGED TONGUE", "Weight loss, fast heart, insomnia, BULGING EYES, GOITER (enlarges 2–3×)"]
+])}
+${MN("Graves' = Goes fast, Gets bigger", "Hyperthyroidism with a goiter.")}
+${MN("CalciTONin TONes Ca²⁺ down. PTH Pulls it up.", "Opposites (antagonists). PTH's job is blood calcium, not metabolism.")}
+</section>
+<section class="pr"><h3>Adrenal: two layers</h3>
+${TBL(["Layer", "Makes", "Type"], [
+  ["Cortex: Salt, Sugar, Sex", "Aldosterone (salt), cortisol (sugar), androgens (sex)", "STEROIDS"],
+  ["Medulla", "Epinephrine + norepinephrine", "Catecholamines"]
+])}
+${MN("Cortisol, three effects", "RAISES blood glucose. SUPPRESSES the immune system/inflammation. So it can SLOW WOUND HEALING.")}
+${MN("ANP shuts off aldosterone", "The heart's water-dumper opposes the salt-keeper. ACTH stimulates it.")}
+</section>
+<section class="pr"><h3>Pituitary leftovers</h3>
+${MN("-RH = hypothalamus", "Releasing hormones (TRH, CRH, GnRH) all come from the hypothalamus.")}
+${MN("Posterior = neuro = nerves", "Hypothalamus → posterior pituitary by axons. Anterior gets the portal BLOOD vessels.")}
+${MN("Read the abbreviation", "ACTH = AdrenoCorticoTropic → adrenal cortex. FSH = Follicle-Stimulating → follicle growth + estrogen.")}
+${MN("Hormone = 1st messenger", "Hormone → G protein → cAMP (2nd messenger) → kinases. And hormones run SMOOTH and CARDIAC muscle; skeletal answers to nerves.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["PTH lowers metabolic rate", "Raises blood calcium", "Pulls it up"],
+  ["Myxedema = hyper", "Hypothyroidism", "Slow and puffy = hypo"],
+  ["Weight loss + bulging eyes = hypo", "Hyperthyroidism", "Fast and wired = hyper"],
+  ["Goiter: thyroid stops making T4", "Enlarges 2–3×", "Gets bigger"],
+  ["Cortex makes second messengers", "Steroids", "Salt, sugar, sex are all steroids"],
+  ["Cortisol stores glucose", "Raises it", "Sugar for stress"],
+  ["Cortisol creates antibodies", "Suppresses immunity", "Anti-inflammatory"],
+  ["High cortisol → hyperthyroidism", "Slows wound healing", "Less inflammation, slower repair"],
+  ["ACTH inhibits aldosterone", "ANP does", "ACTH stimulates it"],
+  ["ACTH targets the thyroid", "Adrenal cortex", "TSH is the thyroid one"],
+  ["FSH → progesterone", "Follicle growth + estrogen", "Progesterone comes later, from the corpus luteum"],
+  ["Releasing hormones from the thyroid", "Hypothalamus", "-RH = hypothalamus"],
+  ["Posterior pituitary via portal vessels", "Via nerve fibers", "Neurohypophysis = nerves"],
+  ["The hormone = G protein", "First messenger", "G protein is the next step"],
+  ["Hormones run skeletal + smooth", "Smooth + cardiac", "Skeletal is run by nerves (NMJ)"]
+])}
+</section>`,
+"refs":["glands-2","glands-6","glands-8","glands-10","glands-11","glands-13","glands-14","glands-15","glands-18","antpit-4","antpit-6","hp-11","hp-15","signal-9","endobasic-18"],
+"q":[
+["Calcitonin and PTH have opposite effects on:","Blood calcium",["Blood glucose","Metabolic rate","Blood sodium"],"TONes down vs Pulls up."],
+["Always cold, gaining weight, slow heart rate. Most likely:","Too little thyroid hormone",["Too much thyroid hormone","Too much cortisol","Type I diabetes"],"Slow and cold = hypo."],
+["Graves' disease patients typically show:","Bulging eyes and a goiter",["Myxedema and an enlarged tongue","Cold intolerance and weight gain","A slow heart rate"],"Goes fast, gets bigger."],
+["Because cortisol is anti-inflammatory, high cortisol can:","Slow wound healing",["Cause a goiter","Lower blood glucose","Raise blood calcium"],"Less inflammation, slower repair."],
+["The 'salt' hormone of the adrenal cortex is:","Aldosterone",["Cortisol","Epinephrine","Calcitonin"],"Keeps sodium."],
+["TRH, CRH and GnRH all come from the:","Hypothalamus",["Anterior pituitary","Thyroid","Posterior pituitary"],"-RH = releasing hormone = hypothalamus."],
+["The adrenal MEDULLA makes:","Epinephrine and norepinephrine",["Cortisol","Aldosterone","Androgens"],"Cortex = steroids; medulla = adrenaline."],
+["Which muscle type is NOT on her list of hormone-regulated muscle?","Skeletal",["Smooth","Cardiac","None; all three are"],"Hormones: smooth and cardiac."]
+]};
+
+C.ct_panc = {"name":"Pancreas, Diabetes & Gonads","primer":`
+<section class="pr"><h3>The pancreas</h3>
+<p>Both exocrine (digestive enzymes) and endocrine. Its hormone cells sit in the <b>islets of Langerhans</b>. (Leydig cells are in the testes.)</p>
+${TBL(["Cell", "Hormone", "When", "Does"], [
+  ["Beta (β)", "Insulin", "Glucose RISES (after a meal)", "Brings glucose DOWN, moves it into cells"],
+  ["Alpha (α)", "Glucagon", "Glucose FALLS (fasting)", "Adds glucose back"]
+])}
+${MN("β = Bring it down, α = Add more", "Beta → insulin. Alpha → glucagon.")}
+${MN("Read the word", "Glycogen-o-LYSIS = split glycogen into glucose. Gluco-NEO-genesis = make NEW glucose from amino acids.")}
+</section>
+<section class="pr"><h3>Diabetes</h3>
+${TBL(["", "Type I", "Type II"], [["Cause", "Beta cells destroyed (autoimmune)", "Insulin RESISTANCE"], ["Insulin shots", "Required", "Usually not"]])}
+${TBL(["Complication", "Damages"], [["RETINOpathy", "Retina (eyes)"], ["NEPHROpathy", "Kidneys (nephron)"], ["NEUROpathy", "Nerves: numb hands and feet"]])}
+</section>
+<section class="pr"><h3>Gonads</h3>
+${TBL(["Hormone", "Made mainly by", "Phase", "Does"], [
+  ["Estrogen", "Ovarian FOLLICLE", "PROLIFERATIVE (builds the lining)", "Matures the reproductive tract"],
+  ["Progesterone", "CORPUS LUTEUM", "SECRETORY", "Inhibits uterine contractions to keep the pregnancy"]
+])}
+${MN("Pro-GEST-erone = pro-gestation", "Keeps the pregnancy going by quieting the uterus. Nothing to do with milk letdown (that's oxytocin).")}
+${MN("Order matches the follicle story", "FSH grows the follicle → follicle makes ESTROGEN. LH pops it → corpus luteum makes PROGESTERONE.")}
+</section>
+<section class="pr"><h3>Your traps from the full run</h3>
+${TRAP([
+  ["Islets = cells of Leydig", "Islets of Langerhans", "Leydig cells are in the testes"],
+  ["Insulin from alpha cells", "Beta cells", "Beta brings it down"],
+  ["Glucagon from beta cells", "Alpha cells", "Alpha adds more"],
+  ["Insulin released when glucose falls", "When it rises", "After a meal"],
+  ["Glycogenolysis = new glucose from amino acids", "Splitting glycogen", "That's gluconeogenesis"],
+  ["Type I = insulin resistance", "Beta cells destroyed", "Resistance is Type II"],
+  ["Retinopathy → kidney", "Retina", "In the name"],
+  ["Nephropathy → liver", "Kidneys", "Nephro = kidney"],
+  ["Numb feet = nephropathy", "Neuropathy", "Neuro = nerves"],
+  ["Estrogen from the corpus luteum", "Ovarian follicle", "The corpus luteum makes progesterone"],
+  ["Estrogen phase = secretory", "Proliferative", "Estrogen builds; progesterone secretes"],
+  ["Progesterone stops milk letdown", "Inhibits uterine contractions", "Pro-gestation"],
+  ["Progesterone phase = ovulation", "Secretory", "Ovulation is LH's moment"]
+])}
+</section>`,
+"refs":["panc-1","panc-2","panc-3","panc-4","panc-7","panc-11","panc-15","panc-16","panc-17","panc-18","panc-19","panc-21","panc-22"],
+"q":[
+["After a big meal, blood glucose rises and the pancreas releases:","Insulin from beta cells",["Glucagon from alpha cells","Insulin from alpha cells","Glucagon from beta cells"],"Beta brings it down."],
+["Between meals, when glucose falls, alpha cells release:","Glucagon",["Insulin","Cortisol","Estrogen"],"Alpha adds more."],
+["Making brand-new glucose from amino acids is:","Gluconeogenesis",["Glycogenolysis","Glycolysis","Lipolysis"],"Neo = new."],
+["Type II diabetes is mainly:","Insulin resistance",["Beta cell destruction","A missing pancreas","Too much insulin"],"The insulin doesn't work well."],
+["Which diabetic complication damages the kidneys?","Nephropathy",["Neuropathy","Retinopathy","Myxedema"],"Nephro = kidney."],
+["The proliferative phase (building the uterine lining) is driven by:","Estrogen",["Progesterone","Prolactin","Oxytocin"],"Estrogen builds."],
+["Progesterone keeps a pregnancy going by keeping the uterus:","Quiet (no contractions)",["Contracting","Shedding its lining","Releasing eggs"],"Pro-gestation."]
+]};
+
+Object.entries(C).forEach(([k, v]) => { v.crunch = true; });
+Object.assign(CATS, C);
+UNITS.push(
+  {"name":"Endocrine Hit List","deck":"Your misses · thyroid, adrenal, pituitary, pancreas, gonads","cats":["ct_glands","ct_panc"],"tab":"crunch"},
+  {"name":"Muscle Hit List","deck":"Your misses · sarcomere, sliding filament, NMJ","cats":["ct_sarc","ct_slide","ct_nmj"],"tab":"crunch"},
+  {"name":"Performance Hit List","deck":"Your misses · energy, twitch, fiber types","cats":["ct_energy","ct_ftypes"],"tab":"crunch"},
+  {"name":"Heart Hit List","deck":"Your misses · pressure, cycle, control, EKG","cats":["ct_press","ct_cycle","ct_ctrl"],"tab":"crunch"},
+  {"name":"Brain & Motor Hit List","deck":"Your misses · sleep, memory, language, motor","cats":["ct_brain","ct_motor"],"tab":"crunch"}
+);
+W.crunch = [
+  ["How to use Crunch Time","Every set is built from the 138 questions you missed on the Oct 28 full run. Open the Primer first: the bottom table lists exactly what you picked and why it's wrong. Then Practice."],
+  ["Red chip vs 'New angle'","Red 'Your miss' chips are the real questions you got wrong. 'New angle' questions test the same idea worded differently, so you can't coast on memorizing one phrasing."],
+  ["Start with Endocrine","Pancreas/Diabetes/Gonads and Thyroid/Adrenal were never studied before the run. Those primers teach them from scratch."],
+  ["Then the worst percentages","Fiber Types (40%), Sliding Filament (50%), Fiber Anatomy (58%) and NMJ (63%) on the full run. All four live in Muscle and Performance."],
+  ["Answer in your head first","Read the question, decide, THEN look at the choices. Half your misses were a related-sounding wrong option pulling you in."]
+];
+})();
+
+</script>
+<script>
 (function(){
 const KEY = "bio2301-unit2-v1";
 const ALL_IDS = [];
@@ -2024,9 +2589,9 @@ function load(){ try { const s = JSON.parse(localStorage.getItem(KEY) || "null")
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
 function cs(cid){ if (!store.cats[cid]) store.cats[cid] = { best: null, last: null, missed: [] }; return store.cats[cid]; }
 load();
-const TABS = ["brain", "muscle", "perform", "motor", "endo", "heart", "all"];
+const TABS = ["brain", "muscle", "perform", "motor", "endo", "heart", "crunch", "all"];
 const SECT = TABS.filter(t => t !== "all");
-const TLAB = { brain: "Brain", muscle: "Muscle", perform: "Performance", motor: "Motor", endo: "Endocrine", heart: "Heart & BP", all: "Full Exam 2" };
+const TLAB = { brain: "Brain", muscle: "Muscle", perform: "Performance", motor: "Motor", endo: "Endocrine", heart: "Heart & BP", crunch: "Crunch Time", all: "Full Exam 2" };
 const TDESC = {
   brain: "Sleep and EEG, memory, language and the hemispheres",
   muscle: "Muscle organization, the sarcomere, sliding filaments, the NMJ and E-C coupling",
@@ -2034,10 +2599,11 @@ const TDESC = {
   motor: "Motor cortex and tracts, basal nuclei vs cerebellum, the Romberg test, cranial motor nerves",
   endo: "Glands, hormone signaling, the hypothalamus and pituitary, every gland's hormones, diabetes",
   heart: "Blood and heart anatomy, the cardiac cycle, conduction and EKG, cardiac output and blood pressure",
+  crunch: "Built from the 138 questions you missed on the Oct 28 full run, grouped into hit lists. Each Primer ends with a table of exactly what you picked and why it was wrong",
   all: "Every Unit 2 section in one place. Use Full exam here for a real dress rehearsal"
 };
 let tab = TABS.includes(store.tab) ? store.tab : "brain";
-function tabUnits(t){ t = t || tab; return t === "all" ? UNITS : UNITS.filter(u => u.tab === t); }
+function tabUnits(t){ t = t || tab; return t === "all" ? UNITS.filter(u => u.tab !== "crunch") : UNITS.filter(u => u.tab === t); }
 function tabCats(t){ return tabUnits(t).flatMap(u => u.cats); }
 function tabIds(t){ return tabCats(t).flatMap(c => CATS[c].ids); }
 
@@ -2457,3 +3023,5 @@ document.addEventListener("keydown", e => {
 renderHub();
 })();
 </script>
+
+</body></html>
