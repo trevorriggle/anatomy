@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1067,6 +1066,190 @@ W.thermo = [
 
 </script>
 <script>
+/* ================= TAB 5 · CRUNCH TIME (built from the Nov 17 full run, 81%) ================= */
+(function(){
+const C = {};
+
+C.ct_hemo = {"name":"Crunch: Hemostasis","crunch":true,
+"refs":["b_hemo-2","b_hemo-6","b_hemo-9","b_hemo-12","b_hemo-13","b_hemo-14","b_hemo-17","b_hemo-18","b_hemo-19","b_hemo-20","b_hemo-23"],
+"primer":`
+<section class="pr"><h3>The whole thing is a relay race</h3>
+${FLOW([["1. Spasm", "Vessel squeezes"], ["2. Plug", "Platelets pile on"], ["3. Coagulation", "Fibrin mesh"]])}
+${MN("Spasm causes: injury, serotonin, pain", "Heparin is NOT one. Heparin is an ANTI-coagulant, so it's on the other team.")}
+${MN("Pro → Thrombin → Fibrin", "Stage 1 builds PCC. Stage 2: PCC turns PROthrombin into THROMBIN. Stage 3: thrombin turns FIBRINOGEN into FIBRIN. Pro- and -ogen are the sleeping versions.")}
+</section>
+<section class="pr"><h3>Extrinsic vs intrinsic</h3>
+${TBL(["", "EXtrinsic", "INtrinsic"], [
+  ["Hook", "EXit: blood leaked OUT into tissue", "INside: blood stays IN the vessel"],
+  ["Starter", "Tissue thromboplastin", "Hageman factor (blood touches collagen)"],
+  ["Speed", "EXpress: FASTER, as little as 15 sec", "Slower"],
+  ["Differ in", "Only stage 1", "Only stage 1"]
+])}
+${MN("Two pathways, one finish line", "They only differ in how they START (stage 1). Stages 2 and 3 are the same road.")}
+</section>
+<section class="pr"><h3>After the clot</h3>
+${TBL(["Term", "Hook"], [
+  ["Thrombin", "BUILDS the clot (makes fibrin)"],
+  ["Plasmin", "DISSOLVES the clot. Plasmin = the cleanup crew. Starts within ~2 DAYS"],
+  ["Antithrombin III", "Mops up leftover thrombin so the clot doesn't spread. A plasma protein"],
+  ["Thrombus", "Stuck. Stays put in an unbroken vessel"],
+  ["Embolus", "Escaped. Broke free and floats (brain = stroke, lungs = pulmonary embolus)"],
+  ["Petechiae", "Pinpoint red dots from bleeding under the skin. Low platelets"]
+])}
+</section>`,
+"q":[
+["Which phase of hemostasis comes right after vascular spasm?","Platelet plug formation",["Coagulation","Fibrinolysis","Clot retraction"],"Spasm → plug → coagulation."],
+["Tissue thromboplastin starts which pathway?","Extrinsic",["Intrinsic","Both equally","Neither"],"EXtrinsic = blood EXited into damaged tissue."],
+["Hageman factor starts which pathway?","Intrinsic",["Extrinsic","Fibrinolysis","Platelet plug"],"INtrinsic = blood stays INside the vessel."],
+["Which converts prothrombin into thrombin?","Prothrombin activator (PCC)",["Plasmin","Fibrin","Antithrombin III"],"Stage 2."],
+["Which enzyme builds the clot, and which dissolves it?","Thrombin builds, plasmin dissolves",["Plasmin builds, thrombin dissolves","Both build","Fibrin builds, heparin dissolves"],"Plasmin = cleanup crew."],
+["A clot in a leg vein breaks loose and lodges in the lung. In the lung it's an:","Embolus (pulmonary embolus)",["Thrombus","Petechia","Plug"],"Escaped = embolus."],
+["Lots of petechiae can be a sign of:","Low platelet count",["Too much EPO","Polycythemia","Too much fibrin"],"Platelets seal small leaks."],
+["Antithrombin III's job is to:","Inactivate thrombin that fibrin didn't absorb",["Build fibrin","Dissolve fibrin","Attract platelets"],"Keeps the clot from spreading."]
+]};
+
+C.ct_resp = {"name":"Crunch: Respiratory","crunch":true,
+"refs":["r_mech-12","r_mech-15","r_mech-17","r_surf-3","r_surf-9","r_vol-1","r_vol-9","r_gas-0","r_gas-1","r_ctrl-11","r_ctrl-12"],
+"primer":`
+<section class="pr"><h3>Muscles</h3>
+${MN("Diaphragm = a plunger pulled DOWN", "It contracts, flattens and moves down. The chest gets bigger, pressure drops, air comes in. It never pushes air out.")}
+${MN("EXternal intercostals for inhale, INternal for exhale", "Opposites. Forced OUT = internal intercostals + abs (squeeze ribs down, shove the diaphragm up). The SCM is a forced-INhale helper.")}
+</section>
+<section class="pr"><h3>Three words that sound alike</h3>
+${TBL(["Term", "Picture"], [
+  ["Elastic recoil", "The lungs' urge to COLLAPSE. A stretched rubber band snapping back"],
+  ["Compliance", "STRETCHINESS. Volume change per pressure change. Opposite of stiff"],
+  ["Lateral traction", "Elastic tissue TUGGING small bronchioles open, like tent ropes. Small airways have no cartilage"]
+])}
+</section>
+<section class="pr"><h3>Volumes and where exchange happens</h3>
+${MN("Residual volume = Remains", "The ~1200 ml that never leaves, even after you blow everything out. Not ERV.")}
+${MN("VC = TLC − RV", "Vital capacity is everything you can MOVE. Total capacity is that plus the residual that never moves.")}
+${MN("EXternal respiration = EXchange with the outside air (LUNGS)", "INternal respiration = INside the body, at the TISSUES.")}
+${MN("Reflexes", "Hering-Breuer = stretch sensors, don't pop the lungs. Irritants via vagus → bronchoCONSTRICTION (close the door on smoke).")}
+</section>`,
+"q":[
+["When you inhale quietly, the diaphragm:","Contracts and moves down",["Relaxes and domes up","Pushes air out","Stays still"],"Plunger pulled down."],
+["Which muscles pull the ribs DOWN during forced exhale?","Internal intercostals",["External intercostals","Scalenes","Diaphragm"],"Internal = exhale."],
+["A stiff, fibrotic lung has:","Low compliance",["High compliance","More surfactant","More lateral traction"],"Compliance = stretchiness."],
+["Small bronchioles stay open as the lungs expand because of:","Lateral traction",["Cartilage rings","Elastic recoil","Residual volume"],"Tent ropes pulling outward."],
+["Which volume CANNOT be measured by blowing into a spirometer, because it never leaves?","Residual volume",["Tidal volume","Expiratory reserve volume","Vital capacity"],"Remains."],
+["TLC is 6000 ml and RV is 1200 ml. Vital capacity is:","4800 ml",["7200 ml","1200 ml","3600 ml"],"VC = TLC − RV."],
+["O₂ moving from capillaries into your thigh muscle is:","Internal respiration",["External respiration","Ventilation","Hering-Breuer"],"Tissues = internal."],
+["Inhaling smoke makes the airways:","Constrict, via the vagus",["Dilate, via epinephrine","Fill with surfactant","Stretch until Hering-Breuer fires"],"Close the door."]
+]};
+
+C.ct_rbc = {"name":"Crunch: RBCs & Blood Basics","crunch":true,
+"refs":["b_comp-0","b_comp-9","b_comp-13","b_prod-2","b_prod-10","b_prod-11","b_prod-12","b_prod-14","b_prod-16"],
+"primer":`
+<section class="pr"><h3>The assembly line</h3>
+${FLOW([["Hemocytoblast", "Stem cell"], ["Erythroblast", "BUILDER: makes ribosomes"], ["Normoblast", "Fills with Hb. At 34% → NUCleus out (Normoblast = No nucleus)"], ["Reticulocyte", "RELEASED into blood, still has Ribosomes"], ["Erythrocyte", "Done"]])}
+${MN("3–5 days to build, 120 days to live", "Stem cell → reticulocyte takes 3–5 days. 120 days is the lifespan, not the build time.")}
+${MN("Yolk sac → liver/spleen → red marrow", "First RBCs come from the YOLK SAC (3rd week of the embryo). Marrow takes over later.")}
+</section>
+<section class="pr"><h3>Numbers that collide</h3>
+${TBL(["Number", "Goes with"], [
+  ["55%", "Plasma (top of the tube). 45% = RBCs"],
+  ["97%", "How much of an RBC is hemoglobin"],
+  ["34%", "Hb level when the nucleus gets ejected"],
+  ["4", "O₂ per HEMOGLOBIN (one per iron)"],
+  ["1 billion", "O₂ per RBC (it's packed with hemoglobin)"]
+])}
+${MN("Only job: gas exchange", "RBCs carry O₂ and CO₂. Platelets do clotting.")}
+${MN("Pernicious anemia = no Intrinsic factor", "Stomach makes intrinsic factor, which you need to absorb B12. No B12 → can't make DNA → fewer RBCs.")}
+</section>`,
+"q":[
+["The RBC stage that spits out its nucleus is the:","Normoblast",["Erythroblast","Reticulocyte","Hemocytoblast"],"At ~34% hemoglobin."],
+["An RBC is built in about ___ and lives about ___.","3–5 days; 120 days",["120 days; 3–5 days","24 hours; 1 year","3 weeks; 30 days"],"Build fast, live long."],
+["One hemoglobin carries how many O₂?","4",["1 billion","97","34"],"One per iron. The RBC carries ~1 billion."],
+["Where are the very first RBCs in an embryo made?","Yolk sac",["Red bone marrow","Liver","Kidney"],"3rd week."],
+["Pernicious anemia traces back to a problem in the:","Stomach (intrinsic factor)",["Kidney (EPO)","Spleen","Liver (iron)"],"Can't absorb B12."]
+]};
+
+C.ct_wbc = {"name":"Crunch: WBCs & Counts","crunch":true,
+"refs":["b_wbc-2","b_wbc-4","b_wbc-6","b_wbc-10","b_wbc-11","b_wbc-12"],
+"primer":`
+<section class="pr"><h3>Two cells you swapped</h3>
+${TBL(["Cell", "Look", "Job", "Hook"], [
+  ["Neutrophil", "MULTI-lobed nucleus", "Phagocytize BACTERIA", "Most common. First responder. Many lobes = many arms"],
+  ["Basophil", "Big blue-purple granules", "HISTAMINE + HEPARIN", "Basophil = the B-H-H cell. Rarest"],
+  ["Lymphocyte", "Big round nucleus", "ANTIBODIES", "Not multilobed, no heparin"]
+])}
+${MN("Never Let Monkeys Eat Bananas", "Neutrophil > Lymphocyte > Monocyte > Eosinophil > Basophil.")}
+</section>
+<section class="pr"><h3>Counts: the crowd, the medics, the bouncers</h3>
+${TBL(["Cell", "Per µl", "Size word"], [
+  ["RBC", "4–6 MILLION", "Millions: the crowd"],
+  ["Platelets", "150,000–400,000", "Hundreds of thousands"],
+  ["WBC", "4,800–10,800", "Thousands: the bouncers"]
+])}
+${MN("RBC > platelets > WBC", "Big, medium, small. If the answer says millions, it's RBCs.")}
+</section>`,
+"q":[
+["A cell with a multilobed nucleus eating bacteria is a:","Neutrophil",["Basophil","Lymphocyte","Monocyte"],"Many lobes, first responder."],
+["Which cell releases histamine?","Basophil",["Neutrophil","Lymphocyte","Erythrocyte"],"B-H-H: histamine + heparin."],
+["Antibodies come from:","Lymphocytes",["Neutrophils","Basophils","Platelets"],"B and T cells."],
+["A count of 7,000 per µl is a normal count for:","WBCs",["RBCs","Platelets","Basophils alone"],"Thousands = WBCs."],
+["A count of 5 million per µl is a normal count for:","RBCs",["WBCs","Platelets","Neutrophils"],"Millions = RBCs."]
+]};
+
+C.ct_acid = {"name":"Crunch: Acid-Base","crunch":true,
+"refs":["a_ph-10","a_ph-16","a_imb-9","a_imb-15","a_imb-17","a_imb-19","a_imb-20"],
+"primer":`
+<section class="pr"><h3>Symptoms: Antsy vs Asleep</h3>
+${TBL(["", "ALKALOSIS = Antsy", "ACIDOSIS = Asleep"], [
+  ["Nerves", "Over-excited: tingling, spasms, convulsions", "Depressed: sleepy, confused, coma"],
+  ["Extras", "Hyperirritable", "Potassium leaks OUT of cells, nausea"]
+])}
+</section>
+<section class="pr"><h3>Causes and fixes</h3>
+${MN("Kidney failure = acidosis", "The kidneys are the only exit for metabolic acids. Exit closed → acid piles up.")}
+${MN("Blood buffer = Bicarbonate (B = B)", "Protein in cells, hemoglobin in RBCs, phosphate in urine.")}
+${MN("Kidney trade: H⁺ out, bicarb in", "To reabsorb bicarbonate, the kidney has to SECRETE H⁺.")}
+${MN("Metabolic alkalosis → breathe SLOWER", "Too basic, so hold onto CO₂ (acid in disguise). Metabolic acidosis → breathe faster.")}
+${MN("Breathe out CO₂ → less H⁺ → pH UP", "Less acid in disguise = more basic. The formula shifts left and USES UP H⁺.")}
+</section>`,
+"q":[
+["Muscle spasms and convulsions point to:","Alkalosis",["Acidosis","Hypothermia","Anemia"],"Antsy."],
+["Confusion drifting into coma points to:","Acidosis",["Alkalosis","Fever","Heat exhaustion"],"Asleep."],
+["Someone with failing kidneys can't excrete acid. Expect:","Metabolic acidosis",["Metabolic alkalosis","Respiratory alkalosis","Respiratory acidosis"],"Exit closed."],
+["After severe vomiting, the lungs respond by:","Slowing breathing to keep CO₂",["Speeding breathing to blow off CO₂","Stopping breathing","Making bicarbonate"],"Metabolic alkalosis → hypoventilate."],
+["Hyperventilating lowers H⁺ because it:","Removes CO₂, the acid in disguise",["Adds bicarbonate","Adds O₂, which is a base","Makes the kidneys secrete H⁺"],"Less CO₂ → less H⁺ → pH up."]
+]};
+
+C.ct_thermo = {"name":"Crunch: Thermo","crunch":true,
+"refs":["t_loss-5","t_loss-6","t_ctrl-0","t_ctrl-4","t_ctrl-7"],
+"primer":`
+<section class="pr"><h3>Five fixes</h3>
+${MN("Lowest in the morning", "Like a car on a cold morning. Highest late afternoon/evening.")}
+${MN("PROgesterone = PRO-heat", "Raises temp in the 2nd half of the cycle. Not estrogen.")}
+${MN("Thermostat = hypothalamus", "Not the pituitary, not the thyroid. Thyroid only sets furnace speed.")}
+${TBL(["Skin sign", "Cause", "When"], [
+  ["Red skin", "VASODILATION: warm blood to the surface", "Hot: dump heat"],
+  ["White fingers", "Vasoconstriction (Raynaud's if pathological)", "Cold: keep heat"],
+  ["Goosebumps", "PILOERECTION (arrector pili)", "Cold: trap warm air"]
+])}
+</section>`,
+"q":[
+["If you take your temperature at 6 a.m. and 6 p.m., the 6 a.m. reading is usually:","Lower",["Higher","Exactly the same","Higher only in women"],"Lowest in the morning."],
+["The hormone that raises temperature after ovulation is:","Progesterone",["Estrogen","Thyroxine","Cortisol"],"Pro-heat."],
+["Goosebumps help you:","Keep heat",["Lose heat","Sweat","Dilate skin vessels"],"Trap a layer of warm air."],
+["Your face flushes red on a hot day because skin vessels:","Dilate",["Constrict","Spasm (Raynaud's)","Clot"],"Bring warm blood up to dump heat."]
+]};
+
+Object.assign(CATS, C);
+UNITS.push({"name":"Crunch Time","deck":"Built from your Nov 17 full run · 49 misses + new angles","cats":["ct_hemo","ct_resp","ct_rbc","ct_wbc","ct_acid","ct_thermo"],"tab":"crunch"});
+W.crunch = [
+  ["Read the primer first, then Practice","Each pile is your real misses (red “Your miss” tag) plus a few new angles on the same fact."],
+  ["Hemostasis and Respiratory are half of it","22 of the 49. Do those two first."],
+  ["Alkalosis = Antsy, acidosis = Asleep","Spasms and convulsions vs sleepy and coma."],
+  ["Thrombin builds, plasmin dissolves","Thrombus stuck, embolus escaped."],
+  ["Millions, hundreds of thousands, thousands","RBCs, platelets, WBCs."]
+];
+})();
+
+</script>
+<script>
 (function(){
 const KEY = "bio2301-unit3-v1";
 const ALL_IDS = [];
@@ -1094,10 +1277,11 @@ function load(){ try { const s = JSON.parse(localStorage.getItem(KEY) || "null")
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
 function cs(cid){ if (!store.cats[cid]) store.cats[cid] = { best: null, last: null, missed: [] }; return store.cats[cid]; }
 load();
-const TABS = ["blood", "resp", "acid", "thermo", "all"];
-const SECT = TABS.filter(t => t !== "all");
-const TLAB = { blood: "Blood", resp: "Respiratory", acid: "Acid-Base", thermo: "Thermoregulation", all: "Full Exam 3" };
+const TABS = ["crunch", "blood", "resp", "acid", "thermo", "all"];
+const SECT = TABS.filter(t => t !== "all" && t !== "crunch");
+const TLAB = { crunch: "Crunch Time", blood: "Blood", resp: "Respiratory", acid: "Acid-Base", thermo: "Thermoregulation", all: "Full Exam 3" };
 const TDESC = {
+  crunch: "Your 49 misses from the Nov 17 full run (81%), sorted into six piles. Each pile has a hook primer, your real misses and a few new angles",
   blood: "Blood composition, RBC production and destruction, the WBC lineup, blood typing and Rh, hemostasis and clotting",
   resp: "Ventilation mechanics, surfactant and COPD, lung volumes, gas exchange and transport, control of breathing",
   acid: "pH, buffers, the lungs and kidneys, and how to sort respiratory vs metabolic acidosis and alkalosis",
@@ -1146,7 +1330,7 @@ function renderHub(){
   const missed = allMissed().length;
   const noteIds = IDS.filter(id => BYID[id].n);
 
-  const tabBtn = (t, label) => `<button class="tab ${tab === t ? "on" : ""}" data-act="tab" data-tab="${t}" aria-pressed="${tab === t}">${label}<span class="ct">${tabIds(t).length}</span></button>`;
+  const tabBtn = (t, label) => `<button class="tab ${t === "crunch" ? "ct-tab" : ""} ${tab === t ? "on" : ""}" data-act="tab" data-tab="${t}" aria-pressed="${tab === t}">${label}<span class="ct">${tabIds(t).length}</span></button>`;
   const W_ = W[tab] || SECT.flatMap(t => (W[t] || []).slice(0, 1));
   let h = `<header class="mast">
     <div class="eyebrow">BIO 2301 · Human Physiology · Unit Exam 3 · Obj 52–74</div>
@@ -1415,7 +1599,7 @@ function showKey(b){
 function totalMissedAll(){ return SECT.reduce((a, t) => a + tabCats(t).reduce((x, c) => x + cs(c).missed.length, 0), 0); }
 function missedText(){
   const out = [], picks = store.picks || {}; let n = 0;
-  SECT.map(t => [t, TLAB[t].toUpperCase()]).forEach(([t, label]) => {
+  SECT.concat(["crunch"]).map(t => [t, TLAB[t].toUpperCase()]).forEach(([t, label]) => {
     const lines = [];
     tabCats(t).forEach(cid => {
       const m = cs(cid).missed.filter(id => BYID[id]); if (!m.length) return;
